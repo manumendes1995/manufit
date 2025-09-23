@@ -1,0 +1,132 @@
+{
+  "hipertrofia": {
+    "cardapio1": {
+      "titulo": "CARDÁPIO 1 PARA HIPERTROFIA",
+      "kcal": "1900 – 2100",
+      "refeicoes": {
+        "pequeno_almoço": [
+          { "opcao": 1, "itens": [
+            "120g Salada de frutas variadas",
+            "20g (lascas de castanha/coco) ou aveia",
+            "Fio de mel",
+            "2 ovos inteiros (mexido, cozido ou frito com fio de azeite)"
+          ]},
+          { "opcao": 2, "itens": [
+            "2 fatias de pão 100% integral ou 1 pão francês",
+            "40g queijo (cottage ou mozarela)",
+            "80g hambúrguer caseiro (frango/carne) OU 2 ovos inteiros (mexido/cozido/frito com fio de azeite)"
+          ]}
+        ],
+        "lanche_manhã": [
+          { "opcao": 1, "itens": [
+            "30g mix de oleaginosas (castanhas, nozes, amêndoas)",
+            "100g banana OU 100g manga"
+          ]},
+          { "opcao": 2, "itens": [
+            "250g (1 unid.) Iogurte proteico (Skyr) OU bebida láctea (soja)"
+          ]}
+        ],
+        "almoço": [
+          { "itens": [
+            "150g (3 colheres de servir) batata doce/mandioca/inhame/batata inglesa/mandioquinha salsa OU (arroz + feijão/lentilha)",
+            "100g (1 filete grande) carne vermelha OU frango OU peixe OU 3 ovos inteiros",
+            "100g (2 colheres de servir) legumes cozidos",
+            "Folhas/salada à vontade",
+            "Obs: sobremesa opcional (80g fruta variada)"
+          ]}
+        ],
+        "lanche_tarde": [
+          { "opcao": 1, "itens": [
+            "Panqueca de banana",
+            "Massa: 80g banana amassada + 30g aveia + 2 ovos + canela",
+            "Recheio: 40g pasta de amendoim integral (100% amendoim)"
+          ]},
+          { "opcao": 2, "itens": [
+            "100g frango desfiado OU carne moída OU atum",
+            "100g mandioca/batata doce cozida (pode fazer bolinhas e assar)"
+          ]}
+        ],
+        "jantar": [
+          { "itens": [
+            "150g (3 colheres de servir) batata doce/mandioca/inhame/batata inglesa/mandioquinha salsa OU (arroz + feijão/lentilha)",
+            "100g (1 filete grande) carne vermelha OU frango OU peixe OU 3 ovos inteiros",
+            "100g (2 colheres de servir) legumes cozidos",
+            "Folhas/salada à vontade",
+            "Obs: sobremesa opcional (80g fruta variada)"
+          ]}
+        ],
+        "ceia": [
+          { "opcao": 1, "itens": [
+            "250g (1 unid.) Iogurte proteico (Skyr) / bebida láctea (soja)"
+          ]},
+          { "opcao": 2, "itens": [
+            "40g pipoca de panela (pesar o milho cru e usar azeite)"
+          ]}
+        ]
+      }
+    }
+  },
+  "emagrecimento": {
+    "cardapio1": {
+      "titulo": "CARDÁPIO 1 PARA EMAGRECIMENTO",
+      "kcal": "1100 – 1300",
+      "refeicoes": {
+        "pequeno_almoço": [
+          { "opcao": 1, "itens": [
+            "1 iogurte grego zero (Milbona) 100g OU iogurte zero Skyr (Milbona) 100g",
+            "80g fruta (morango/kiwi/pêssego/maçã/pêra/ameixa/uva/manga)",
+            "20g (lascas de castanha/coco) OU aveia"
+          ]},
+          { "opcao": 2, "itens": [
+            "1 fatia de pão 100% integral OU 30g aveia",
+            "30g queijo (cottage ou mozarela)",
+            "1 ovo inteiro (mexido/cozido/frito com fio de azeite)"
+          ]}
+        ],
+        "lanche_manhã": [
+          { "opcao": 1, "itens": [
+            "30g mix de oleaginosas (castanhas/nozes/amêndoas) + 20g frutas secas (damasco/tâmara/ameixa)"
+          ]},
+          { "opcao": 2, "itens": [
+            "1 barra de proteína (Whey Bar Probiótica/Bold) OU 25g de whey"
+          ]}
+        ],
+        "almoço": [
+          { "itens": [
+            "50g (até 80g máx.) OU 1 colher de servir de batata doce/mandioca/inhame/batata inglesa/mandioquinha salsa OU (arroz integral + feijão/lentilha)",
+            "100g (1 filete grande) carne vermelha OU frango OU peixe OU 3 ovos inteiros",
+            "100g (2 colheres de servir) legumes cozidos",
+            "Folhas/salada à vontade",
+            "Obs: sobremesa opcional (20g chocolate ≥70% OU 1 c. sopa pasta de amendoim)"
+          ]}
+        ],
+        "lanche_tarde": [
+          { "opcao": 1, "itens": [
+            "Panqueca de banana",
+            "Massa: 60g banana amassada + 20g aveia + 1 ovo + canela",
+            "Recheio: 30g pasta de amendoim integral"
+          ]},
+          { "opcao": 2, "itens": [
+            "60g frango desfiado OU atum + 60g mandioca/batata doce (pode fazer bolinhas e assar)"
+          ]}
+        ],
+        "jantar": [
+          { "opcao": 1, "itens": [
+            "50g (até 80g máx.) OU 1 colher de servir de batata doce/mandioca/inhame/batata inglesa/mandioquinha salsa OU (arroz integral + feijão/lentilha)",
+            "100g (1 filete grande) carne vermelha OU frango OU peixe OU 3 ovos inteiros",
+            "100g (2 colheres de servir) legumes cozidos",
+            "Folhas/salada à vontade"
+          ]},
+          { "opcao": 2, "itens": [
+            "500ml Shake (30g leite em pó (proteína) + água + 60g de fruta (morango/banana/abacate) + 10g cacau em pó + fio de mel)"
+          ]}
+        ],
+        "ceia": [
+          { "itens": [
+            "1 chávena de chá (camomila ou lavanda)"
+          ]}
+        ]
+      }
+    }
+  }
+}
