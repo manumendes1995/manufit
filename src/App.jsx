@@ -41,7 +41,7 @@ function Header() {
       <div className="wrap">
         <div className="row" style={{ padding: "10px 0" }}>
           <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
-            <img src={logo} alt={`${APP_NAME} logo`} style={{ height:"36px" }} />
+            <img src={logo} alt={`${APP_NAME} logo`} style={{ height: "36px" }} />
             <span className="name">{APP_NAME}</span>
           </NavLink>
 
@@ -54,7 +54,7 @@ function Header() {
             <NavLink to="/conta">Conta</NavLink>
           </nav>
 
-          <div className="nav-right" style={{ display:"flex", gap:8, alignItems:"center" }}>
+          <div className="nav-right" style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <DaysBadge />
             <span id="pageLabel" className="page-label" aria-live="polite">
               {pageLabel}
