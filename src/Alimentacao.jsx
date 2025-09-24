@@ -1,66 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import Hero from "./ui/Hero.jsx";
 
-export default function Alimentacao(){
-  return (
-    <>
-      <Hero title="Alimentação" subtitle="Seleciona o objetivo: Hipertrofia ou Emagrecimento." />
-      {/* ...conteúdo existente... */}
-    </>
-  );
-}
-import React, { useEffect, useState } from "react";
-import planosData from "../data/planos.json";
+// Se tiveres um JSON em data/planos.json com chaves "hipertrofia" e "emagrecimento",
+// podes descomentar a linha abaixo e usar esse conteúdo.
+// import planosData from "../data/planos.json";
+
+const planosFallback = {
+  hipertrofia: [
+    "Peq. almoço: ovos + fruta + aveia",
+    "Almoço: arroz/feijão + carne/peixe/ovos + legumes",
+    "Lanche: panqueca de banana + pasta de amendoim",
+    "Jantar: igual ao almoço (varia fontes)",
+    "Ceia: iogurte proteico ou fruta"
+  ],
+  emagrecimento: [
+    "Peq. almoço: iogurte grego zero + fruta + aveia",
+    "Almoço: porção moderada de carb + proteína + legumes",
+    "Lanche: panqueca leve OU frango desfiado + mandioca",
+    "Jantar: igual ao almoço (porção menor)",
+    "Ceia: chá de camomila/lavanda"
+  ]
+};
 
 export default function Alimentacao() {
   const [objetivo, setObjetivo] = useState("");
-  const [plano, setPlano] = useState(null);
 
-  useEffect(() => {
-    if (objetivo) {
-      try {
-        const p = planosData[objetivo]["cardapio1"];
-        setPlano(p);
-      } catch {
-        setPlano(null);
-      }
-    }
-  }, [objetivo]);
+  // Usa o JSON se estiver importado; caso contrário, cai no fallback
+  const planos = planosFallback; // ou: const planos = planosData ?? planosFallback;
+
+  const atual = objetivo ? planos[objetivo] ?? [] : [];
 
   return (
-    <section className="panel">
-      <h2>Alimentação</h2>
+    <>
+      <Hero title="Alimentação" subtitle="Seleciona o objetivo e vê o plano recomendado." />
 
-      <div className="chips" style={{ marginBottom: 12 }}>
-        <select value={objetivo} onChange={(e)=>setObjetivo(e.target.value)}>
-          <option value="">Objetivo</option>
-          <option value="hipertrofia">Hipertrofia</option>
-          <option value="emagrecimento">Emagrecimento</option>
-        </select>
-      </div>
-
-      {plano ? (
-        <div>
-          <p><strong>{plano.titulo}</strong> — alvo: {plano.kcal} kcal/dia</p>
-          <div className="cols-3">
-            {Object.entries(plano.refeicoes).map(([ref, itens]) => (
-              <div className="card" key={ref}>
-                <h3>{ref.replace(/_/g," ").toUpperCase()}</h3>
-                {itens.map((grupo, i) => (
-                  <div key={i} style={{marginTop:8}}>
-                    {grupo.opcao && <div className="badge">Opção {grupo.opcao}</div>}
-                    <ul style={{ margin: "6px 0 0 18px" }}>
-                      {grupo.itens.map((t, j) => <li key={j}>{t}</li>)}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+      <section className="panel">
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          <button
+            className={`btn ${objetivo === "hipertrofia" ? "" : "ghost"}`}
+            onClick={() => setObjetivo("hipertrofia")}
+            type="button"
+          >
+            Hipertrofia
+          </button>
+          <button
+            className={`btn ${objetivo === "emagrecimento" ? "" : "ghost"}`}
+            onClick={() => setObjetivo("emagrecimento")}
+            type="button"
+          >
+            Emagrecimento
+          </button>
         </div>
-      ) : (
-        <p className="note">Seleciona o objetivo para ver o cardápio.</p>
-      )}
-    </section>
+
+        {!objetivo && (
+          <p className="note" style={{ marginTop: 12 }}>
+            Escolhe um objetivo para ver o cardápio.
+          </p>
+        )}
+
+        {objetivo && (
+          <div className="list" style={{ marginTop: 14 }}>
+            {atual.length === 0 ? (
+              <p className="note">
+                Sem itens para este objetivo (verifica o ficheiro de dados).
+              </p>
+            ) : (
+              atual.map((linha, i) => (
+                <div key={i} className="item">
+                  <span>🍽️ {linha}</span>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+      </section>
+    </>
   );
 }
