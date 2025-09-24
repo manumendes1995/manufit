@@ -1,11 +1,11 @@
 :root{
-  --brand:#ff2b6a;           /* rosa Manufit */
+  --brand:#ff2b6a;          /* rosa Manufit */
   --brand-600:#e0265f;
   --brand-100:#ffe3ec;
   --ink:#111;
   --muted:#666;
-  --line:#eee;
-  --bg:#ffffff;
+  --line:#e9e9ee;
+  --bg:#f6f7fb;             /* ligeiro cinza para não ficar branco puro */
 }
 
 *{box-sizing:border-box}
@@ -13,19 +13,19 @@ html,body,#root,#app{height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
 /* Topbar */
-.topbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:10}
+.topbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:10;backdrop-filter:saturate(110%) blur(6px)}
 .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 .row{display:flex;align-items:center;justify-content:space-between}
 .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
 .name{font-weight:800;letter-spacing:.3px}
 
 /* Nav */
-.nav a{margin:0 10px;padding:8px 6px;text-decoration:none;color:#333;border-bottom:2px solid transparent}
+.nav a{margin:0 10px;padding:10px 6px;text-decoration:none;color:#333;border-bottom:2px solid transparent}
 .nav a:hover{border-bottom-color:var(--brand-100)}
 .nav a.active{color:var(--brand);border-bottom-color:var(--brand)}
 
 /* UI */
-.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(18,21,26,.05)}
 .grid{display:grid;gap:14px}
 .list{display:grid;gap:10px}
 .item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fafafa}
@@ -33,5 +33,17 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple
 .tag{background:var(--brand-100);color:var(--brand);padding:2px 8px;border-radius:999px;font-size:12px;font-weight:700}
 .btn{border:1px solid var(--brand);background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;cursor:pointer}
 .btn.ghost{background:#fff;color:var(--brand)}
-.note{opacity:.8}
+.note{opacity:.85}
 footer{text-align:center;padding:28px 0 40px;color:var(--muted)}
+
+/* HERO cards pequenos */
+.hero .hero-card{
+  display:flex;gap:12px;align-items:center;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  padding:12px 14px;border-radius:12px;
+}
+.hero .hero-card .k{
+  width:24px;height:24px;border-radius:999px;background:var(--brand);
+  display:inline-flex;align-items:center;justify-content:center;font-weight:800;
+}

@@ -59,7 +59,6 @@ export default function Conta() {
         <div className="card">
           <h3>Benefícios</h3>
           <ul style={{ margin: "10px 0 0 18px" }}>
-            <li>Câmara com IA para corrigir postura</li>
             <li>Planos renovados mensalmente (4 a cada 28–30 dias)</li>
             <li>Rotinas para iniciante e avançado</li>
             <li>
