@@ -63,7 +63,7 @@ export default function Conta() {
             <li>Rotinas para iniciante e avançado</li>
             <li>
               Suporte por email:{" "}
-              <a href="mailto:aitrainer55@gmail.com">aitrainer55@gmail.com</a>
+              <a href="mailto:manumendes199514@gmail.com">manumendes199514@gmail.com</a>
             </li>
           </ul>
           <div style={{ marginTop: 12 }}>

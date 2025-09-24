@@ -1,6 +1,14 @@
 import React from "react";
 
+import React from "react";
+import Hero from "./ui/Hero.jsx";
 export default function Alongamentos(){
+  // ...superiores e inferiores como já tens...
+  return (
+    <>
+      <Hero title="Alongamentos" subtitle="Divididos em Superiores e Inferiores." />
+      <div className="grid">
+        {/* Blocos já existentes */}
   const superiores = [
     { nome: "Pescoço (inclinações suaves)", tempo: "3×20–30s" },
     { nome: "Trapézio (orelha ao ombro)", tempo: "3×20–30s" },

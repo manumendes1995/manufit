@@ -1,6 +1,14 @@
 import React from "react";
+import Hero from "./ui/Hero.jsx";
 
-export default function Relaxamento() {
+export default function Relaxamento(){
+  return (
+    <>
+      <Hero title="Relaxamento" subtitle="Respiração e descarrego de tensão para melhor recuperação." />
+      {/* ...conteúdo existente... */}
+    </>
+  );
+}
   const tecnicas = [
     { titulo: "Respiração 4-4-6", desc: "Inspira 4s, mantém 4s, expira 6s. Repetir 3–5 minutos para reduzir stress e FC." },
     { titulo: "Varredura Corporal", desc: "Deitado, percorre mentalmente dos pés à cabeça, relaxando cada zona por 10–15s." },

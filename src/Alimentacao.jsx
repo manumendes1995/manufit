@@ -1,3 +1,14 @@
+import React from "react";
+import Hero from "./ui/Hero.jsx";
+
+export default function Alimentacao(){
+  return (
+    <>
+      <Hero title="Alimentação" subtitle="Seleciona o objetivo: Hipertrofia ou Emagrecimento." />
+      {/* ...conteúdo existente... */}
+    </>
+  );
+}
 import React, { useEffect, useState } from "react";
 import planosData from "../data/planos.json";
 
