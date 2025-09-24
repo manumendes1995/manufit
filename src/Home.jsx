@@ -1,9 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Hero from "./ui/Hero.jsx";
-import { SUPPORT_EMAIL } from "./config";
 
 export default function Home() {
+  const EMAIL = "aitrainer55@gmail.com";
+
   return (
     <>
       <Hero
@@ -37,8 +38,11 @@ export default function Home() {
             <div>
               <strong>Suporte</strong>
               <div style={{ opacity: 0.8 }}>
-                <a href={`mailto:${SUPPORT_EMAIL}`} style={{ color: "white", textDecoration: "underline" }}>
-                  {SUPPORT_EMAIL}
+                <a
+                  href={`mailto:${EMAIL}`}
+                  style={{ color: "white", textDecoration: "underline" }}
+                >
+                  {EMAIL}
                 </a>
               </div>
             </div>

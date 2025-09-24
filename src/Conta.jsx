@@ -1,78 +1,45 @@
 import React from "react";
+import Hero from "./ui/Hero.jsx";
 
 export default function Conta() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Conta criada! (demo)");
-  };
+  const EMAIL = "aitrainer55@gmail.com";
 
   return (
-    <section id="conta" className="panel">
-      <h2>7 dias grátis — cria a tua conta</h2>
-      <div className="two">
-        {/* Formulário */}
-        <form className="card" onSubmit={handleSubmit}>
-          <div className="list" style={{ gap: "12px" }}>
-            <label>
-              Nome
-              <br />
-              <input
-                required
-                type="text"
-                placeholder="O teu nome"
-                className="input"
-              />
-            </label>
-
-            <label>
-              Email
-              <br />
-              <input
-                required
-                type="email"
-                placeholder="teu@email.com"
-                className="input"
-              />
-            </label>
-
-            <label>
-              Senha
-              <br />
-              <input
-                required
-                type="password"
-                placeholder="••••••••"
-                className="input"
-              />
-            </label>
-
-            <button className="btn btn-primary" type="submit">
-              CRIAR CONTA
-            </button>
-          </div>
-          <p className="note">
-            Ao criar a conta, concordas com os Termos e Privacidade.
-          </p>
+    <>
+      <Hero
+        title="7 dias grátis — crie a sua conta"
+        subtitle="Depois continua com treinos e planos atualizados a cada 30 dias."
+      />
+      <section className="panel">
+        {/* Se já tinhas um formulário mais completo, podes manter. */}
+        <form style={{ display: "grid", gap: 12, maxWidth: 420 }}>
+          <label>
+            Nome
+            <input type="text" placeholder="O teu nome" />
+          </label>
+          <label>
+            E-mail
+            <input type="email" placeholder="teu@email.com" />
+          </label>
+          <label>
+            Senha
+            <input type="password" placeholder="••••••••" />
+          </label>
+          <button className="btn" type="button">Criar conta</button>
         </form>
+      </section>
 
-        {/* Benefícios */}
-        <div className="card">
-          <h3>Benefícios</h3>
-          <ul style={{ margin: "10px 0 0 18px" }}>
-            <li>Planos renovados mensalmente (4 a cada 28–30 dias)</li>
-            <li>Rotinas para iniciante e avançado</li>
-            <li>
-              Suporte por email:{" "}
-              <a href="mailto:manumendes199514@gmail.com">manumendes199514@gmail.com</a>
-            </li>
-          </ul>
-          <div style={{ marginTop: 12 }}>
-            <a className="btn btn-ghost" href="#inicio">
-              Ver oferta
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+      <section className="panel">
+        <h2>Benefícios</h2>
+        <ul>
+          <li>Planos renovados mensalmente (a cada 30 dias)</li>
+          <li>Rotinas para iniciante e avançado</li>
+          <li>
+            Suporte por e-mail:{" "}
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          </li>
+        </ul>
+      </section>
+    </>
   );
 }
