@@ -30,6 +30,38 @@ function Header() {
     "/relaxamento": "Relaxamento",
     "/conta": "Conta",
     "/precos": "Preços",
+import React, { useEffect } from "react";
+import { NavLink, Routes, Route, useLocation } from "react-router-dom";
+import "./index.css";
+import { APP_NAME } from "./config";
+
+import Home from "./Home.jsx";
+import Treinos from "./Treinos.jsx";
+import Alimentacao from "./Alimentacao.jsx";
+import Cardio from "./Cardio.jsx";
+import AlongamentoSuperior from "./AlongamentoSuperior.jsx";
+import AlongamentoInferior from "./AlongamentoInferior.jsx";
+import Relaxamento from "./Relaxamento.jsx";
+import Conta from "./Conta.jsx";
+import Precos from "./Precos.jsx";
+import Sucesso from "./Sucesso.jsx";
+import Cancelado from "./Cancelado.jsx";
+import DaysBadge from "./DaysBadge.jsx";
+
+import logo from "./assets/logo.png";
+
+function Header() {
+  const location = useLocation();
+  const labelMap = {
+    "/": "Início",
+    "/treinos": "Treinos",
+    "/alimentacao": "Alimentação",
+    "/cardio": "Cardio / HIIT",
+    "/alongamento-superiores": "Alongamento Superiores",
+    "/alongamento-inferiores": "Alongamento Inferiores",
+    "/relaxamento": "Relaxamento",
+    "/conta": "Conta",
+    "/precos": "Preços",
     "/sucesso": "Pagamento concluído",
     "/cancelado": "Pagamento cancelado",
   };
