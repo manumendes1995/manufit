@@ -1,41 +1,38 @@
 import React, { useEffect } from "react";
 import { NavLink, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
+import { APP_NAME } from "./config";
 
-// Import das páginas principais
 import Home from "./Home.jsx";
 import Treinos from "./Treinos.jsx";
 import Alimentacao from "./Alimentacao.jsx";
 import Cardio from "./Cardio.jsx";
-import Exercicios from "./Exercicios.jsx";
-import Alongamento from "./Alongamento.jsx";
+import AlongamentoSuperior from "./AlongamentoSuperior.jsx";
+import AlongamentoInferior from "./AlongamentoInferior.jsx";
 import Relaxamento from "./Relaxamento.jsx";
-import CameraIA from "./CameraIA.jsx";
 import Conta from "./Conta.jsx";
 import Precos from "./Precos.jsx";
-
-// Import das páginas de checkout
 import Sucesso from "./Sucesso.jsx";
 import Cancelado from "./Cancelado.jsx";
+import DaysBadge from "./DaysBadge.jsx";
+
+import logo from "./assets/logo.png";
 
 function Header() {
   const location = useLocation();
-
   const labelMap = {
     "/": "Início",
     "/treinos": "Treinos",
     "/alimentacao": "Alimentação",
     "/cardio": "Cardio / HIIT",
-    "/exercicios": "Exercícios",
-    "/alongamento": "Alongamento",
+    "/alongamento-superiores": "Alongamento Superiores",
+    "/alongamento-inferiores": "Alongamento Inferiores",
     "/relaxamento": "Relaxamento",
-    "/camera": "Câmara IA",
     "/conta": "Conta",
     "/precos": "Preços",
     "/sucesso": "Pagamento concluído",
     "/cancelado": "Pagamento cancelado",
   };
-
   const pageLabel = labelMap[location.pathname] || "Início";
 
   useEffect(() => {
@@ -47,28 +44,36 @@ function Header() {
     <header className="topbar">
       <div className="wrap">
         <div className="row" style={{ padding: "10px 0" }}>
-          <NavLink className="brand" to="/" aria-label="AI Trainer - Início">
-            <span className="logo" aria-hidden="true"></span>
-            <span className="name">AI TRAINER</span>
+          <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
+            <img
+              src={logo}
+              alt={`${APP_NAME} logo`}
+              style={{ height: "36px", marginRight: "10px" }}
+            />
+            <span className="name">{APP_NAME}</span>
           </NavLink>
 
           <nav className="nav" aria-label="Navegação principal">
             <NavLink to="/treinos">Treinos</NavLink>
             <NavLink to="/alimentacao">Alimentação</NavLink>
             <NavLink to="/cardio">Cardio</NavLink>
-            <NavLink to="/exercicios">Exercícios</NavLink>
-            <NavLink to="/alongamento">Alongamento</NavLink>
+            <NavLink to="/alongamento-superiores">Along. Superiores</NavLink>
+            <NavLink to="/alongamento-inferiores">Along. Inferiores</NavLink>
             <NavLink to="/relaxamento">Relaxamento</NavLink>
-            <NavLink to="/camera" className={({ isActive }) => (isActive ? "active" : "")}>
-              Câmara IA <span className="badge-novo">Novo</span>
-            </NavLink>
             <NavLink to="/conta">Conta</NavLink>
-            <NavLink to="/precos" className={({ isActive }) => (isActive ? "active" : "")}>
-              Preços <span className="badge-premium">Premium</span>
+            <NavLink
+              to="/precos"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Preços
             </NavLink>
           </nav>
 
-          <div className="nav-right">
+          <div
+            className="nav-right"
+            style={{ display: "flex", gap: 8, alignItems: "center" }}
+          >
+            <DaysBadge />
             <span id="pageLabel" className="page-label" aria-live="polite">
               {pageLabel}
             </span>
@@ -89,23 +94,24 @@ export default function App() {
           <Route path="/treinos" element={<Treinos />} />
           <Route path="/alimentacao" element={<Alimentacao />} />
           <Route path="/cardio" element={<Cardio />} />
-          <Route path="/exercicios" element={<Exercicios />} />
-          <Route path="/alongamento" element={<Alongamento />} />
+          <Route
+            path="/alongamento-superiores"
+            element={<AlongamentoSuperior />}
+          />
+          <Route
+            path="/alongamento-inferiores"
+            element={<AlongamentoInferior />}
+          />
           <Route path="/relaxamento" element={<Relaxamento />} />
-          <Route path="/camera" element={<CameraIA />} />
           <Route path="/conta" element={<Conta />} />
           <Route path="/precos" element={<Precos />} />
-
-          {/* rotas de pagamento */}
           <Route path="/sucesso" element={<Sucesso />} />
           <Route path="/cancelado" element={<Cancelado />} />
-
-          {/* fallback */}
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
       <footer>
-        © <span id="y"></span> AI Trainer. Todos os direitos reservados.
+        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
       </footer>
     </div>
   );
