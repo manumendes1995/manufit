@@ -1,14 +1,7 @@
 import React from "react";
-
-import React from "react";
 import Hero from "./ui/Hero.jsx";
+
 export default function Alongamentos(){
-  // ...superiores e inferiores como já tens...
-  return (
-    <>
-      <Hero title="Alongamentos" subtitle="Divididos em Superiores e Inferiores." />
-      <div className="grid">
-        {/* Blocos já existentes */}
   const superiores = [
     { nome: "Pescoço (inclinações suaves)", tempo: "3×20–30s" },
     { nome: "Trapézio (orelha ao ombro)", tempo: "3×20–30s" },
@@ -28,9 +21,7 @@ export default function Alongamentos(){
 
   const Bloco = ({titulo, lista}) => (
     <section className="panel">
-      <h2 style={{marginTop:0}}>
-        {titulo} <span className="tag">Manufit</span>
-      </h2>
+      <h2 style={{marginTop:0}}>{titulo} <span className="tag">Manufit</span></h2>
       <div className="list">
         {lista.map((ex, i)=>(
           <div key={i} className="item">
@@ -44,9 +35,12 @@ export default function Alongamentos(){
   );
 
   return (
-    <div className="grid">
-      <Bloco titulo="Alongamentos — Superiores" lista={superiores} />
-      <Bloco titulo="Alongamentos — Inferiores" lista={inferiores} />
-    </div>
+    <>
+      <Hero title="Alongamentos" subtitle="Divididos em Superiores e Inferiores." />
+      <div className="grid">
+        <Bloco titulo="Superiores" lista={superiores} />
+        <Bloco titulo="Inferiores" lista={inferiores} />
+      </div>
+    </>
   );
 }
