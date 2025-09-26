@@ -1,34 +1,34 @@
 import React from "react";
 import Hero from "./ui/Hero.jsx";
 
-export default function Relaxamento(){
+export default function Relaxamento() {
   return (
     <>
-      <Hero title="Relaxamento" subtitle="Respiração e descarrego de tensão para melhor recuperação." />
-      {/* ...conteúdo existente... */}
-    </>
-  );
-}
-  const tecnicas = [
-    { titulo: "Respiração 4-4-6", desc: "Inspira 4s, mantém 4s, expira 6s. Repetir 3–5 minutos para reduzir stress e FC." },
-    { titulo: "Varredura Corporal", desc: "Deitado, percorre mentalmente dos pés à cabeça, relaxando cada zona por 10–15s." },
-    { titulo: "Mobilidade Leve", desc: "Círculos lentos de pescoço, ombros, ancas e tornozelos por 2–3 minutos." },
-    { titulo: "Alongamento Suave", desc: "Mantém posturas de 20–30s sem dor, focando respiração nasal." },
-    { titulo: "Higiene do Sono", desc: "Evita ecrãs 60 min antes de dormir; quarto escuro, fresco e silencioso." }
-  ];
-
-  return (
-    <section id="relaxamento" className="panel">
-      <h2>Relaxamento</h2>
-      <p className="note">Recuperação acelera resultados. Usa 5–10 minutos após treino ou antes de dormir.</p>
-      <div className="list" style={{ marginTop: "1rem" }}>
-        {tecnicas.map((t, i) => (
-          <div className="item" key={i} style={{ flexDirection: "column", alignItems: "flex-start" }}>
-            <strong>{t.titulo}</strong>
-            <p style={{ margin: "4px 0 0" }}>{t.desc}</p>
+      <Hero
+        title="Relaxamento"
+        subtitle="Respiração e descarrego de tensão para melhor recuperação."
+      />
+      <section className="panel">
+        <h2 style={{ marginTop: 0 }}>Rotina sugerida (10–15 min)</h2>
+        <div className="list" style={{ marginTop: 12 }}>
+          <div className="item">
+            <span>🫁 Respiração 4-4-6 (4s inspira, 4s segura, 6s expira)</span>
+            <span className="badge">5 min</span>
           </div>
-        ))}
-      </div>
-    </section>
+          <div className="item">
+            <span>🧘 Relaxamento progressivo (contrai e solta grupos musculares)</span>
+            <span className="badge">5 min</span>
+          </div>
+          <div className="item">
+            <span>🧠 Scan corporal (dos pés à cabeça, focando na respiração)</span>
+            <span className="badge">3–5 min</span>
+          </div>
+        </div>
+        <p className="note" style={{ marginTop: 12 }}>
+          Mantém a respiração nasal, lenta e silenciosa. Se sentires tontura,
+          volta à respiração natural e retoma quando estabilizar.
+        </p>
+      </section>
+    </>
   );
 }
