@@ -13,7 +13,10 @@ import Conta from "./Conta.jsx";
 import Sucesso from "./Sucesso.jsx";
 import Cancelado from "./Cancelado.jsx";
 import DaysBadge from "./DaysBadge.jsx";
+import Cartazes from "./Cartazes.jsx";
+import Planilhas from "./Planilhas.jsx";
 
+import { RequireAuth } from "./auth";
 import logo from "./assets/logo.png";
 
 function Header() {
@@ -25,6 +28,8 @@ function Header() {
     "/cardio": "Cardio / HIIT",
     "/alongamentos": "Alongamentos",
     "/relaxamento": "Relaxamento",
+    "/cartazes": "Cartazes",
+    "/planilhas": "Planilhas",
     "/conta": "Conta",
     "/sucesso": "Pagamento concluído",
     "/cancelado": "Pagamento cancelado",
@@ -51,14 +56,14 @@ function Header() {
             <NavLink to="/cardio">Cardio</NavLink>
             <NavLink to="/alongamentos">Alongamentos</NavLink>
             <NavLink to="/relaxamento">Relaxamento</NavLink>
+            <NavLink to="/cartazes">Cartazes</NavLink>
+            <NavLink to="/planilhas">Planilhas</NavLink>
             <NavLink to="/conta">Conta</NavLink>
           </nav>
 
           <div className="nav-right" style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <DaysBadge />
-            <span id="pageLabel" className="page-label" aria-live="polite">
-              {pageLabel}
-            </span>
+            <span id="pageLabel" className="page-label" aria-live="polite">{pageLabel}</span>
           </div>
         </div>
       </div>
@@ -73,20 +78,20 @@ export default function App() {
       <main className="wrap">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/treinos" element={<Treinos />} />
-          <Route path="/alimentacao" element={<Alimentacao />} />
-          <Route path="/cardio" element={<Cardio />} />
-          <Route path="/alongamentos" element={<Alongamentos />} />
-          <Route path="/relaxamento" element={<Relaxamento />} />
           <Route path="/conta" element={<Conta />} />
+          <Route path="/cartazes" element={<RequireAuth><Cartazes /></RequireAuth>} />
+          <Route path="/planilhas" element={<RequireAuth><Planilhas /></RequireAuth>} />
+          <Route path="/treinos" element={<RequireAuth><Treinos /></RequireAuth>} />
+          <Route path="/alimentacao" element={<RequireAuth><Alimentacao /></RequireAuth>} />
+          <Route path="/cardio" element={<RequireAuth><Cardio /></RequireAuth>} />
+          <Route path="/alongamentos" element={<RequireAuth><Alongamentos /></RequireAuth>} />
+          <Route path="/relaxamento" element={<RequireAuth><Relaxamento /></RequireAuth>} />
           <Route path="/sucesso" element={<Sucesso />} />
           <Route path="/cancelado" element={<Cancelado />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      <footer>
-        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
-      </footer>
+      <footer>© <span id="y"></span> {APP_NAME}. Todos os direitos reservados.</footer>
     </div>
   );
 }
