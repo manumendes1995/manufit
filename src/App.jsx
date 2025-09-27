@@ -16,11 +16,12 @@ import DaysBadge from "./DaysBadge.jsx";
 import Cartazes from "./Cartazes.jsx";
 import Planilhas from "./Planilhas.jsx";
 
-import { RequireAuth } from "./auth";
+import { RequireAuth } from "./auth.jsx";
 import logo from "./assets/logo.png";
 
 function Header() {
   const location = useLocation();
+
   const labelMap = {
     "/": "Início",
     "/treinos": "Treinos",
@@ -34,6 +35,7 @@ function Header() {
     "/sucesso": "Pagamento concluído",
     "/cancelado": "Pagamento cancelado",
   };
+
   const pageLabel = labelMap[location.pathname] || "Início";
 
   useEffect(() => {
@@ -46,7 +48,7 @@ function Header() {
       <div className="wrap">
         <div className="row" style={{ padding: "10px 0" }}>
           <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
-            <img src={logo} alt={`${APP_NAME} logo`} style={{ height: "36px" }} />
+            <img src={logo} alt={`${APP_NAME} logo`} style={{ height: "36px", marginRight: 10 }} />
             <span className="name">{APP_NAME}</span>
           </NavLink>
 
@@ -63,7 +65,9 @@ function Header() {
 
           <div className="nav-right" style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <DaysBadge />
-            <span id="pageLabel" className="page-label" aria-live="polite">{pageLabel}</span>
+            <span id="pageLabel" className="page-label" aria-live="polite">
+              {pageLabel}
+            </span>
           </div>
         </div>
       </div>
@@ -75,23 +79,83 @@ export default function App() {
   return (
     <div id="app">
       <Header />
+
       <main className="wrap">
         <Routes>
+          {/* públicas */}
           <Route path="/" element={<Home />} />
           <Route path="/conta" element={<Conta />} />
-          <Route path="/cartazes" element={<RequireAuth><Cartazes /></RequireAuth>} />
-          <Route path="/planilhas" element={<RequireAuth><Planilhas /></RequireAuth>} />
-          <Route path="/treinos" element={<RequireAuth><Treinos /></RequireAuth>} />
-          <Route path="/alimentacao" element={<RequireAuth><Alimentacao /></RequireAuth>} />
-          <Route path="/cardio" element={<RequireAuth><Cardio /></RequireAuth>} />
-          <Route path="/alongamentos" element={<RequireAuth><Alongamentos /></RequireAuth>} />
-          <Route path="/relaxamento" element={<RequireAuth><Relaxamento /></RequireAuth>} />
+
+          {/* protegidas */}
+          <Route
+            path="/treinos"
+            element={
+              <RequireAuth>
+                <Treinos />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/alimentacao"
+            element={
+              <RequireAuth>
+                <Alimentacao />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cardio"
+            element={
+              <RequireAuth>
+                <Cardio />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/alongamentos"
+            element={
+              <RequireAuth>
+                <Alongamentos />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/relaxamento"
+            element={
+              <RequireAuth>
+                <Relaxamento />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cartazes"
+            element={
+              <RequireAuth>
+                <Cartazes />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/planilhas"
+            element={
+              <RequireAuth>
+                <Planilhas />
+              </RequireAuth>
+            }
+          />
+
+          {/* retornos de pagamento (mantidos mas sem uso agora) */}
           <Route path="/sucesso" element={<Sucesso />} />
           <Route path="/cancelado" element={<Cancelado />} />
+
+          {/* fallback */}
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      <footer>© <span id="y"></span> {APP_NAME}. Todos os direitos reservados.</footer>
+
+      <footer>
+        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
+      </footer>
     </div>
   );
 }
