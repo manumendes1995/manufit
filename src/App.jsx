@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
 import { APP_NAME } from "./config";
@@ -9,19 +9,12 @@ import Alimentacao from "./Alimentacao.jsx";
 import Cardio from "./Cardio.jsx";
 import Alongamentos from "./Alongamentos.jsx";
 import Relaxamento from "./Relaxamento.jsx";
-import Conta from "./Conta.jsx";
-import Sucesso from "./Sucesso.jsx";
-import Cancelado from "./Cancelado.jsx";
-import DaysBadge from "./DaysBadge.jsx";
 import Cartazes from "./Cartazes.jsx";
 import Planilhas from "./Planilhas.jsx";
-
-import { RequireAuth } from "./auth.jsx";
-import logo from "./assets/logo.png";
+import Conta from "./Conta.jsx";
 
 function Header() {
   const location = useLocation();
-
   const labelMap = {
     "/": "Início",
     "/treinos": "Treinos",
@@ -32,44 +25,26 @@ function Header() {
     "/cartazes": "Cartazes",
     "/planilhas": "Planilhas",
     "/conta": "Conta",
-    "/sucesso": "Pagamento concluído",
-    "/cancelado": "Pagamento cancelado",
   };
-
   const pageLabel = labelMap[location.pathname] || "Início";
 
-  useEffect(() => {
-    const y = document.getElementById("y");
-    if (y) y.textContent = new Date().getFullYear();
-  }, []);
-
   return (
-    <header className="topbar">
-      <div className="wrap">
-        <div className="row" style={{ padding: "10px 0" }}>
-          <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
-            <img src={logo} alt={`${APP_NAME} logo`} style={{ height: "36px", marginRight: 10 }} />
-            <span className="name">{APP_NAME}</span>
-          </NavLink>
-
-          <nav className="nav" aria-label="Navegação principal">
-            <NavLink to="/treinos">Treinos</NavLink>
-            <NavLink to="/alimentacao">Alimentação</NavLink>
-            <NavLink to="/cardio">Cardio</NavLink>
-            <NavLink to="/alongamentos">Alongamentos</NavLink>
-            <NavLink to="/relaxamento">Relaxamento</NavLink>
-            <NavLink to="/cartazes">Cartazes</NavLink>
-            <NavLink to="/planilhas">Planilhas</NavLink>
-            <NavLink to="/conta">Conta</NavLink>
-          </nav>
-
-          <div className="nav-right" style={{ display: "flex", gap: 8, alignItems: "center" }}>
-            <DaysBadge />
-            <span id="pageLabel" className="page-label" aria-live="polite">
-              {pageLabel}
-            </span>
-          </div>
-        </div>
+    <header style={{background:"#111", color:"#fff", borderBottom:"1px solid #333"}}>
+      <div style={{maxWidth:960, margin:"0 auto", padding:"12px 16px", display:"flex", alignItems:"center", gap:16, flexWrap:"wrap"}}>
+        <NavLink to="/" style={{color:"#fff", textDecoration:"none", fontWeight:700, letterSpacing:0.5}}>
+          {APP_NAME}
+        </NavLink>
+        <nav style={{display:"flex", gap:12, flexWrap:"wrap"}}>
+          <NavLink to="/treinos">Treinos</NavLink>
+          <NavLink to="/alimentacao">Alimentação</NavLink>
+          <NavLink to="/cardio">Cardio</NavLink>
+          <NavLink to="/alongamentos">Alongamentos</NavLink>
+          <NavLink to="/relaxamento">Relaxamento</NavLink>
+          <NavLink to="/cartazes">Cartazes</NavLink>
+          <NavLink to="/planilhas">Planilhas</NavLink>
+          <NavLink to="/conta">Conta</NavLink>
+        </nav>
+        <div style={{marginLeft:"auto", opacity:0.8}}>{pageLabel}</div>
       </div>
     </header>
   );
@@ -77,84 +52,24 @@ function Header() {
 
 export default function App() {
   return (
-    <div id="app">
+    <div>
       <Header />
-
-      <main className="wrap">
+      <main style={{maxWidth:960, margin:"0 auto", padding:"16px"}}>
         <Routes>
-          {/* públicas */}
           <Route path="/" element={<Home />} />
+          <Route path="/treinos" element={<Treinos />} />
+          <Route path="/alimentacao" element={<Alimentacao />} />
+          <Route path="/cardio" element={<Cardio />} />
+          <Route path="/alongamentos" element={<Alongamentos />} />
+          <Route path="/relaxamento" element={<Relaxamento />} />
+          <Route path="/cartazes" element={<Cartazes />} />
+          <Route path="/planilhas" element={<Planilhas />} />
           <Route path="/conta" element={<Conta />} />
-
-          {/* protegidas */}
-          <Route
-            path="/treinos"
-            element={
-              <RequireAuth>
-                <Treinos />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/alimentacao"
-            element={
-              <RequireAuth>
-                <Alimentacao />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/cardio"
-            element={
-              <RequireAuth>
-                <Cardio />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/alongamentos"
-            element={
-              <RequireAuth>
-                <Alongamentos />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/relaxamento"
-            element={
-              <RequireAuth>
-                <Relaxamento />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/cartazes"
-            element={
-              <RequireAuth>
-                <Cartazes />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/planilhas"
-            element={
-              <RequireAuth>
-                <Planilhas />
-              </RequireAuth>
-            }
-          />
-
-          {/* retornos de pagamento (mantidos mas sem uso agora) */}
-          <Route path="/sucesso" element={<Sucesso />} />
-          <Route path="/cancelado" element={<Cancelado />} />
-
-          {/* fallback */}
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-
-      <footer>
-        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
+      <footer style={{maxWidth:960, margin:"0 auto", padding:"16px", opacity:0.7}}>
+        © {new Date().getFullYear()} {APP_NAME}
       </footer>
     </div>
   );
