@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
 import { APP_NAME } from "./config";
@@ -6,50 +6,93 @@ import { APP_NAME } from "./config";
 import Home from "./Home.jsx";
 import Treinos from "./Treinos.jsx";
 import Alimentacao from "./Alimentacao.jsx";
-import Cartazes from "./Cartazes.jsx";
+import Cardio from "./Cardio.jsx";
+import Alongamentos from "./Alongamentos.jsx";
+import Relaxamento from "./Relaxamento.jsx";
+import Cartaz from "./Cartaz.jsx";
 import Conta from "./Conta.jsx";
-import { RequireAuth } from "./auth.jsx";
+import Sucesso from "./Sucesso.jsx";
+import Cancelado from "./Cancelado.jsx";
+import DaysBadge from "./DaysBadge.jsx";
 
-function Header(){
-  const loc = useLocation();
-  const labels = {
+function Header() {
+  const location = useLocation();
+  const labelMap = {
     "/": "Início",
     "/treinos": "Treinos",
     "/alimentacao": "Alimentação",
-    "/cartazes": "Cartazes",
-    "/conta": "Conta"
+    "/cardio": "Cardio",
+    "/alongamentos": "Alongamentos",
+    "/relaxamento": "Relaxamento",
+    "/cartaz": "Cartaz",
+    "/conta": "Conta",
+    "/sucesso": "Pagamento concluído",
+    "/cancelado": "Pagamento cancelado",
   };
+  const pageLabel = labelMap[location.pathname] || "Início";
+
+  useEffect(() => {
+    const y = document.getElementById("y");
+    if (y) y.textContent = new Date().getFullYear();
+  }, []);
+
   return (
     <header className="topbar">
-      <div className="wrap row" style={{padding:"10px 0"}}>
-        <NavLink className="brand" to="/"><span className="name">{APP_NAME}</span></NavLink>
-        <nav className="nav">
-          <NavLink to="/treinos">Treinos</NavLink>
-          <NavLink to="/alimentacao">Alimentação</NavLink>
-          <NavLink to="/cartazes">Cartazes</NavLink>
-          <NavLink to="/conta">Conta</NavLink>
-        </nav>
-        <div className="nav-right"><span className="page-label">{labels[loc.pathname]||"Início"}</span></div>
+      <div className="wrap">
+        <div className="row" style={{ padding: "10px 0" }}>
+          <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
+            <img
+              src={`${import.meta.env.BASE_URL}MANUFIT.png`}
+              alt={APP_NAME}
+              style={{ height: "36px", marginRight: "10px" }}
+            />
+            <span className="name">{APP_NAME}</span>
+          </NavLink>
+
+          <nav className="nav" aria-label="Navegação principal">
+            <NavLink to="/treinos">Treinos</NavLink>
+            <NavLink to="/alimentacao">Alimentação</NavLink>
+            <NavLink to="/cardio">Cardio</NavLink>
+            <NavLink to="/alongamentos">Alongamentos</NavLink>
+            <NavLink to="/relaxamento">Relaxamento</NavLink>
+            <NavLink to="/cartaz">Cartaz</NavLink>
+            <NavLink to="/conta">Conta</NavLink>
+          </nav>
+
+          <div className="nav-right" style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <DaysBadge />
+            <span id="pageLabel" className="page-label" aria-live="polite">
+              {pageLabel}
+            </span>
+          </div>
+        </div>
       </div>
     </header>
   );
 }
 
-export default function App(){
+export default function App() {
   return (
     <div id="app">
-      <Header/>
+      <Header />
       <main className="wrap">
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/conta" element={<Conta/>} />
-          <Route path="/treinos" element={<RequireAuth><Treinos/></RequireAuth>} />
-          <Route path="/alimentacao" element={<RequireAuth><Alimentacao/></RequireAuth>} />
-          <Route path="/cartazes" element={<RequireAuth><Cartazes/></RequireAuth>} />
-          <Route path="*" element={<Home/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/treinos" element={<Treinos />} />
+          <Route path="/alimentacao" element={<Alimentacao />} />
+          <Route path="/cardio" element={<Cardio />} />
+          <Route path="/alongamentos" element={<Alongamentos />} />
+          <Route path="/relaxamento" element={<Relaxamento />} />
+          <Route path="/cartaz" element={<Cartaz />} />
+          <Route path="/conta" element={<Conta />} />
+          <Route path="/sucesso" element={<Sucesso />} />
+          <Route path="/cancelado" element={<Cancelado />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      <footer>© {new Date().getFullYear()} {APP_NAME}. Todos os direitos reservados.</footer>
+      <footer>
+        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
+      </footer>
     </div>
   );
 }

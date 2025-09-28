@@ -1,114 +1,74 @@
 {
-  "hipertrofia": {
-    "iniciante": {
-      "mes1": {
-        "dias": {
-          "1": [
-            { "nome": "Agachamento Peso do Corpo", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh" },
-            { "nome": "Agachamento Livre", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN" },
-            { "nome": "Leg Press 45", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L" },
-            { "nome": "Flexora Sentada", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1" },
-            { "nome": "Cadeira Extensora", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL" },
-            { "nome": "Flexora Deitada", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8" },
-            { "nome": "Gémeos em pé com halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa" }
-          ],
-          "2": [
-            { "nome": "Abd. Supra Curtinho", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" },
-            { "nome": "Abd. Infra", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" },
-            { "nome": "Puxada Frente (Pegada Aberta)", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/2AH5cfSqX1E?si=Ez4XyR64U7kdsjQG" },
-            { "nome": "Flexão de Braço", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/4zjCHsF06H0?si=xVI_MJCDsaZkqSdT" },
-            { "nome": "Remada Curvada Halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/HPBVLs0NpjE?si=W1D7Nd7z9JACUzs3" },
-            { "nome": "Desenvolvimento Halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/RqTpE3cmtyE?si=7lLNISMNYVqMV-TD" },
-            { "nome": "Rosca Direta Halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/UAzVg4j-T3g?si=ZkWbTeIW19uU2Tn5" },
-            { "nome": "Tríceps Pulley", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/zxItpU2RsP4?si=prf8avaLIVavDyOr" },
-            { "nome": "Esteira 20 min (corre 1' / caminha 1')", "series": "20 min", "descanso": "-", "url": "" }
-          ],
-          "3": [
-            { "nome": "Burpee", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/OcHAV4C88X8?si=kS144sGucV46eZWG" },
-            { "nome": "Afundo + Desenvolve", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/GEYlPr9I1rU?si=YkIj3ZV6cgTwl2s_" },
-            { "nome": "Thruster", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/SeHR1QhV748?si=-virf-p0BnetetY9" },
-            { "nome": "Agachamento c/ Salto", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/emgWzZiK-rU?si=lNVZg3nIjvB4CIxy" },
-            { "nome": "Prancha Abre e Fecha", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/LeF6QmSclU0?si=gEWTXLtujugemARO" },
-            { "nome": "Ski", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/81fF6WaYHsE?si=6uvC_Mu_HcrMkZfP" }
-          ],
-          "4": [
-            { "nome": "Agachamento Smith", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/owUMm3gZ1b0?si=qd2Q3ZkBIFoRS3mS" },
-            { "nome": "Leg Press Horizontal", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/W1QWvmQ_ZuM?si=5Cz1bHEVsKpBNveo" },
-            { "nome": "Agachamento Sumô", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/ZXyzfNO497M?si=4P6K8AzF4uepFOIM" },
-            { "nome": "Glúteo 4 Apoios (perna flexionada)", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/luvbFKnA6aA?si=TX-FAwcMLWDkL-3l" },
-            { "nome": "Elevação Pélvica", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/UT-WBhxo9uA?si=UDdBghBr6660SP3Z" },
-            { "nome": "Stiff", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/43u1zfJUUi0?si=zYwbTUgk-WbsBGpG" },
-            { "nome": "Panturrilha Smith", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/w_aic9GI0CY?si=FUJBcWGkw0q0Kv6q" }
-          ],
-          "5": [
-            { "nome": "Abd. Supra Curtinho", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/IgMc-ghDW4M?si=A3a-15I4vLUXZqNd" },
-            { "nome": "Puxada Pulley Pegada Aberta", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2" },
-            { "nome": "Esteira / Bike / Escada", "series": "2 min", "descanso": "—", "url": "" },
-            { "nome": "Abd. Infra", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2" },
-            { "nome": "Remada na Polia (Pegada Neutra)", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/RXHPTVrxsbo?si=7LIW8qQpe7CtsGMQ" },
-            { "nome": "Esteira / Bike / Escada", "series": "2 min", "descanso": "—", "url": "" },
-            { "nome": "Supino Reto Halteres", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/KyHYsJ5YZQE?si=0gVNol9KC9J5dmHj" },
-            { "nome": "Tríceps Francês", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/LU4xYDGbpjA?si=I0tXp8BRlocyCWMe" },
-            { "nome": "Esteira / Bike / Escada", "series": "2 min", "descanso": "—", "url": "" }
-          ]
-        }
-      }
+  "iniciante": [
+    {
+      "dia": 1,
+      "titulo": "Perna (Força básica)",
+      "exercicios": [
+        { "nome": "Agachamento Peso do Corpo", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh" },
+        { "nome": "Agachamento Livre", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN" },
+        { "nome": "Leg Press 45°", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L" },
+        { "nome": "Flexora Sentada", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1" },
+        { "nome": "Cadeira Extensora", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL" },
+        { "nome": "Flexora Deitada", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8" },
+        { "nome": "Gémeos em pé com halteres", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa" }
+      ]
+    },
+    {
+      "dia": 2,
+      "titulo": "Membros Superiores + Abdómen",
+      "exercicios": [
+        { "nome": "Abd. Supra Curtinho", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" },
+        { "nome": "Abd. Infra", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" },
+        { "nome": "Puxada Frente (pegada aberta)", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/2AH5cfSqX1E?si=Ez4XyR64U7kdsjQG" },
+        { "nome": "Flexão de Braço", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/4zjCHsF06H0?si=xVI_MJCDsaZkqSdT" },
+        { "nome": "Remada Curvada Halteres", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/HPBVLs0NpjE?si=W1D7Nd7z9JACUzs3" },
+        { "nome": "Desenvolvimento Halteres", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/RqTpE3cmtyE?si=7lLNISMNYVqMV-TD" },
+        { "nome": "Rosca Direta Halteres", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/UAzVg4j-T3g?si=ZkWbTeIW19uU2Tn5" },
+        { "nome": "Tríceps Pulley", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/zxItpU2RsP4?si=prf8avaLIVavDyOr" },
+        { "nome": "Esteira (20 min: corre 1'/caminha 1')", "series": "-", "descanso": "-", "link": "" }
+      ]
+    },
+    {
+      "dia": 3,
+      "titulo": "Corpo Todo (Circuito)",
+      "exercicios": [
+        { "nome": "Burpee", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/OcHAV4C88X8?si=kS144sGucV46eZWG" },
+        { "nome": "Afundo + Desenvolvimento", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/GEYlPr9I1rU?si=YkIj3ZV6cgTwl2s_" },
+        { "nome": "Thruster", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/SeHR1QhV748?si=-virf-p0BnetetY9" },
+        { "nome": "Agachamento c/ Salto", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/emgWzZiK-rU?si=lNVZg3nIjvB4CIxy" },
+        { "nome": "Prancha Abre e Fecha", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/LeF6QmSclU0?si=gEWTXLtujugemARO" },
+        { "nome": "Ski", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/81fF6WaYHsE?si=6uvC_Mu_HcrMkZfP" }
+      ]
+    },
+    {
+      "dia": 4,
+      "titulo": "Perna e Glúteo",
+      "exercicios": [
+        { "nome": "Agachamento Smith", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/owUMm3gZ1b0?si=qd2Q3ZkBIFoRS3mS" },
+        { "nome": "Leg Press Horizontal", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/W1QWvmQ_ZuM?si=5Cz1bHEVsKpBNveo" },
+        { "nome": "Agachamento Sumô", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/ZXyzfNO497M?si=4P6K8AzF4uepFOIM" },
+        { "nome": "Glúteo 4 Apoios (perna flexionada)", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/luvbFKnA6aA?si=TX-FAwcMLWDkL-3l" },
+        { "nome": "Elevação Pélvica", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/UT-WBhxo9uA?si=UDdBghBr6660SP3Z" },
+        { "nome": "Stiff", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/43u1zfJUUi0?si=zYwbTUgk-WbsBGpG" },
+        { "nome": "Panturrilha Smith", "series": "3x10", "descanso": "1 min", "link": "https://youtu.be/w_aic9GI0CY?si=FUJBcWGkw0q0Kv6q" }
+      ]
+    },
+    {
+      "dia": 5,
+      "titulo": "Membros Superiores + Abd (Variado)",
+      "exercicios": [
+        { "nome": "Abd. Supra Curtinho", "series": "3x10", "descanso": "30 s", "link": "https://youtu.be/IgMc-ghDW4M?si=A3a-15I4vLUXZqNd" },
+        { "nome": "Puxada Pulley (pegada aberta)", "series": "3x10", "descanso": "30 s", "link": "https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2" },
+        { "nome": "Esteira/Bike/Escada (2 min, mod.)", "series": "-", "descanso": "-", "link": "" },
+        { "nome": "Abd. Infra", "series": "3x10", "descanso": "30 s", "link": "" },
+        { "nome": "Remada na Polia (pegada neutra)", "series": "3x10", "descanso": "30 s", "link": "https://youtu.be/RXHPTVrxsbo?si=7LIW8qQpe7CtsGMQ" },
+        { "nome": "Esteira/Bike/Escada (2 min, mod.)", "series": "-", "descanso": "-", "link": "" },
+        { "nome": "Supino Reto Halteres", "series": "3x10", "descanso": "30 s", "link": "https://youtu.be/KyHYsJ5YZQE?si=0gVNol9KC9J5dmHj" },
+        { "nome": "Tríceps Francês", "series": "3x10", "descanso": "30 s", "link": "https://youtu.be/LU4xYDGbpjA?si=I0tXp8BRlocyCWMe" },
+        { "nome": "Esteira/Bike/Escada (2 min, mod.)", "series": "-", "descanso": "-", "link": "" }
+      ]
     }
-  },
-  "emagrecimento": {
-    "iniciante": {
-      "mes1": {
-        "dias": {
-          "1": [
-            { "nome": "Agachamento Peso do Corpo", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh" },
-            { "nome": "Agachamento Livre", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN" },
-            { "nome": "Leg Press 45", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L" },
-            { "nome": "Flexora Sentada", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1" },
-            { "nome": "Cadeira Extensora", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL" },
-            { "nome": "Flexora Deitada", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8" },
-            { "nome": "Gémeos em pé com halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa" }
-          ],
-          "2": [
-            { "nome": "Abd. Supra Curtinho", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" },
-            { "nome": "Abd. Infra", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" },
-            { "nome": "Puxada Frente (Pegada Aberta)", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/2AH5cfSqX1E?si=Ez4XyR64U7kdsjQG" },
-            { "nome": "Flexão de Braço", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/4zjCHsF06H0?si=xVI_MJCDsaZkqSdT" },
-            { "nome": "Remada Curvada Halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/HPBVLs0NpjE?si=W1D7Nd7z9JACUzs3" },
-            { "nome": "Desenvolvimento Halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/RqTpE3cmtyE?si=7lLNISMNYVqMV-TD" },
-            { "nome": "Rosca Direta Halteres", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/UAzVg4j-T3g?si=ZkWbTeIW19uU2Tn5" },
-            { "nome": "Tríceps Pulley", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/zxItpU2RsP4?si=prf8avaLIVavDyOr" },
-            { "nome": "Esteira 20 min (corre 1' / caminha 1')", "series": "20 min", "descanso": "-", "url": "" }
-          ],
-          "3": [
-            { "nome": "Burpee", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/OcHAV4C88X8?si=kS144sGucV46eZWG" },
-            { "nome": "Afundo + Desenvolve", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/GEYlPr9I1rU?si=YkIj3ZV6cgTwl2s_" },
-            { "nome": "Thruster", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/SeHR1QhV748?si=-virf-p0BnetetY9" },
-            { "nome": "Agachamento c/ Salto", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/emgWzZiK-rU?si=lNVZg3nIjvB4CIxy" },
-            { "nome": "Prancha Abre e Fecha", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/LeF6QmSclU0?si=gEWTXLtujugemARO" },
-            { "nome": "Ski", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/81fF6WaYHsE?si=6uvC_Mu_HcrMkZfP" }
-          ],
-          "4": [
-            { "nome": "Agachamento Smith", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/owUMm3gZ1b0?si=qd2Q3ZkBIFoRS3mS" },
-            { "nome": "Leg Press Horizontal", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/W1QWvmQ_ZuM?si=5Cz1bHEVsKpBNveo" },
-            { "nome": "Agachamento Sumô", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/ZXyzfNO497M?si=4P6K8AzF4uepFOIM" },
-            { "nome": "Glúteo 4 Apoios (perna flexionada)", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/luvbFKnA6aA?si=TX-FAwcMLWDkL-3l" },
-            { "nome": "Elevação Pélvica", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/UT-WBhxo9uA?si=UDdBghBr6660SP3Z" },
-            { "nome": "Stiff", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/43u1zfJUUi0?si=zYwbTUgk-WbsBGpG" },
-            { "nome": "Panturrilha Smith", "series": "3x10", "descanso": "1 min", "url": "https://youtu.be/w_aic9GI0CY?si=FUJBcWGkw0q0Kv6q" }
-          ],
-          "5": [
-            { "nome": "Abd. Supra Curtinho", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/IgMc-ghDW4M?si=A3a-15I4vLUXZqNd" },
-            { "nome": "Puxada Pulley Pegada Aberta", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2" },
-            { "nome": "Esteira / Bike / Escada", "series": "2 min", "descanso": "—", "url": "" },
-            { "nome": "Abd. Infra", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2" },
-            { "nome": "Remada na Polia (Pegada Neutra)", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/RXHPTVrxsbo?si=7LIW8qQpe7CtsGMQ" },
-            { "nome": "Esteira / Bike / Escada", "series": "2 min", "descanso": "—", "url": "" },
-            { "nome": "Supino Reto Halteres", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/KyHYsJ5YZQE?si=0gVNol9KC9J5dmHj" },
-            { "nome": "Tríceps Francês", "series": "3x10", "descanso": "30 s", "url": "https://youtu.be/LU4xYDGbpjA?si=I0tXp8BRlocyCWMe" },
-            { "nome": "Esteira / Bike / Escada", "series": "2 min", "descanso": "—", "url": "" }
-          ]
-        }
-      }
-    }
-  }
+  ],
+  "avancado_mes1": [],
+  "avancado_mes2": []
 }
