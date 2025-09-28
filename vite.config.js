@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["MANUFIT.png"], // arquivo está em public/
+      includeAssets: ["MANUFIT.png"],
       manifest: {
         name: "Manufit",
         short_name: "Manufit",
@@ -17,14 +17,7 @@ export default defineConfig({
         display: "standalone",
         scope: "/manufit/",
         start_url: "/manufit/",
-        icons: [
-          {
-            src: "MANUFIT.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable"
-          }
-        ]
+        icons: [{ src: "MANUFIT.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }]
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,webp}"]
