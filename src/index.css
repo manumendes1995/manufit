@@ -58,3 +58,43 @@ footer{margin:40px 0; text-align:center; color:var(--muted)}
 .thead,.trow{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:10px}
 .thead{font-weight:700; color:var(--muted)}
 .trow span{padding:8px 10px; border:1px solid var(--stroke); border-radius:10px; background:rgba(255,255,255,.02)}
+
+/* ======= Mobile tweaks (<= 640px) ======= */
+@media (max-width: 640px) {
+  .topbar .row {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brand img { height: 28px !important; }
+  .brand .name { font-size: 18px !important; }
+
+  .nav {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    margin-top: 4px;
+  }
+  .nav::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+  .nav a {
+    display: inline-block;
+    padding: 10px 12px;
+    margin-right: 6px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .page-label {
+    font-size: 12px;
+    opacity: .8;
+  }
+}
