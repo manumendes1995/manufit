@@ -1,37 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { SUPPORT_EMAIL } from "./config";
+import React from "react";
+import { APP_NAME, SUPPORT_EMAIL } from "./config";
 
-const msgs = [
-  "Começa pequeno, mantém a constância.",
-  "Hoje 1% melhor que ontem.",
-  "Disciplina vence motivação.",
-  "Tu consegues — vamos lá!"
-];
-
-function pickDaily(){
-  const key = "mf_daily";
-  const today = new Date().toISOString().slice(0,10);
-  const saved = JSON.parse(localStorage.getItem(key)||"{}");
-  if (saved.date === today) return saved.msg;
-  const msg = msgs[Math.floor(Math.random()*msgs.length)];
-  localStorage.setItem(key, JSON.stringify({date: today, msg}));
-  return msg;
-}
-
-export default function Home(){
-  const [m,setM]=useState(pickDaily());
-  useEffect(()=>{ setM(pickDaily()); },[]);
+export default function Home() {
   return (
-    <>
-      <section className="panel">
-        <h2 style={{marginTop:0}}>Bem-vindo à Manufit</h2>
-        <p className="note">Motivação de hoje: “{m}”</p>
-        <ul className="bullets" style={{marginTop:10}}>
-          <li>Planos renovados a cada 30 dias</li>
+    <section className="panel">
+      <h2 style={{marginTop:0}}>Bem-vindo à {APP_NAME}</h2>
+      <p className="muted" style={{marginBottom:16}}>
+        Motivação de hoje: “Hoje 1% melhor que ontem.”
+      </p>
+
+      <div className="card">
+        <ul>
+          <li>Planos renovados a cada <b>30 dias</b></li>
           <li>Rotinas para iniciante e avançado (2º mês avançado desbloqueia após 30 dias)</li>
-          <li>Suporte: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></li>
+          <li>Suporte: <a href={"mailto:"+SUPPORT_EMAIL}>{SUPPORT_EMAIL}</a></li>
         </ul>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

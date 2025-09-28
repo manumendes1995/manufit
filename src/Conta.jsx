@@ -19,20 +19,18 @@ export default function Conta() {
       return;
     }
     login(email);
-    // Se estiver na whitelist, marca como pago localmente
     if (isWhitelisted(email)) {
       markPaid();
-      setMsg("Acesso liberado (aluna já paga).");
+      setMsg("Acesso liberado (e-mail na lista de exceção).");
       setTimeout(()=>nav("/treinos"), 600);
       return;
     }
-    // Se já estava pago neste dispositivo
     if (isPaidLocal()) {
       setMsg("Bem-vinda de volta!");
       setTimeout(()=>nav("/treinos"), 600);
       return;
     }
-    setMsg("Conta criada. Precisamos confirmar o pagamento para desbloquear.");
+    setMsg("Conta criada. Para desbloquear, é preciso confirmar pagamento.");
   }
 
   const podePagar = !!STRIPE_PUBLISHABLE_KEY && !!STRIPE_PRICE_ID;
@@ -62,12 +60,12 @@ export default function Conta() {
       {!isWhitelisted(email) && !isPaidLocal() && (
         <div className="card" style={{marginTop:16}}>
           <h3 style={{margin:"0 0 8px"}}>Pagamento</h3>
-          <p>Para desbloquear os conteúdos da <b>{APP_NAME}</b>, o valor é <b>{PRICE_LABEL}</b>.</p>
+          <p>Valor: <b>{PRICE_LABEL}</b></p>
           {podePagar ? (
             <button className="btn" onClick={startCheckout}>Pagar {PRICE_LABEL}</button>
           ) : (
             <>
-              <p className="muted">Pagamento online ainda não configurado. Contacta o suporte para ativação manual.</p>
+              <p className="muted">Pagamento online ainda não configurado.</p>
               <p>Suporte: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
             </>
           )}
@@ -82,7 +80,7 @@ export default function Conta() {
       )}
 
       {loc.state?.needPayment && (
-        <p className="note" style={{marginTop:12}}>Para aceder aos conteúdos, efetua o pagamento ou usa o e-mail liberado.</p>
+        <p className="note" style={{marginTop:12}}>Para aceder aos conteúdos, efetua o pagamento ou usa um e-mail liberado.</p>
       )}
     </section>
   );
