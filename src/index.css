@@ -98,3 +98,61 @@ footer{margin:40px 0; text-align:center; color:var(--muted)}
     opacity: .8;
   }
 }
+
+/* === HAMBÚRGUER + GAVETA MOBILE === */
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 34px;
+  border: 0;
+  background: transparent;
+  position: relative;
+  margin-left: auto;
+  margin-right: 8px;
+}
+.hamburger span {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .25s ease, top .25s ease, opacity .2s;
+}
+.hamburger span:nth-child(1){ top: 9px; }
+.hamburger span:nth-child(2){ top: 16px; }
+.hamburger span:nth-child(3){ top: 23px; }
+
+.topbar.menu-open .hamburger span:nth-child(1){ top: 16px; transform: rotate(45deg); }
+.topbar.menu-open .hamburger span:nth-child(2){ opacity: 0; }
+.topbar.menu-open .hamburger span:nth-child(3){ top: 16px; transform: rotate(-45deg); }
+
+.drawer {
+  display: none;
+}
+.topbar.menu-open .drawer {
+  display: block;
+}
+.drawer-nav {
+  background: rgba(18,18,22,.98);
+  border-top: 1px solid rgba(255,255,255,.06);
+  backdrop-filter: blur(6px);
+  padding: 10px 12px;
+  display: grid;
+  gap: 8px;
+}
+.drawer-nav a {
+  display: block;
+  padding: 12px 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.04);
+}
+
+/* Mobile rules */
+@media (max-width: 768px){
+  .brand-logo { height: 28px; }
+  .brand .name { font-size: 18px; }
+  .nav-right { display: none; }            /* simplifica topo no mobile */
+  .nav.nav-desktop { display: none; }      /* esconde nav normal */
+  .hamburger { display: inline-block; }    /* mostra botão */
+}
