@@ -156,3 +156,16 @@ footer{margin:40px 0; text-align:center; color:var(--muted)}
   .nav.nav-desktop { display: none; }      /* esconde nav normal */
   .hamburger { display: inline-block; }    /* mostra botão */
 }
+
+/* --- Ajustes Manufit (layout limpo) --- */
+.brand-logo{ height:36px; width:auto; }
+.hero, .hero img, .hero-logo{ display:none !important; } /* desativa qualquer herói antigo */
+.panel ul{ margin:0; padding-left:1.2rem; }
+.panel li{ margin:6px 0; }
+.card{ background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); padding:16px; border-radius:12px; }
+
+@media (max-width: 480px) {
+  body { font-size: 16.5px; }
+  .topbar .name { font-size: 18px; }
+  .panel { padding: 16px; }
+}

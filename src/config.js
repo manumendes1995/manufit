@@ -1,9 +1,12 @@
+// src/config.js
 export const APP_NAME = "Manufit";
-export const SUPPORT_EMAIL = "teuemail@dominio.com";
 
-// Exibição
-export const PRICE_LABEL = "£29.99/mês";
+// preço (já configurado antes, podes manter)
+export const PRICE_LABEL = "£29.99";
 
-// Stripe (opcional; se vazio, o botão de pagamento não aparece)
-export const STRIPE_PUBLISHABLE_KEY = ""; // ex.: "pk_live_..."
-export const STRIPE_PRICE_ID = "";        // ex.: "price_123..."
+// e-mail de suporte CORRETO
+export const SUPPORT_EMAIL = "manumendes199514@gmail.com";
+
+// (se fores usar Stripe depois, mantém vazio por agora)
+export const STRIPE_PUBLISHABLE_KEY = "";
+export const STRIPE_PRICE_ID = "";

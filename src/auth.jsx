@@ -2,40 +2,39 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import pagas from "./data/pagas.json";
 
+// sessão simples em localStorage
 export function getEmail() {
-  return (localStorage.getItem("userEmail") || "").toLowerCase();
+  return localStorage.getItem("userEmail") || "";
+}
+export function login(email) {
+  localStorage.setItem("userEmail", (email || "").trim().toLowerCase());
+}
+export function logout() {
+  localStorage.removeItem("userEmail");
+  localStorage.removeItem("paid"); // limpa flag de pago local
+}
+
+export function isWhitelisted(email = getEmail()) {
+  const e = (email || "").trim().toLowerCase();
+  const lista = (pagas?.liberadas || []).map(x => (x || "").toLowerCase());
+  return !!e && lista.includes(e);
+}
+
+export function markPaid() {
+  localStorage.setItem("paid", "1");
+}
+export function isPaidLocal() {
+  return localStorage.getItem("paid") === "1";
 }
 export function isAuthed() {
   return !!getEmail();
 }
-export function login(email) {
-  localStorage.setItem("userEmail", (email || "").toLowerCase());
-}
-export function logout() {
-  localStorage.removeItem("userEmail");
-  localStorage.removeItem("isPaid");
-}
-export function isWhitelisted(email = getEmail()) {
-  const e = (email || "").toLowerCase();
-  return Array.isArray(pagas.liberadas) && pagas.liberadas.map(s=>s.toLowerCase()).includes(e);
-}
-export function isPaidLocal() {
-  return localStorage.getItem("isPaid") === "true";
-}
-export function markPaid() {
-  localStorage.setItem("isPaid", "true");
-}
 
+// Guard para rotas privadas (apenas conta criada por enquanto)
 export function RequireAuth({ children }) {
   const loc = useLocation();
-  if (!isAuthed()) return <Navigate to="/conta" state={{ from: loc }} replace />;
+  if (!isAuthed()) {
+    return <Navigate to="/conta" state={{ from: loc }} replace />;
+  }
   return children;
-}
-
-export function RequirePaid({ children }) {
-  const loc = useLocation();
-  const email = getEmail();
-  if (!isAuthed()) return <Navigate to="/conta" state={{ from: loc }} replace />;
-  if (isWhitelisted(email) || isPaidLocal()) return children;
-  return <Navigate to="/conta" state={{ from: loc, needPayment: true }} replace />;
 }
