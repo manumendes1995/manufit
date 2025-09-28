@@ -9,7 +9,7 @@ import Alimentacao from "./Alimentacao.jsx";
 import Cardio from "./Cardio.jsx";
 import Alongamentos from "./Alongamentos.jsx";
 import Relaxamento from "./Relaxamento.jsx";
-import Cartaz from "./Cartaz.jsx";
+import Extra from "./Extra.jsx";
 import Conta from "./Conta.jsx";
 import Sucesso from "./Sucesso.jsx";
 import Cancelado from "./Cancelado.jsx";
@@ -24,7 +24,7 @@ function Header() {
     "/cardio": "Cardio",
     "/alongamentos": "Alongamentos",
     "/relaxamento": "Relaxamento",
-    "/cartaz": "Cartaz",
+    "/extra": "Extra",
     "/conta": "Conta",
     "/sucesso": "Pagamento concluído",
     "/cancelado": "Pagamento cancelado",
@@ -55,7 +55,7 @@ function Header() {
             <NavLink to="/cardio">Cardio</NavLink>
             <NavLink to="/alongamentos">Alongamentos</NavLink>
             <NavLink to="/relaxamento">Relaxamento</NavLink>
-            <NavLink to="/cartaz">Cartaz</NavLink>
+            <NavLink to="/extra">Extra</NavLink>
             <NavLink to="/conta">Conta</NavLink>
           </nav>
 
@@ -83,7 +83,7 @@ export default function App() {
           <Route path="/cardio" element={<Cardio />} />
           <Route path="/alongamentos" element={<Alongamentos />} />
           <Route path="/relaxamento" element={<Relaxamento />} />
-          <Route path="/cartaz" element={<Cartaz />} />
+          <Route path="/extra" element={<Extra />} />
           <Route path="/conta" element={<Conta />} />
           <Route path="/sucesso" element={<Sucesso />} />
           <Route path="/cancelado" element={<Cancelado />} />
