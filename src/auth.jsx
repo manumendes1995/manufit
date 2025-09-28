@@ -1,51 +1,48 @@
 import { Navigate, useLocation } from "react-router-dom";
-import liberadas from "./data/pagas.json";
+import pagas from "./data/pagas.json";
 
-// devolve email guardado no browser
+// normaliza email
+const norm = (e) => (e || "").trim().toLowerCase();
+
+// lista de e-mails liberados (exceções)
+const LIBERADAS = new Set((pagas?.liberadas || []).map(norm));
+
+// sessão
 export function getEmail() {
   return localStorage.getItem("userEmail") || "";
 }
-
-// login: guarda email
 export function login(email) {
-  localStorage.setItem("userEmail", email);
+  const e = norm(email);
+  localStorage.setItem("userEmail", e);
+  // não mexemos em "paid" aqui; whitelist já dá acesso
 }
-
-// logout: apaga email
 export function logout() {
   localStorage.removeItem("userEmail");
+  localStorage.removeItem("paid");
 }
 
-// verifica se há sessão
 export function isAuthed() {
   return !!getEmail();
 }
-
-// verifica se email está na lista de exceção
 export function isLiberado() {
-  const email = getEmail();
-  return email && liberadas.liberadas.includes(email);
+  return LIBERADAS.has(norm(getEmail()));
 }
-
-// marca pagamento no localStorage
-export function markPaid() {
-  const email = getEmail();
-  if (email) {
-    localStorage.setItem(`paid:${email}`, "1");
-  }
-}
-
-// verifica se já está pago no localStorage
 export function isPago() {
-  const email = getEmail();
-  return email && localStorage.getItem(`paid:${email}`) === "1";
+  // whitelist sempre passa
+  if (isLiberado()) return true;
+  return localStorage.getItem("paid") === "1";
 }
 
-// wrapper para proteger páginas
+// Guard: precisa ter sessão
 export function RequireAuth({ children }) {
   const loc = useLocation();
-  if (!isAuthed()) {
-    return <Navigate to="/conta" state={{ from: loc }} replace />;
-  }
+  if (!isAuthed()) return <Navigate to="/conta" state={{ from: loc }} replace />;
+  return children;
+}
+
+// Guard: precisa de acesso (whitelist OU pago)
+export function RequirePaid({ children }) {
+  const loc = useLocation();
+  if (!isPago()) return <Navigate to="/conta" state={{ from: loc }} replace />;
   return children;
 }
