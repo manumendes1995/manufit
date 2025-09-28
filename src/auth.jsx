@@ -1,20 +1,16 @@
-import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
-
+// auth.jsx — versão simplificada (sem login obrigatório)
 export function isAuthed() {
-  return !!localStorage.getItem("userEmail");
+  return true; // toda a gente está "autenticada"
 }
+
 export function login(email) {
   localStorage.setItem("userEmail", email);
 }
+
 export function logout() {
   localStorage.removeItem("userEmail");
 }
 
 export function RequireAuth({ children }) {
-  const loc = useLocation();
-  if (!isAuthed()) {
-    return <Navigate to="/conta" state={{ from: loc }} replace />;
-  }
-  return children;
+  return children; // não bloqueia nada
 }
