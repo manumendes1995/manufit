@@ -1,87 +1,70 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { APP_NAME, PRICE_LABEL, STRIPE_PUBLISHABLE_KEY, STRIPE_PRICE_ID, SUPPORT_EMAIL } from "./config";
-import { login, getEmail, isWhitelisted, isPaidLocal, markPaid, logout } from "./auth.jsx";
-import { startCheckout } from "./payments";
+import {
+  APP_NAME,
+  PRICE_LABEL,
+  SUPPORT_EMAIL
+} from "./config";
+import { login, getEmail, isLiberado, isPago, logout } from "./auth.jsx";
 
 export default function Conta() {
   const [email, setEmail] = useState(getEmail());
-  const [msg, setMsg] = useState("");
+  const navigate = useNavigate();
   const loc = useLocation();
-  const nav = useNavigate();
 
-  useEffect(()=>window.scrollTo(0,0),[]);
-
-  function handleLogin(e) {
-    e.preventDefault();
-    if (!email || !email.includes("@")) {
-      setMsg("Insere um e-mail válido.");
-      return;
+  function handleLogin() {
+    if (email) {
+      login(email);
+      navigate(loc.state?.from?.pathname || "/");
     }
-    login(email);
-    if (isWhitelisted(email)) {
-      markPaid();
-      setMsg("Acesso liberado (e-mail na lista de exceção).");
-      setTimeout(()=>nav("/treinos"), 600);
-      return;
-    }
-    if (isPaidLocal()) {
-      setMsg("Bem-vinda de volta!");
-      setTimeout(()=>nav("/treinos"), 600);
-      return;
-    }
-    setMsg("Conta criada. Para desbloquear, é preciso confirmar pagamento.");
   }
 
-  const podePagar = !!STRIPE_PUBLISHABLE_KEY && !!STRIPE_PRICE_ID;
+  function handleLogout() {
+    logout();
+    setEmail("");
+  }
+
+  const liberado = isLiberado();
+  const pago = isPago();
 
   return (
     <section className="panel">
-      <h2 style={{marginTop:0}}>Conta</h2>
+      <h2>Conta</h2>
 
       <div className="card">
-        <h3 style={{margin:"0 0 8px"}}>Entrar</h3>
-        <form onSubmit={handleLogin} className="row" style={{gap:8, alignItems:"center", flexWrap:"wrap"}}>
-          <input
-            type="email"
-            placeholder="o.seu@email.com"
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
-            required
-          />
-          <button type="submit" className="btn">Entrar</button>
-          <button type="button" className="btn ghost" onClick={()=>{ logout(); setEmail(""); setMsg("Sessão terminada."); }}>
+        <h3>Entrar</h3>
+        <input
+          type="email"
+          placeholder="teu@email.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div style={{ marginTop: "0.5rem" }}>
+          <button onClick={handleLogin}>Entrar</button>
+          <button onClick={handleLogout} style={{ marginLeft: "0.5rem" }}>
             Sair
           </button>
-        </form>
-        {msg && <p className="note" style={{marginTop:8}}>{msg}</p>}
+        </div>
+        <p>
+          Conta criada. Para desbloquear, é preciso confirmar pagamento
+          {liberado && " (liberada manualmente)"}
+          {pago && " (já pago)"}
+        </p>
       </div>
 
-      {!isWhitelisted(email) && !isPaidLocal() && (
-        <div className="card" style={{marginTop:16}}>
-          <h3 style={{margin:"0 0 8px"}}>Pagamento</h3>
-          <p>Valor: <b>{PRICE_LABEL}</b></p>
-          {podePagar ? (
-            <button className="btn" onClick={startCheckout}>Pagar {PRICE_LABEL}</button>
-          ) : (
-            <>
-              <p className="muted">Pagamento online ainda não configurado.</p>
-              <p>Suporte: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
-            </>
-          )}
-        </div>
-      )}
-
-      {(isWhitelisted(email) || isPaidLocal()) && (
-        <div className="card success" style={{marginTop:16}}>
-          <h3 style={{margin:"0 0 8px"}}>Acesso ativo ✅</h3>
-          <p>Podes usar todas as abas protegidas.</p>
-        </div>
-      )}
-
-      {loc.state?.needPayment && (
-        <p className="note" style={{marginTop:12}}>Para aceder aos conteúdos, efetua o pagamento ou usa um e-mail liberado.</p>
-      )}
+      <div className="card">
+        <h3>Pagamento</h3>
+        <p>Valor: {PRICE_LABEL}</p>
+        {!pago && !liberado && (
+          <p>Pagamento online ainda não configurado.</p>
+        )}
+        {(pago || liberado) && (
+          <p>Acesso desbloqueado ✅</p>
+        )}
+        <p>
+          Suporte: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+        </p>
+      </div>
     </section>
   );
 }
