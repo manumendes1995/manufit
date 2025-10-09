@@ -1,0 +1,155 @@
+{
+  "versao": "1.0",
+  "nivel": "iniciante",
+  "descricao": "Plano iniciante (primeiro mês). Manufit - rotina semanal com 5 dias de treino e variações).",
+  "treinos": [
+    {
+      "id": 1,
+      "nome": "Perna & Glúteo (Dia 1)",
+      "descricao": "Treino de força para membros inferiores.",
+      "exercicios": [
+        { "nome": "Agachamento Peso do Corpo", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Agachamento Livre", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Leg Press 45°", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Flexora Sentada", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Cadeira Extensora", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Flexora Deitada", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Gémeos em pé com halteres", "series": 3, "reps": 10, "descanso": "1:00" }
+      ]
+    },
+
+    {
+      "id": 2,
+      "nome": "Membros Superiores + Abdómen (Dia 2)",
+      "descricao": "Exercícios combinados conforme instruções: fazer as combinações indicadas como blocos.",
+      "exercicios": [
+        {
+          "nome": "Bloco A (Abdómen e Core)",
+          "detalhe": "Combinações",
+          "combos": [
+            { "titulo": "Combinação 1", "exercicios": ["Abd. Supra Curtinho", "Abd. Infra"], "repeticoes": "3x10", "descanso": "1:00" }
+          ]
+        },
+        {
+          "nome": "Puxada e Peito - Combinação",
+          "detalhe": "Combinar puxada com flexão",
+          "combos": [
+            { "titulo": "Combinação 2", "exercicios": ["Puxada Pulley (pegada aberta)","Flexão de Braço"], "repeticoes": "3x10", "descanso": "1:00" }
+          ]
+        },
+        {
+          "nome": "Remada + Ombro - Combinação",
+          "detalhe": "Remada curvada com halteres combinada com desenvolvimento",
+          "combos": [
+            { "titulo": "Combinação 3", "exercicios": ["Remada Curvada Halteres","Desenvolvimento Halteres"], "repeticoes": "3x10", "descanso": "1:00" }
+          ]
+        },
+        {
+          "nome": "Rosca + Tríceps - Combinação",
+          "detalhe": "Rosca direta com halteres combinada com tríceps pulley",
+          "combos": [
+            { "titulo": "Combinação 4", "exercicios": ["Rosca Direta Halteres","Tríceps Pulley (barra ou corda)"], "repeticoes": "3x10", "descanso": "1:00" }
+          ]
+        },
+        {
+          "nome": "Cardio Intercalado",
+          "detalhe": "Esteira 20 min - 1 min corrida / 1 min caminhada"
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "nome": "Corpo Todo (Dia 3)",
+      "descricao": "Treino em blocos: 1º bloco = primeiros 3 exercícios; 2º bloco = últimos 3 exercícios. Fazer blocos completos, descansar 1 minuto e repetir 3x cada bloco.",
+      "exercicios": [
+        {
+          "bloco": 1,
+          "ordem": [
+            { "nome": "Burpee", "series": 3, "reps": 10 },
+            { "nome": "Afundo + Desenvolve", "series": 3, "reps": 10 },
+            { "nome": "Thruster", "series": 3, "reps": 10 }
+          ],
+          "instrucoes": "Fazer os 3 exercícios do bloco seguidos (sem descanso entre eles), descansar 1:00 após completar o bloco. Repetir até completar 3 rondas."
+        },
+        {
+          "bloco": 2,
+          "ordem": [
+            { "nome": "Agachamento com Salto", "series": 3, "reps": 10 },
+            { "nome": "Prancha Abre e Fecha", "series": 3, "reps": "3x10" },
+            { "nome": "Ski (esquiador)", "series": 3, "reps": 10 }
+          ],
+          "instrucoes": "Mesmo formato: executar em circuito, descansar 1:00 após cada ronda, repetir 3 rondas."
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "nome": "Perna & Glúteo (Dia 4)",
+      "descricao": "Foco em glúteo e pernas — tradicional.",
+      "exercicios": [
+        { "nome": "Agachamento Smith", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Leg Press Horizontal", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Agachamento Sumô", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Glúteo 4 Apoios (perna flexionada)", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Elevação Pélvica", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Stiff", "series": 3, "reps": 10, "descanso": "1:00" },
+        { "nome": "Panturrilha Smith", "series": 3, "reps": 10, "descanso": "1:00" }
+      ]
+    },
+
+    {
+      "id": 5,
+      "nome": "Membros Superiores + Abdómen (Dia 5)",
+      "descricao": "Combinações definidas: 3 combinações no treino conforme pedido.",
+      "exercicios": [
+        {
+          "titulo": "Combinação 1",
+          "exercicios": ["Abd. Supra Curtinho", "Puxada Pulley (pegada aberta)"],
+          "repeticoes": "3x10",
+          "descanso": "30s-1:00",
+          "nota": "Executar abdómen seguido de puxada, repetir 3 rondas."
+        },
+        {
+          "titulo": "Combinação 2",
+          "exercicios": ["Abd. Infra", "Remada na Polia (pegada neutra)"],
+          "repeticoes": "3x10",
+          "descanso": "30s-1:00",
+          "nota": "Executar abd. infra e remada como um circuito; repetir 3 rondas."
+        },
+        {
+          "titulo": "Combinação 3",
+          "exercicios": ["Supino Reto Halteres", "Tríceps Francês"],
+          "repeticoes": "3x10",
+          "descanso": "30s-1:00",
+          "nota": "Supino com halteres seguido de tríceps francês."
+        },
+        {
+          "nome": "Cardio / Interval",
+          "detalhe": "Esteira / Bike / Escada 2 min - velocidade moderada (usar entre combos se desejar)"
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "nome": "Recuperação / Opcional (Dia 6)",
+      "descricao": "Dia leve: alongamento, mobilidade ou descanso ativo.",
+      "exercicios": [
+        { "nome": "Alongamento geral", "tempo": "15-20min" },
+        { "nome": "Caminhada leve ou Yoga", "tempo": "20-30min" }
+      ]
+    },
+
+    {
+      "id": 7,
+      "nome": "Descanso (Dia 7)",
+      "descricao": "Dia de descanso total ou recuperação ativa muito leve."
+    }
+  ],
+  "notas": {
+    "estrutura": "Mantém os nomes e repetições conforme pedido. Não alterar o resto do projecto.",
+    "observacao": "Treinos avançados (2º mês) permanecem bloqueados até 30 dias de uso automático por utilizador."
+  }
+}
