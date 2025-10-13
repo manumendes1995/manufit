@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "email": "emiliamiranda3039@gmail.com",
+      "name": "Emília",
+      "startedAt": "2025-09-25"
+    },
+    {
+      "email": "zulmira.mendes2@gmail.com",
+      "name": "Zulmira",
+      "startedAt": "2025-09-20"
+    },
+    {
+      "email": "jessicarafaelacg@gmail.com",
+      "name": "Jéssica",
+      "startedAt": "2025-09-18"
+    },
+    {
+      "email": "nina_lopes_gomes@hotmail.com",
+      "name": "Carina",
+      "startedAt": "2025-09-29"
+    },
+    {
+      "email": "manumendes199514@gmail.com",
+      "name": "Manu",
+      "startedAt": "2025-10-13"
+    }
+  ]
+}
