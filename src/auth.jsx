@@ -1,45 +1,30 @@
-import { Navigate, useLocation } from "react-router-dom";
-import pagas from "./data/pagas.json";
+/**
+ * auth.jsx
+ * Autenticação simples com localStorage.
+ * export: login(email), logout(), getEmail(), isAuthed(), isOwner()
+ */
+import { SUPPORT_EMAIL } from "./config";
 
-const norm = (e) => (e || "").trim().toLowerCase();
-const LIBERADAS = new Set((pagas?.liberadas || []).map(norm));
-
-export function getEmail() {
-  return localStorage.getItem("userEmail") || "";
-}
 export function login(email) {
-  const e = norm(email);
-  localStorage.setItem("userEmail", e);
+  if (!email) return false;
+  localStorage.setItem("userEmail", email.toLowerCase());
+  return true;
 }
+
 export function logout() {
   localStorage.removeItem("userEmail");
-  localStorage.removeItem("paid");
+}
+
+export function getEmail() {
+  return (localStorage.getItem("userEmail") || "").toLowerCase();
 }
 
 export function isAuthed() {
   return !!getEmail();
 }
-export function isLiberado() {
-  return LIBERADAS.has(norm(getEmail()));
-}
-export function isPago() {
-  if (isLiberado()) return true;
-  return localStorage.getItem("paid") === "1";
-}
 
-/** <<< ADICIONADO: usado pelo Sucesso.jsx >>> */
-export function markPaid() {
-  // simples: marca pago neste dispositivo
-  localStorage.setItem("paid", "1");
-}
-
-export function RequireAuth({ children }) {
-  const loc = useLocation();
-  if (!isAuthed()) return <Navigate to="/conta" state={{ from: loc }} replace />;
-  return children;
-}
-export function RequirePaid({ children }) {
-  const loc = useLocation();
-  if (!isPago()) return <Navigate to="/conta" state={{ from: loc }} replace />;
-  return children;
+export function isOwner() {
+  const e = getEmail();
+  if (!e) return false;
+  return e === (SUPPORT_EMAIL || "").toLowerCase();
 }
