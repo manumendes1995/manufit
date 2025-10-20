@@ -1,70 +1,30 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
-import "./App.css";
-import usersData from "./data/users.json";
+import React from "react";
+import { NavLink, Routes, Route } from "react-router-dom";
+import Home from "./Home.jsx";
+import Perfil from "./Perfil.jsx";
+import "./index.css";
 
-function Home() {
+function Header() {
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-2xl font-bold mb-4 text-pink-600">🏋️‍♀️ Bem-vinda à ManuFit!</h1>
-      <p className="text-gray-700">Escolhe uma aba acima para continuar.</p>
+    <header style={{ background: "#fff", borderBottom: "1px solid #eee", padding: "10px 16px", display: "flex", justifyContent: "center", gap: 16 }}>
+      <NavLink to="/" style={{ textDecoration: "none", color: "#ff4da6", fontWeight: 600 }}>Início</NavLink>
+      <NavLink to="/perfil" style={{ textDecoration: "none", color: "#ff4da6", fontWeight: 600 }}>Perfil</NavLink>
+    </header>
+  );
+}
+
+export default function App(){
+  return (
+    <div id="app">
+      <Header />
+      <main style={{ padding: 16 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/perfil" element={<Perfil />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
+      <footer style={{ textAlign: "center", padding: 12, color: "#777" }}>© {new Date().getFullYear()} Manufit</footer>
     </div>
   );
 }
-
-function Perfil() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    setUsers(usersData.users);
-  }, []);
-
-  const getDaysSince = (startDate) => {
-    const start = new Date(startDate);
-    const today = new Date();
-    const diff = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-    return diff >= 0 ? diff : 0;
-  };
-
-  return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold text-pink-600 mb-4">👩‍💻 Perfil de Utilizadoras</h2>
-      <div className="grid gap-4">
-        {users.map((u, i) => (
-          <div key={i} className="border rounded-2xl p-4 shadow">
-            <p className="font-semibold">{u.name}</p>
-            <p className="text-gray-600 text-sm">{u.email}</p>
-            <p className="text-gray-700 text-sm">
-              Início: <span className="font-medium">{u.start}</span>
-            </p>
-            <p className="text-pink-600 font-semibold">
-              Dias de utilização: {getDaysSince(u.start)} dias
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <Router basename="/manufit">
-      <nav className="bg-white shadow-md p-4 flex justify-center gap-6 text-pink-600 font-semibold">
-        <NavLink to="/" className={({ isActive }) => (isActive ? "underline" : "")}>
-          Início
-        </NavLink>
-        <NavLink to="/perfil" className={({ isActive }) => (isActive ? "underline" : "")}>
-          Perfil
-        </NavLink>
-      </nav>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/perfil" element={<Perfil />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
