@@ -1,99 +1,30 @@
-import React, { useEffect } from "react";
-import { NavLink, Routes, Route, useLocation } from "react-router-dom";
-import "./index.css";
-import { APP_NAME } from "./config";
-
+import React from "react";
+import { NavLink, Routes, Route } from "react-router-dom";
 import Home from "./Home.jsx";
-import Treinos from "./Treinos.jsx";
-import Alimentacao from "./Alimentacao.jsx";
-import Cardio from "./Cardio.jsx";
-import Alongamentos from "./Alongamentos.jsx";
-import Relaxamento from "./Relaxamento.jsx";
-import Conta from "./Conta.jsx";
-import Sucesso from "./Sucesso.jsx";
-import Cancelado from "./Cancelado.jsx";
-import DaysBadge from "./DaysBadge.jsx";
-
-import logo from "./assets/MANUFIT.png";
+import Perfil from "./Perfil.jsx";
+import "./index.css";
 
 function Header() {
-  const location = useLocation();
-  const labelMap = {
-    "/": "Início",
-    "/treinos": "Treinos",
-    "/alimentacao": "Alimentação",
-    "/cardio": "Cardio / HIIT",
-    "/alongamentos": "Alongamentos",
-    "/relaxamento": "Relaxamento",
-    "/conta": "Conta",
-    "/sucesso": "Pagamento concluído",
-    "/cancelado": "Pagamento cancelado",
-  };
-  const pageLabel = labelMap[location.pathname] || "Início";
-
-  useEffect(() => {
-    const y = document.getElementById("y");
-    if (y) y.textContent = new Date().getFullYear();
-  }, []);
-
   return (
-    <header className="topbar">
-      <div className="wrap">
-        <div className="row" style={{ padding: "10px 0" }}>
-          <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
-            <img
-              src={logo}
-              alt={`${APP_NAME} logo`}
-              style={{ height: "36px", marginRight: "10px" }}
-            />
-            <span className="name">{APP_NAME}</span>
-          </NavLink>
-
-          <nav className="nav" aria-label="Navegação principal">
-            <NavLink to="/treinos">Treinos</NavLink>
-            <NavLink to="/alimentacao">Alimentação</NavLink>
-            <NavLink to="/cardio">Cardio</NavLink>
-            <NavLink to="/alongamentos">Alongamentos</NavLink>
-            <NavLink to="/relaxamento">Relaxamento</NavLink>
-            <NavLink to="/conta">Conta</NavLink>
-          </nav>
-
-          <div
-            className="nav-right"
-            style={{ display: "flex", gap: 8, alignItems: "center" }}
-          >
-            <DaysBadge />
-            <span id="pageLabel" className="page-label" aria-live="polite">
-              {pageLabel}
-            </span>
-          </div>
-        </div>
-      </div>
+    <header style={{ background: "#fff", borderBottom: "1px solid #eee", padding: "10px 16px", display: "flex", justifyContent: "center", gap: 16 }}>
+      <NavLink to="/" style={{ textDecoration: "none", color: "#ff4da6", fontWeight: 600 }}>Início</NavLink>
+      <NavLink to="/perfil" style={{ textDecoration: "none", color: "#ff4da6", fontWeight: 600 }}>Perfil</NavLink>
     </header>
   );
 }
 
-export default function App() {
+export default function App(){
   return (
     <div id="app">
       <Header />
-      <main className="wrap">
+      <main style={{ padding: 16 }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/treinos" element={<Treinos />} />
-          <Route path="/alimentacao" element={<Alimentacao />} />
-          <Route path="/cardio" element={<Cardio />} />
-          <Route path="/alongamentos" element={<Alongamentos />} />
-          <Route path="/relaxamento" element={<Relaxamento />} />
-          <Route path="/conta" element={<Conta />} />
-          <Route path="/sucesso" element={<Sucesso />} />
-          <Route path="/cancelado" element={<Cancelado />} />
+          <Route path="/perfil" element={<Perfil />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      <footer>
-        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
-      </footer>
+      <footer style={{ textAlign: "center", padding: 12, color: "#777" }}>© {new Date().getFullYear()} Manufit</footer>
     </div>
   );
 }
