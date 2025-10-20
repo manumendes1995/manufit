@@ -1,120 +1,70 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, Routes, Route, useLocation } from "react-router-dom";
-import "./index.css";
-import { APP_NAME } from "./config";
+import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./App.css";
+import usersData from "./data/users.json";
 
-import Home from "./Home.jsx";
-import Treinos from "./Treinos.jsx";
-import Alimentacao from "./Alimentacao.jsx";
-import Cardio from "./Cardio.jsx";
-import Alongamentos from "./Alongamentos.jsx";
-import Relaxamento from "./Relaxamento.jsx";
-import Extra from "./Extra.jsx";
-import Conta from "./Conta.jsx";
-import Sucesso from "./Sucesso.jsx";
-import Cancelado from "./Cancelado.jsx";
-import DaysBadge from "./DaysBadge.jsx";
-import Perfil from "./Perfil.jsx";
-
-import { RequirePaid } from "./auth.jsx";
-
-function Header() {
-  const location = useLocation();
-  const [open, setOpen] = useState(false);
-  const labelMap = {
-    "/": "Início",
-    "/treinos": "Treinos",
-    "/alimentacao": "Alimentação",
-    "/cardio": "Cardio / HIIT",
-    "/alongamentos": "Alongamentos",
-    "/relaxamento": "Relaxamento",
-    "/extra": "Extra",
-    "/conta": "Conta",
-    "/sucesso": "Pagamento concluído",
-    "/cancelado": "Pagamento cancelado",
-  };
-  const pageLabel = labelMap[location.pathname] || "Início";
-
-  useEffect(() => {
-    const y = document.getElementById("y");
-    if (y) y.textContent = new Date().getFullYear();
-  }, []);
-  useEffect(() => { setOpen(false); }, [location.pathname]);
-
-  const logoSrc = import.meta.env.BASE_URL + "MANUFIT.png";
-
+function Home() {
   return (
-    <header className={`topbar ${open ? "menu-open" : ""}`}>
-      <div className="wrap">
-        <div className="row" style={{ padding: "10px 0" }}>
-          <NavLink className="brand" to="/" aria-label={`${APP_NAME} - Início`}>
-            <img src={logoSrc} alt={`${APP_NAME} logo`} className="brand-logo" />
-            <span className="name">{APP_NAME}</span>
-          </NavLink>
-
-          <button className="hamburger" aria-label="Abrir menu" aria-expanded={open?"true":"false"} onClick={()=>setOpen(v=>!v)}>
-            <span /><span /><span />
-          </button>
-
-          <nav className="nav nav-desktop" aria-label="Navegação principal">
-            <NavLink to="/treinos">Treinos</NavLink>
-            <NavLink to="/alimentacao">Alimentação</NavLink>
-            <NavLink to="/cardio">Cardio</NavLink>
-            <NavLink to="/alongamentos">Alongamentos</NavLink>
-            <NavLink to="/relaxamento">Relaxamento</NavLink>
-            <NavLink to="/extra">Extra</NavLink>
-            <NavLink to="/conta">Conta</NavLink>
-          </nav>
-
-          <div className="nav-right">
-            <DaysBadge />
-            <span id="pageLabel" className="page-label" aria-live="polite">{pageLabel}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="drawer" role="dialog" aria-modal="true">
-        <nav className="drawer-nav" onClick={()=>setOpen(false)}>
-          <NavLink to="/treinos">Treinos</NavLink>
-          <NavLink to="/alimentacao">Alimentação</NavLink>
-          <NavLink to="/cardio">Cardio</NavLink>
-          <NavLink to="/alongamentos">Alongamentos</NavLink>
-          <NavLink to="/relaxamento">Relaxamento</NavLink>
-          <NavLink to="/extra">Extra</NavLink>
-          <NavLink to="/conta">Conta</NavLink>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
-export default function App() {
-  return (
-    <div id="app">
-      <Header />
-      <main className="wrap">
-        <Routes>
-          <Route path="/" element={<Home />} />
-
-          {/* Rotas protegidas por pagamento/whitelist */}
-          <Route path="/treinos" element={<RequirePaid><Treinos /></RequirePaid>} />
-          <Route path="/alimentacao" element={<RequirePaid><Alimentacao /></RequirePaid>} />
-          <Route path="/cardio" element={<RequirePaid><Cardio /></RequirePaid>} />
-          <Route path="/alongamentos" element={<RequirePaid><Alongamentos /></RequirePaid>} />
-          <Route path="/relaxamento" element={<RequirePaid><Relaxamento /></RequirePaid>} />
-          <Route path="/extra" element={<RequirePaid><Extra /></RequirePaid>} />
-
-          {/* Conta e retornos do checkout */}
-          <Route path="/conta" element={<Conta />} />
-          <Route path="/sucesso" element={<Sucesso />} />
-          <Route path="/cancelado" element={<Cancelado />} />
-
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </main>
-      <footer>
-        © <span id="y"></span> {APP_NAME}. Todos os direitos reservados.
-      </footer>
+    <div className="p-6 text-center">
+      <h1 className="text-2xl font-bold mb-4 text-pink-600">🏋️‍♀️ Bem-vinda à ManuFit!</h1>
+      <p className="text-gray-700">Escolhe uma aba acima para continuar.</p>
     </div>
   );
 }
+
+function Perfil() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    setUsers(usersData.users);
+  }, []);
+
+  const getDaysSince = (startDate) => {
+    const start = new Date(startDate);
+    const today = new Date();
+    const diff = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+    return diff >= 0 ? diff : 0;
+  };
+
+  return (
+    <div className="p-6">
+      <h2 className="text-xl font-bold text-pink-600 mb-4">👩‍💻 Perfil de Utilizadoras</h2>
+      <div className="grid gap-4">
+        {users.map((u, i) => (
+          <div key={i} className="border rounded-2xl p-4 shadow">
+            <p className="font-semibold">{u.name}</p>
+            <p className="text-gray-600 text-sm">{u.email}</p>
+            <p className="text-gray-700 text-sm">
+              Início: <span className="font-medium">{u.start}</span>
+            </p>
+            <p className="text-pink-600 font-semibold">
+              Dias de utilização: {getDaysSince(u.start)} dias
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router basename="/manufit">
+      <nav className="bg-white shadow-md p-4 flex justify-center gap-6 text-pink-600 font-semibold">
+        <NavLink to="/" className={({ isActive }) => (isActive ? "underline" : "")}>
+          Início
+        </NavLink>
+        <NavLink to="/perfil" className={({ isActive }) => (isActive ? "underline" : "")}>
+          Perfil
+        </NavLink>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/perfil" element={<Perfil />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
