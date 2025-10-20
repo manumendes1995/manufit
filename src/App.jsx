@@ -14,6 +14,7 @@ import Conta from "./Conta.jsx";
 import Sucesso from "./Sucesso.jsx";
 import Cancelado from "./Cancelado.jsx";
 import DaysBadge from "./DaysBadge.jsx";
+import Perfil from "./Perfil.jsx";
 
 import { RequirePaid } from "./auth.jsx";
 
