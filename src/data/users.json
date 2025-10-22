@@ -1,0 +1,8 @@
+{
+  "users": [
+    { "name": "Emília",   "email": "emiliamiranda3039@gmail.com",  "start": "2025-09-25" },
+    { "name": "Zulmira",  "email": "zulmira.mendes2@gmail.com",    "start": "2025-09-20" },
+    { "name": "Jéssica",  "email": "jessicarafaelacg@gmail.com",   "start": "2025-09-18" },
+    { "name": "Carina",   "email": "nina_lopes_gomes@hotmail.com", "start": "2025-09-29" }
+  ]
+}
