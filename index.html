@@ -3,1145 +3,298 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>MANUFIT</title>
-
+    <title>Manufit</title>
     <link rel="icon" type="image/png" href="MANUFIT.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
-
+    <link rel="stylesheet" href="assets/index-XyvdzpmH.css" />
     <style>
-      :root {
-        --bg-main:#0f0f12;
-        --bg-card:#1a1a22;
-        --bg-inner:#0f0f12;
-        --line:#2a2a33;
-        --rosa:#ff4da6;
-        --txt:#fff;
-        --txt-dim:#bbb;
-        --radius-card:10px;
-        --radius-inner:8px;
-        --font:"system-ui",-apple-system,BlinkMacSystemFont,"Inter",Arial,sans-serif;
+      body {
+        background-color: #0f0f12;
+        color: #fff;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
+          Arial, sans-serif;
+        margin: 0;
+        padding-bottom: 4rem;
       }
-      body{
-        margin:0;
-        background-color:var(--bg-main);
-        color:var(--txt);
-        font-family:var(--font);
-        padding-bottom:5rem;
+      header {
+        background: linear-gradient(to right, rgb(255, 77, 166) 0%, rgb(15, 15, 18) 60%);
+        color: #fff;
+        padding: 16px;
+        border-bottom: 1px solid #ff4da6;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
       }
-      header.topbar{
-        background:linear-gradient(to right,rgb(255,77,166) 0%,rgb(15,15,18) 60%);
-        color:#fff;
-        padding:16px;
-        border-bottom:1px solid var(--rosa);
-        display:flex;
-        flex-wrap:wrap;
-        align-items:center;
-        justify-content:space-between;
-        gap:12px;
+      .brand {
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.2;
+        color: #fff;
       }
-      .brand{
-        font-weight:700;
-        font-size:1.25rem;
-        line-height:1.2;
-        color:#fff;
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
       }
-      .brand-row{
-        display:flex;
-        align-items:center;
-        gap:8px;
-        font-weight:700;
-        color:#fff;
+      button {
+        background-color: #1f1f25;
+        color: #fff;
+        border: 1px solid #ff4da6;
+        border-radius: 6px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
       }
-      .brand-row img.logo{
-        width:36px;
-        height:36px;
-        border-radius:6px;
-        object-fit:cover;
-        border:1px solid rgba(255,255,255,0.4);
+      button.active {
+        background-color: #ff4da6;
+        color: #000;
       }
-      .brand-sub{
-        font-size:0.7rem;
-        font-weight:500;
-        color:#ffd1e8;
-        line-height:1.2;
+      .card {
+        background-color: #1a1a22;
+        border: 1px solid #2a2a33;
+        border-radius: 10px;
+        padding: 16px;
+        max-width: 480px;
+        margin: 40px auto;
       }
-
-      nav.tabs{
-        display:flex;
-        flex-wrap:wrap;
-        gap:8px;
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #ff4da6;
       }
-      nav.tabs button{
-        background-color:#1f1f25;
-        color:#fff;
-        border:1px solid var(--rosa);
-        border-radius:6px;
-        padding:6px 10px;
-        font-size:0.8rem;
-        font-weight:600;
-        cursor:pointer;
+      input {
+        width: 100%;
+        background-color: #0f0f12;
+        border: 1px solid #ff4da6;
+        border-radius: 6px;
+        padding: 10px 12px;
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
       }
-      nav.tabs button.active{
-        background-color:var(--rosa);
-        color:#000;
+      .btn-primary {
+        margin-top: 16px;
+        width: 100%;
+        background-color: #ff4da6;
+        border: 0;
+        border-radius: 6px;
+        color: #000;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 12px;
+        cursor: pointer;
       }
-
-      main.mainwrap{
-        padding:24px 16px;
-        max-width:900px;
-        margin:0 auto;
+      .small {
+        font-size: 0.8rem;
+        opacity: 0.8;
+        margin-top: 12px;
+        line-height: 1.4;
+        text-align: center;
+        color: #bbb;
       }
-
-      .card-login{
-        background-color:var(--bg-card);
-        border:1px solid var(--line);
-        border-radius:var(--radius-card);
-        padding:16px;
-        max-width:480px;
-        width:100%;
-        margin:40px auto;
-        color:#fff;
+      footer {
+        color: #666;
+        font-size: 0.7rem;
+        text-align: center;
+        padding: 40px 16px;
       }
-      .label-email{
-        display:block;
-        margin-bottom:8px;
-        font-weight:600;
-        color:var(--rosa);
+      section {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 16px;
       }
-      .input-email{
-        width:100%;
-        background-color:var(--bg-inner);
-        border:1px solid var(--rosa);
-        border-radius:6px;
-        padding:10px 12px;
-        color:#fff;
-        font-size:1rem;
-        outline:none;
+      .dias button {
+        background-color: #1f1f25;
+        color: #fff;
+        border: 1px solid #ff4da6;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        cursor: pointer;
+        margin: 4px;
       }
-      .btn-primary{
-        margin-top:16px;
-        width:100%;
-        background-color:var(--rosa);
-        border:0;
-        border-radius:6px;
-        color:#000;
-        font-weight:700;
-        font-size:1rem;
-        padding:12px;
-        cursor:pointer;
+      .dias button.active {
+        background-color: #ff4da6;
+        color: #000;
       }
-      .price-line{
-        margin-top:10px;
-        font-weight:600;
-        font-size:1rem;
-        color:var(--rosa);
-        text-align:center;
+      .treino-dia {
+        background-color: #1a1a22;
+        border: 1px solid #2a2a33;
+        border-radius: 10px;
+        padding: 16px;
+        margin-top: 16px;
       }
-      .small-info{
-        font-size:0.8rem;
-        opacity:0.8;
-        margin-top:12px;
-        line-height:1.4;
-        text-align:center;
-        color:var(--txt-dim);
+      .titulo {
+        color: #ff4da6;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 8px;
       }
-
-      .section-block{
-        background-color:#1a1a22;
-        border:1px solid #2a2a33;
-        border-radius:10px;
-        padding:16px;
-        margin-bottom:24px;
-        color:#fff;
-      }
-      .section-title{
-        color:var(--rosa);
-        font-weight:700;
-        font-size:1rem;
-        line-height:1.4;
-        margin-bottom:12px;
-      }
-
-      .inner-box{
-        background-color:#0f0f12;
-        border:1px solid #3a3a44;
-        border-radius:8px;
-        padding:12px;
-        margin-bottom:12px;
-        font-size:0.8rem;
-        color:#ccc;
-        line-height:1.5;
-      }
-
-      .dia-title{
-        color:#ff4da6;
-        font-weight:700;
-        font-size:1rem;
-        margin:16px 0 8px;
-      }
-      .ex-line{
-        border:1px solid #3a3a44;
-        border-radius:8px;
-        padding:10px 12px;
-        margin-bottom:8px;
-        background-color:#0f0f12;
-        color:#fff;
-        font-size:0.8rem;
-        line-height:1.4;
-      }
-      .ex-head{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:space-between;
-        font-weight:600;
-        color:#fff;
-        margin-bottom:4px;
-        font-size:0.8rem;
-      }
-      .ex-desc{
-        font-size:0.75rem;
-        color:#bbb;
-        line-height:1.4;
-      }
-      .link-video{
-        color:#ff4da6;
-        font-weight:600;
-        text-decoration:none;
-        font-size:0.75rem;
-        display:inline-block;
-        margin-top:4px;
-      }
-
-      .perfil-box{
-        background-color:#1a1a22;
-        border:1px solid #2a2a33;
-        border-radius:10px;
-        padding:16px;
-        margin-bottom:24px;
-        color:#fff;
-        font-size:0.85rem;
-        line-height:1.5;
-      }
-      .perfil-owner-title{
-        color:#ff4da6;
-        font-weight:700;
-        font-size:1rem;
-        margin-bottom:12px;
-      }
-      .perfil-user-row{
-        border:1px solid #3a3a44;
-        border-radius:8px;
-        padding:10px 12px;
-        margin-bottom:8px;
-        background-color:#0f0f12;
-        color:#fff;
-      }
-      .perfil-user-row .who{
-        font-weight:600;
-        color:#fff;
-        font-size:0.8rem;
-      }
-      .perfil-user-row .days{
-        font-size:0.75rem;
-        color:#bbb;
-      }
-
-      footer.foot{
-        color:#666;
-        font-size:0.7rem;
-        text-align:center;
-        padding:40px 16px;
+      .video-link {
+        display: block;
+        color: #ffbdf0;
+        margin-top: 6px;
       }
     </style>
   </head>
 
   <body>
-    <!-- HEADER -->
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-row">
-          <img src="MANUFIT.png" alt="Manufit Logo" class="logo" />
-          <div>MANUFIT</div>
-        </div>
-        <div class="brand-sub">
-          Treino • Nutrição • Resultados
-        </div>
+    <header>
+      <div class="brand" style="display: flex; align-items: center; gap: 8px">
+        <img
+          src="MANUFIT.png"
+          alt="Logo"
+          style="
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+          "
+        />
+        MANUFIT
       </div>
-
-      <nav class="tabs" id="main-tabs" style="display:none;">
-        <button data-tab="treinos">Treinos</button>
-        <button data-tab="alimentacao">Alimentação</button>
-        <button data-tab="cardio">Cardio</button>
-        <button data-tab="relax">Relaxamento</button>
-        <button data-tab="extra">Extra</button>
-        <button data-tab="perfil">Perfil</button>
-        <button data-action="logout">Sair</button>
-      </nav>
+      <nav id="tabs"></nav>
     </header>
 
-    <!-- LOGIN CARD -->
-    <main class="mainwrap" id="login-area">
-      <div class="card-login">
-        <form id="login-form">
-          <label class="label-email">Introduz o teu e-mail para aceder</label>
-          <input
-            class="input-email"
-            id="email-input"
-            type="email"
-            placeholder="exemplo@exemplo.com"
-          />
+    <main id="content"></main>
 
-          <button class="btn-primary" type="submit">Entrar</button>
-
-          <div class="price-line">£39.99 / mês</div>
-
-          <div class="small-info">
-            <div>• Apenas alunas autorizadas têm acesso.</div>
-            <div>• Se ainda não tens acesso, fala com Manu 💖</div>
-            <div style="margin-top:8px; color:#ff4da6;">
-              Suporte: manumendes199514@gmail.com
-            </div>
-          </div>
-        </form>
-      </div>
-    </main>
-
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="mainwrap" id="content-area" style="display:none;">
-
-      <!-- ================== TREINOS ================== -->
-      <section class="section-block" data-section="treinos">
-        <div class="section-title">Treinos</div>
-
-        <!-- Tabs internos: Iniciante / Avançado -->
-        <div class="tabs" style="margin-bottom:16px;">
-          <button class="subtab-btn active" data-subtab="iniciante">
-            Iniciante
-          </button>
-          <button class="subtab-btn" data-subtab="avancado">
-            Avançado (1º mês)
-          </button>
-        </div>
-
-        <!-- INICIANTE -->
-        <div class="subtab-content" data-subtab-panel="iniciante" style="display:block;">
-
-          <div class="dia-title">Dia 1 – Perna e Glúteo</div>
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Agachamento Peso do Corpo</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <div class="ex-desc">
-              Foca em controlar a descida e manter joelhos alinhados.
-            </div>
-            <a class="link-video" href="https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Agachamento Livre</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <div class="ex-desc">
-              Costas direitas, peso nos calcanhares.
-            </div>
-            <a class="link-video" href="https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Leg Press 45</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <div class="ex-desc">
-              Pés firmes, não soltar o joelho.
-            </div>
-            <a class="link-video" href="https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Flexora Sentada</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Cadeira Extensora</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Flexora Deitada</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Gémeos em pé com halteres</span>
-              <span>3x10 • descanso 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="dia-title">Dia 2 – Membros Superiores + Abdómen</div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Abdominal Supra Curtinho</span>
-              <span>3x10 • 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Abdominal Infra</span>
-              <span>3x10 • 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Puxada Frente (Pegada Aberta)</span>
-              <span>3x10 • 1 min</span>
-            </div>
-            <div class="ex-desc">
-              Costas activas, peito aberto.
-            </div>
-            <a class="link-video" href="https://youtu.be/7FR25TiSBgg?si=oB39IIiQY6zV6Pgs" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Remada Curvada com Halteres</span>
-              <span>3x10 • 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/SxmB5E8v7q0?si=G3pOZoLbXXwrTBno" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Desenvolvimento com Halteres</span>
-              <span>3x10 • 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/eD7n9WBEX1Y?si=SzEoGOzsU0WEndRW" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Elevação Lateral</span>
-              <span>3x10 • 1 min</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/5p2Th_lJc38?si=3_LT1SdKLlcoVUuK" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="dia-title">Dia 3 – HIIT / Corpo Todo</div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Agachamento + Elevação de Joelho</span>
-              <span>Alta intensidade</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Remada Unilateral + Burpee</span>
-              <span>Alterna braços</span>
-            </div>
-            <div class="ex-desc">
-              Mantém core firme.
-            </div>
-            <a class="link-video" href="https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Burpee</span>
-              <span>Explosivo</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/tBojP6GHtDY?si=pSEq086dV3i0Bl0G" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Mountain Climbers</span>
-              <span>Rápido</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Corrida no Lugar / Sprint Estático</span>
-              <span>30-40 seg</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Saltar à Corda / Simular</span>
-              <span>Ritmo constante</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/vPpx8iwLmn8?si=wyqIxcd2Cx9O_g_O" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Jumping Jacks</span>
-              <span>Abertura total</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Prancha Estática</span>
-              <span>Core firme</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/hGNYkjF36mA?si=GDSP_o7Bdofarz_P" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Abdominais Cruzados</span>
-              <span>Alternar lados</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/CII_TkXd0dU?si=FKJWKWKudtHxHVss" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Elevação de Pernas</span>
-              <span>Controlado</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/5uwgNo5K1jM?si=LiTyReCZErEG8Wo6" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="dia-title">Dia 4 – Inferiores / Glúteo / Posterior</div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Afundo no Smith</span>
-              <span>3x10 cada perna</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/Rgo6fH-arTE?si=weGJf0gibTMipRhM" target="_blank">Ver vídeo 🔗</a>
-          </div>
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Afundo Peso do Corpo</span>
-              <span>3x10 cada perna</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/fIlbCCg8Pgg" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Agachamento Sumô</span>
-              <span>3x12</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/ZXyzfNO497M?si=7ToFuGtxWBGLECtf" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Leg Press Horizontal Unilateral</span>
-              <span>3x10 cada perna</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/3c2pZFI4-xQ?si=Zux2lKp5OuvLG5Zu" target="_blank">Ver vídeo 🔗</a>
-          </div>
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Leg Press Horizontal Bilateral</span>
-              <span>3x10</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/W1QWvmQ_ZuM?si=vpqYKX_YTNAqJgMP" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Glúteo 4 Apoios</span>
-              <span>3x15 cada perna</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/luvbFKnA6aA?si=Bh2piZlDP7S2hc1H" target="_blank">Ver vídeo 🔗</a>
-          </div>
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Elevação Pélvica</span>
-              <span>3x15</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/UT-WBhxo9uA?si=Q78nf6XHt4g40FKw" target="_blank">Ver vídeo 🔗</a>
-          </div>
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Stiff</span>
-              <span>3x10</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/43u1zfJUUi0?si=sC1mYwjfgG3Gh7RE" target="_blank">Ver vídeo 🔗</a>
-          </div>
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Gémeos no Smith</span>
-              <span>3x15</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/w_aic9GI0CY?si=iSSIyt8FwKkzAoD3" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="dia-title">Dia 5 – Upper / Core</div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Abdominal Supra Curtinho + Infra + Remador</span>
-              <span>3x10 cada</span>
-            </div>
-            <div class="ex-desc">
-              Faz os três seguidos, descansa 1 min e repete.
-            </div>
-            <a class="link-video" href="https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Puxada na Polia (Pegada Aberta) + Remada Curvada Halteres</span>
-              <span>Combinação</span>
-            </div>
-            <div class="ex-desc">
-              Alterna os 2, depois descansa.
-            </div>
-            <a class="link-video" href="https://youtu.be/7FR25TiSBgg?si=oB39IIiQY6zV6Pgs" target="_blank">Ver vídeo 🔗</a>
-            <a class="link-video" href="https://youtu.be/SxmB5E8v7q0?si=G3pOZoLbXXwrTBno" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Flexão de Braço + Desenvolvimento Halteres</span>
-              <span>Combinação</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/eD7n9WBEX1Y?si=SzEoGOzsU0WEndRW" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Rosca Direta Halteres + Tríceps Testa</span>
-              <span>Combinação</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/5p2Th_lJc38?si=3_LT1SdKLlcoVUuK" target="_blank">Ver vídeo 🔗</a>
-            <a class="link-video" href="https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU" target="_blank">Ver vídeo 🔗</a>
-          </div>
-
-          <div class="dia-title">Dia 6 – Inferiores (Smith foco glúteo)</div>
-
-          <div class="ex-line">
-            <div class="ex-head">
-              <span>Agachamento no Smith</span>
-              <span>3x10-12</span>
-            </div>
-            <a class="link-video" href="https://youtu.be/owUMm3gZ1b0?si=z8-E9JTUbVkKGF1t" target="_blank">Ver vídeo 🔗</a>
-          </div>
-        </div>
-
-        <!-- AVANÇADO / 1º MÊS -->
-        <div class="subtab-content" data-subtab-panel="avancado" style="display:none;">
-          <!-- Aqui usamos a mesma estrutura (dias 1-6) porque é o teu 1º mês avançado -->
-          <div class="inner-box" style="color:#fff;">
-            <strong>Plano Avançado (1º mês):</strong>
-            segue mesma divisão de dias, com mais controlo técnico e carga progressiva.
-            Mantém forma perfeita. Prioriza descanso de 1 min entre séries.
-          </div>
-          <!-- Reaproveita os mesmos blocos acima (Dia 1 ... Dia 6) -->
-        </div>
-      </section>
-
-      <!-- ================== ALIMENTAÇÃO ================== -->
-      <section class="section-block" data-section="alimentacao" style="display:none;">
-        <div class="section-title">Alimentação</div>
-
-        <div class="tabs" style="margin-bottom:16px;">
-          <button class="foodtab-btn active" data-foodtab="opt1">Opção 1 (Hipertrofia)</button>
-          <button class="foodtab-btn" data-foodtab="opt2">Opção 2 (Emagrecimento)</button>
-          <button class="foodtab-btn" data-foodtab="opt3">1º Mês - Hipertrofia</button>
-          <button class="foodtab-btn" data-foodtab="opt4">1º Mês - Emagrecimento</button>
-        </div>
-
-        <div class="foodtab-content" data-foodpanel="opt1" style="display:block;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Opção 1 (Hipertrofia)</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Pequeno-almoço: ovos mexidos, aveia com fruta vermelha</li>
-              <li>Snack: iogurte grego + frutos secos</li>
-              <li>Almoço: frango grelhado + arroz + legumes</li>
-              <li>Lanche: batido proteína + fruta</li>
-              <li>Jantar: salmão + batata doce + vegetais verdes</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="foodtab-content" data-foodpanel="opt2" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Opção 2 (Emagrecimento)</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Pequeno-almoço: claras + espinafre + chá verde</li>
-              <li>Snack: maçã + manteiga de amendoim medida</li>
-              <li>Almoço: peru grelhado + salada grande com azeite cru</li>
-              <li>Lanche: atum em água + pepino</li>
-              <li>Jantar: peixe branco + legumes no vapor</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="foodtab-content" data-foodpanel="opt3" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">1º Mês - Hipertrofia</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Mais arroz/massa integral nas refeições principais</li>
-              <li>Mais cortes magros de carne vermelha controlada</li>
-              <li>Batido pós-treino com banana e proteína whey</li>
-              <li>Manter fibra (legumes verdes) para digestão</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="foodtab-content" data-foodpanel="opt4" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">1º Mês - Emagrecimento</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Cortar açúcares líquidos (sumos, refrigerantes)</li>
-              <li>Aumentar água e chá drenante sem açúcar</li>
-              <li>Escolher fontes magras de proteína em cada refeição</li>
-              <li>Carboidrato principal no almoço, jantar com vegetais e gordura boa</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================== CARDIO ================== -->
-      <section class="section-block" data-section="cardio" style="display:none;">
-        <div class="section-title">Cardio</div>
-        <div class="inner-box">
-          <p style="margin-top:0; color:#fff; font-weight:600;">Sugestões:</p>
-          <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-            <li>Passadeira inclinada 20-30 min pós-treino</li>
-            <li>Bicicleta moderada 15-20 min em jejum</li>
-            <li>Elíptica ritmo médio 15 min + 5 min cooldown</li>
-          </ul>
-          <p style="margin-bottom:0; margin-top:12px; color:#999;">
-            Controla respiração, não é corrida máxima — é queima consistente.
-          </p>
-        </div>
-      </section>
-
-      <!-- ================== RELAXAMENTO ================== -->
-      <section class="section-block" data-section="relax" style="display:none;">
-        <div class="section-title">Relaxamento</div>
-        <div class="inner-box">
-          <p style="margin-top:0; color:#fff; font-weight:600;">Alongar / Descompressão:</p>
-          <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-            <li>Respiração diafragmática deitada 5 min</li>
-            <li>Alongamento de glúteo sentado 30s cada lado</li>
-            <li>Alongamento isquio-perna (posterior coxa) 30s cada perna</li>
-            <li>Alongamento peito na parede 30s cada braço</li>
-            <li>Mobilidade lombar em gato-vaca (coluna)</li>
-          </ul>
-          <p style="margin-bottom:0; margin-top:12px; color:#999;">
-            Ideal depois do treino, antes do banho ou antes de dormir.
-          </p>
-        </div>
-      </section>
-
-      <!-- ================== EXTRA ================== -->
-      <section class="section-block" data-section="extra" style="display:none;">
-        <div class="section-title">Extra</div>
-
-        <div class="tabs" style="margin-bottom:16px;">
-          <button class="extrabtn active" data-extra="gluteo">Foco Glúteo</button>
-          <button class="extrabtn" data-extra="triceps">Foco Tríceps</button>
-          <button class="extrabtn" data-extra="quadriceps">Foco Quad / Frente Coxa</button>
-          <button class="extrabtn" data-extra="posterior">Foco Posterior Coxa</button>
-          <button class="extrabtn" data-extra="ombro">Foco Ombro</button>
-          <button class="extrabtn" data-extra="detox">Detox</button>
-        </div>
-
-        <div class="extra-panel" data-extra-panel="gluteo" style="display:block;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Foco Glúteo</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Elevação Pélvica (3×15)</li>
-              <li>Glúteo 4 apoios (3×15 cada perna)</li>
-              <li>Agachamento Sumô (3×12)</li>
-            </ul>
-            <p style="margin-bottom:0; margin-top:12px; color:#999;">
-              Carga moderada, controla em baixo e aperta em cima.
-            </p>
-          </div>
-        </div>
-
-        <div class="extra-panel" data-extra-panel="triceps" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Foco Tríceps</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Tríceps na Polia (3×12)</li>
-              <li>Tríceps Francês (3×12)</li>
-              <li>Tríceps Testa (3×10)</li>
-            </ul>
-            <p style="margin-bottom:0; margin-top:12px; color:#999;">
-              Cotovelos juntos, não abrir para fora.
-            </p>
-          </div>
-        </div>
-
-        <div class="extra-panel" data-extra-panel="quadriceps" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Foco Quad / Frente Coxa</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Cadeira Extensora (3×15)</li>
-              <li>Agachamento Livre (3×10)</li>
-              <li>Leg Press empurrando com frente do pé (3×12-15)</li>
-            </ul>
-            <p style="margin-bottom:0; margin-top:12px; color:#999;">
-              Mantém joelho alinhado com o pé, sem colapsar para dentro.
-            </p>
-          </div>
-        </div>
-
-        <div class="extra-panel" data-extra-panel="posterior" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Foco Posterior Coxa</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Stiff (3×10)</li>
-              <li>Flexora Sentada / Deitada (3×15)</li>
-              <li>Afundo Smith (3×10 cada perna)</li>
-            </ul>
-            <p style="margin-bottom:0; margin-top:12px; color:#999;">
-              Costas direitas; sente alongar atrás da coxa sem dor.
-            </p>
-          </div>
-        </div>
-
-        <div class="extra-panel" data-extra-panel="ombro" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Foco Ombro</div>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5;">
-              <li>Elevação Lateral (3×12-15)</li>
-              <li>Desenvolvimento Halteres (3×10-12)</li>
-              <li>Face Pull / Remada Alta leve (3×15)</li>
-            </ul>
-            <p style="margin-bottom:0; margin-top:12px; color:#999;">
-              Movimento controlado, sem embalo.
-            </p>
-          </div>
-        </div>
-
-        <div class="extra-panel" data-extra-panel="detox" style="display:none;">
-          <div class="inner-box">
-            <div class="section-title" style="margin-top:0;">Detox 🥥</div>
-            <p style="margin:0 0 8px; font-size:0.8rem; color:#fff; font-weight:600;">
-              Bate tudo no liquidificador com gelo. Ideal para hidratar e drenar:
-            </p>
-            <ul style="margin:0; padding-left:16px; list-style:disc; font-size:0.8rem; line-height:1.5; color:#ccc;">
-              <li>2 folhas de couve</li>
-              <li>1 limão</li>
-              <li>Gengibre (generoso)</li>
-              <li>1 rodela de abacaxi</li>
-              <li>1 maçã</li>
-              <li>1 litro de água de coco</li>
-            </ul>
-            <p style="margin:12px 0 0; font-size:0.75rem; color:#999; font-style:italic;">
-              Ajusta acidez/doçura com mais limão ou abacaxi ao teu gosto.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================== PERFIL ================== -->
-      <section class="section-block" data-section="perfil" style="display:none;">
-        <div class="section-title">Perfil</div>
-
-        <div id="perfil-area"></div>
-      </section>
-    </main>
-
-    <footer class="foot">
-      © <span id="year"></span> MANUFIT. Todos os direitos reservados.
-    </footer>
+    <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
 
     <script>
-      // ==============================
-      // CONFIG
-      // ==============================
-      const EMAILS_VALIDOS = [
-        "manumendes199514@gmail.com",
-        "emiliamiranda3039@gmail.com",
-        "zulmira.mendes2@gmail.com",
-        "jessicarafaelacg@gmail.com",
-        "nina_lopes_gomes@hotmail.com",
-      ];
-      const OWNER_EMAIL = "manumendes199514@gmail.com";
+      const tabs = ["Treinos", "Alimentação", "Cardio", "Relaxamento", "Extra", "Perfil"];
+      const content = document.getElementById("content");
+      const nav = document.getElementById("tabs");
+      const state = { active: "Treinos", email: localStorage.getItem("manufit_email") };
 
-      const USERS_INICIO = [
-        { nome:"Emília",   email:"emiliamiranda3039@gmail.com",     inicio:"2025-09-25" },
-        { nome:"Zulmira",  email:"zulmira.mendes2@gmail.com",       inicio:"2025-09-20" },
-        { nome:"Jéssica",  email:"jessicarafaelacg@gmail.com",      inicio:"2025-09-18" },
-        { nome:"Carina",   email:"nina_lopes_gomes@hotmail.com",    inicio:"2025-09-29" },
-      ];
-
-      function diasDesde(isoData){
-        const start = new Date(isoData+"T00:00:00Z");
-        const now = new Date();
-        const diff = now - start;
-        const dias = Math.floor(diff / (1000*60*60*24));
-        return dias < 0 ? 0 : dias;
+      function renderNav() {
+        nav.innerHTML = tabs
+          .map(
+            (t) =>
+              `<button class="${state.active === t ? "active" : ""}" onclick="setTab('${t}')">${t}</button>`
+          )
+          .join("");
       }
 
-      function temAcesso(email){
-        return EMAILS_VALIDOS.includes(email.toLowerCase());
+      function setTab(tab) {
+        state.active = tab;
+        renderNav();
+        renderContent();
       }
 
-      function guardarEmail(email){
-        localStorage.setItem("manufit_email", email.trim().toLowerCase());
-      }
-
-      function lerEmail(){
-        return (localStorage.getItem("manufit_email")||"").toLowerCase();
-      }
-
-      function isOwner(email){
-        return email && email.toLowerCase() === OWNER_EMAIL.toLowerCase();
-      }
-
-      // ==============================
-      // RENDERIZAÇÃO DAS SUB-TABS
-      // ==============================
-      function setupSubTabs(){
-        const subButtons = document.querySelectorAll(".subtab-btn");
-        const subPanels  = document.querySelectorAll("[data-subtab-panel]");
-
-        subButtons.forEach(btn=>{
-          btn.addEventListener("click", ()=>{
-            const tab = btn.getAttribute("data-subtab");
-            subButtons.forEach(b=>b.classList.remove("active"));
-            btn.classList.add("active");
-
-            subPanels.forEach(p=>{
-              if(p.getAttribute("data-subtab-panel")===tab){
-                p.style.display="block";
-              } else {
-                p.style.display="none";
-              }
-            });
-          });
-        });
-      }
-
-      // alimentação tabs
-      function setupFoodTabs(){
-        const foodBtns = document.querySelectorAll(".foodtab-btn");
-        const foodPanels = document.querySelectorAll(".foodtab-content");
-
-        foodBtns.forEach(btn=>{
-          btn.addEventListener("click", ()=>{
-            const ft = btn.getAttribute("data-foodtab");
-            foodBtns.forEach(b=>b.classList.remove("active"));
-            btn.classList.add("active");
-
-            foodPanels.forEach(p=>{
-              if(p.getAttribute("data-foodpanel")===ft){
-                p.style.display="block";
-              } else {
-                p.style.display="none";
-              }
-            });
-          });
-        });
-      }
-
-      // extra tabs
-      function setupExtraTabs(){
-        const extraBtns = document.querySelectorAll(".extrabtn");
-        const extraPanels = document.querySelectorAll(".extra-panel");
-
-        extraBtns.forEach(btn=>{
-          btn.addEventListener("click", ()=>{
-            const which = btn.getAttribute("data-extra");
-            extraBtns.forEach(b=>b.classList.remove("active"));
-            btn.classList.add("active");
-
-            extraPanels.forEach(p=>{
-              if(p.getAttribute("data-extra-panel")===which){
-                p.style.display="block";
-              } else {
-                p.style.display="none";
-              }
-            });
-          });
-        });
-      }
-
-      // ==============================
-      // PERFIL
-      // ==============================
-      function renderPerfil(email){
-        const perfilDiv = document.getElementById("perfil-area");
-        perfilDiv.innerHTML = "";
-
-        if(isOwner(email)){
-          // Mostra todas
-          const title = document.createElement("div");
-          title.className = "perfil-owner-title";
-          title.textContent = "Dias de utilização (todas as alunas)";
-          perfilDiv.appendChild(title);
-
-          USERS_INICIO.forEach(u=>{
-            const box = document.createElement("div");
-            box.className = "perfil-user-row";
-
-            const who = document.createElement("div");
-            who.className = "who";
-            who.textContent = u.nome + " — " + u.email;
-            box.appendChild(who);
-
-            const days = document.createElement("div");
-            days.className = "days";
-            days.textContent = "Dia " + diasDesde(u.inicio);
-            box.appendChild(days);
-
-            perfilDiv.appendChild(box);
-          });
-        } else {
-          // Mostra só a própria
-          const eu = USERS_INICIO.find(u=>u.email.toLowerCase()===email.toLowerCase());
-          if(eu){
-            const box = document.createElement("div");
-            box.className = "perfil-user-row";
-
-            const who = document.createElement("div");
-            who.className = "who";
-            who.textContent = eu.nome + " — " + eu.email;
-            box.appendChild(who);
-
-            const days = document.createElement("div");
-            days.className = "days";
-            days.textContent = "Dia " + diasDesde(eu.inicio);
-            box.appendChild(days);
-
-            perfilDiv.appendChild(box);
-          } else {
-            perfilDiv.textContent = "Perfil não encontrado para este e-mail.";
-          }
-        }
-      }
-
-      // ==============================
-      // CONTROLO DE TABS PRINCIPAIS
-      // ==============================
-      function setupMainTabs(){
-        const tabsBar = document.getElementById("main-tabs");
-        const tabButtons = tabsBar.querySelectorAll("button[data-tab]");
-        const sections = document.querySelectorAll("[data-section]");
-
-        tabButtons.forEach(btn=>{
-          btn.addEventListener("click", ()=>{
-            const dest = btn.getAttribute("data-tab");
-
-            tabButtons.forEach(b=>b.classList.remove("active"));
-            btn.classList.add("active");
-
-            sections.forEach(sec=>{
-              if(sec.getAttribute("data-section")===dest){
-                sec.style.display="block";
-              } else {
-                sec.style.display="none";
-              }
-            });
-          });
-        });
-
-        // botão Sair
-        const logoutBtn = tabsBar.querySelector('button[data-action="logout"]');
-        logoutBtn.addEventListener("click", ()=>{
-          localStorage.removeItem("manufit_email");
-          renderState();
-        });
-      }
-
-      // ==============================
-      // LOGIN / ESTADO
-      // ==============================
-      function setupLogin(){
-        const form = document.getElementById("login-form");
-        form.addEventListener("submit",(e)=>{
-          e.preventDefault();
-          const emailValue = document.getElementById("email-input").value.trim().toLowerCase();
-          if(!emailValue) return;
-          if(temAcesso(emailValue)){
-            guardarEmail(emailValue);
-            renderState();
-          } else {
-            alert("Este email não tem acesso ainda. Fala com a Manu 💖");
-          }
-        });
-      }
-
-      function renderState(){
-        const email = lerEmail();
-        const logged = temAcesso(email);
-
-        const loginArea = document.getElementById("login-area");
-        const contentArea = document.getElementById("content-area");
-        const tabsBar = document.getElementById("main-tabs");
-
-        if(!logged){
-          // mostra login
-          loginArea.style.display="block";
-          contentArea.style.display="none";
-          tabsBar.style.display="none";
+      function renderContent() {
+        if (!state.email) {
+          content.innerHTML = `
+            <section>
+              <div class="card">
+                <form onsubmit="login(event)">
+                  <label class="label">Introduz o teu e-mail para aceder</label>
+                  <input type="email" id="emailInput" placeholder="exemplo@exemplo.com" required />
+                  <button class="btn-primary" type="submit">Entrar</button>
+                  <div style="margin-top:10px;font-weight:600;font-size:1rem;color:#ff4da6;text-align:center">£39.99 / mês</div>
+                  <div class="small">
+                    <div>• Apenas alunas autorizadas têm acesso.</div>
+                    <div>• Se ainda não tens acesso, fala com Manu 💖</div>
+                    <div style="margin-top:8px;color:#ff4da6">Suporte: manumendes199514@gmail.com</div>
+                  </div>
+                </form>
+              </div>
+            </section>`;
           return;
         }
 
-        // mostra conteúdo
-        loginArea.style.display="none";
-        contentArea.style.display="block";
-        tabsBar.style.display="flex";
-
-        // por defeito abre "treinos"
-        document.querySelectorAll("[data-section]").forEach(sec=>{
-          sec.style.display = (sec.getAttribute("data-section")==="treinos") ? "block" : "none";
-        });
-        tabsBar.querySelectorAll("button[data-tab]").forEach(b=>{
-          if(b.getAttribute("data-tab")==="treinos"){
-            b.classList.add("active");
-          } else {
-            b.classList.remove("active");
-          }
-        });
-
-        // sub-tabs iniciais
-        setupSubTabs();
-        setupFoodTabs();
-        setupExtraTabs();
-        setupMainTabs();
-
-        // perfil
-        renderPerfil(email);
+        if (state.active === "Treinos") renderTreinos();
+        else if (state.active === "Alimentação") renderAlimentacao();
+        else if (state.active === "Cardio") content.innerHTML = "<section><h2>Cardio</h2></section>";
+        else if (state.active === "Relaxamento") content.innerHTML = "<section><h2>Relaxamento</h2></section>";
+        else if (state.active === "Extra") renderExtra();
+        else if (state.active === "Perfil") renderPerfil();
       }
 
-      // ano no footer
-      document.getElementById("year").textContent = new Date().getFullYear();
+      function login(e) {
+        e.preventDefault();
+        const email = document.getElementById("emailInput").value.trim();
+        if (!email) return;
+        localStorage.setItem("manufit_email", email);
+        state.email = email;
+        renderContent();
+      }
 
-      // liga login e estado
-      setupLogin();
-      renderState();
+      // === TREINOS ===
+      function renderTreinos() {
+        content.innerHTML = `
+          <section>
+            <div style="margin-bottom:16px;">
+              <button onclick="showTreino('iniciante')" id="btnIniciante">Iniciante</button>
+              <button onclick="showTreino('avancado')" id="btnAvancado">Avançado Mês 1</button>
+            </div>
+            <div id="treinosArea"></div>
+          </section>`;
+      }
+
+      function showTreino(tipo) {
+        const area = document.getElementById("treinosArea");
+        if (tipo === "iniciante") {
+          area.innerHTML = `
+            <div class="dias">
+              ${[1, 2, 3, 4, 5]
+                .map((d) => `<button onclick="abrirDia('iniciante',${d})">Dia ${d}</button>`)
+                .join("")}
+            </div>
+            <div id="diaConteudo"></div>`;
+        } else {
+          area.innerHTML = `
+            <div class="dias">
+              ${[1, 2, 3, 4, 5, 6]
+                .map((d) => `<button onclick="abrirDia('avancado',${d})">Dia ${d}</button>`)
+                .join("")}
+            </div>
+            <div id="diaConteudo"></div>`;
+        }
+      }
+
+      function abrirDia(tipo, dia) {
+        const c = document.getElementById("diaConteudo");
+        c.innerHTML = `
+          <div class="treino-dia">
+            <div class="titulo">${tipo === "iniciante" ? "Iniciante" : "Avançado Mês 1"} — Dia ${dia}</div>
+            <p>[Conteúdo conforme os teus prints reais — combinações, descanso e vídeos aqui]</p>
+          </div>`;
+      }
+
+      // === ALIMENTAÇÃO ===
+      function renderAlimentacao() {
+        content.innerHTML = `<section><h2>Alimentação</h2><p>[Conteúdo conforme teus prints]</p></section>`;
+      }
+
+      // === EXTRA ===
+      function renderExtra() {
+        content.innerHTML = `
+          <section style="background:rgba(10,10,30,0.6);border:1px solid rgba(255,0,200,0.25);border-radius:12px;padding:20px;color:#fff;max-width:800px;margin:auto;">
+            <h2 style="color:#ff4da6;font-size:1.2rem;font-weight:700;margin-bottom:10px;">Detox</h2>
+            <ul style="list-style:none;padding-left:0;line-height:1.7;font-size:0.95rem;color:rgba(255,255,255,0.9);">
+              <li>🥬 2 folhas de couve</li>
+              <li>🍋 1 limão</li>
+              <li>Gengibre (quantidade generosa)</li>
+              <li>🍍 1 rodela de abacaxi</li>
+              <li>🍏 1 maçã</li>
+              <li>🥥 1 litro de água de coco</li>
+            </ul>
+            <p style="margin-top:14px;font-size:0.9rem;color:rgba(255,255,255,0.8);font-style:italic;">Dica: ajusta acidez/doçura com mais limão ou abacaxi conforme o gosto.</p>
+          </section>`;
+      }
+
+      function renderPerfil() {
+        content.innerHTML = `<section><h2>Perfil</h2><p>Email: ${state.email}</p></section>`;
+      }
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+      renderNav();
+      renderContent();
     </script>
   </body>
 </html>
