@@ -3,20 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Manufit</title>
+    <title>MANUFIT</title>
     <link rel="icon" type="image/png" href="MANUFIT.png" />
-    <link rel="stylesheet" href="assets/index-XyvdzpmH.css" />
     <style>
       body {
         background-color: #0f0f12;
         color: #fff;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
-          Arial, sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', Arial, sans-serif;
         margin: 0;
-        padding-bottom: 4rem;
+        padding-bottom: 5rem;
       }
       header {
-        background: linear-gradient(to right, rgb(255, 77, 166) 0%, rgb(15, 15, 18) 60%);
+        background: linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%);
         color: #fff;
         padding: 16px;
         border-bottom: 1px solid #ff4da6;
@@ -57,15 +55,18 @@
         border-radius: 10px;
         padding: 16px;
         max-width: 480px;
+        width: 100%;
         margin: 40px auto;
+        color: #fff;
       }
-      .label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: #ff4da6;
+      footer {
+        color: #666;
+        font-size: 0.7rem;
+        text-align: center;
+        padding: 40px 16px;
       }
-      input {
+      .hidden { display: none; }
+      .input {
         width: 100%;
         background-color: #0f0f12;
         border: 1px solid #ff4da6;
@@ -75,7 +76,7 @@
         font-size: 1rem;
         outline: none;
       }
-      .btn-primary {
+      .primary {
         margin-top: 16px;
         width: 100%;
         background-color: #ff4da6;
@@ -87,214 +88,208 @@
         padding: 12px;
         cursor: pointer;
       }
-      .small {
-        font-size: 0.8rem;
-        opacity: 0.8;
-        margin-top: 12px;
-        line-height: 1.4;
-        text-align: center;
-        color: #bbb;
-      }
-      footer {
-        color: #666;
-        font-size: 0.7rem;
-        text-align: center;
-        padding: 40px 16px;
-      }
-      section {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 24px 16px;
-      }
-      .dias button {
+      .day-btn {
         background-color: #1f1f25;
-        color: #fff;
         border: 1px solid #ff4da6;
         border-radius: 6px;
-        padding: 8px 12px;
-        font-weight: 600;
-        font-size: 0.8rem;
-        cursor: pointer;
+        padding: 6px 12px;
         margin: 4px;
+        color: #fff;
+        cursor: pointer;
       }
-      .dias button.active {
+      .day-btn.active {
         background-color: #ff4da6;
         color: #000;
       }
-      .treino-dia {
-        background-color: #1a1a22;
-        border: 1px solid #2a2a33;
-        border-radius: 10px;
-        padding: 16px;
-        margin-top: 16px;
-      }
-      .titulo {
-        color: #ff4da6;
-        font-weight: 700;
-        font-size: 1rem;
-        margin-bottom: 8px;
-      }
-      .video-link {
-        display: block;
-        color: #ffbdf0;
-        margin-top: 6px;
-      }
+      h3 { color: #ff4da6; }
+      ul { line-height: 1.6; }
+      .meal-block { background:#1a1a22; border-radius:10px; padding:10px; margin-bottom:12px; }
     </style>
   </head>
 
   <body>
     <header>
-      <div class="brand" style="display: flex; align-items: center; gap: 8px">
-        <img
-          src="MANUFIT.png"
-          alt="Logo"
-          style="
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-          "
-        />
-        MANUFIT
+      <div class="brand">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <img src="MANUFIT.png" alt="logo" width="34" height="34" style="border-radius:4px;border:1px solid rgba(255,255,255,0.4)" />
+          <div>MANUFIT</div>
+        </div>
+        <div style="font-size:0.7rem;font-weight:500;color:#ffd1e8;line-height:1.2;">
+          Treino • Nutrição • Resultados
+        </div>
       </div>
-      <nav id="tabs"></nav>
     </header>
 
-    <main id="content"></main>
+    <main id="conteudoPrincipal">
+      <div id="loginSection" class="card">
+        <form id="loginForm">
+          <label style="color:#ff4da6;font-weight:600;">Introduz o teu e-mail para aceder</label>
+          <input class="input" type="email" id="emailInput" placeholder="exemplo@exemplo.com" required />
+          <button class="primary" type="submit">Entrar</button>
+          <div style="margin-top:10px;font-weight:600;font-size:1rem;color:#ff4da6;text-align:center;">
+            £39.99 / mês
+          </div>
+          <div style="font-size:0.8rem;opacity:0.8;margin-top:12px;line-height:1.4;text-align:center;color:#bbb;">
+            <div>• Apenas alunas autorizadas têm acesso.</div>
+            <div>• Se ainda não tens acesso, fala com Manu 💖</div>
+            <div style="margin-top:8px;color:#ff4da6;">Suporte: manumendes199514@gmail.com</div>
+          </div>
+        </form>
+      </div>
+
+      <div id="appSection" class="hidden">
+        <nav id="navTabs"></nav>
+        <section id="tabContent" style="padding:24px 16px;max-width:900px;margin:0 auto;"></section>
+      </div>
+    </main>
 
     <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
 
     <script>
+      const validEmails = ["manumendes199514@gmail.com"];
+      const nav = document.getElementById("navTabs");
+      const content = document.getElementById("tabContent");
+      const loginSection = document.getElementById("loginSection");
+      const appSection = document.getElementById("appSection");
+      const emailInput = document.getElementById("emailInput");
+      const form = document.getElementById("loginForm");
+
       const tabs = ["Treinos", "Alimentação", "Cardio", "Relaxamento", "Extra", "Perfil"];
-      const content = document.getElementById("content");
-      const nav = document.getElementById("tabs");
-      const state = { active: "Treinos", email: localStorage.getItem("manufit_email") };
 
-      function renderNav() {
-        nav.innerHTML = tabs
-          .map(
-            (t) =>
-              `<button class="${state.active === t ? "active" : ""}" onclick="setTab('${t}')">${t}</button>`
-          )
-          .join("");
+      function renderTabs() {
+        nav.innerHTML = "";
+        tabs.forEach((t) => {
+          const btn = document.createElement("button");
+          btn.textContent = t;
+          btn.onclick = () => showTab(t);
+          nav.appendChild(btn);
+        });
       }
 
-      function setTab(tab) {
-        state.active = tab;
-        renderNav();
-        renderContent();
+      function showTab(tab) {
+        content.innerHTML = "";
+        if (tab === "Treinos") renderTreinos();
+        else if (tab === "Alimentação") renderAlimentacao();
+        else if (tab === "Cardio") renderCardio();
+        else if (tab === "Relaxamento") renderRelax();
+        else if (tab === "Extra") renderExtra();
+        else content.innerHTML = "<h2 style='color:#ff4da6;'>Perfil</h2><p>Email: " + localStorage.getItem('manufit_email') + "</p>";
       }
 
-      function renderContent() {
-        if (!state.email) {
-          content.innerHTML = `
-            <section>
-              <div class="card">
-                <form onsubmit="login(event)">
-                  <label class="label">Introduz o teu e-mail para aceder</label>
-                  <input type="email" id="emailInput" placeholder="exemplo@exemplo.com" required />
-                  <button class="btn-primary" type="submit">Entrar</button>
-                  <div style="margin-top:10px;font-weight:600;font-size:1rem;color:#ff4da6;text-align:center">£39.99 / mês</div>
-                  <div class="small">
-                    <div>• Apenas alunas autorizadas têm acesso.</div>
-                    <div>• Se ainda não tens acesso, fala com Manu 💖</div>
-                    <div style="margin-top:8px;color:#ff4da6">Suporte: manumendes199514@gmail.com</div>
-                  </div>
-                </form>
-              </div>
-            </section>`;
-          return;
-        }
-
-        if (state.active === "Treinos") renderTreinos();
-        else if (state.active === "Alimentação") renderAlimentacao();
-        else if (state.active === "Cardio") content.innerHTML = "<section><h2>Cardio</h2></section>";
-        else if (state.active === "Relaxamento") content.innerHTML = "<section><h2>Relaxamento</h2></section>";
-        else if (state.active === "Extra") renderExtra();
-        else if (state.active === "Perfil") renderPerfil();
-      }
-
-      function login(e) {
-        e.preventDefault();
-        const email = document.getElementById("emailInput").value.trim();
-        if (!email) return;
-        localStorage.setItem("manufit_email", email);
-        state.email = email;
-        renderContent();
-      }
-
-      // === TREINOS ===
       function renderTreinos() {
-        content.innerHTML = `
-          <section>
-            <div style="margin-bottom:16px;">
-              <button onclick="showTreino('iniciante')" id="btnIniciante">Iniciante</button>
-              <button onclick="showTreino('avancado')" id="btnAvancado">Avançado Mês 1</button>
-            </div>
-            <div id="treinosArea"></div>
-          </section>`;
+        const bloco = document.createElement("div");
+        bloco.innerHTML = `
+          <h2 style="color:#ff4da6;">Treinos</h2>
+          <div style="margin-bottom:10px;">
+            <button class="day-btn" id="btnIniciante">Iniciante</button>
+            <button class="day-btn" id="btnAvancado">Avançado</button>
+          </div>
+          <div id="treinoDias"></div>
+          <div id="treinoConteudo"></div>`;
+        content.appendChild(bloco);
+
+        document.getElementById("btnIniciante").onclick = () => showNivel("iniciante");
+        document.getElementById("btnAvancado").onclick = () => showNivel("avancado");
       }
 
-      function showTreino(tipo) {
-        const area = document.getElementById("treinosArea");
-        if (tipo === "iniciante") {
-          area.innerHTML = `
-            <div class="dias">
-              ${[1, 2, 3, 4, 5]
-                .map((d) => `<button onclick="abrirDia('iniciante',${d})">Dia ${d}</button>`)
-                .join("")}
-            </div>
-            <div id="diaConteudo"></div>`;
-        } else {
-          area.innerHTML = `
-            <div class="dias">
-              ${[1, 2, 3, 4, 5, 6]
-                .map((d) => `<button onclick="abrirDia('avancado',${d})">Dia ${d}</button>`)
-                .join("")}
-            </div>
-            <div id="diaConteudo"></div>`;
+      function showNivel(nivel) {
+        const dias = nivel === "iniciante" ? 5 : 5;
+        const diasDiv = document.getElementById("treinoDias");
+        const conteudo = document.getElementById("treinoConteudo");
+        diasDiv.innerHTML = "";
+        conteudo.innerHTML = "";
+
+        for (let i = 1; i <= dias; i++) {
+          const btn = document.createElement("button");
+          btn.className = "day-btn";
+          btn.textContent = "Dia " + i;
+          btn.onclick = () => showDia(nivel, i);
+          diasDiv.appendChild(btn);
+        }
+
+        function showDia(nivel, dia) {
+          conteudo.innerHTML = "";
+          let html = "";
+          if (nivel === "iniciante") {
+            html = `
+              <h3>Treino Iniciante - Dia ${dia}</h3>
+              <ul>
+                <li>Agachamento com peso do corpo + Agachamento livre (3x15 alternado)</li>
+                <li>Flexão de braços + Prancha frontal (3x12 alternado)</li>
+                <li>Abdominais + prancha lateral (3x15 alternado)</li>
+              </ul>
+              <p>Descanso de 1 minuto entre as séries.</p>`;
+          } else {
+            html = `
+              <h3>Treino Avançado - Dia ${dia}</h3>
+              <ul>
+                <li>Agachamento com barra + Leg press (4x12 alternado)</li>
+                <li>Stiff + Afundo (4x10 alternado)</li>
+                <li>Glúteo 4 apoios com caneleira + Elevação pélvica (4x15 alternado)</li>
+              </ul>
+              <p>Descanso de 1 minuto entre as séries.</p>`;
+          }
+          conteudo.innerHTML = html;
         }
       }
 
-      function abrirDia(tipo, dia) {
-        const c = document.getElementById("diaConteudo");
-        c.innerHTML = `
-          <div class="treino-dia">
-            <div class="titulo">${tipo === "iniciante" ? "Iniciante" : "Avançado Mês 1"} — Dia ${dia}</div>
-            <p>[Conteúdo conforme os teus prints reais — combinações, descanso e vídeos aqui]</p>
-          </div>`;
-      }
-
-      // === ALIMENTAÇÃO ===
       function renderAlimentacao() {
-        content.innerHTML = `<section><h2>Alimentação</h2><p>[Conteúdo conforme teus prints]</p></section>`;
+        content.innerHTML = `
+          <h2 style="color:#ff4da6;">Alimentação</h2>
+          <div class="meal-block"><strong>Pequeno-almoço:</strong> Aveia, ovos, banana e canela.</div>
+          <div class="meal-block"><strong>Almoço:</strong> Frango grelhado, arroz integral e legumes.</div>
+          <div class="meal-block"><strong>Lanche:</strong> Iogurte natural e frutos secos.</div>
+          <div class="meal-block"><strong>Jantar:</strong> Peixe branco com batata doce e salada.</div>`;
       }
 
-      // === EXTRA ===
+      function renderCardio() {
+        content.innerHTML = `
+          <h2 style="color:#ff4da6;">Cardio</h2>
+          <p>3x por semana, 30 minutos. Alterna entre caminhada rápida e corrida leve.</p>`;
+      }
+
+      function renderRelax() {
+        content.innerHTML = `
+          <h2 style="color:#ff4da6;">Relaxamento</h2>
+          <p>Yoga leve ou alongamentos ao final do dia.</p>`;
+      }
+
       function renderExtra() {
         content.innerHTML = `
-          <section style="background:rgba(10,10,30,0.6);border:1px solid rgba(255,0,200,0.25);border-radius:12px;padding:20px;color:#fff;max-width:800px;margin:auto;">
-            <h2 style="color:#ff4da6;font-size:1.2rem;font-weight:700;margin-bottom:10px;">Detox</h2>
-            <ul style="list-style:none;padding-left:0;line-height:1.7;font-size:0.95rem;color:rgba(255,255,255,0.9);">
-              <li>🥬 2 folhas de couve</li>
-              <li>🍋 1 limão</li>
-              <li>Gengibre (quantidade generosa)</li>
-              <li>🍍 1 rodela de abacaxi</li>
-              <li>🍏 1 maçã</li>
-              <li>🥥 1 litro de água de coco</li>
-            </ul>
-            <p style="margin-top:14px;font-size:0.9rem;color:rgba(255,255,255,0.8);font-style:italic;">Dica: ajusta acidez/doçura com mais limão ou abacaxi conforme o gosto.</p>
-          </section>`;
+          <h2 style="color:#ff4da6;">Detox 🥥</h2>
+          <ul>
+            <li>2 folhas de couve</li>
+            <li>1 limão</li>
+            <li>Gengibre</li>
+            <li>1 rodela de abacaxi</li>
+            <li>1 maçã</li>
+            <li>1 litro de água de coco</li>
+          </ul>
+          <p>Dica: ajusta acidez/doçura com mais limão ou abacaxi conforme o gosto.</p>`;
       }
 
-      function renderPerfil() {
-        content.innerHTML = `<section><h2>Perfil</h2><p>Email: ${state.email}</p></section>`;
-      }
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim().toLowerCase();
+        if (validEmails.includes(email)) {
+          localStorage.setItem("manufit_email", email);
+          loginSection.classList.add("hidden");
+          appSection.classList.remove("hidden");
+          renderTabs();
+          showTab("Treinos");
+        } else {
+          alert("Este email não tem acesso ainda. Fala com a Manu 💖");
+        }
+      });
 
       document.getElementById("year").textContent = new Date().getFullYear();
-      renderNav();
-      renderContent();
+      const saved = localStorage.getItem("manufit_email");
+      if (validEmails.includes(saved)) {
+        loginSection.classList.add("hidden");
+        appSection.classList.remove("hidden");
+        renderTabs();
+        showTab("Treinos");
+      }
     </script>
   </body>
 </html>
