@@ -1,780 +1,1315 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Treinos</title>
-  <style>
-    body {
-      background-color:#0f0f12;
-      color:#fff;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif;
-      margin:0;
-      padding:16px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Treinos</title>
 
-    .tabs-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:16px;
-    }
-
-    .tab-btn {
-      background:#1f1f25;
-      color:#fff;
-      border:1px solid #ff4da6;
-      border-radius:6px;
-      padding:8px 12px;
-      font-size:0.8rem;
-      font-weight:600;
-      cursor:pointer;
-    }
-    .tab-btn.active {
-      background:#ff4da6;
-      color:#000;
-    }
-
-    .dias-row {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin:0 0 20px 0;
-    }
-
-    .dia-btn {
-      background:#1a1a22;
-      border:1px solid #3a3a44;
-      border-radius:6px;
-      padding:8px 10px;
-      font-size:0.8rem;
-      font-weight:600;
-      color:#fff;
-      cursor:pointer;
-    }
-    .dia-btn.active{
-      background:#ff4da6;
-      border:1px solid #ff4da6;
-      color:#000;
-    }
-
-    .dia-card {
-      background-color:#1a1a22;
-      border:1px solid #2a2a33;
-      border-radius:10px;
-      padding:16px;
-      margin-bottom:24px;
-      color:#fff;
-      max-width:900px;
-    }
-
-    .dia-titulo {
-      color:#ff4da6;
-      font-weight:700;
-      font-size:1rem;
-      line-height:1.4;
-      margin:0 0 12px 0;
-    }
-
-    .exercicio-bloco {
-      background-color:#0f0f12;
-      border:1px solid #3a3a44;
-      border-radius:8px;
-      padding:12px;
-      margin-bottom:12px;
-      font-size:0.8rem;
-      color:#ccc;
-      line-height:1.5;
-    }
-
-    .linha-exercicio {
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:8px;
-    }
-
-    .exercicio-info {
-      color:#fff;
-      font-weight:600;
-      font-size:0.9rem;
-      line-height:1.4;
-      min-width:200px;
-    }
-
-    .exercicio-info small{
-      color:#aaa;
-      font-weight:400;
-      font-size:0.75rem;
-      display:block;
-      margin-top:2px;
-    }
-
-    .videos-col {
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-width:140px;
-    }
-
-    .video-link a{
-      color:#ff4da6;
-      font-size:0.75rem;
-      font-weight:600;
-      text-decoration:none;
-      border:1px solid #ff4da6;
-      border-radius:4px;
-      padding:6px 8px;
-      display:inline-block;
-      text-align:center;
-      background:#1f1f25;
-    }
-
-    .combo-nota{
-      font-size:0.75rem;
-      color:#999;
-      line-height:1.4;
-      margin-top:8px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- TABS PRINCIPAIS -->
-  <div class="tabs-row">
-    <button class="tab-btn active" data-tab="iniciante">Iniciante (5 dias)</button>
-    <button class="tab-btn" data-tab="avancado">Avançado • 1 mês (6 dias)</button>
-  </div>
-
-  <!-- BOTÕES DIAS (mudam conforme tab) -->
-  <div id="dias-container" class="dias-row">
-    <!-- será preenchido por JS -->
-  </div>
-
-  <!-- CONTEÚDO DO DIA SELECIONADO -->
-  <div id="dia-conteudo"></div>
-
-<script>
-/*
-  DADOS DO PLANO INICIANTE (5 DIAS)
-  Cada dia tem blocos de exercícios.
-  Cada exercício:
-    nome
-    seriesDesc  (séries/reps/descanso)
-    videos[]    (lista de {label,url})
-    comboNota   (texto explicando combinar e descanso, se existir)
-*/
-
-const iniciante = [
-  {
-    titulo: "Dia 1 – Perna e Glúteo",
-    exercicios: [
-      {
-        nome: "Agachamento Peso do Corpo",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh" }
-        ]
-      },
-      {
-        nome: "Agachamento Livre",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN" }
-        ]
-      },
-      {
-        nome: "Leg Press 45",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L" }
-        ]
-      },
-      {
-        nome: "Flexora Sentada",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1" }
-        ]
-      },
-      {
-        nome: "Cadeira Extensora",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL" }
-        ]
-      },
-      {
-        nome: "Flexora Deitada",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8" }
-        ]
-      },
-      {
-        nome: "Gémeos em pé com halteres",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa" }
-        ]
+    <style>
+      body {
+        background-color: #0f0f12;
+        color: #fff;
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", Arial,
+          sans-serif;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 2 – Membros Superiores + Abdómen",
-    exercicios: [
-      {
-        nome: "Abd. Supra Curtinho",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" }
-        ]
-      },
-      {
-        nome: "Abd. Infra",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" }
-        ]
-      },
-      {
-        nome: "Puxada Frente (Pegada Aberta)",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f" }
-        ]
-      },
-      {
-        nome: "Remada Curvada com Halteres",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" }
-        ]
-      },
-      {
-        nome: "Elevação Lateral",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR" }
-        ]
-      },
-      {
-        nome: "Rosca Direta c/ Halteres",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/5uwgNo5K1jM?si=LiTyReCZErEG8Wo6" }
-        ]
-      },
-      {
-        nome: "Tríceps na Polia",
-        seriesDesc: "3x10 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/zxItpU2RsP4?si=1LtXJ4wDk7Kb3F5R" }
-        ]
+      .page-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 16px 80px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 3 – Cardio / Corpo Inteiro",
-    exercicios: [
-      {
-        nome: "Burpee",
-        seriesDesc: "3x12 • Descanso 1 min",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF" }
-        ]
-      },
-      {
-        nome: "Remada Unilateral + Burpee Sapinho",
-        seriesDesc: "alternar • Descanso 1 min",
-        comboNota:
-          "Faz os dois movimentos seguidos (remada + burpee tipo sapinho). Alterna os lados e só depois descansa 1 min.",
-        videos: [
-          { label: "remada unilateral", url: "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" },
-          { label: "burpee sapinho", url: "https://youtu.be/tBojP6GHtDY?si=pSEq086dV3i0Bl0G" }
-        ]
-      },
-      {
-        nome: "Prancha / Core Ativo",
-        seriesDesc: "3x30s",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq" }
-        ]
-      },
-      {
-        nome: "Mountain Climbers",
-        seriesDesc: "3x20",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/vPpx8iwLmn8?si=wyqIxcd2Cx9O_g_O" }
-        ]
-      },
-      {
-        nome: "Jumping Jacks / Aeróbico",
-        seriesDesc: "tempo contínuo",
-        videos: [
-          { label: "ver vídeo", url: "https://youtu.be/hGNYkjF36mA?si=GDSP_o7Bdofarz_P" }
-        ]
+      /* título grande da secção */
+      .section-title {
+        color: #ff4da6;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 16px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 4 – Posterior / Glúteo",
-    exercicios: [
-      {
-        nome: "Agachamento no Smith (Afundo Smith)",
-        seriesDesc: "3x10 cada perna",
-        videos: [
-          { label: "afundo smith", url: "https://youtu.be/Rgo6fH-arTE?si=weGJf0gibTMipRhM" }
-        ]
-      },
-      {
-        nome: "Agachamento Peso do Corpo (Afundo Peso do Corpo)",
-        seriesDesc: "3x10 cada perna",
-        videos: [
-          { label: "afundo peso corpo", url: "https://youtu.be/fIlbCCg8Pgg" }
-        ]
-      },
-      {
-        nome: "Agachamento Sumô",
-        seriesDesc: "3x12",
-        videos: [
-          { label: "sumô", url: "https://youtu.be/ZXyzfNO497M?si=7ToFuGtxWBGLECtf" }
-        ]
-      },
-      {
-        nome: "Leg Press Horizontal Unilateral",
-        seriesDesc: "3x10 cada perna",
-        videos: [
-          { label: "leg press uni", url: "https://youtu.be/3c2pZFI4-xQ?si=Zux2lKp5OuvLG5Zu" }
-        ]
-      },
-      {
-        nome: "Leg Press Horizontal Bilateral",
-        seriesDesc: "3x10-12",
-        videos: [
-          { label: "leg press bi", url: "https://youtu.be/W1QWvmQ_ZuM?si=vpqYKX_YTNAqJgMP" }
-        ]
-      },
-      {
-        nome: "Glúteo 4 Apoios",
-        seriesDesc: "3x15 cada perna",
-        videos: [
-          { label: "glúteo 4 apoios", url: "https://youtu.be/luvbFKnA6aA?si=Bh2piZlDP7S2hc1H" }
-        ]
-      },
-      {
-        nome: "Elevação Pélvica",
-        seriesDesc: "3x15",
-        videos: [
-          { label: "elevação pélvica", url: "https://youtu.be/UT-WBhxo9uA?si=Q78nf6XHt4g40FKw" }
-        ]
-      },
-      {
-        nome: "Stiff",
-        seriesDesc: "3x10-12",
-        videos: [
-          { label: "stiff", url: "https://youtu.be/43u1zfJUUi0?si=sC1mYwjfgG3Gh7RE" }
-        ]
-      },
-      {
-        nome: "Gémeos no Smith",
-        seriesDesc: "3x15",
-        videos: [
-          { label: "gémeos smith", url: "https://youtu.be/w_aic9GI0CY?si=iSSIyt8FwKkzAoD3" }
-        ]
+      /* caixinha de cada bloco (Iniciante / Avançado) */
+      .card {
+        background-color: #1a1a22;
+        border: 1px solid #2a2a33;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 32px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 5 – Core + Superiores (Combinações)",
-    exercicios: [
-      {
-        nome: "ABS Combo (Supra Curtinho + Infra + Remador)",
-        seriesDesc: "Combinação • 3 rondas",
-        comboNota:
-          "Faz os 3 abdominais seguidos (supra curtinho + infra + remador), só depois descansa 1 min.",
-        videos: [
-          { label: "supra curtinho", url: "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" },
-          { label: "infra",           url: "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" },
-          { label: "remador",         url: "https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu" }
-        ]
-      },
-      {
-        nome: "Puxada Polia Pegada Aberta + Remada Curvada Halteres",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Alterna os dois (costas), um seguido do outro, depois descansa 1 min.",
-        videos: [
-          { label: "puxada frente", url: "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f" },
-          { label: "remada curvada", url: "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" }
-        ]
-      },
-      {
-        nome: "Flexão de Braço + Desenvolvimento Halteres Ombro",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz flexão logo seguido de desenvolvimento, depois descansa 1 min.",
-        videos: [
-          { label: "flexão braço", url: "https://youtu.be/CII_TkXd0dU?si=FKJWKWKudtHxHVss" },
-          { label: "desenvolvimento", url: "https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR" }
-        ]
-      },
-      {
-        nome: "Rosca Direta Halteres + Tríceps Testa",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz bíceps e logo tríceps testa, depois descansa 1 min.",
-        videos: [
-          { label: "rosca direta", url: "https://youtu.be/5uwgNo5K1jM?si=LiTyReCZErEG8Wo6" },
-          { label: "tríceps testa", url: "https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU" }
-        ]
+      .subheader {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
       }
-    ]
-  }
-]; // fim iniciante
 
-/*
-  DADOS DO PLANO AVANÇADO (1 MÊS) (6 DIAS)
-  Vamos mapear dias 1..6. (Mesma lógica)
-*/
-const avancado = [
-  {
-    titulo: "Dia 1 – Peito + Tríceps (Combinações)",
-    exercicios: [
-      {
-        nome: "Supino Reto com Barra + Supino Reto com Halteres",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz o supino com barra e logo o supino com halteres. Só depois descansa 1 min.",
-        videos: [
-          { label: "supino barra", url: "https://youtu.be/d6jKfi6l3MM?si=JinMYZN7t0Dk0cv-" },
-          { label: "supino halteres", url: "https://youtu.be/KyHYsJ5YZQE?si=GWdKYfEgcrvWTbNC" }
-        ]
-      },
-      {
-        nome: "Tríceps na Polia + Tríceps Francês",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz tríceps na polia e logo tríceps francês. Depois descansa 1 min.",
-        videos: [
-          { label: "tríceps polia", url: "https://youtu.be/zxItpU2RsP4?si=1LtXJ4wDk7Kb3F5R" },
-          { label: "tríceps francês", url: "https://youtu.be/LU4xYDGbpjA" }
-        ]
+      .subheader button {
+        background-color: #1f1f25;
+        border: 1px solid #ff4da6;
+        border-radius: 6px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 6px 10px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 2 – Costas / Ombros / Core",
-    exercicios: [
-      {
-        nome: "Remada Curvada Halteres",
-        seriesDesc: "3x10",
-        videos: [
-          { label: "remada curvada", url: "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" }
-        ]
-      },
-      {
-        nome: "Elevação Lateral",
-        seriesDesc: "3x12",
-        videos: [
-          { label: "elevação lateral", url: "https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR" }
-        ]
-      },
-      {
-        nome: "Abd Supra Curtinho",
-        seriesDesc: "3x15",
-        videos: [
-          { label: "supra curtinho", url: "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" }
-        ]
-      },
-      {
-        nome: "Abd Infra",
-        seriesDesc: "3x15",
-        videos: [
-          { label: "abd infra", url: "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" }
-        ]
+      .subheader button.active {
+        background-color: #ff4da6;
+        color: #000;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 3 – HIIT / Corpo Inteiro",
-    exercicios: [
-      {
-        nome: "Burpee",
-        seriesDesc: "3x12",
-        videos: [
-          { label: "burpee", url: "https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF" }
-        ]
-      },
-      {
-        nome: "Remada Unilateral",
-        seriesDesc: "3x12 cada lado",
-        videos: [
-          { label: "remada unilateral", url: "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" }
-        ]
-      },
-      {
-        nome: "Prancha / Core",
-        seriesDesc: "3x30s",
-        videos: [
-          { label: "prancha", url: "https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq" }
-        ]
-      },
-      {
-        nome: "Mountain Climbers",
-        seriesDesc: "3x20",
-        videos: [
-          { label: "mountain climbers", url: "https://youtu.be/vPpx8iwLmn8?si=wyqIxcd2Cx9O_g_O" }
-        ]
-      },
-      {
-        nome: "Jumping Jacks / Aeróbico",
-        seriesDesc: "tempo contínuo",
-        videos: [
-          { label: "cardio", url: "https://youtu.be/hGNYkjF36mA?si=GDSP_o7Bdofarz_P" }
-        ]
+      /* texto tipo "Treino 1 – Perna e Glúteo" */
+      .treino-headline {
+        color: #ff4da6;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 8px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 4 – Glúteo / Posterior / Pernas",
-    exercicios: [
-      {
-        nome: "Afundo Smith",
-        seriesDesc: "3x10 cada perna",
-        videos: [
-          { label: "afundo smith", url: "https://youtu.be/Rgo6fH-arTE?si=weGJf0gibTMipRhM" }
-        ]
-      },
-      {
-        nome: "Afundo com Peso do Corpo",
-        seriesDesc: "3x10 cada perna",
-        videos: [
-          { label: "afundo peso corpo", url: "https://youtu.be/fIlbCCg8Pgg" }
-        ]
-      },
-      {
-        nome: "Agachamento Sumô",
-        seriesDesc: "3x12",
-        videos: [
-          { label: "sumô", url: "https://youtu.be/ZXyzfNO497M?si=7ToFuGtxWBGLECtf" }
-        ]
-      },
-      {
-        nome: "Leg Press Horizontal Unilateral",
-        seriesDesc: "3x10 cada perna",
-        videos: [
-          { label: "leg press uni", url: "https://youtu.be/3c2pZFI4-xQ?si=Zux2lKp5OuvLG5Zu" }
-        ]
-      },
-      {
-        nome: "Leg Press Horizontal Bilateral",
-        seriesDesc: "3x10-12",
-        videos: [
-          { label: "leg press bi", url: "https://youtu.be/W1QWvmQ_ZuM?si=vpqYKX_YTNAqJgMP" }
-        ]
-      },
-      {
-        nome: "Glúteo 4 Apoios",
-        seriesDesc: "3x15 cada perna",
-        videos: [
-          { label: "glúteo 4 apoios", url: "https://youtu.be/luvbFKnA6aA?si=Bh2piZlDP7S2hc1H" }
-        ]
-      },
-      {
-        nome: "Elevação Pélvica",
-        seriesDesc: "3x15",
-        videos: [
-          { label: "elevação pélvica", url: "https://youtu.be/UT-WBhxo9uA?si=Q78nf6XHt4g40FKw" }
-        ]
-      },
-      {
-        nome: "Stiff",
-        seriesDesc: "3x10-12",
-        videos: [
-          { label: "stiff", url: "https://youtu.be/43u1zfJUUi0?si=sC1mYwjfgG3Gh7RE" }
-        ]
-      },
-      {
-        nome: "Gémeos no Smith",
-        seriesDesc: "3x15",
-        videos: [
-          { label: "gémeos smith", url: "https://youtu.be/w_aic9GI0CY?si=iSSIyt8FwKkzAoD3" }
-        ]
+      .treino-instrucao {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        color: #ccc;
+        margin-bottom: 12px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 5 – Peito / Ombro / Braço (Combos)",
-    exercicios: [
-      {
-        nome: "Puxada Polia Pegada Aberta + Remada Curvada Halteres",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz puxada na polia e logo remada curvada. Descansa 1 min só depois.",
-        videos: [
-          { label: "puxada frente", url: "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f" },
-          { label: "remada curvada", url: "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" }
-        ]
-      },
-      {
-        nome: "Flexão de Braço + Desenvolvimento Halteres",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz flexão e logo em seguida desenvolvimento de ombro. Depois descansa 1 min.",
-        videos: [
-          { label: "flexão braço", url: "https://youtu.be/CII_TkXd0dU?si=FKJWKWKudtHxHVss" },
-          { label: "desenvolvimento", url: "https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR" }
-        ]
-      },
-      {
-        nome: "Rosca Direta Halteres + Tríceps Testa",
-        seriesDesc: "Combinação • 3x10",
-        comboNota:
-          "Faz bíceps e logo tríceps testa, depois descansa 1 min.",
-        videos: [
-          { label: "rosca direta", url: "https://youtu.be/5uwgNo5K1jM?si=LiTyReCZErEG8Wo6" },
-          { label: "tríceps testa", url: "https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU" }
-        ]
+      /* tabela estilo pdf */
+      .treino-table-wrapper {
+        overflow-x: auto;
+        border: 1px solid #2a2a33;
+        border-radius: 8px;
+        background-color: #0f0f12;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        margin-bottom: 24px;
       }
-    ]
-  },
 
-  {
-    titulo: "Dia 6 – Pernas (Smith / Agachamento)",
-    exercicios: [
-      {
-        nome: "Agachamento no Smith",
-        seriesDesc: "3x10",
-        videos: [
-          { label: "smith squat", url: "https://youtu.be/owUMm3gZ1b0?si=z8-E9JTUbVkKGF1t" }
-        ]
+      table.treino-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 320px;
+        font-size: 0.8rem;
+        color: #fff;
       }
-      // se houver mais exercícios específicos do Dia 6 nas tuas notas, eles entram aqui
-    ]
-  }
-]; // fim avancado
 
+      table.treino-table thead {
+        background: linear-gradient(
+          to right,
+          rgba(255, 77, 166, 0.4),
+          rgba(255, 77, 166, 0.15)
+        );
+      }
 
-// ---------- RENDER ----------
+      table.treino-table th {
+        text-align: left;
+        padding: 10px 12px;
+        font-weight: 600;
+        color: #fff;
+        border-bottom: 1px solid #ff4da6;
+        white-space: nowrap;
+      }
 
-let currentTab = "iniciante"; // "iniciante" ou "avancado"
-let currentDiaIndex = 0;
+      table.treino-table tbody tr:nth-child(odd) {
+        background-color: rgba(255, 77, 166, 0.07);
+      }
 
-function renderDiasRow(){
-  const diasRow = document.getElementById("dias-container");
-  diasRow.innerHTML = "";
+      table.treino-table td {
+        vertical-align: top;
+        padding: 10px 12px;
+        border-bottom: 1px solid #2a2a33;
+        color: #fff;
+      }
 
-  const data = currentTab === "iniciante" ? iniciante : avancado;
+      .video-links {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        text-align: right;
+      }
 
-  data.forEach((dia, idx) => {
-    const btn = document.createElement("button");
-    btn.className = "dia-btn" + (idx === currentDiaIndex ? " active" : "");
-    btn.textContent = "Dia " + (idx+1);
-    btn.onclick = () => {
-      currentDiaIndex = idx;
-      renderDiasRow();
-      renderDiaConteudo();
-    };
-    diasRow.appendChild(btn);
-  });
-}
+      .video-links a {
+        color: #ff4da6;
+        font-weight: 600;
+        text-decoration: underline;
+        font-size: 0.75rem;
+        word-break: break-word;
+      }
 
-function renderDiaConteudo(){
-  const container = document.getElementById("dia-conteudo");
-  container.innerHTML = "";
+      /* grupos de treino escondidos/mostrados */
+      .treino-dia {
+        display: none;
+      }
+      .treino-dia.active {
+        display: block;
+      }
 
-  const data = currentTab === "iniciante" ? iniciante : avancado;
-  const dia = data[currentDiaIndex];
+      .grupo-bloco {
+        margin-bottom: 32px;
+      }
 
-  const card = document.createElement("div");
-  card.className = "dia-card";
+      /* headline tipo "Iniciante" "Avançado" */
+      .grupo-titulo {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 12px;
+      }
+      .grupo-nota {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        color: #bbb;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
 
-  const h = document.createElement("h2");
-  h.className = "dia-titulo";
-  h.textContent = dia.titulo;
-  card.appendChild(h);
+  <body>
+    <div class="page-wrap">
+      <!-- =========================
+           BLOCO INICIANTE
+      ========================== -->
+      <section class="card">
+        <div class="grupo-bloco">
+          <div class="grupo-titulo">Iniciante</div>
+          <div class="grupo-nota">
+            Seleciona o dia. Faz exatamente na ordem descrita. Onde disser
+            “Combinação”, faz o exercício de cima seguido imediatamente do de
+            baixo, só depois descansa o indicado.
+          </div>
 
-  dia.exercicios.forEach(ex => {
-    const bloco = document.createElement("div");
-    bloco.className = "exercicio-bloco";
+          <!-- botões dia iniciante -->
+          <div class="subheader" id="iniciante-tabs">
+            <button class="active" data-dia="i1">Dia 1</button>
+            <button data-dia="i2">Dia 2</button>
+            <button data-dia="i3">Dia 3</button>
+            <button data-dia="i4">Dia 4</button>
+            <button data-dia="i5">Dia 5</button>
+          </div>
 
-    const linha = document.createElement("div");
-    linha.className = "linha-exercicio";
+          <!-- DIA 1 INICIANTE -->
+          <div class="treino-dia active" id="treino-i1">
+            <div class="treino-headline">TREINO 1 – Perna e Glúteo</div>
+            <div class="treino-instrucao">
+              Realizar 1 série de cada exercício para depois descansar e repetir
+              a sequência.
+            </div>
 
-    const info = document.createElement("div");
-    info.className = "exercicio-info";
-    info.innerHTML = `
-      ${ex.nome}<br/>
-      <small>${ex.seriesDesc || ""}</small>
-    `;
-    linha.appendChild(info);
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Agachamento Peso do corpo<br />
+                      Agachamento Livre<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 20
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Agachamento Peso do corpo</a>
+                      <a href="#" target="_blank">Ver vídeo Agachamento Livre</a>
+                    </td>
+                  </tr>
 
-    const videosCol = document.createElement("div");
-    videosCol.className = "videos-col";
+                  <tr>
+                    <td>
+                      Afundo Smith<br />
+                      Afundo peso do corpo<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Afundo Smith</a>
+                      <a href="#" target="_blank">Ver vídeo Afundo peso do corpo</a>
+                    </td>
+                  </tr>
 
-    if (ex.videos && ex.videos.length){
-      ex.videos.forEach(v => {
-        const vdiv = document.createElement("div");
-        vdiv.className = "video-link";
-        vdiv.innerHTML = `<a href="${v.url}" target="_blank" rel="noopener noreferrer">${v.label}</a>`;
-        videosCol.appendChild(vdiv);
-      });
-    }
+                  <tr>
+                    <td>Leg Press 45º</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Leg Press 45º</a>
+                    </td>
+                  </tr>
 
-    linha.appendChild(videosCol);
-    bloco.appendChild(linha);
+                  <tr>
+                    <td>Cadeira Extensora</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Cadeira Extensora</a>
+                    </td>
+                  </tr>
 
-    if (ex.comboNota){
-      const nota = document.createElement("div");
-      nota.className = "combo-nota";
-      nota.textContent = ex.comboNota;
-      bloco.appendChild(nota);
-    }
+                  <tr>
+                    <td>Cadeira Flexora</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Cadeira Flexora</a>
+                    </td>
+                  </tr>
 
-    card.appendChild(bloco);
-  });
+                  <tr>
+                    <td>Flexora Deitada</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Flexora Deitada</a>
+                    </td>
+                  </tr>
 
-  container.appendChild(card);
-}
+                  <tr>
+                    <td>Panturrilha em pé com halteres</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Panturrilha em pé</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-function setupTabs(){
-  const tabs = document.querySelectorAll(".tab-btn");
-  tabs.forEach(tabBtn => {
-    tabBtn.onclick = () => {
-      const newTab = tabBtn.getAttribute("data-tab");
-      if (newTab !== currentTab){
-        currentTab = newTab;
-        currentDiaIndex = 0;
-        // atualizar classes visuais
-        tabs.forEach(b=>{
-          if (b.getAttribute("data-tab") === currentTab){
-            b.classList.add("active");
-          } else {
-            b.classList.remove("active");
-          }
+          <!-- DIA 2 INICIANTE -->
+          <div class="treino-dia" id="treino-i2">
+            <div class="treino-headline">
+              TREINO 2 – Membros Superiores + abd
+            </div>
+            <div class="treino-instrucao">
+              Realizar 1 série de cada exercício para depois descansar e repetir
+              a sequência.
+            </div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Abd. Supra curtinho<br />
+                      Abd. Infra<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 15<br />
+                      3 × 15
+                    </td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Abd. Supra curtinho</a>
+                      <a href="#" target="_blank">Ver vídeo Abd. Infra</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Puxada Frente (Pegada Aberta)</td>
+                    <td>3 × 10</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Puxada Frente Pegada Aberta</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Flexão de Braço</td>
+                    <td>3 × 10</td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Flexão de Braço</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Remada Curvada Halteres<br />
+                      Desenvolvimento Halteres<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Remada Curvada Halteres</a>
+                      <a href="#" target="_blank">Ver vídeo Desenvolvimento Halteres</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Rosca Direta Halteres<br />
+                      Tríceps Pulley<br />
+                      <strong>Combinação 4</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Rosca Direta Halteres</a>
+                      <a href="#" target="_blank">Ver vídeo Tríceps Pulley</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Esteira
+                      <div style="font-size:0.7rem;color:#bbb;margin-top:4px;">
+                        Corre 1 Min, Caminha 1 Min
+                      </div>
+                    </td>
+                    <td>20 Min</td>
+                    <td>—</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Esteira</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 3 INICIANTE -->
+          <div class="treino-dia" id="treino-i3">
+            <div class="treino-headline">TREINO 3 – Corpo Todo HIIT</div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Burpee</td>
+                    <td>3 × 10</td>
+                    <td>1 Min</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Burpee</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Afundo + Desenvolve</td>
+                    <td>3 × 10</td>
+                    <td>1 Min</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Afundo + Desenvolve</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Thruster</td>
+                    <td>3 × 10</td>
+                    <td>1 Min</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Thruster</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Agachamento c/ Salto</td>
+                    <td>3 × 10</td>
+                    <td>1 Min</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Agachamento c/ Salto</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Prancha Abre e Fecha</td>
+                    <td>3 × 10</td>
+                    <td>1 Min</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Prancha Abre e Fecha</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Ski</td>
+                    <td>3 × 10</td>
+                    <td>1 Min</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Ver vídeo Ski</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 4 INICIANTE -->
+          <div class="treino-dia" id="treino-i4">
+            <div class="treino-headline">TREINO 4 – Perna e Glúteo</div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Agachamento Smith<br />
+                      Agachamento Sumô<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 10 + 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Agachamento Smith</a>
+                      <a href="#" target="_blank">Vídeo Agachamento Sumô</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Leg Horizontal Unilateral<br />
+                      Leg Horizontal Bilateral<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      3 × 10 + 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Leg Horizontal Unilateral</a>
+                      <a href="#" target="_blank">Vídeo Leg Horizontal Bilateral</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Glúteo 4 apoios (perna flexionada)<br />
+                      Elevação Pélvica<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      3 × 10 + 10<br />
+                      3 × 15
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Glúteo 4 apoios</a>
+                      <a href="#" target="_blank">Vídeo Elevação Pélvica</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Stiff<br />
+                      Flexora Sentada<br />
+                      <strong>Combinação 4</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Stiff</a>
+                      <a href="#" target="_blank">Vídeo Flexora Sentada</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Panturrilha smith</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Panturrilha smith</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 5 INICIANTE -->
+          <div class="treino-dia" id="treino-i5">
+            <div class="treino-headline">
+              TREINO 5 – Membros Superiores + Abd
+            </div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Abd. Supra Curtinho<br />
+                      Abd. Infra<br />
+                      Abd Remador<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Abd. Supra Curtinho</a>
+                      <a href="#" target="_blank">Vídeo Abd. Infra</a>
+                      <a href="#" target="_blank">Vídeo Abd. Remador</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Puxada na Polia (pegada aberta)<br />
+                      Remada Curvada Halteres<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      4 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Puxada na Polia</a>
+                      <a href="#" target="_blank">Vídeo Remada Curvada Halteres</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Flexão de Braço<br />
+                      Desenvolvimento Halteres<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      4 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Flexão de Braço</a>
+                      <a href="#" target="_blank">Vídeo Desenvolvimento Halteres</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Rosca Direta Halteres<br />
+                      Tríceps Testa<br />
+                      <strong>Combinação 4</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      4 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Rosca Direta Halteres</a>
+                      <a href="#" target="_blank">Vídeo Tríceps Testa</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           BLOCO AVANÇADO
+      ========================== -->
+      <section class="card">
+        <div class="grupo-bloco">
+          <div class="grupo-titulo">Avançado (Mês 1)</div>
+          <div class="grupo-nota">
+            Seleciona o dia. Para combinações: executa o exercício de cima e
+            logo o de baixo, só depois descansa o tempo indicado.
+          </div>
+
+          <!-- botões dia avançado -->
+          <div class="subheader" id="avancado-tabs">
+            <button class="active" data-dia="a1">Dia 1</button>
+            <button data-dia="a2">Dia 2</button>
+            <button data-dia="a3">Dia 3</button>
+            <button data-dia="a4">Dia 4</button>
+            <button data-dia="a5">Dia 5</button>
+            <button data-dia="a6">Dia 6</button>
+          </div>
+
+          <!-- DIA 1 AVANÇADO -->
+          <div class="treino-dia active" id="treino-a1">
+            <div class="treino-headline">TREINO 1 – Perna e Glúteo</div>
+            <div class="treino-instrucao">
+              Realizar 1 série de cada exercício para depois descansar e repetir
+              a sequência.
+            </div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Agachamento Livre<br />
+                      Agachamento Peso do corpo<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 20
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Agachamento Livre</a>
+                      <a href="#" target="_blank">Vídeo Agachamento Peso do corpo</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Afundo Smith<br />
+                      Afundo peso do corpo<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Afundo Smith</a>
+                      <a href="#" target="_blank">Vídeo Afundo peso do corpo</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Leg Press 45º</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Leg Press 45º</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Cadeira Extensora</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Cadeira Extensora</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Cadeira Flexora</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Cadeira Flexora</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Flexora Deitada</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Flexora Deitada</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Panturrilha em pé</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Panturrilha em pé</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 2 AVANÇADO -->
+          <div class="treino-dia" id="treino-a2">
+            <div class="treino-headline">
+              TREINO 2 – Membros Superiores + Abd
+            </div>
+            <div class="treino-instrucao">
+              Realizar 1 série de cada exercício para depois descansar e repetir
+              a sequência.
+            </div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Abd. Supra curtinho<br />
+                      Abd. Infra<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 15<br />
+                      3 × 15
+                    </td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Abd. Supra curtinho</a>
+                      <a href="#" target="_blank">Vídeo Abd. Infra</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Puxada Pulley Pegada Aberta<br />
+                      Remada na Polia (Pegada Neutra)<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Puxada Pulley Pegada Aberta</a>
+                      <a href="#" target="_blank">Vídeo Remada na Polia Pegada Neutra</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Supino reto barra<br />
+                      Supino reto halteres<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Supino reto barra</a>
+                      <a href="#" target="_blank">Vídeo Supino reto halteres</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Tríceps na Polia<br />
+                      Tríceps Francês<br />
+                      <strong>Combinação 4</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Tríceps na Polia</a>
+                      <a href="#" target="_blank">Vídeo Tríceps Francês</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Elevação lateral</td>
+                    <td>3 × 10</td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Elevação lateral</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Rosca direta na Polia</td>
+                    <td>3 × 10</td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Rosca direta na Polia</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 3 AVANÇADO -->
+          <div class="treino-dia" id="treino-a3">
+            <div class="treino-headline">TREINO 3 – Corpo Todo HIIT</div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Passada</td>
+                    <td>3 × 20</td>
+                    <td>—</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Passada</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Remada Unilateral + Burpee Sapinho<br />
+                      <strong>Combinação 1</strong><br />
+                      Abd. Supra Completo<br />
+                      Corrida Estacionada
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 15<br />
+                      3 × 30segs.
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Remada Unilateral + Burpee</a>
+                      <a href="#" target="_blank">Vídeo Abd. Supra Completo</a>
+                      <a href="#" target="_blank">Vídeo Corrida Estacionada</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Agachamento + Desenvolvimento<br />
+                      5 Agachamentos + 1 Burpee<br />
+                      Climber Cruzado + Normal<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 5<br />
+                      3 × 5 + 5
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Agachamento + Desenvolvimento</a>
+                      <a href="#" target="_blank">Vídeo 5 Agachamentos + 1 Burpee</a>
+                      <a href="#" target="_blank">Vídeo Climber Cruzado + Normal</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      5 Agachamentos com salto + Escalada<br />
+                      Prancha lateral puxando a perna<br />
+                      Corrida Lateral<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      3 × 5<br />
+                      3 × 5 + 5<br />
+                      3 × 30segs.
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Agachamentos c/ salto + Escalada</a>
+                      <a href="#" target="_blank">Vídeo Prancha lateral puxando a perna</a>
+                      <a href="#" target="_blank">Vídeo Corrida Lateral</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 4 AVANÇADO -->
+          <div class="treino-dia" id="treino-a4">
+            <div class="treino-headline">TREINO 4 – Perna e Glúteo</div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Agachamento Smith<br />
+                      Agachamento Sumô<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>3 × 10 + 10</td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Agachamento Smith</a>
+                      <a href="#" target="_blank">Vídeo Agachamento Sumô</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Leg Horizontal Unilateral<br />
+                      Leg Horizontal Bilateral<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      3 × 10 + 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Leg Horizontal Unilateral</a>
+                      <a href="#" target="_blank">Vídeo Leg Horizontal Bilateral</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Glúteo 4 apoio (perna flexionada)<br />
+                      Elevação Pélvica<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      3 × 10 + 10<br />
+                      3 × 15
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Glúteo 4 apoio</a>
+                      <a href="#" target="_blank">Vídeo Elevação Pélvica</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Stiff<br />
+                      Flexora Sentada<br />
+                      <strong>Combinação 4</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Stiff</a>
+                      <a href="#" target="_blank">Vídeo Flexora Sentada</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Panturrilha smith</td>
+                    <td>3 × 15</td>
+                    <td>40 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Panturrilha smith</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 5 AVANÇADO -->
+          <div class="treino-dia" id="treino-a5">
+            <div class="treino-headline">
+              TREINO 5 – Membros Superiores + abd
+            </div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Abd Supra Curtinho<br />
+                      Abd Infra<br />
+                      Abd Remador<br />
+                      <strong>Combinação 1</strong>
+                    </td>
+                    <td>
+                      3 × 10<br />
+                      3 × 10<br />
+                      3 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Abd Supra Curtinho</a>
+                      <a href="#" target="_blank">Vídeo Abd Infra</a>
+                      <a href="#" target="_blank">Vídeo Abd Remador</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Puxada na Polia (pegada aberta)<br />
+                      Remada Curvada Halteres<br />
+                      <strong>Combinação 2</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      4 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Puxada na Polia</a>
+                      <a href="#" target="_blank">Vídeo Remada Curvada Halteres</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Flexão de Braço<br />
+                      Desenvolvimento Halteres<br />
+                      <strong>Combinação 3</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      4 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Flexão de Braço</a>
+                      <a href="#" target="_blank">Vídeo Desenvolvimento Halteres</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      Rosca Direta Halteres<br />
+                      Tríceps Testa<br />
+                      <strong>Combinação 4</strong>
+                    </td>
+                    <td>
+                      4 × 10<br />
+                      4 × 10
+                    </td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Rosca Direta Halteres</a>
+                      <a href="#" target="_blank">Vídeo Tríceps Testa</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DIA 6 AVANÇADO -->
+          <div class="treino-dia" id="treino-a6">
+            <div class="treino-headline">TREINO 6 – Perna e Glúteo</div>
+
+            <div class="treino-table-wrapper">
+              <table class="treino-table">
+                <thead>
+                  <tr>
+                    <th>Exercício</th>
+                    <th>Séries × reps</th>
+                    <th>Descanso</th>
+                    <th style="text-align: right;">Vídeo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Afundo Smith</td>
+                    <td>3 × 10</td>
+                    <td>1 Min.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Afundo Smith</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Agachamento Smith</td>
+                    <td>3 × 15</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Agachamento Smith</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Leg Press 45</td>
+                    <td>3 × 15</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Leg Press 45</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Flexora Deitada</td>
+                    <td>3 × 15</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Flexora Deitada</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Cadeira Extensora</td>
+                    <td>3 × 15</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Cadeira Extensora</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Elevação Pélvica</td>
+                    <td>3 × 15</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Elevação Pélvica</a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Panturrilha em pé</td>
+                    <td>3 × 15</td>
+                    <td>30 segs.</td>
+                    <td class="video-links">
+                      <a href="#" target="_blank">Vídeo Panturrilha em pé</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // tabs iniciante
+      const inicianteTabs = document.querySelectorAll("#iniciante-tabs button");
+      const inicianteDias = {
+        i1: document.getElementById("treino-i1"),
+        i2: document.getElementById("treino-i2"),
+        i3: document.getElementById("treino-i3"),
+        i4: document.getElementById("treino-i4"),
+        i5: document.getElementById("treino-i5"),
+      };
+
+      inicianteTabs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const dia = btn.getAttribute("data-dia");
+
+          // ativa/desativa botão
+          inicianteTabs.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          // mostra/esconde treino
+          Object.keys(inicianteDias).forEach((k) => {
+            if (k === dia) {
+              inicianteDias[k].classList.add("active");
+            } else {
+              inicianteDias[k].classList.remove("active");
+            }
+          });
         });
-        renderDiasRow();
-        renderDiaConteudo();
-      }
-    };
-  });
-}
+      });
 
-// inicializar
-setupTabs();
-renderDiasRow();
-renderDiaConteudo();
+      // tabs avançado
+      const avancadoTabs = document.querySelectorAll("#avancado-tabs button");
+      const avancadoDias = {
+        a1: document.getElementById("treino-a1"),
+        a2: document.getElementById("treino-a2"),
+        a3: document.getElementById("treino-a3"),
+        a4: document.getElementById("treino-a4"),
+        a5: document.getElementById("treino-a5"),
+        a6: document.getElementById("treino-a6"),
+      };
 
-</script>
-</body>
+      avancadoTabs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const dia = btn.getAttribute("data-dia");
+
+          // ativa/desativa botão
+          avancadoTabs.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          // mostra/esconde treino
+          Object.keys(avancadoDias).forEach((k) => {
+            if (k === dia) {
+              avancadoDias[k].classList.add("active");
+            } else {
+              avancadoDias[k].classList.remove("active");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
