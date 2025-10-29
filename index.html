@@ -407,36 +407,20 @@
 
       <!-- CONTEÚDO APP (depois login) -->
       <section id="app-section" class="hidden">
-        <!-- ABA TREINOS -->
-        <section id="aba-treinos" class="">
-          <div class="section-card">
-            <div class="section-title">Treinos</div>
-
-            <!-- tabs nível: iniciante / avançado -->
-            <div class="level-tabs">
-              <button
-                class="mini-tab-btn active"
-                data-level="iniciante"
-                id="btn-nivel-iniciante"
-              >
-                Iniciante
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-level="avancado"
-                id="btn-nivel-avancado"
-              >
-                Avançado • 1º mês
-              </button>
-            </div>
-
-            <!-- tabs de dia (dinâmicas por nível) -->
-            <div class="day-tabs" id="dias-container"></div>
-
-            <!-- conteúdo de um dia específico -->
-            <div id="treino-dia-conteudo"></div>
-          </div>
-        </section>
+<!-- ABA TREINOS -->
+<section id="aba-treinos" class="">
+  <iframe
+    src="treinos.html"
+    style="
+      width:100%;
+      min-height:80vh;
+      border:0;
+      background:#0f0f12;
+      color:#fff;
+      display:block;
+    "
+  ></iframe>
+</section>
 
         <!-- ABA ALIMENTAÇÃO -->
         <section id="aba-alimentacao" class="hidden">
