@@ -3,38 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>MANUFIT</title>
-
-    <!-- favicon/logo -->
+    <title>Manufit</title>
     <link rel="icon" type="image/png" href="MANUFIT.png" />
-
-    <!-- estilos globais -->
+    <meta name="theme-color" content="#0f0f12" />
     <style>
       :root {
-        --bg-main: #0f0f12;
-        --bg-card: #1a1a22;
-        --bg-inner: #0f0f12;
+        --bg: #0f0f12;
+        --card: #1a1a22;
+        --line: #2a2a33;
+        --line2: #3a3a44;
         --accent: #ff4da6;
-        --text-main: #fff;
-        --text-dim: #bbb;
-        --border-card: #2a2a33;
-        --border-inner: #3a3a44;
+        --text: #ffffff;
+        --muted: #bbbbbb;
+        --muted2: #999999;
+        --chip: #1f1f25;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", Arial, sans-serif;
       }
 
-      body {
-        margin: 0;
-        background-color: var(--bg-main);
-        color: var(--text-main);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
-          Arial, sans-serif;
-      }
-
-      header.app-header {
-        background: linear-gradient(
-          to right,
-          rgb(255, 77, 166) 0%,
-          rgb(15, 15, 18) 60%
-        );
+      /* HEADER (igual ao que já tens: logo + título + subtítulo) */
+      header {
+        background: linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%);
         color: #fff;
         padding: 16px;
         border-bottom: 1px solid var(--accent);
@@ -44,75 +35,45 @@
         justify-content: space-between;
         gap: 12px;
       }
-
-      .brand-block {
+      .brand {
         font-weight: 700;
         font-size: 1.25rem;
         line-height: 1.2;
         color: #fff;
       }
-
-      .brand-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
+      .brand-row { display: flex; align-items: center; gap: 8px; }
       .brand-row img {
-        width: 36px;
-        height: 36px;
-        border-radius: 6px;
-        object-fit: cover;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        background-color: #000;
+        width: 36px; height: 36px; border-radius: 6px; object-fit: cover;
+        border: 1px solid rgba(255,255,255,0.4);
       }
-
       .brand-sub {
-        font-size: 0.7rem;
-        font-weight: 500;
-        color: #ffd1e8;
-        line-height: 1.2;
+        font-size: .7rem; font-weight: 500; color: #ffd1e8; line-height: 1.2;
       }
 
-      nav.nav-tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      nav.nav-tabs button {
-        background-color: #1f1f25;
+      /* NAV TABS (mesmo aspeto: botões escuros com contorno rosa; ativo cheio rosa) */
+      .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+      .tab-btn {
+        background: var(--chip);
         color: #fff;
         border: 1px solid var(--accent);
         border-radius: 6px;
         padding: 6px 10px;
-        font-size: 0.8rem;
+        font-size: .8rem;
         font-weight: 600;
         cursor: pointer;
       }
-      nav.nav-tabs button.active {
-        background-color: var(--accent);
+      .tab-btn.active {
+        background: var(--accent);
         color: #000;
       }
+      .spacer { flex: 1 1 auto; }
 
-      main.page-main {
-        padding: 24px 16px;
-        max-width: 900px;
-        margin: 0 auto;
-        color: var(--text-main);
-      }
+      main { padding: 24px 16px; max-width: 900px; margin: 0 auto; }
 
-      footer.app-footer {
-        color: #666;
-        font-size: 0.7rem;
-        text-align: center;
-        padding: 40px 16px;
-      }
-
-      /* cartão do login */
-      .login-card {
-        background-color: var(--bg-card);
-        border: 1px solid var(--border-card);
+      /* CARTÃO DO LOGIN (igual ao teu) */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
         border-radius: 10px;
         padding: 16px;
         max-width: 480px;
@@ -120,994 +81,270 @@
         margin: 40px auto;
         color: #fff;
       }
-
-      .login-label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: var(--accent);
+      .label { display:block; margin-bottom:8px; font-weight:600; color:var(--accent); }
+      .input {
+        width:100%; background:var(--bg); border:1px solid var(--accent);
+        border-radius:6px; padding:10px 12px; color:#fff; font-size:1rem; outline:none;
+      }
+      .btn-primary {
+        margin-top: 16px; width:100%;
+        background: var(--accent); color:#000; font-weight:700;
+        border:0; border-radius:6px; font-size:1rem; padding:12px; cursor:pointer;
+      }
+      .small-info {
+        font-size:.8rem; opacity:.8; margin-top:12px; line-height:1.4; text-align:center; color:#bbb;
       }
 
-      .login-input {
-        width: 100%;
-        background-color: var(--bg-inner);
-        border: 1px solid var(--accent);
-        border-radius: 6px;
-        padding: 10px 12px;
-        color: #fff;
-        font-size: 1rem;
-        outline: none;
-      }
-
-      .login-button {
-        margin-top: 16px;
-        width: 100%;
-        background-color: var(--accent);
-        border: 0;
-        border-radius: 6px;
-        color: #000;
-        font-weight: 700;
-        font-size: 1rem;
-        padding: 12px;
-        cursor: pointer;
-      }
-
-      .price-line {
-        margin-top: 10px;
-        font-weight: 600;
-        font-size: 1rem;
-        color: var(--accent);
-        text-align: center;
-      }
-
-      .login-small-info {
-        font-size: 0.8rem;
-        opacity: 0.8;
-        margin-top: 12px;
-        line-height: 1.4;
-        text-align: center;
-        color: var(--text-dim);
-      }
-
-      .login-support {
-        margin-top: 8px;
-        color: var(--accent);
-      }
-
-      /* blocos/caixas internas reutilizáveis */
+      /* SEÇÕES */
       .section-card {
-        background-color: var(--bg-card);
-        border: 1px solid var(--border-card);
+        background: var(--card);
+        border: 1px solid var(--line);
         border-radius: 10px;
         padding: 16px;
-        margin-bottom: 24px;
         color: #fff;
       }
-
       .section-title {
         color: var(--accent);
         font-weight: 700;
         font-size: 1rem;
         line-height: 1.4;
-        margin: 0 0 12px 0;
-      }
-
-      .inner-block {
-        background-color: var(--bg-inner);
-        border: 1px solid var(--border-inner);
-        border-radius: 8px;
-        padding: 12px;
         margin-bottom: 12px;
-        font-size: 0.8rem;
-        color: #ccc;
-        line-height: 1.5;
       }
 
-      .inner-block h4 {
-        margin: 0 0 8px 0;
-        color: #fff;
-        font-size: 0.9rem;
-        font-weight: 600;
-        line-height: 1.4;
+      /* LISTAS DE LINKS (menu “árvore” enxuto) */
+      .link-list { display: grid; gap: 10px; }
+      .link-row {
+        display:flex; align-items:center; justify-content:space-between;
+        background: #0f0f12; border:1px solid var(--line2); border-radius:8px;
+        padding: 10px 12px;
       }
+      .link-row b { color:#fff; font-size:.95rem; }
+      .link-row a {
+        text-decoration:none; font-weight:700; font-size:.8rem;
+        padding:6px 10px; border-radius:6px; border:1px solid var(--accent);
+        color:#fff; background: var(--chip);
+      }
+      .link-row a:hover { filter: brightness(1.08); }
 
-      .exercise-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        border-bottom: 1px solid #333;
-        padding: 8px 0;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
+      /* visibilidade */
+      .hidden { display:none; }
 
-      .exercise-left {
-        flex: 1 1 auto;
-        min-width: 160px;
-        color: #fff;
-        font-size: 0.8rem;
-        line-height: 1.4;
-        font-weight: 500;
-      }
-
-      .exercise-specs {
-        font-size: 0.75rem;
-        color: #999;
-        font-weight: 400;
-      }
-
-      .exercise-right {
-        flex: 0 0 200px;
-        max-width: 200px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .video-link {
-        display: inline-block;
-        text-decoration: none;
-        background-color: var(--accent);
-        color: #000;
-        border-radius: 4px;
-        padding: 6px 8px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        text-align: center;
-        border: 1px solid var(--accent);
-        word-break: break-word;
-      }
-
-      .combo-note {
-        font-size: 0.7rem;
-        font-style: italic;
-        color: #ffd1e8;
-        margin-top: 4px;
-        line-height: 1.4;
-      }
-
-      /* tabs de nível (iniciante vs avançado) e tabs de dia */
-      .level-tabs,
-      .day-tabs,
-      .food-tabs,
-      .extra-tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 16px;
-      }
-
-      .mini-tab-btn {
-        background-color: #1f1f25;
-        color: #fff;
-        border: 1px solid var(--accent);
-        border-radius: 6px;
-        padding: 8px 12px;
-        font-weight: 600;
-        font-size: 0.8rem;
-        cursor: pointer;
-      }
-      .mini-tab-btn.active {
-        background-color: var(--accent);
-        color: #000;
-      }
-
-      /* perfil */
-      .perfil-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.8rem;
-      }
-      .perfil-table th {
-        text-align: left;
-        color: var(--accent);
-        font-weight: 600;
-        border-bottom: 1px solid #333;
-        padding: 8px 4px;
-        font-size: 0.75rem;
-      }
-      .perfil-table td {
-        border-bottom: 1px solid #222;
-        padding: 8px 4px;
-        color: #fff;
-        font-size: 0.8rem;
-      }
-
-      /* detox card look */
-      .detox-box {
-        background: rgba(10, 10, 30, 0.6);
-        border: 1px solid rgba(255, 0, 200, 0.25);
-        border-radius: 12px;
-        padding: 20px;
-        color: #fff;
-        max-width: 800px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-      }
-      .detox-box h2 {
-        color: var(--accent);
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin: 0 0 10px 0;
-      }
-      .detox-box ul {
-        list-style: none;
-        padding-left: 0;
-        line-height: 1.7;
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.9);
-        margin: 0;
-      }
-      .detox-box p {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.8);
-        font-style: italic;
-        margin-top: 14px;
-        margin-bottom: 0;
-      }
-
-      /* escondido por JS dinamicamente */
-      .hidden {
-        display: none;
-      }
+      footer { color:#666; font-size:.7rem; text-align:center; padding:40px 16px; }
+      .logout { margin-left: 8px; }
     </style>
   </head>
-
   <body>
-    <!-- HEADER visível só DEPOIS de login -->
-    <header class="app-header hidden" id="app-header">
-      <div class="brand-block">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
         <div class="brand-row">
-          <img src="MANUFIT.png" alt="MANUFIT Logo" />
-          <div style="font-weight:700;color:#fff;">MANUFIT</div>
+          <img src="MANUFIT.png" alt="Manufit Logo" />
+          <div>MANUFIT</div>
         </div>
-        <div class="brand-sub">
-          Treino • Nutrição • Resultados
-        </div>
+        <div class="brand-sub">Treino • Nutrição • Resultados</div>
       </div>
 
-      <nav class="nav-tabs" id="main-tabs">
-        <button data-tab="treinos" class="tab-btn active">Treinos</button>
-        <button data-tab="alimentacao" class="tab-btn">Alimentação</button>
-        <button data-tab="cardio" class="tab-btn">Cardio</button>
-        <button data-tab="relax" class="tab-btn">Relaxamento</button>
-        <button data-tab="extra" class="tab-btn">Extra</button>
-        <button data-tab="perfil" class="tab-btn">Perfil</button>
-        <button data-logout="1" class="tab-btn">Sair</button>
-      </nav>
+      <!-- NAV (apenas aparece depois do login) -->
+      <div class="tabs hidden" id="top-tabs">
+        <button class="tab-btn" data-tab="treinos">Treinos</button>
+        <button class="tab-btn" data-tab="alimentacao">Alimentação</button>
+        <button class="tab-btn" data-tab="cardio">Cardio</button>
+        <button class="tab-btn" data-tab="relax">Relaxamento</button>
+        <button class="tab-btn" data-tab="extra">Extra</button>
+        <button class="tab-btn" data-tab="perfil">Perfil</button>
+        <span class="spacer"></span>
+        <button class="tab-btn logout" id="btn-sair" title="Terminar sessão">Sair</button>
+      </div>
     </header>
 
-    <!-- MAIN -->
-    <main class="page-main">
-      <!-- BLOCO LOGIN (antes de autenticar) -->
-      <section id="login-section" class="">
-        <div class="login-card">
-          <form id="login-form">
-            <label class="login-label">Introduz o teu e-mail para aceder</label>
-            <input
-              id="login-email"
-              class="login-input"
-              type="email"
-              placeholder="exemplo@exemplo.com"
-            />
+    <!-- LOGIN GATE -->
+    <main id="login-section">
+      <div class="card">
+        <form id="login-form">
+          <label class="label">Introduz o teu e-mail para aceder</label>
+          <input id="email-input" class="input" type="email" placeholder="exemplo@exemplo.com" />
+          <button class="btn-primary" type="submit">Entrar</button>
 
-            <button class="login-button" type="submit">Entrar</button>
+          <!-- preço (sem emoji, como pediste) -->
+          <div style="margin-top:10px;font-weight:600;font-size:1rem;color:var(--accent);text-align:center;">
+            £39.99 / mês
+          </div>
 
-            <div class="price-line">£39.99 / mês</div>
+          <div class="small-info">
+            <div>• Apenas alunas autorizadas têm acesso.</div>
+            <div>• Se ainda não tens acesso, fala com Manu 💖</div>
+            <div style="margin-top:8px; color:var(--accent)">Suporte: manumendes199514@gmail.com</div>
+          </div>
+        </form>
+      </div>
+    </main>
 
-            <div class="login-small-info">
-              <div>• Apenas alunas autorizadas têm acesso.</div>
-              <div>• Se ainda não tens acesso, fala com Manu 💖</div>
-              <div class="login-support">
-                Suporte: manumendes199514@gmail.com
-              </div>
+    <!-- APP -->
+    <main id="app-section" class="hidden">
+      <!-- ABA TREINOS -->
+      <section id="aba-treinos" class="">
+        <div class="section-card">
+          <div class="section-title">Treinos</div>
+
+          <div class="link-list">
+            <!-- INICIANTE (arquivo dedicado) -->
+            <div class="link-row">
+              <b>Iniciante (5 dias)</b>
+              <a href="treinos/iniciante.html">Abrir</a>
             </div>
-          </form>
+
+            <!-- MÊS 1 → MÊS 12 (AVANÇADO) -->
+            <div class="link-row">
+              <b>Avançado — Mês 1 (6 dias)</b>
+              <a href="treinos/mes-01.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 2</b>
+              <a href="treinos/mes-02.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 3</b>
+              <a href="treinos/mes-03.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 4</b>
+              <a href="treinos/mes-04.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 5</b>
+              <a href="treinos/mes-05.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 6</b>
+              <a href="treinos/mes-06.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 7</b>
+              <a href="treinos/mes-07.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 8</b>
+              <a href="treinos/mes-08.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 9</b>
+              <a href="treinos/mes-09.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 10</b>
+              <a href="treinos/mes-10.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 11</b>
+              <a href="treinos/mes-11.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 12</b>
+              <a href="treinos/mes-12.html">Abrir</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- CONTEÚDO APP (depois login) -->
-      <section id="app-section" class="hidden">
-<!-- ABA TREINOS -->
-<section id="aba-treinos" class="">
-  <iframe
-    src="treinos.html"
-    style="
-      width:100%;
-      min-height:80vh;
-      border:0;
-      background:#0f0f12;
-      color:#fff;
-      display:block;
-    "
-  ></iframe>
-</section>
-
-<!-- ABA ALIMENTAÇÃO -->
-        <section id="aba-alimentacao" class="hidden">
-          <div class="section-card">
-            <div class="section-title">Alimentação</div>
-
-            <!-- GRUPO 1: INICIANTE -->
-            <div class="subsection-block">
-              <div class="subsection-header">Iniciante</div>
-
-              <!-- Botões para escolher cardápio (iniciante) -->
-              <div class="days-row" style="flex-wrap:wrap;">
-                <button class="day-btn" data-alim-group="iniciante" data-plan="hipertrofia">
-                  Hipertrofia
-                </button>
-                <button class="day-btn" data-alim-group="iniciante" data-plan="emagrecimento">
-                  Emagrecimento
-                </button>
-              </div>
-
-              <!-- Conteúdo HIPERTROFIA INICIANTE -->
-              <div
-                class="alim-card hidden"
-                data-content="iniciante-hipertrofia"
-                style="margin-top:16px;"
-              >
-                <div class="alim-title">
-                  CARDÁPIO 1 PARA HIPERTROFIA (1900 - 2100 KCAL)
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">PEQUENO-ALMOÇO</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      120g salada de frutas variadas<br />
-                      20g (lascas de castanha/coco ou aveia)<br />
-                      Fio de mel<br />
-                      2 ovos inteiros (mexido / cozido / frito com fio de azeite)
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      2 fatias de pão de forma (farinha 100% integral)
-                      ou 1 pão francês<br />
-                      40g queijo (cottage / mozarela / outro magro)<br />
-                      80g hambúrguer caseiro (frango / carne) OU<br />
-                      2 ovos inteiros (mexido / cozido / frito com fio de azeite)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      30g mix de oleaginosas (castanhas, nozes, amêndoas)<br />
-                      + 100g banana OU 100g manga
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      250g (1 unidade) iogurte proteico tipo SKYR / bebida láctea (soja)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">ALMOÇO</div>
-                  <div class="alim-op-text">
-                    150g (≈3 colheres de servir) batata doce / mandioca /
-                    inhame / batata inglesa / mandioquinha salsa
-                    OU arroz + feijão/lentilha<br /><br />
-                    100g ou 1 filete grande de carne vermelha OU frango OU peixe
-                    OU 3 ovos inteiros<br /><br />
-                    100g (≈2 colheres de servir) legumes cozidos<br />
-                    Folhas/salada à vontade<br /><br />
-                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA TARDE</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      Panqueca de banana:<br />
-                      Massa: 80g banana amassada + 30g aveia +
-                      2 ovos + canela<br />
-                      Recheio: 40g pasta de amendoim 100% (integral)
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      100g frango desfiado OU carne moída OU atum<br />
-                      + 100g mandioca OU batata doce cozida
-                      (pode fazer bolinhas e assar)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">JANTAR</div>
-                  <div class="alim-op-text">
-                    150g (≈3 colheres de servir) batata doce / mandioca /
-                    inhame / batata inglesa / mandioquinha salsa
-                    OU arroz + feijão/lentilha<br /><br />
-                    100g ou 1 filete grande de carne vermelha OU frango OU peixe
-                    OU 3 ovos inteiros<br /><br />
-                    100g (≈2 colheres de servir) legumes cozidos<br />
-                    Folhas/salada à vontade<br /><br />
-                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">CEIA</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">Opção 1</div>
-                    <div class="alim-op-text">
-                      250g (1 und.) iogurte proteico (SKYR) /
-                      bebida láctea (soja)
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">Opção 2</div>
-                    <div class="alim-op-text">
-                      40g pipoca de panela<br />
-                      <i>Obs: pesar o milho cru e usar fio de azeite</i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /HIPERTROFIA INICIANTE -->
-
-              <!-- Conteúdo EMAGRECIMENTO INICIANTE -->
-              <div
-                class="alim-card hidden"
-                data-content="iniciante-emagrecimento"
-                style="margin-top:16px;"
-              >
-                <div class="alim-title">
-                  CARDÁPIO 1 PARA EMAGRECIMENTO (1100 - 1300 KCAL)
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">PEQUENO ALMOÇO</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      1 iogurte grego zero (Milbona) 100g
-                      OU iogurte zero SKYR (Milbona) 100g<br />
-                      80g fruta (morango / kiwi / pêssego /
-                      maçã / pêra / ameixa / uva / manga)<br />
-                      20g (lascas de castanha/coco OU aveia)
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      1 fatia de pão de forma (farinha 100% integral)
-                      OU 30g aveia<br />
-                      30g queijo (cottage OU mozarela)<br />
-                      1 ovo inteiro (mexido / cozido /
-                      frito com fio de azeite)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      30g mix oleaginosas (castanhas, nozes, amêndoas)
-                      + 20g frutas secas (damasco, tâmara, ameixa)
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      1 barra de proteína (Whey Bar Probiótica / Bold)
-                      OU 25g whey protein
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">ALMOÇO</div>
-                  <div class="alim-op-text">
-                    50g (até ~80g máx) ou 1 colher de servir de:
-                    batata doce / mandioca / inhame / batata inglesa /
-                    mandioquinha salsa
-                    OU arroz integral + feijão/lentilha<br /><br />
-                    100g ou 1 filete grande de carne vermelha OU frango OU peixe
-                    OU 3 ovos inteiros<br /><br />
-                    100g (≈2 colheres de servir) legumes cozidos<br />
-                    Folhas/salada à vontade<br /><br />
-                    <b>Obs:</b> sobremesa opcional:
-                    20g chocolate ≥70%
-                    OU 1 colher (sopa) pasta de amendoim
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA TARDE</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      Panqueca de banana:<br />
-                      Massa: 60g banana amassada + 20g aveia +
-                      1 ovo + canela<br />
-                      Recheio: 30g pasta de amendoim integral
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      60g frango desfiado ou atum +
-                      60g mandioca ou batata doce cozida
-                      (pode fazer bolinhas e assar)
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">JANTAR</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      50g (até ~80g máx) ou 1 colher de servir de:
-                      batata doce / mandioca / inhame / batata inglesa /
-                      mandioquinha salsa
-                      OU arroz integral + feijão/lentilha<br /><br />
-                      100g ou 1 filete grande de carne vermelha OU frango OU peixe
-                      OU 3 ovos inteiros<br /><br />
-                      100g (≈2 colheres de servir) legumes cozidos<br />
-                      Folhas/salada à vontade
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 - Opção</div>
-                    <div class="alim-op-text">
-                      500ml shake:<br />
-                      30g leite em pó (proteína) + água +
-                      60g morango/banana/abacate +
-                      10g cacau em pó + fio de mel
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">CEIA</div>
-                  <div class="alim-op-text">
-                    1 chávena de chá (camomila ou lavanda)
-                  </div>
-                </div>
-              </div>
-              <!-- /EMAGRECIMENTO INICIANTE -->
+      <!-- ABA ALIMENTAÇÃO -->
+      <section id="aba-alimentacao" class="hidden">
+        <div class="section-card">
+          <div class="section-title">Alimentação</div>
+          <div class="link-list">
+            <div class="link-row">
+              <b>Mês 1 — Hipertrofia</b>
+              <a href="alimentacao/mes-01-hipertrofia.html">Abrir</a>
             </div>
-            <!-- /GRUPO INICIANTE -->
-
-            <!-- GRUPO 2: 1º MÊS -->
-            <div class="subsection-block">
-              <div class="subsection-header">1º Mês</div>
-
-              <!-- Botões para escolher cardápio (mês 1) -->
-              <div class="days-row" style="flex-wrap:wrap;">
-                <button class="day-btn" data-alim-group="mes1" data-plan="hipertrofia">
-                  Hipertrofia
-                </button>
-                <button class="day-btn" data-alim-group="mes1" data-plan="emagrecimento">
-                  Emagrecimento
-                </button>
-              </div>
-
-              <!-- Conteúdo HIPERTROFIA MÊS 1 -->
-              <div
-                class="alim-card hidden"
-                data-content="mes1-hipertrofia"
-                style="margin-top:16px;"
-              >
-                <div class="alim-title">
-                  CARDÁPIO PARA HIPERTROFIA (1900 – 2100 kCAL)
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">PEQUENO ALMOÇO</div>
-                  <div class="alim-op-text">
-                    (Café preto sem açúcar opcional)<br />
-                    1 cápsula de Ômega 3 todas as manhãs<br />
-                    5g de Creatina todas as manhãs
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      60g aveia OU 1 pão francês<br />
-                      Recheio:
-                      40g queijo variado + 20g bacon magro +
-                      80g hamburguer caseiro (bovino/frango)
-                      OU 3 ovos mexidos
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      Vitamina de abacate/banana:<br />
-                      500ml leite integral +
-                      100g abacate/banana +
-                      30g whey protein concentrado +
-                      30g pasta de amendoim integral
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 – Opção</div>
-                    <div class="alim-op-text">
-                      1 pão francês<br />
-                      Recheio:
-                      30g requeijão cremoso OU maionese +
-                      80g frango OU atum
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      100g abacate/banana +
-                      20g whey protein concentrado +
-                      30g pasta de amendoim integral
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">ALMOÇO</div>
-                  <div class="alim-op-text">
-                    150g (≈3 colheres de servir) batata doce / mandioca /
-                    inhame / batata inglesa
-                    OU arroz + feijão/lentilha/grão de bico<br /><br />
-                    150g (2 filetes grandes) carne vermelha / frango / peixe
-                    OU 4 ovos inteiros<br /><br />
-                    100g (≈2 colheres de servir) legumes cozidos<br />
-                    Folhas/salada à vontade<br /><br />
-                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA TARDE</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 – Opção</div>
-                    <div class="alim-op-text">
-                      100g frango/tilápia/carne bovina +
-                      100g mandioca/batata doce
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      Vitamina de abacate/banana:<br />
-                      500ml leite integral +
-                      100g abacate/banana +
-                      30g whey protein concentrado +
-                      30g pasta de amendoim integral
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">JANTAR</div>
-                  <div class="alim-op-text">
-                    150g (≈3 colheres de servir) batata doce / mandioca /
-                    inhame / batata inglesa
-                    OU arroz + feijão/lentilha/grão de bico<br /><br />
-                    150g (2 filetes grandes) carne vermelha / frango / peixe
-                    OU 4 ovos inteiros<br /><br />
-                    100g (≈2 colheres de servir) legumes cozidos<br />
-                    Folhas/salada à vontade<br /><br />
-                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">CEIA</div>
-                  <div class="alim-op-text">
-                    1 iogurte proteico 250g (SKYR ou MILBONA)
-                  </div>
-                </div>
-              </div>
-              <!-- /HIPERTROFIA MÊS1 -->
-
-              <!-- Conteúdo EMAGRECIMENTO MÊS 1 -->
-              <div
-                class="alim-card hidden"
-                data-content="mes1-emagrecimento"
-                style="margin-top:16px;"
-              >
-                <div class="alim-title">
-                  CARDÁPIO PARA EMAGRECIMENTO (1100 – 1300 KCAL)
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">PEQUENO ALMOÇO</div>
-                  <div class="alim-op-text">
-                    (Café preto sem açúcar opcional)<br />
-                    1 cápsula de Ômega 3 todas as manhãs<br />
-                    5g de Glutamina todas as manhãs
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 - Opção</div>
-                    <div class="alim-op-text">
-                      1 fatia de pão de forma integral + 10g
-                      geleia natural OU creme de ricota light
-                      OU molho pesto<br />
-                      + 1 ovo mexido
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      80g banana + fio de mel +
-                      10g farelo de aveia/psyllium +
-                      1 ovo mexido
-                      OU 20g whey protein isolado
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 – Opção</div>
-                    <div class="alim-op-text">
-                      80g fruta
-                      (maçã / pêra / kiwi / melão / morango)
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      20g chocolate 70% cacau
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">ALMOÇO</div>
-                  <div class="alim-op-text">
-                    50g (1 colher de servir) batata doce / mandioca /
-                    inhame / batata inglesa
-                    OU arroz integral + feijão/lentilha/grão de bico<br /><br />
-                    100g ou 1 filete grande de carne vermelha /
-                    frango / peixe OU 3 ovos inteiros<br /><br />
-                    100g (≈2 colheres de servir) legumes cozidos<br />
-                    Folhas/salada à vontade<br /><br />
-                    <b>Obs:</b> Sobremesa opcional:
-                    1 unidade ~20g paçoquita diet
-                    OU chocolate mínimo 70%
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">LANCHE DA TARDE</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 – Opção</div>
-                    <div class="alim-op-text">
-                      80g mamão/banana +
-                      20g whey protein isolado +
-                      30g pasta de amendoim integral
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      2 fatias (~35g cada) pão de forma integral
-                      OU 1 pão francês sem miolo
-                      + 2 ovos mexidos
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">JANTAR</div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">1 – Opção</div>
-                    <div class="alim-op-text">
-                      50g (1 colher de servir) batata doce / mandioca /
-                      inhame / batata inglesa
-                      OU arroz integral + feijão/lentilha/grão de bico<br /><br />
-                      100g ou 1 filete grande de carne vermelha /
-                      frango / peixe OU 3 ovos inteiros<br /><br />
-                      100g (≈2 colheres de servir) legumes cozidos<br />
-                      Folhas/salada à vontade
-                    </div>
-                  </div>
-
-                  <div class="alim-op">
-                    <div class="alim-op-label">2 – Opção</div>
-                    <div class="alim-op-text">
-                      Shake proteico:<br />
-                      água +
-                      80g morango/abacate +
-                      10g farelo de aveia ou psyllium +
-                      30g whey protein isolado
-                    </div>
-                  </div>
-                </div>
-
-                <div class="alim-block">
-                  <div class="alim-block-title">CEIA</div>
-                  <div class="alim-op-text">
-                    1 chávena de chá (camomila ou lavanda)
-                  </div>
-                </div>
-              </div>
-              <!-- /EMAGRECIMENTO MÊS1 -->
-            </div>
-            <!-- /GRUPO 1º MÊS -->
-          </div>
-        </section>
-        <!-- /ABA ALIMENTAÇÃO -->
-
-        <!-- ABA CARDIO -->
-        <section id="aba-cardio" class="hidden">
-          <div class="section-card">
-            <div class="section-title">Cardio</div>
-            <div class="inner-block">
-              <h4>Cardio Orientado</h4>
-              <p style="margin:0;color:#fff;">
-                Aqui defines intensidade e duração, como passámos:
-              </p>
-              <ul style="margin:8px 0 0 16px;padding:0;color:#ccc;font-size:0.8rem;">
-                <li>
-                  10-20 min pós-treino força, intensidade moderada (respiras
-                  acelerado mas consegues falar).
-                </li>
-                <li>
-                  Se objetivo é emagrecimento, subimos para 25-35 min em 2-3
-                  dias específicos.
-                </li>
-                <li>
-                  Se objetivo é recomposição, manter cardio moderado sem
-                  esgotar perna.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA RELAXAMENTO -->
-        <section id="aba-relax" class="hidden">
-          <div class="section-card">
-            <div class="section-title">Relaxamento / Alongamentos</div>
-            <div class="inner-block">
-              <h4>Alongamento e descarga</h4>
-              <p style="margin:0 0 8px 0;color:#fff;">
-                Usa pós-treino ou antes de dormir:
-              </p>
-              <ul style="margin:0 0 8px 16px;padding:0;color:#ccc;font-size:0.8rem;">
-                <li>Respiração profunda (4s entra / 4s segura / 6s solta).</li>
-                <li>
-                  Alongamento de posteriores (30s cada perna, sem dor
-                  aguda).
-                </li>
-                <li>Alongar cervical e trapézio, ombro relaxado.</li>
-                <li>Foam roller leve em glúteo e quadríceps.</li>
-              </ul>
-              <p style="margin:0;color:#999;font-size:0.75rem;">
-                Dormir melhor = recuperar melhor = resultados melhores.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA EXTRA -->
-        <section id="aba-extra" class="hidden">
-          <div class="section-card">
-            <div class="section-title">Extra / Foco</div>
-
-            <div class="extra-tabs">
-              <button
-                class="mini-tab-btn active"
-                data-extra="gluteo"
-                id="extra-gluteo"
-              >
-                Foco Glúteo
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-extra="quadriceps"
-                id="extra-quadriceps"
-              >
-                Foco Quad / Frente Coxa
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-extra="posterior"
-                id="extra-posterior"
-              >
-                Foco Posterior Coxa
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-extra="triceps"
-                id="extra-triceps"
-              >
-                Foco Tríceps / Braço
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-extra="ombro"
-                id="extra-ombro"
-              >
-                Foco Ombro
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-extra="detox"
-                id="extra-detox"
-              >
-                Detox
-              </button>
+            <div class="link-row">
+              <b>Mês 1 — Emagrecimento</b>
+              <a href="alimentacao/mes-01-emagrecimento.html">Abrir</a>
             </div>
 
-            <div id="extra-content"></div>
+            <!-- Deixas preparados os próximos meses (hipertrofia/emagrecimento) -->
+            <div class="link-row"><b>Mês 2 — Hipertrofia</b><a href="alimentacao/mes-02-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 2 — Emagrecimento</b><a href="alimentacao/mes-02-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 3 — Hipertrofia</b><a href="alimentacao/mes-03-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 3 — Emagrecimento</b><a href="alimentacao/mes-03-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 4 — Hipertrofia</b><a href="alimentacao/mes-04-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 4 — Emagrecimento</b><a href="alimentacao/mes-04-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 5 — Hipertrofia</b><a href="alimentacao/mes-05-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 5 — Emagrecimento</b><a href="alimentacao/mes-05-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 6 — Hipertrofia</b><a href="alimentacao/mes-06-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 6 — Emagrecimento</b><a href="alimentacao/mes-06-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 7 — Hipertrofia</b><a href="alimentacao/mes-07-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 7 — Emagrecimento</b><a href="alimentacao/mes-07-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 8 — Hipertrofia</b><a href="alimentacao/mes-08-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 8 — Emagrecimento</b><a href="alimentacao/mes-08-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 9 — Hipertrofia</b><a href="alimentacao/mes-09-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 9 — Emagrecimento</b><a href="alimentacao/mes-09-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 10 — Hipertrofia</b><a href="alimentacao/mes-10-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 10 — Emagrecimento</b><a href="alimentacao/mes-10-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 11 — Hipertrofia</b><a href="alimentacao/mes-11-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 11 — Emagrecimento</b><a href="alimentacao/mes-11-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 12 — Hipertrofia</b><a href="alimentacao/mes-12-hipertrofia.html">Abrir</a></div>
+            <div class="link-row"><b>Mês 12 — Emagrecimento</b><a href="alimentacao/mes-12-emagrecimento.html">Abrir</a></div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- ABA PERFIL -->
-        <section id="aba-perfil" class="hidden">
-          <div class="section-card">
-            <div class="section-title">Perfil / Progresso</div>
-            <div id="perfil-info"></div>
+      <!-- ABA CARDIO -->
+      <section id="aba-cardio" class="hidden">
+        <div class="section-card">
+          <div class="section-title">Cardio</div>
+          <div class="link-list">
+            <div class="link-row">
+              <b>Plano de Cardio (geral)</b>
+              <a href="cardio/cardio.html">Abrir</a>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <!-- ABA RELAXAMENTO -->
+      <section id="aba-relax" class="hidden">
+        <div class="section-card">
+          <div class="section-title">Relaxamento</div>
+          <div class="link-list">
+            <div class="link-row">
+              <b>Respiração / Alívio</b>
+              <a href="relaxamento/relax.html">Abrir</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA EXTRA -->
+      <section id="aba-extra" class="hidden">
+        <div class="section-card">
+          <div class="section-title">Extra</div>
+          <div class="link-list">
+            <div class="link-row"><b>Foco Glúteo</b><a href="extra/foco-gluteo.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Tríceps</b><a href="extra/foco-triceps.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Posterior Coxa</b><a href="extra/foco-posterior.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Quadríceps</b><a href="extra/foco-quadriceps.html">Abrir</a></div>
+            <div class="link-row"><b>Detox</b><a href="extra/detox.html">Abrir</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA PERFIL -->
+      <section id="aba-perfil" class="hidden">
+        <div class="section-card">
+          <div class="section-title">Perfil</div>
+          <div class="link-list">
+            <div class="link-row">
+              <b>Perfil da Aluna</b>
+              <a href="perfil/perfil.html">Abrir</a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer class="app-footer">
-      © <span id="year"></span> MANUFIT. Todos os direitos reservados.
-    </footer>
+    <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
 
-    <!-- ========================= -->
-    <!-- SCRIPT PRINCIPAL          -->
-    <!-- ========================= -->
     <script>
-      /*********************************
-       * 1. CONFIG BÁSICA / DADOS
-       *********************************/
-
-      // ALUNAS AUTORIZADAS
+      // ====== CONTROLO DE LOGIN (igual ao teu fluxo anterior) ======
       const EMAILS_VALIDOS = [
         "manumendes199514@gmail.com",
         "emiliamiranda3039@gmail.com",
@@ -1116,1268 +353,84 @@
         "nina_lopes_gomes@hotmail.com",
       ];
 
-      // DONA (vê todas no Perfil)
-      const OWNER_EMAIL = "manumendes199514@gmail.com";
-
-      // DIAS DE INÍCIO (para calcular há quantos dias cada aluna está no plano)
-      const USERS_INICIO = [
-        {
-          nome: "Emília",
-          email: "emiliamiranda3039@gmail.com",
-          inicio: "2025-09-25",
-        },
-        {
-          nome: "Zulmira",
-          email: "zulmira.mendes2@gmail.com",
-          inicio: "2025-09-20",
-        },
-        {
-          nome: "Jéssica",
-          email: "jessicarafaelacg@gmail.com",
-          inicio: "2025-09-18",
-        },
-        {
-          nome: "Carina",
-          email: "nina_lopes_gomes@hotmail.com",
-          inicio: "2025-09-29",
-        },
-      ];
-
-      // HELPERS
-      function diasDesde(isoData) {
-        const start = new Date(isoData + "T00:00:00Z");
-        const now = new Date();
-        const diff = now - start;
-        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-        return dias < 0 ? 0 : dias;
-      }
-
-      function saveEmail(email) {
-        localStorage.setItem("manufit_email", email.trim().toLowerCase());
-      }
-      function getEmail() {
-        return (localStorage.getItem("manufit_email") || "").toLowerCase();
-      }
-      function isAuthed() {
-        const e = getEmail();
-        return EMAILS_VALIDOS.includes(e);
-      }
-      function isOwner() {
-        return getEmail() === OWNER_EMAIL;
-      }
-      function logout() {
-        localStorage.removeItem("manufit_email");
-        location.reload();
-      }
-
-      /*********************************
-       * 2. TREINOS
-       *********************************/
-
-      // Cada exercício é um objecto:
-      // {
-      //   nome: "Agachamento Livre",
-      //   series: "3x10",
-      //   descanso: "1min",
-      //   links: ["url1","url2"...],
-      //   comboInfo: "Faz assim ...", // opcional
-      // }
-
-      // INICIANTE (5 dias)
-      const TREINO_INICIANTE = {
-        nome: "Iniciante",
-        dias: [
-          {
-            titulo: "Dia 1 – Perna e Glúteo",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Agachamento Peso do Corpo + Agachamento Livre (combinação)",
-                    series: "3x10 cada",
-                    descanso: "1 min no final",
-                    comboInfo:
-                      "Faz o agachamento peso do corpo, depois logo a seguir o agachamento livre. Só depois descansa 1 min. Alternar sem parar.",
-                    links: [
-                      "https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh", // Peso corpo
-                      "https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN", // Livre
-                    ],
-                  },
-                  {
-                    nome: "Leg Press 45",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L",
-                    ],
-                  },
-                  {
-                    nome: "Flexora Sentada",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1",
-                    ],
-                  },
-                  {
-                    nome: "Cadeira Extensora",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL",
-                    ],
-                  },
-                  {
-                    nome: "Flexora Deitada",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8",
-                    ],
-                  },
-                  {
-                    nome: "Gémeos em pé com halteres",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 2 – Membros Superiores + Abdómen",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Abd. Supra Curtinho + Abd. Infra + Abd. Remador (combinação)",
-                    series: "3x10 cada",
-                    descanso: "1 min no final",
-                    comboInfo:
-                      "Faz supra curtinho → infra → remador SEM parar. Isto conta como 1 série, só depois descansa.",
-                    links: [
-                      "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw", // supra curtinho
-                      "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56", // infra
-                      "https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu", // remador
-                    ],
-                  },
-                  {
-                    nome: "Puxada Frente (Pegada Aberta) + Remada Curvada Halteres (combinação)",
-                    series: "3x10 cada",
-                    descanso: "1 min no final",
-                    comboInfo:
-                      "Executa puxada na polia e logo em seguida remada curvada com halteres. Descansa só depois.",
-                    links: [
-                      "https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF", // puxada frente
-                      "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu", // remada curvada halteres
-                    ],
-                  },
-                  {
-                    nome: "Flexão de Braço + Desenvolvimento Halteres (ombro) (combinação)",
-                    series: "3x10 cada",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Faz flexão e logo depois desenvolvimento de ombros com halteres. A seguir descansa.",
-                    links: [
-                      "https://youtu.be/tBojP6GHtDY?si=pSEq086dV3i0Bl0G", // flexão
-                      "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f", // desenvolvimento halteres
-                    ],
-                  },
-                  {
-                    nome: "Rosca Direta Halteres + Tríceps Testa (combinação)",
-                    series: "3x10 cada",
-                    descanso: "1 min no final",
-                    comboInfo:
-                      "Rosca direta para bíceps → depois tríceps testa. Só descansa no fim.",
-                    links: [
-                      "https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq", // rosca halteres
-                      "https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU", // tríceps testa
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 3 – Full Body / Condicionamento",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Remada Unilateral + (variações sem ‘sapinho’ agora)",
-                    series: "3x10 cada lado",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Mantém postura forte, costas firmes. Burpee sapinho foi removido aqui como pediste.",
-                    links: [
-                      "https://youtu.be/vPpx8iwLmn8?si=wyqIxcd2Cx9O_g_O", // remada unilateral? (ajustável)
-                      "https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR", // movimento composto corpo inteiro
-                    ],
-                  },
-                  {
-                    nome: "Prancha / Core Estável",
-                    series: "3x30s",
-                    descanso: "40s",
-                    links: [
-                      "https://youtu.be/hGNYkjF36mA?si=GDSP_o7Bdofarz_P",
-                    ],
-                  },
-                  {
-                    nome: "Mobilidade Ombro / Braço",
-                    series: "2x15 reps controladas",
-                    descanso: "conforme necessário",
-                    links: [
-                      "https://youtu.be/CII_TkXd0dU?si=FKJWKWKudtHxHVss",
-                      "https://youtu.be/5uwgNo5K1jM?si=LiTyReCZErEG8Wo6",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 4 – Inferiores (ênfase glúteo e posterior)",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Afundo Smith + Afundo Peso do Corpo (combinação)",
-                    series: "3x10 cada perna",
-                    descanso: "1 min após as duas variações",
-                    comboInfo:
-                      "Faz afundo no Smith e logo a seguir afundo só com peso corporal para queimar. Depois descansa.",
-                    links: [
-                      "https://youtu.be/Rgo6fH-arTE?si=weGJf0gibTMipRhM", // Afundo Smith
-                      "https://youtu.be/fIlbCCg8Pgg", // Afundo peso corpo
-                    ],
-                  },
-                  {
-                    nome: "Sumô",
-                    series: "3x12",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/ZXyzfNO497M?si=7ToFuGtxWBGLECtf",
-                    ],
-                  },
-                  {
-                    nome: "Leg Press Horizontal Unilateral",
-                    series: "3x10 cada perna",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/3c2pZFI4-xQ?si=Zux2lKp5OuvLG5Zu",
-                    ],
-                  },
-                  {
-                    nome: "Leg Press Horizontal Bilateral",
-                    series: "3x10-12",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/W1QWvmQ_ZuM?si=vpqYKX_YTNAqJgMP",
-                    ],
-                  },
-                  {
-                    nome: "Glúteo 4 Apoios + Elevação Pélvica (combinação)",
-                    series: "3x15",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Faz glúteo 4 apoios e logo depois elevação pélvica focando contração máxima em cima.",
-                    links: [
-                      "https://youtu.be/luvbFKnA6aA?si=Bh2piZlDP7S2hc1H", // 4 apoios
-                      "https://youtu.be/UT-WBhxo9uA?si=Q78nf6XHt4g40FKw", // elevação pélvica
-                    ],
-                  },
-                  {
-                    nome: "Stiff",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/43u1zfJUUi0?si=sC1mYwjfgG3Gh7RE",
-                    ],
-                  },
-                  {
-                    nome: "Gémeos no Smith",
-                    series: "3x15",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/w_aic9GI0CY?si=iSSIyt8FwKkzAoD3",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 5 – Core + Parte Superior",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Supra Curtinho + Infra + Remador (combinação)",
-                    series: "3x10 cada",
-                    descanso: "1 min ao final",
-                    comboInfo:
-                      "Mesma regra do Dia 2: faz todos seguidos e só depois do 3º descansa.",
-                    links: [
-                      "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw", // supra
-                      "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56", // infra
-                      "https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu", // remador abd
-                    ],
-                  },
-                  {
-                    nome: "Puxada Frente Aberta + Remada Curvada Halteres",
-                    series: "3x10 cada",
-                    descanso: "1 min ao final",
-                    comboInfo:
-                      "Puxada na polia, em seguida remada curvada com halteres.",
-                    links: [
-                      "https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF", // puxada frente
-                      "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu", // remada curvada halteres
-                    ],
-                  },
-                  {
-                    nome: "Flexão de Braço + Desenvolvimento Halteres Ombro",
-                    series: "3x10 cada",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Faz flexão e imediatamente desenvolvimento ombro halteres.",
-                    links: [
-                      "https://youtu.be/tBojP6GHtDY?si=pSEq086dV3i0Bl0G", // flexão
-                      "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f", // desenvolvimento
-                    ],
-                  },
-                  {
-                    nome: "Rosca Direta Halteres + Tríceps Testa",
-                    series: "3x10 cada",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Bíceps primeiro (rosca direta), depois tríceps testa.",
-                    links: [
-                      "https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq", // rosca
-                      "https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU", // tríceps testa
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      };
-
-      // AVANÇADO • 1º MÊS (6 dias)
-      const TREINO_AVANCADO = {
-        nome: "Avançado • 1º mês",
-        dias: [
-          {
-            titulo: "Dia 1 – Peito / Tríceps (combos)",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Supino Reto com Barra + Supino Reto com Halteres",
-                    series: "3x10 cada",
-                    descanso: "1 min no final",
-                    comboInfo:
-                      "Faz supino Barra e em seguida supino Halteres. São dois exercícios diferentes, é combinação.",
-                    links: [
-                      "https://youtu.be/d6jKfi6l3MM?si=JinMYZN7t0Dk0cv-", // supino barra
-                      "https://youtu.be/KyHYsJ5YZQE?si=GWdKYfEgcrvWTbNC", // supino halteres
-                    ],
-                  },
-                  {
-                    nome: "Tríceps na Polia + Tríceps Francês",
-                    series: "3x12 cada",
-                    descanso: "1 min ao final",
-                    comboInfo:
-                      "Dois exercícios diferentes de tríceps feitos seguidos.",
-                    links: [
-                      "https://youtu.be/zxItpU2RsP4?si=1LtXJ4wDk7Kb3F5R", // tríceps polia
-                      "https://youtu.be/LU4xYDGbpjA", // tríceps francês
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 2 – Inferior / Glúteo (Smith / Peso Corpo)",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Afundo Smith + Afundo Peso do Corpo",
-                    series: "3x10 cada perna",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Faz primeiro no Smith, depois imediatamente a variação só peso corporal.",
-                    links: [
-                      "https://youtu.be/Rgo6fH-arTE?si=weGJf0gibTMipRhM", // smith
-                      "https://youtu.be/fIlbCCg8Pgg", // peso corpo
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 3 – Costas / Ombro / Core",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Puxada Frente (Pegada Aberta)",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF",
-                    ],
-                  },
-                  {
-                    nome: "Remada Curvada com Halteres",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu",
-                    ],
-                  },
-                  {
-                    nome: "Desenvolvimento com Halteres (Ombro)",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f",
-                    ],
-                  },
-                  {
-                    nome: "Elevação Lateral",
-                    series: "3x12-15",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq",
-                    ],
-                  },
-                  {
-                    nome: "Abdominais / Core Estável",
-                    series: "3x20",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 4 – Perna Pesada / Glúteo Foco",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Sumô",
-                    series: "3x12",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/ZXyzfNO497M?si=7ToFuGtxWBGLECtf",
-                    ],
-                  },
-                  {
-                    nome: "Leg Press Horizontal Unilateral",
-                    series: "3x10 cada perna",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/3c2pZFI4-xQ?si=Zux2lKp5OuvLG5Zu",
-                    ],
-                  },
-                  {
-                    nome: "Leg Press Horizontal Bilateral",
-                    series: "3x10-12",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/W1QWvmQ_ZuM?si=vpqYKX_YTNAqJgMP",
-                    ],
-                  },
-                  {
-                    nome: "Glúteo 4 Apoios + Elevação Pélvica",
-                    series: "3x15",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Executa 4 apoios e depois elevação pélvica para queimar glúteo.",
-                    links: [
-                      "https://youtu.be/luvbFKnA6aA?si=Bh2piZlDP7S2hc1H", // 4 apoios
-                      "https://youtu.be/UT-WBhxo9uA?si=Q78nf6XHt4g40FKw", // elevação
-                    ],
-                  },
-                  {
-                    nome: "Stiff",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/43u1zfJUUi0?si=sC1mYwjfgG3Gh7RE",
-                    ],
-                  },
-                  {
-                    nome: "Gémeos no Smith",
-                    series: "3x15",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/w_aic9GI0CY?si=iSSIyt8FwKkzAoD3",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 5 – Braço / Peito / Ombro (Combos)",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Rosca Direta Halteres + Tríceps Testa",
-                    series: "3x10 cada",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Bíceps seguido imediatamente de tríceps testa.",
-                    links: [
-                      "https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq",
-                      "https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU",
-                    ],
-                  },
-                  {
-                    nome: "Flexão de Braço + Desenvolvimento Halteres Ombro",
-                    series: "3x10 cada",
-                    descanso: "1 min",
-                    comboInfo:
-                      "Faz flexão e logo depois desenvolvimento ombro.",
-                    links: [
-                      "https://youtu.be/tBojP6GHtDY?si=pSEq086dV3i0Bl0G",
-                      "https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f",
-                    ],
-                  },
-                  {
-                    nome: "Core (Abdominais)",
-                    series: "3x20",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw",
-                      "https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56",
-                      "https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-
-          {
-            titulo: "Dia 6 – Inferiores / Smith / Glúteo",
-            blocos: [
-              {
-                exercicios: [
-                  {
-                    nome: "Agachamento no Smith",
-                    series: "3x10",
-                    descanso: "1 min",
-                    links: [
-                      "https://youtu.be/owUMm3GZ1b0?si=z8-E9JTUbVkKGF1t",
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      };
-
-      /*********************************
-       * 3. ALIMENTAÇÃO (4 planos)
-       *********************************/
-
-      // NOTA IMPORTANTE:
-      // Aqui eu vou montar os 4 cardápios baseados na tua descrição.
-      // Ajusta os textos internos depois se precisares.
-      //
-      // Cada plano tem "titulo" e "linhas" (array de strings / refeições / orientações).
-
-      const FOOD_PLANS = {
-        hipertrofia_base: {
-          titulo: "Hipertrofia (base)",
-          linhas: [
-            "Objetivo: ganhar massa magra / construir músculo.",
-            "Inclui proteína suficiente em cada refeição.",
-            "Inclui carboidrato de suporte para treinar forte.",
-            "Beber bastante água ao longo do dia.",
-            "Evitar longos jejum sem proteína.",
-          ],
-        },
-        emagrecimento_base: {
-          titulo: "Emagrecimento (base)",
-          linhas: [
-            "Objetivo: reduzir gordura corporal.",
-            "Défice calórico controlado.",
-            "Proteína alta para proteger massa magra.",
-            "Fibras e vegetais para saciedade.",
-            "Evitar açúcar líquido.",
-          ],
-        },
-        hipertrofia_mes1: {
-          titulo: "Hipertrofia • 1º mês",
-          linhas: [
-            "Primeiro mês estruturado para subir carga nos treinos.",
-            "Inclui carbo bom pré-treino e refeição proteica pós.",
-            "Atenção ao descanso e sono.",
-          ],
-        },
-        emagrecimento_mes1: {
-          titulo: "Emagrecimento • 1º mês",
-          linhas: [
-            "Primeiro mês focado em queimar gordura.",
-            "Cardio moderado pós-treino 2-3x/semana.",
-            "Redução controlada de hidratos à noite.",
-            "Cortar fritos e refrigerantes.",
-          ],
-        },
-      };
-
-      /*********************************
-       * 4. EXTRA / FOCO
-       *********************************/
-
-      const EXTRA_CONTENT = {
-        gluteo: {
-          titulo: "Foco Glúteo",
-          linhas: [
-            "Elevação Pélvica (3×15) — aperta no topo.",
-            "Glúteo 4 apoios (3×15 cada perna).",
-            "Agachamento Sumô (3×12).",
-            "Carga moderada, movimento controlado.",
-          ],
-        },
-        quadriceps: {
-          titulo: "Foco Quad / Frente da Coxa",
-          linhas: [
-            "Cadeira Extensora (3×15).",
-            "Agachamento Livre (3×10).",
-            "Leg Press empurrando com frente do pé (3×12-15).",
-            "Joelho alinhado com o pé, não deixa cair para dentro.",
-          ],
-        },
-        posterior: {
-          titulo: "Foco Posterior Coxa",
-          linhas: [
-            "Stiff (3×10).",
-            "Flexora Sentada / Deitada (3×15).",
-            "Afundo Smith (3×10 cada perna).",
-            "Costas direitas, sentir alongar sem dor aguda.",
-          ],
-        },
-        triceps: {
-          titulo: "Foco Tríceps / Braço",
-          linhas: [
-            "Tríceps na Polia (3×12).",
-            "Tríceps Francês (3×12).",
-            "Tríceps Testa (3×10).",
-            "Cotovelos firmes, não abrir para fora.",
-          ],
-        },
-        ombro: {
-          titulo: "Foco Ombro",
-          linhas: [
-            "Elevação Lateral (3×12-15).",
-            "Desenvolvimento Halteres (3×10-12).",
-            "Face Pull / remada alta leve (3×15).",
-            "Movimento controlado, não balançar corpo.",
-          ],
-        },
-        detox: {
-          detox: true,
-        },
-      };
-
-      /*********************************
-       * 5. RENDER HELPERS
-       *********************************/
-
-      function renderExerciseRow(ex) {
-        // ex.links pode ter 1 ou vários (combinação)
-        let linksHTML = "";
-        if (ex.links && ex.links.length > 0) {
-          linksHTML = ex.links
-            .map(
-              (l, idx) => `
-              <a
-                class="video-link"
-                href="${l}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ver vídeo ${ex.links.length > 1 ? idx + 1 : ""}
-              </a>
-            `
-            )
-            .join("");
-        }
-
-        return `
-          <div class="exercise-row">
-            <div class="exercise-left">
-              <div>${ex.nome}</div>
-              <div class="exercise-specs">
-                ${ex.series ? ex.series + " • " : ""}${
-          ex.descanso || ""
-        } 
-              </div>
-              ${
-                ex.comboInfo
-                  ? `<div class="combo-note">${ex.comboInfo}</div>`
-                  : ""
-              }
-            </div>
-            <div class="exercise-right">
-              ${linksHTML}
-            </div>
-          </div>
-        `;
-      }
-
-      function renderBloco(bloco) {
-        const inner = bloco.exercicios
-          .map((ex) => renderExerciseRow(ex))
-          .join("");
-        return `
-          <div class="inner-block">
-            ${inner}
-          </div>
-        `;
-      }
-
-      function renderDiaTreino(diaObj) {
-        // diaObj: {titulo, blocos:[{exercicios:[...]}]}
-        const blocosHTML = diaObj.blocos.map((b) => renderBloco(b)).join("");
-        return `
-          <div class="section-card">
-            <div class="section-title">${diaObj.titulo}</div>
-            ${blocosHTML}
-          </div>
-        `;
-      }
-
-      function renderFoodPlan(planKey) {
-        const p = FOOD_PLANS[planKey];
-        if (!p) return "";
-        const list = p.linhas
-          .map(
-            (linha) => `
-            <li>${linha}</li>
-          `
-          )
-          .join("");
-        return `
-          <div class="section-card">
-            <div class="section-title">${p.titulo}</div>
-            <div class="inner-block">
-              <ul style="margin:0;padding-left:16px;list-style:disc;color:#fff;">
-                ${list}
-              </ul>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderExtra(extraKey) {
-        if (extraKey === "detox") {
-          return `
-            <div class="detox-box">
-              <h2>Detox 🥥</h2>
-              <p style="font-size:0.95rem;color:rgba(255,255,255,0.9);font-style:normal;margin:0 0 12px 0;">
-                Bate tudo no liquidificador com gelo a gosto. Ideal para
-                refrescar e hidratar.
-              </p>
-              <ul>
-                <li>🥬 2 folhas de couve</li>
-                <li>🍋 1 limão</li>
-                <li>Gengibre (quantidade generosa)</li>
-                <li>🍍 1 rodela de abacaxi</li>
-                <li>🍏 1 maçã</li>
-                <li>🥥 1 litro de água de coco</li>
-              </ul>
-              <p>
-                Dica: ajusta acidez/doçura com mais limão ou abacaxi
-                conforme o gosto.
-              </p>
-            </div>
-          `;
-        }
-
-        const bloco = EXTRA_CONTENT[extraKey];
-        if (!bloco) return "";
-        const lines = bloco.linhas
-          .map(
-            (ln) => `
-          <li>${ln}</li>
-        `
-          )
-          .join("");
-        return `
-          <div class="section-card">
-            <div class="section-title">${bloco.titulo}</div>
-            <div class="inner-block">
-              <ul style="margin:0;padding-left:16px;list-style:disc;color:#fff;">
-                ${lines}
-              </ul>
-              <p style="margin:12px 0 0 0;color:#999;font-size:0.75rem;">
-                Executa com controlo, foco no músculo alvo.
-              </p>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderPerfil() {
-        const emailAtual = getEmail();
-        const dono = isOwner();
-
-        if (dono) {
-          // Manu vê todas
-          const rows = USERS_INICIO.map((u) => {
-            const d = diasDesde(u.inicio);
-            return `
-              <tr>
-                <td>${u.nome}</td>
-                <td>${u.email}</td>
-                <td>${d} dias</td>
-              </tr>
-            `;
-          }).join("");
-
-          return `
-            <div class="section-card">
-              <div class="section-title">Progresso de todas</div>
-              <div class="inner-block" style="overflow-x:auto;">
-                <table class="perfil-table">
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Email</th>
-                      <th>Dias desde início</th>
-                    </tr>
-                  </thead>
-                  <tbody>${rows}</tbody>
-                </table>
-              </div>
-            </div>
-          `;
-        } else {
-          // Aluna vê só ela
-          const eu = USERS_INICIO.find(
-            (u) => u.email.toLowerCase() === emailAtual.toLowerCase()
-          );
-          if (!eu) {
-            return `
-              <div class="section-card">
-                <div class="section-title">O teu progresso</div>
-                <div class="inner-block">
-                  <p style="margin:0;color:#fff;">
-                    Dados não encontrados. Fala com a Manu 💖
-                  </p>
-                </div>
-              </div>
-            `;
-          }
-          const d = diasDesde(eu.inicio);
-          return `
-            <div class="section-card">
-              <div class="section-title">O teu progresso</div>
-              <div class="inner-block">
-                <p style="margin:0;color:#fff;font-weight:600;">
-                  ${eu.nome}
-                </p>
-                <p style="margin:4px 0 0 0;color:#fff;">
-                  ${d} dias desde o início
-                </p>
-              </div>
-            </div>
-          `;
-        }
-      }
-
-      /*********************************
-       * 6. INTERAÇÃO / ESTADO
-       *********************************/
-
-      let currentTab = "treinos"; // aba principal
-      let currentNivel = "iniciante"; // iniciante | avancado
-      let currentDiaIndex = 0; // índice do dia selecionado
-      let currentFood = "hipertrofia_base";
-      let currentExtra = "gluteo";
-
       const loginSection = document.getElementById("login-section");
-      const appSection = document.getElementById("app-section");
-      const headerEl = document.getElementById("app-header");
+      const appSection   = document.getElementById("app-section");
+      const topTabs      = document.getElementById("top-tabs");
 
-      const tabs = document.querySelectorAll("#main-tabs .tab-btn");
+      const emailInput   = document.getElementById("email-input");
+      const loginForm    = document.getElementById("login-form");
+      const btnSair      = document.getElementById("btn-sair");
 
-      const abaTreinos = document.getElementById("aba-treinos");
-      const abaAlimentacao = document.getElementById("aba-alimentacao");
-      const abaCardio = document.getElementById("aba-cardio");
-      const abaRelax = document.getElementById("aba-relax");
-      const abaExtra = document.getElementById("aba-extra");
-      const abaPerfil = document.getElementById("aba-perfil");
+      function saveEmail(email){ localStorage.setItem("manufit_email", email.trim().toLowerCase()); }
+      function getEmail(){ return (localStorage.getItem("manufit_email") || "").toLowerCase(); }
+      function isAuthed(){ const e = getEmail(); return EMAILS_VALIDOS.includes(e); }
+      function logout(){ localStorage.removeItem("manufit_email"); }
 
-      const diasContainer = document.getElementById("dias-container");
-      const treinoDiaConteudo = document.getElementById("treino-dia-conteudo");
+      function show(el){ el.classList.remove("hidden"); }
+      function hide(el){ el.classList.add("hidden"); }
 
-      const foodContent = document.getElementById("food-content");
-
-      const extraContent = document.getElementById("extra-content");
-
-      const perfilInfo = document.getElementById("perfil-info");
-
-      // render das abas
-      function renderTabs() {
-        abaTreinos.classList.add("hidden");
-        abaAlimentacao.classList.add("hidden");
-        abaCardio.classList.add("hidden");
-        abaRelax.classList.add("hidden");
-        abaExtra.classList.add("hidden");
-        abaPerfil.classList.add("hidden");
-
-        if (currentTab === "treinos") {
-          abaTreinos.classList.remove("hidden");
-        } else if (currentTab === "alimentacao") {
-          abaAlimentacao.classList.remove("hidden");
-        } else if (currentTab === "cardio") {
-          abaCardio.classList.remove("hidden");
-        } else if (currentTab === "relax") {
-          abaRelax.classList.remove("hidden");
-        } else if (currentTab === "extra") {
-          abaExtra.classList.remove("hidden");
-        } else if (currentTab === "perfil") {
-          abaPerfil.classList.remove("hidden");
+      function renderState(){
+        const ok = isAuthed();
+        if (ok){
+          hide(loginSection);
+          show(appSection);
+          show(topTabs);
+          selectTab("treinos"); // abre Treinos por padrão
+        } else {
+          show(loginSection);
+          hide(appSection);
+          hide(topTabs);
         }
-
-        // marcar ativo visualmente no header
-        tabs.forEach((b) => {
-          if (
-            b.dataset.tab &&
-            b.dataset.tab.toLowerCase() === currentTab.toLowerCase()
-          ) {
-            b.classList.add("active");
-          } else {
-            b.classList.remove("active");
-          }
-        });
       }
 
-      // gerar botões dos dias dependendo do nível
-      function renderDiasTabs() {
-        const dataset =
-          currentNivel === "iniciante" ? TREINO_INICIANTE : TREINO_AVANCADO;
-
-        let htmlBtns = "";
-        dataset.dias.forEach((d, idx) => {
-          htmlBtns += `
-            <button
-              class="mini-tab-btn ${
-                idx === currentDiaIndex ? "active" : ""
-              }"
-              data-dia="${idx}"
-            >
-              ${d.titulo}
-            </button>
-          `;
-        });
-        diasContainer.innerHTML = htmlBtns;
-
-        // ligar clicks
-        const diaBtns = diasContainer.querySelectorAll("button.mini-tab-btn");
-        diaBtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            currentDiaIndex = parseInt(btn.getAttribute("data-dia"), 10);
-            renderTreinoDia();
-            renderDiasTabs(); // refaz active style
-          });
-        });
-      }
-
-      // mostra conteúdo do dia selecionado
-      function renderTreinoDia() {
-        const dataset =
-          currentNivel === "iniciante" ? TREINO_INICIANTE : TREINO_AVANCADO;
-        const diaObj = dataset.dias[currentDiaIndex];
-        treinoDiaConteudo.innerHTML = renderDiaTreino(diaObj);
-      }
-
-      // alimentação
-      function renderFoodTabs() {
-        // só precisa atualizar classes active nos botões
-        document
-          .getElementById("food-hipertrofia-base")
-          .classList.toggle("active", currentFood === "hipertrofia_base");
-        document
-          .getElementById("food-emagrecimento-base")
-          .classList.toggle("active", currentFood === "emagrecimento_base");
-        document
-          .getElementById("food-hipertrofia-mes1")
-          .classList.toggle("active", currentFood === "hipertrofia_mes1");
-        document
-          .getElementById("food-emagrecimento-mes1")
-          .classList.toggle("active", currentFood === "emagrecimento_mes1");
-
-        foodContent.innerHTML = renderFoodPlan(currentFood);
-      }
-
-      // extra
-      function renderExtraTabs() {
-        document
-          .getElementById("extra-gluteo")
-          .classList.toggle("active", currentExtra === "gluteo");
-        document
-          .getElementById("extra-quadriceps")
-          .classList.toggle("active", currentExtra === "quadriceps");
-        document
-          .getElementById("extra-posterior")
-          .classList.toggle("active", currentExtra === "posterior");
-        document
-          .getElementById("extra-triceps")
-          .classList.toggle("active", currentExtra === "triceps");
-        document
-          .getElementById("extra-ombro")
-          .classList.toggle("active", currentExtra === "ombro");
-        document
-          .getElementById("extra-detox")
-          .classList.toggle("active", currentExtra === "detox");
-
-        extraContent.innerHTML = renderExtra(currentExtra);
-      }
-
-      function renderPerfilInfo() {
-        perfilInfo.innerHTML = renderPerfil();
-      }
-
-      /*********************************
-       * 7. LOGIN FLOW
-       *********************************/
-
-      function showAppUI() {
-        loginSection.classList.add("hidden");
-        appSection.classList.remove("hidden");
-        headerEl.classList.remove("hidden");
-      }
-
-      function showLoginUI() {
-        loginSection.classList.remove("hidden");
-        appSection.classList.add("hidden");
-        headerEl.classList.add("hidden");
-      }
-
-      function setupLogin() {
-        const form = document.getElementById("login-form");
-        const emailInput = document.getElementById("login-email");
-
-        form.addEventListener("submit", (e) => {
+      function setupLogin(){
+        loginForm.addEventListener("submit", (e) => {
           e.preventDefault();
-          const val = (emailInput.value || "").trim().toLowerCase();
-          if (!val) return;
-
-          saveEmail(val);
-
-          if (isAuthed()) {
-            showAppUI();
-            renderAll();
+          const v = (emailInput.value || "").trim().toLowerCase();
+          if (!v) return;
+          if (EMAILS_VALIDOS.includes(v)) {
+            saveEmail(v);
+            renderState();
           } else {
-            alert(
-              "Este email não tem acesso ainda. Fala com a Manu 💖"
-            );
+            alert("Este email não tem acesso ainda. Fala com a Manu 💖");
           }
         });
-      }
 
-      /*********************************
-       * 8. EVENTOS DE UI (abas/header)
-       *********************************/
-
-      function setupHeaderTabs() {
-        tabs.forEach((b) => {
-          // botão "Sair"
-          if (b.dataset.logout === "1") {
-            b.addEventListener("click", () => {
-              logout();
-            });
-            return;
-          }
-
-          // abas normais
-          b.addEventListener("click", () => {
-            if (b.dataset.tab) {
-              currentTab = b.dataset.tab;
-              renderTabs();
-
-              // quando mudamos de aba, refrescamos o conteúdo específico
-              if (currentTab === "treinos") {
-                renderDiasTabs();
-                renderTreinoDia();
-              } else if (currentTab === "alimentacao") {
-                renderFoodTabs();
-              } else if (currentTab === "extra") {
-                renderExtraTabs();
-              } else if (currentTab === "perfil") {
-                renderPerfilInfo();
-              }
-            }
-          });
+        btnSair.addEventListener("click", () => {
+          logout();
+          renderState();
         });
       }
 
-      function setupNivelTabs() {
-        const btnIni = document.getElementById("btn-nivel-iniciante");
-        const btnAv = document.getElementById("btn-nivel-avancado");
+      // ====== TABS ======
+      const tabs = document.querySelectorAll(".tab-btn");
+      const pages = {
+        treinos:      document.getElementById("aba-treinos"),
+        alimentacao:  document.getElementById("aba-alimentacao"),
+        cardio:       document.getElementById("aba-cardio"),
+        relax:        document.getElementById("aba-relax"),
+        extra:        document.getElementById("aba-extra"),
+        perfil:       document.getElementById("aba-perfil"),
+      };
 
-        function refreshNivelButtons() {
-          btnIni.classList.toggle("active", currentNivel === "iniciante");
-          btnAv.classList.toggle("active", currentNivel === "avancado");
-        }
-
-        btnIni.addEventListener("click", () => {
-          currentNivel = "iniciante";
-          currentDiaIndex = 0;
-          refreshNivelButtons();
-          renderDiasTabs();
-          renderTreinoDia();
+      function selectTab(name){
+        tabs.forEach(b => b.classList.toggle("active", b.dataset.tab === name));
+        Object.entries(pages).forEach(([key, el]) => {
+          if (!el) return;
+          if (key === name) el.classList.remove("hidden"); else el.classList.add("hidden");
         });
-
-        btnAv.addEventListener("click", () => {
-          currentNivel = "avancado";
-          currentDiaIndex = 0;
-          refreshNivelButtons();
-          renderDiasTabs();
-          renderTreinoDia();
-        });
-
-        refreshNivelButtons();
       }
 
-      function setupFoodTabs() {
-        document
-          .getElementById("food-hipertrofia-base")
-          .addEventListener("click", () => {
-            currentFood = "hipertrofia_base";
-            renderFoodTabs();
-          });
-        document
-          .getElementById("food-emagrecimento-base")
-          .addEventListener("click", () => {
-            currentFood = "emagrecimento_base";
-            renderFoodTabs();
-          });
-        document
-          .getElementById("food-hipertrofia-mes1")
-          .addEventListener("click", () => {
-            currentFood = "hipertrofia_mes1";
-            renderFoodTabs();
-          });
-        document
-          .getElementById("food-emagrecimento-mes1")
-          .addEventListener("click", () => {
-            currentFood = "emagrecimento_mes1";
-            renderFoodTabs();
-          });
-      }
+      tabs.forEach(btn => {
+        btn.addEventListener("click", () => selectTab(btn.dataset.tab));
+      });
 
-      function setupExtraTabs() {
-        document
-          .getElementById("extra-gluteo")
-          .addEventListener("click", () => {
-            currentExtra = "gluteo";
-            renderExtraTabs();
-          });
-        document
-          .getElementById("extra-quadriceps")
-          .addEventListener("click", () => {
-            currentExtra = "quadriceps";
-            renderExtraTabs();
-          });
-        document
-          .getElementById("extra-posterior")
-          .addEventListener("click", () => {
-            currentExtra = "posterior";
-            renderExtraTabs();
-          });
-        document
-          .getElementById("extra-triceps")
-          .addEventListener("click", () => {
-            currentExtra = "triceps";
-            renderExtraTabs();
-          });
-        document
-          .getElementById("extra-ombro")
-          .addEventListener("click", () => {
-            currentExtra = "ombro";
-            renderExtraTabs();
-          });
-        document
-          .getElementById("extra-detox")
-          .addEventListener("click", () => {
-            currentExtra = "detox";
-            renderExtraTabs();
-          });
-      }
+      // FOOTER YEAR
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-      /*********************************
-       * 9. RENDER INICIAL
-       *********************************/
-
-      function renderAll() {
-        // abas
-        renderTabs();
-
-        // treinos
-        renderDiasTabs();
-        renderTreinoDia();
-
-        // alimentação
-        renderFoodTabs();
-
-        // extra
-        renderExtraTabs();
-
-        // perfil
-        renderPerfilInfo();
-      }
-
-      /*********************************
-       * 10. STARTUP
-       *********************************/
-
-      // coloca ano no footer
-      document.getElementById("year").textContent =
-        new Date().getFullYear();
-
-      // liga handlers
+      // INIT
       setupLogin();
-      setupHeaderTabs();
-      setupNivelTabs();
-      setupFoodTabs();
-      setupExtraTabs();
-
-      // se já está logada (localStorage)
-      if (isAuthed()) {
-        showAppUI();
-        renderAll();
-      } else {
-        showLoginUI();
-      }
+      renderState();
     </script>
   </body>
 </html>
