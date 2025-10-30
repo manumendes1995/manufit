@@ -422,46 +422,562 @@
   ></iframe>
 </section>
 
-        <!-- ABA ALIMENTAÇÃO -->
+<!-- ABA ALIMENTAÇÃO -->
         <section id="aba-alimentacao" class="hidden">
           <div class="section-card">
-            <div class="section-title">Alimentação / Cardápios</div>
+            <div class="section-title">Alimentação</div>
 
-            <!-- tabs tipo de cardápio -->
-            <div class="food-tabs">
-              <button
-                class="mini-tab-btn active"
-                data-food="hipertrofia_base"
-                id="food-hipertrofia-base"
+            <!-- GRUPO 1: INICIANTE -->
+            <div class="subsection-block">
+              <div class="subsection-header">Iniciante</div>
+
+              <!-- Botões para escolher cardápio (iniciante) -->
+              <div class="days-row" style="flex-wrap:wrap;">
+                <button class="day-btn" data-alim-group="iniciante" data-plan="hipertrofia">
+                  Hipertrofia
+                </button>
+                <button class="day-btn" data-alim-group="iniciante" data-plan="emagrecimento">
+                  Emagrecimento
+                </button>
+              </div>
+
+              <!-- Conteúdo HIPERTROFIA INICIANTE -->
+              <div
+                class="alim-card hidden"
+                data-content="iniciante-hipertrofia"
+                style="margin-top:16px;"
               >
-                Hipertrofia (base)
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-food="emagrecimento_base"
-                id="food-emagrecimento-base"
+                <div class="alim-title">
+                  CARDÁPIO 1 PARA HIPERTROFIA (1900 - 2100 KCAL)
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">PEQUENO-ALMOÇO</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      120g salada de frutas variadas<br />
+                      20g (lascas de castanha/coco ou aveia)<br />
+                      Fio de mel<br />
+                      2 ovos inteiros (mexido / cozido / frito com fio de azeite)
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      2 fatias de pão de forma (farinha 100% integral)
+                      ou 1 pão francês<br />
+                      40g queijo (cottage / mozarela / outro magro)<br />
+                      80g hambúrguer caseiro (frango / carne) OU<br />
+                      2 ovos inteiros (mexido / cozido / frito com fio de azeite)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      30g mix de oleaginosas (castanhas, nozes, amêndoas)<br />
+                      + 100g banana OU 100g manga
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      250g (1 unidade) iogurte proteico tipo SKYR / bebida láctea (soja)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">ALMOÇO</div>
+                  <div class="alim-op-text">
+                    150g (≈3 colheres de servir) batata doce / mandioca /
+                    inhame / batata inglesa / mandioquinha salsa
+                    OU arroz + feijão/lentilha<br /><br />
+                    100g ou 1 filete grande de carne vermelha OU frango OU peixe
+                    OU 3 ovos inteiros<br /><br />
+                    100g (≈2 colheres de servir) legumes cozidos<br />
+                    Folhas/salada à vontade<br /><br />
+                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA TARDE</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      Panqueca de banana:<br />
+                      Massa: 80g banana amassada + 30g aveia +
+                      2 ovos + canela<br />
+                      Recheio: 40g pasta de amendoim 100% (integral)
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      100g frango desfiado OU carne moída OU atum<br />
+                      + 100g mandioca OU batata doce cozida
+                      (pode fazer bolinhas e assar)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">JANTAR</div>
+                  <div class="alim-op-text">
+                    150g (≈3 colheres de servir) batata doce / mandioca /
+                    inhame / batata inglesa / mandioquinha salsa
+                    OU arroz + feijão/lentilha<br /><br />
+                    100g ou 1 filete grande de carne vermelha OU frango OU peixe
+                    OU 3 ovos inteiros<br /><br />
+                    100g (≈2 colheres de servir) legumes cozidos<br />
+                    Folhas/salada à vontade<br /><br />
+                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">CEIA</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">Opção 1</div>
+                    <div class="alim-op-text">
+                      250g (1 und.) iogurte proteico (SKYR) /
+                      bebida láctea (soja)
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">Opção 2</div>
+                    <div class="alim-op-text">
+                      40g pipoca de panela<br />
+                      <i>Obs: pesar o milho cru e usar fio de azeite</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /HIPERTROFIA INICIANTE -->
+
+              <!-- Conteúdo EMAGRECIMENTO INICIANTE -->
+              <div
+                class="alim-card hidden"
+                data-content="iniciante-emagrecimento"
+                style="margin-top:16px;"
               >
-                Emagrecimento (base)
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-food="hipertrofia_mes1"
-                id="food-hipertrofia-mes1"
-              >
-                Hipertrofia • 1º mês
-              </button>
-              <button
-                class="mini-tab-btn"
-                data-food="emagrecimento_mes1"
-                id="food-emagrecimento-mes1"
-              >
-                Emagrecimento • 1º mês
-              </button>
+                <div class="alim-title">
+                  CARDÁPIO 1 PARA EMAGRECIMENTO (1100 - 1300 KCAL)
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">PEQUENO ALMOÇO</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      1 iogurte grego zero (Milbona) 100g
+                      OU iogurte zero SKYR (Milbona) 100g<br />
+                      80g fruta (morango / kiwi / pêssego /
+                      maçã / pêra / ameixa / uva / manga)<br />
+                      20g (lascas de castanha/coco OU aveia)
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      1 fatia de pão de forma (farinha 100% integral)
+                      OU 30g aveia<br />
+                      30g queijo (cottage OU mozarela)<br />
+                      1 ovo inteiro (mexido / cozido /
+                      frito com fio de azeite)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      30g mix oleaginosas (castanhas, nozes, amêndoas)
+                      + 20g frutas secas (damasco, tâmara, ameixa)
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      1 barra de proteína (Whey Bar Probiótica / Bold)
+                      OU 25g whey protein
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">ALMOÇO</div>
+                  <div class="alim-op-text">
+                    50g (até ~80g máx) ou 1 colher de servir de:
+                    batata doce / mandioca / inhame / batata inglesa /
+                    mandioquinha salsa
+                    OU arroz integral + feijão/lentilha<br /><br />
+                    100g ou 1 filete grande de carne vermelha OU frango OU peixe
+                    OU 3 ovos inteiros<br /><br />
+                    100g (≈2 colheres de servir) legumes cozidos<br />
+                    Folhas/salada à vontade<br /><br />
+                    <b>Obs:</b> sobremesa opcional:
+                    20g chocolate ≥70%
+                    OU 1 colher (sopa) pasta de amendoim
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA TARDE</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      Panqueca de banana:<br />
+                      Massa: 60g banana amassada + 20g aveia +
+                      1 ovo + canela<br />
+                      Recheio: 30g pasta de amendoim integral
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      60g frango desfiado ou atum +
+                      60g mandioca ou batata doce cozida
+                      (pode fazer bolinhas e assar)
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">JANTAR</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      50g (até ~80g máx) ou 1 colher de servir de:
+                      batata doce / mandioca / inhame / batata inglesa /
+                      mandioquinha salsa
+                      OU arroz integral + feijão/lentilha<br /><br />
+                      100g ou 1 filete grande de carne vermelha OU frango OU peixe
+                      OU 3 ovos inteiros<br /><br />
+                      100g (≈2 colheres de servir) legumes cozidos<br />
+                      Folhas/salada à vontade
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 - Opção</div>
+                    <div class="alim-op-text">
+                      500ml shake:<br />
+                      30g leite em pó (proteína) + água +
+                      60g morango/banana/abacate +
+                      10g cacau em pó + fio de mel
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">CEIA</div>
+                  <div class="alim-op-text">
+                    1 chávena de chá (camomila ou lavanda)
+                  </div>
+                </div>
+              </div>
+              <!-- /EMAGRECIMENTO INICIANTE -->
             </div>
+            <!-- /GRUPO INICIANTE -->
 
-            <div id="food-content"></div>
+            <!-- GRUPO 2: 1º MÊS -->
+            <div class="subsection-block">
+              <div class="subsection-header">1º Mês</div>
+
+              <!-- Botões para escolher cardápio (mês 1) -->
+              <div class="days-row" style="flex-wrap:wrap;">
+                <button class="day-btn" data-alim-group="mes1" data-plan="hipertrofia">
+                  Hipertrofia
+                </button>
+                <button class="day-btn" data-alim-group="mes1" data-plan="emagrecimento">
+                  Emagrecimento
+                </button>
+              </div>
+
+              <!-- Conteúdo HIPERTROFIA MÊS 1 -->
+              <div
+                class="alim-card hidden"
+                data-content="mes1-hipertrofia"
+                style="margin-top:16px;"
+              >
+                <div class="alim-title">
+                  CARDÁPIO PARA HIPERTROFIA (1900 – 2100 kCAL)
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">PEQUENO ALMOÇO</div>
+                  <div class="alim-op-text">
+                    (Café preto sem açúcar opcional)<br />
+                    1 cápsula de Ômega 3 todas as manhãs<br />
+                    5g de Creatina todas as manhãs
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      60g aveia OU 1 pão francês<br />
+                      Recheio:
+                      40g queijo variado + 20g bacon magro +
+                      80g hamburguer caseiro (bovino/frango)
+                      OU 3 ovos mexidos
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      Vitamina de abacate/banana:<br />
+                      500ml leite integral +
+                      100g abacate/banana +
+                      30g whey protein concentrado +
+                      30g pasta de amendoim integral
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 – Opção</div>
+                    <div class="alim-op-text">
+                      1 pão francês<br />
+                      Recheio:
+                      30g requeijão cremoso OU maionese +
+                      80g frango OU atum
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      100g abacate/banana +
+                      20g whey protein concentrado +
+                      30g pasta de amendoim integral
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">ALMOÇO</div>
+                  <div class="alim-op-text">
+                    150g (≈3 colheres de servir) batata doce / mandioca /
+                    inhame / batata inglesa
+                    OU arroz + feijão/lentilha/grão de bico<br /><br />
+                    150g (2 filetes grandes) carne vermelha / frango / peixe
+                    OU 4 ovos inteiros<br /><br />
+                    100g (≈2 colheres de servir) legumes cozidos<br />
+                    Folhas/salada à vontade<br /><br />
+                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA TARDE</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 – Opção</div>
+                    <div class="alim-op-text">
+                      100g frango/tilápia/carne bovina +
+                      100g mandioca/batata doce
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      Vitamina de abacate/banana:<br />
+                      500ml leite integral +
+                      100g abacate/banana +
+                      30g whey protein concentrado +
+                      30g pasta de amendoim integral
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">JANTAR</div>
+                  <div class="alim-op-text">
+                    150g (≈3 colheres de servir) batata doce / mandioca /
+                    inhame / batata inglesa
+                    OU arroz + feijão/lentilha/grão de bico<br /><br />
+                    150g (2 filetes grandes) carne vermelha / frango / peixe
+                    OU 4 ovos inteiros<br /><br />
+                    100g (≈2 colheres de servir) legumes cozidos<br />
+                    Folhas/salada à vontade<br /><br />
+                    <b>Obs:</b> Sobremesa opcional (80g fruta variada)
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">CEIA</div>
+                  <div class="alim-op-text">
+                    1 iogurte proteico 250g (SKYR ou MILBONA)
+                  </div>
+                </div>
+              </div>
+              <!-- /HIPERTROFIA MÊS1 -->
+
+              <!-- Conteúdo EMAGRECIMENTO MÊS 1 -->
+              <div
+                class="alim-card hidden"
+                data-content="mes1-emagrecimento"
+                style="margin-top:16px;"
+              >
+                <div class="alim-title">
+                  CARDÁPIO PARA EMAGRECIMENTO (1100 – 1300 KCAL)
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">PEQUENO ALMOÇO</div>
+                  <div class="alim-op-text">
+                    (Café preto sem açúcar opcional)<br />
+                    1 cápsula de Ômega 3 todas as manhãs<br />
+                    5g de Glutamina todas as manhãs
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 - Opção</div>
+                    <div class="alim-op-text">
+                      1 fatia de pão de forma integral + 10g
+                      geleia natural OU creme de ricota light
+                      OU molho pesto<br />
+                      + 1 ovo mexido
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      80g banana + fio de mel +
+                      10g farelo de aveia/psyllium +
+                      1 ovo mexido
+                      OU 20g whey protein isolado
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA MANHÃ</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 – Opção</div>
+                    <div class="alim-op-text">
+                      80g fruta
+                      (maçã / pêra / kiwi / melão / morango)
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      20g chocolate 70% cacau
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">ALMOÇO</div>
+                  <div class="alim-op-text">
+                    50g (1 colher de servir) batata doce / mandioca /
+                    inhame / batata inglesa
+                    OU arroz integral + feijão/lentilha/grão de bico<br /><br />
+                    100g ou 1 filete grande de carne vermelha /
+                    frango / peixe OU 3 ovos inteiros<br /><br />
+                    100g (≈2 colheres de servir) legumes cozidos<br />
+                    Folhas/salada à vontade<br /><br />
+                    <b>Obs:</b> Sobremesa opcional:
+                    1 unidade ~20g paçoquita diet
+                    OU chocolate mínimo 70%
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">LANCHE DA TARDE</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 – Opção</div>
+                    <div class="alim-op-text">
+                      80g mamão/banana +
+                      20g whey protein isolado +
+                      30g pasta de amendoim integral
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      2 fatias (~35g cada) pão de forma integral
+                      OU 1 pão francês sem miolo
+                      + 2 ovos mexidos
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">JANTAR</div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">1 – Opção</div>
+                    <div class="alim-op-text">
+                      50g (1 colher de servir) batata doce / mandioca /
+                      inhame / batata inglesa
+                      OU arroz integral + feijão/lentilha/grão de bico<br /><br />
+                      100g ou 1 filete grande de carne vermelha /
+                      frango / peixe OU 3 ovos inteiros<br /><br />
+                      100g (≈2 colheres de servir) legumes cozidos<br />
+                      Folhas/salada à vontade
+                    </div>
+                  </div>
+
+                  <div class="alim-op">
+                    <div class="alim-op-label">2 – Opção</div>
+                    <div class="alim-op-text">
+                      Shake proteico:<br />
+                      água +
+                      80g morango/abacate +
+                      10g farelo de aveia ou psyllium +
+                      30g whey protein isolado
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alim-block">
+                  <div class="alim-block-title">CEIA</div>
+                  <div class="alim-op-text">
+                    1 chávena de chá (camomila ou lavanda)
+                  </div>
+                </div>
+              </div>
+              <!-- /EMAGRECIMENTO MÊS1 -->
+            </div>
+            <!-- /GRUPO 1º MÊS -->
           </div>
         </section>
+        <!-- /ABA ALIMENTAÇÃO -->
 
         <!-- ABA CARDIO -->
         <section id="aba-cardio" class="hidden">
