@@ -182,109 +182,69 @@
     <!-- APP -->
     <main id="app-section" class="hidden">
       <!-- ABA TREINOS -->
-<div class="link-list">
+      <section id="aba-treinos" class="">
+        <div class="section-card">
+          <div class="section-title">Treinos</div>
 
-  <!-- ========================== INICIANTE ========================== -->
-  <div class="link-row">
-    <b>Iniciante (Mês 1)</b>
-    <a href="./treinos/iniciante1.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 2)</b>
-    <a href="./treinos/iniciante2.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 3)</b>
-    <a href="./treinos/iniciante3.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 4)</b>
-    <a href="./treinos/iniciante4.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 5)</b>
-    <a href="./treinos/iniciante5.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 6)</b>
-    <a href="./treinos/iniciante6.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 7)</b>
-    <a href="./treinos/iniciante7.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 8)</b>
-    <a href="./treinos/iniciante8.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 9)</b>
-    <a href="./treinos/iniciante9.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 10)</b>
-    <a href="./treinos/iniciante10.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 11)</b>
-    <a href="./treinos/iniciante11.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 12)</b>
-    <a href="./treinos/iniciante12.html" class="btn-link">Abrir</a>
-  </div>
+          <div class="link-list">
+            <!-- INICIANTE (arquivo dedicado) -->
+            <div class="link-row">
+              <b>Iniciante (5 dias)</b>
+              <a href="treinos/iniciante.html">Abrir</a>
+            </div>
 
-  <!-- ========================== AVANÇADO ========================== -->
-  <div class="link-row">
-    <b>Avançado (Mês 1)</b>
-    <a href="./treinos/avancado1.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 2)</b>
-    <a href="./treinos/avancado2.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 3)</b>
-    <a href="./treinos/avancado3.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 4)</b>
-    <a href="./treinos/avancado4.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 5)</b>
-    <a href="./treinos/avancado5.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 6)</b>
-    <a href="./treinos/avancado6.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 7)</b>
-    <a href="./treinos/avancado7.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 8)</b>
-    <a href="./treinos/avancado8.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 9)</b>
-    <a href="./treinos/avancado9.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 10)</b>
-    <a href="./treinos/avancado10.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 11)</b>
-    <a href="./treinos/avancado11.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 12)</b>
-    <a href="./treinos/avancado12.html" class="btn-link">Abrir</a>
-  </div>
-
-</div>
+            <!-- MÊS 1 → MÊS 12 (AVANÇADO) -->
+            <div class="link-row">
+             <b>Avançado — Mês 1 (6 dias)</b>
+              <a href="treinos/mes-01.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 2</b>
+              <a href="treinos/mes-02.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 3</b>
+              <a href="treinos/mes-03.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 4</b>
+              <a href="treinos/mes-04.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 5</b>
+              <a href="treinos/mes-05.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 6</b>
+              <a href="treinos/mes-06.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 7</b>
+              <a href="treinos/mes-07.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 8</b>
+              <a href="treinos/mes-08.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 9</b>
+              <a href="treinos/mes-09.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 10</b>
+              <a href="treinos/mes-10.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 11</b>
+              <a href="treinos/mes-11.html">Abrir</a>
+            </div>
+            <div class="link-row">
+              <b>Avançado — Mês 12</b>
+              <a href="treinos/mes-12.html">Abrir</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- ABA ALIMENTAÇÃO -->
       <section id="aba-alimentacao" class="hidden">
