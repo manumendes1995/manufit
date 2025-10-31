@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ManuFit — Treino Avançado (Mês 1)</title>
+
+  <link rel="icon" type="image/png" href="/manufit/MANUFIT.png" />
+  <link rel="stylesheet" href="/manufit/assets/style.css" />
+
+  <style>
+    body { color:#fff; background:#120018; font-family:'Poppins',sans-serif; }
+    .wrap { max-width:1100px; margin:0 auto; padding:16px; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:8px 0 16px; }
+    .topbar img { height:32px; }
+    .btn { background:#ff4fa3; color:#120018; border:none; padding:8px 14px; border-radius:10px; text-decoration:none; font-weight:600; }
+    .btn:hover { opacity:.9; }
+    .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 18px; }
+    .tab-btn { background:transparent; color:#fff; border:1px solid #ff4fa3; border-radius:8px; padding:8px 12px; cursor:pointer; font-weight:600; }
+    .tab-btn.active { background:#ff4fa3; color:#120018; }
+    .card { background:rgba(255,255,255,.04); border:1px solid rgba(255,79,163,.25); border-radius:16px; padding:16px; }
+    .day { display:none; }
+    .day.active { display:block; }
+    .row { display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:10px; padding:10px 0; border-bottom:1px dashed rgba(255,255,255,.15); }
+    .row:last-child{ border-bottom:none; }
+    .muted { opacity:.85; font-size:14px; }
+    .videos { display:flex; flex-direction:column; gap:6px; justify-self:end; }
+    .video-link { border:1px solid #ff4fa3; border-radius:10px; padding:6px 10px; text-decoration:none; color:#fff; }
+    h1{ margin:0 0 8px }
+    h2{ margin:6px 0 14px }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <img src="/manufit/MANUFIT.png" alt="ManuFit">
+        <strong>MANUFIT</strong>
+      </div>
+      <div>
+        <a class="btn" href="/manufit/treinos.html">Voltar</a>
+      </div>
+    </div>
+
+    <h1>Avançado — Mês 1</h1>
+    <p class="muted">Clique no nome de cada exercício para ver o vídeo de execução.</p>
+
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-dia="1">Treino 1</button>
+      <button class="tab-btn" data-dia="2">Treino 2</button>
+      <button class="tab-btn" data-dia="3">Treino 3</button>
+      <button class="tab-btn" data-dia="4">Treino 4</button>
+      <button class="tab-btn" data-dia="5">Treino 5</button>
+      <button class="tab-btn" data-dia="6">Treino 6</button>
+    </div>
+
+    <!-- Treino 1 -->
+    <section class="card day active" id="dia-1">
+      <h2>Perna e Glúteo</h2>
+      <div class="row"><a href="https://youtu.be/pX29NiYrWl4" target="_blank">Agachamento Livre</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/Cz4H0Gw_V-8" target="_blank">Agachamento Peso do Corpo</a><div class="muted">3x20</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/hhf-JTNTqzs" target="_blank">Afundo Smith</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/sdf3Y9WD_WU" target="_blank">Afundo Peso do Corpo</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/9fEu8taaEUk" target="_blank">Leg Press 45°</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+      <div class="row"><a href="https://youtu.be/Yritq6xthjQ" target="_blank">Cadeira Extensora</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+      <div class="row"><a href="https://youtu.be/3tTD60x6wmY" target="_blank">Flexora Deitada</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+      <div class="row"><a href="https://youtu.be/hhf-JTNTqzs" target="_blank">Panturrilha em Pé</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+    </section>
+
+    <!-- Treino 2 -->
+    <section class="card day" id="dia-2">
+      <h2>Membros Superiores + Abd</h2>
+      <div class="row"><a href="https://youtu.be/IgMc-ghDW4M" target="_blank">Abd. Supra Curtinho</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+      <div class="row"><a href="https://youtu.be/LjAZ7nrI6aQ" target="_blank">Abd. Infra</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+      <div class="row"><a href="https://youtu.be/2AH5cfSqX1E" target="_blank">Puxada Pulley Pegada Aberta</a><div class="muted">3x10</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/4zjCHsF06H0" target="_blank">Remada na Polia Pegada Neutra</a><div class="muted">3x10</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/HPBVLs0NpjE" target="_blank">Supino Reto Barra</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/RqTpE3cmtyE" target="_blank">Supino Reto Halteres</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/UAzVg4j-T3g" target="_blank">Tríceps Francês</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/zxItpU2RsP4" target="_blank">Rosca Direta Polia</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+    </section>
+
+    <!-- Treino 3 -->
+    <section class="card day" id="dia-3">
+      <h2>Corpo Todo HIIT</h2>
+      <div class="row"><a href="https://youtu.be/OcHAV4C88X8" target="_blank">Passada</a><div class="muted">3x20</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/GEYlPr9I1rU" target="_blank">Remada Unilateral + Burpee</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/SeHR1QhV748" target="_blank">Abd. Supra Completo</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+      <div class="row"><a href="https://youtu.be/emgWzZiK-rU" target="_blank">Corrida Estacionária</a><div class="muted">3x30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/LeF6QmSclU0" target="_blank">Agachamento + Desenvolvimento</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/81fF6WaYHsE" target="_blank">Climber Cruzado + Normal</a><div class="muted">3x5 + 5</div></div>
+    </section>
+
+    <!-- Treino 4 -->
+    <section class="card day" id="dia-4">
+      <h2>Perna e Glúteo</h2>
+      <div class="row"><a href="https://youtu.be/owUMm3gZ1b0" target="_blank">Agachamento Smith</a><div class="muted">3x10 + 10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/W1QWvmQ_ZuM" target="_blank">Agachamento Sumô</a><div class="muted">3x10 + 10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/ZXyzfNO497M" target="_blank">Leg Horizontal Unilateral</a><div class="muted">3x10 + 10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/luvbFKnA6aA" target="_blank">Glúteo 4 Apoios</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/UT-WBhxo9uA" target="_blank">Elevação Pélvica</a><div class="muted">3x15</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/43u1zfJUUi0" target="_blank">Stiff</a><div class="muted">4x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/w_aic9GI0CY" target="_blank">Panturrilha Smith</a><div class="muted">3x15</div><div class="muted">40 seg</div></div>
+    </section>
+
+    <!-- Treino 5 -->
+    <section class="card day" id="dia-5">
+      <h2>Membros Superiores + Abd</h2>
+      <div class="row"><a href="https://youtu.be/IgMc-ghDW4M" target="_blank">Abd. Supra Curtinho</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/2AH5cfSqX1E" target="_blank">Abd. Infra</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/RXHPTVrxsbo" target="_blank">Abd. Remador</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/KyHYsJ5YZQE" target="_blank">Puxada na Polia</a><div class="muted">4x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/LU4xYDGbpjA" target="_blank">Remada Curvada Halteres</a><div class="muted">4x10</div><div class="muted">1 Min</div></div>
+    </section>
+
+    <!-- Treino 6 -->
+    <section class="card day" id="dia-6">
+      <h2>Perna e Glúteo</h2>
+      <div class="row"><a href="https://youtu.be/hhf-JTNTqzs" target="_blank">Afundo Smith</a><div class="muted">3x10</div><div class="muted">1 Min</div></div>
+      <div class="row"><a href="https://youtu.be/pX29NiYrWl4" target="_blank">Agachamento Smith</a><div class="muted">3x15</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/9fEu8taaEUk" target="_blank">Leg Press 45°</a><div class="muted">3x15</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/Yritq6xthjQ" target="_blank">Flexora Deitada</a><div class="muted">3x15</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/3tTD60x6wmY" target="_blank">Cadeira Extensora</a><div class="muted">3x15</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/UT-WBhxo9uA" target="_blank">Elevação Pélvica</a><div class="muted">3x15</div><div class="muted">30 seg</div></div>
+      <div class="row"><a href="https://youtu.be/w_aic9GI0CY" target="_blank">Panturrilha em Pé</a><div class="muted">3x15</div><div class="muted">30 seg</div></div>
+    </section>
+
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const days = document.querySelectorAll('.day');
+    tabs.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        tabs.forEach(b=>b.classList.remove('active'));
+        days.forEach(d=>d.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('dia-'+btn.dataset.dia).classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+  </script>
+
+</body>
+</html>
