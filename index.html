@@ -133,6 +133,37 @@
       .logout { margin-left: 8px; }
     </style>
   </head>
+<script>
+  // ids das abas (sem o prefixo "aba-")
+  const SECTIONS = ["treinos","cardapios","cardio","relax","extra","perfil"];
+
+  function showFromHash() {
+    const target = (location.hash || "#treinos").replace("#", "");
+
+    SECTIONS.forEach((id) => {
+      const sec = document.getElementById("aba-" + id);
+      if (sec) {
+        sec.style.display = (id === target) ? "block" : "none";
+      }
+      const tab = document.querySelector('nav a[href="#' + id + '"]');
+      if (tab) {
+        if (id === target) tab.classList.add("active");
+        else tab.classList.remove("active");
+      }
+    });
+  }
+
+  // garantir que os links do menu usam hash (se ainda não usarem)
+  document.querySelectorAll('nav a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('index.html#')) {
+      a.setAttribute('href', '#' + href.split('#')[1]);
+    }
+  });
+
+  window.addEventListener("hashchange", showFromHash);
+  document.addEventListener("DOMContentLoaded", showFromHash);
+</script>
   <body>
     <!-- HEADER -->
     <header>
