@@ -99,7 +99,93 @@ if ('serviceWorker' in navigator) {
   });
 })();
 </script>
+<script>
+  (async function () {
+    const BASE = '/manufit/';
+    // 1) Lê a versão corrente do servidor (impede cache com timestamp)
+    let version = 'v-unknown';
+    try {
+      const vRes = await fetch(BASE + 'version.json?_=' + Date.now(), { cache: 'no-store' });
+      const vJson = await vRes.json();
+      version = vJson.version || version;
+      // guarda última versão vista
+      localStorage.setItem('manufit_version', version);
+    } catch (e) {
+      // se falhar, segue sem bloquear
+    }
 
+    // 2) Regista o SW
+    if ('serviceWorker' in navigator) {
+      try {
+        const reg = await navigator.serviceWorker.register(BASE + 'sw.js', { scope: BASE });
+        // tenta logo atualizar
+        reg.update().catch(()=>{});
+
+        // Se houver update, força reload automático
+        navigator.serviceWorker.addEventListener('message', (ev) => {
+          if (ev.data && ev.data.type === 'MANUFIT_RELOAD') {
+            // pequeno atraso para o SW assumir controlo
+            setTimeout(() => location.reload(), 250);
+          }
+        });
+      } catch (e) {
+        // ignora erros de registo
+      }
+    }
+
+    // 3) (Opcional, invisível) acrescenta ?v=... a links relativos internos
+    // para quebrar cache do navegador sem alterar o visual
+    try {
+      const links = document.querySelectorAll('a[href]');
+      links.forEach(a => {
+        const href = a.getAttribute('href');
+        // só mexe em links relativos (sem http) e que não comecem por '#'
+        if (href && !href.startsWith('http') && !href.startsWith('#')) {
+          const hasQuery = href.includes('?');
+          const sep = hasQuery ? '&' : '?';
+          if (!href.includes('v=')) {
+            a.setAttribute('href', href + sep + 'v=' + encodeURIComponent(version));
+          }
+        }
+      });
+    } catch (e) {}
+  })();
+</script>
+<!-- Registo do Service Worker (atualização automática) -->
+<script>
+  (function registerSW() {
+    if (!('serviceWorker' in navigator)) return;
+    // Caminho/escopo em GitHub Pages
+    const swUrl = '/manufit/sw.js';
+    const swScope = '/manufit/';
+
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register(swUrl, { scope: swScope })
+        .then((reg) => {
+          // Atualiza quando a aba volta a ficar ativa
+          document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) reg.update();
+          });
+
+          // Se houver update instalado, recarrega para apanhar a versão nova
+          reg.addEventListener('updatefound', () => {
+            const nw = reg.installing;
+            if (!nw) return;
+            nw.addEventListener('statechange', () => {
+              if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                // força refresh leve
+                location.reload();
+              }
+            });
+          });
+
+          // Opcional: pedir ao SW para ativar logo
+          if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        })
+        .catch(() => { /* silencioso para não afetar UI */ });
+    });
+  })();
+</script>
   <body>
     <!-- HEADER -->
     <header>
