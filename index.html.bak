@@ -183,11 +183,19 @@
     <main id="app-section" class="hidden">
       <!-- ABA TREINOS -->
 <div class="link-list">
-
-  <!-- ========================== INICIANTE ========================== -->
-  <div class="link-row">
-    <b>Iniciante (Mês 1)</b>
-    <a href="./treinos/iniciante1.html" class="btn-link">Abrir</a>
+            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
   </div>
   <div class="link-row">
     <b>Iniciante (Mês 2)</b>
@@ -291,9 +299,19 @@
         <div class="section-card">
           <div class="section-title">Alimentação</div>
           <div class="link-list">
-            <div class="link-row">
-              <b>Mês 1 — Hipertrofia</b>
-              <a href="alimentacao/mes-01-hipertrofia.html">Abrir</a>
+            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
             </div>
             <div class="link-row">
               <b>Mês 1 — Emagrecimento</b>
@@ -332,9 +350,19 @@
         <div class="section-card">
           <div class="section-title">Cardio</div>
           <div class="link-list">
-            <div class="link-row">
-              <b>Plano de Cardio (geral)</b>
-              <a href="cardio/cardio.html">Abrir</a>
+            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
             </div>
           </div>
         </div>
@@ -345,9 +373,19 @@
         <div class="section-card">
           <div class="section-title">Relaxamento</div>
           <div class="link-list">
-            <div class="link-row">
-              <b>Respiração / Alívio</b>
-              <a href="relaxamento/relax.html">Abrir</a>
+            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
             </div>
           </div>
         </div>
@@ -358,6 +396,19 @@
         <div class="section-card">
           <div class="section-title">Extra</div>
           <div class="link-list">
+            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
             <div class="link-row"><b>Foco Glúteo</b><a href="extra/foco-gluteo.html">Abrir</a></div>
             <div class="link-row"><b>Foco Tríceps</b><a href="extra/foco-triceps.html">Abrir</a></div>
             <div class="link-row"><b>Foco Posterior Coxa</b><a href="extra/foco-posterior.html">Abrir</a></div>
@@ -372,9 +423,19 @@
         <div class="section-card">
           <div class="section-title">Perfil</div>
           <div class="link-list">
-            <div class="link-row">
-              <b>Perfil da Aluna</b>
-              <a href="perfil/perfil.html">Abrir</a>
+            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
             </div>
           </div>
         </div>
