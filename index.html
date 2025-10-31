@@ -3,427 +3,160 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Manufit</title>
+    <title>ManuFit</title>
+
+    <!-- Ícone / Logo -->
     <link rel="icon" type="image/png" href="MANUFIT.png" />
-    <meta name="theme-color" content="#0f0f12" />
+
     <style>
-      :root {
-        --bg: #0f0f12;
-        --card: #1a1a22;
-        --line: #2a2a33;
-        --line2: #3a3a44;
-        --accent: #ff4da6;
-        --text: #ffffff;
-        --muted: #bbbbbb;
-        --muted2: #999999;
-        --chip: #1f1f25;
+      :root{
+        --pink:#ff4da6;
+        --bg:#0f0f12;
+        --panel:#1a1a22;
+        --panel-border:#2a2a33;
+        --text:#fff;
+        --muted:#bbb;
       }
-      * { box-sizing: border-box; }
-      html, body { margin:0; padding:0; background:var(--bg); color:var(--text);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", Arial, sans-serif;
-      }
+      *{box-sizing:border-box}
+      html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif}
+      a{color:var(--pink);text-decoration:none}
+      a:hover{text-decoration:underline}
 
-      /* HEADER (igual ao que já tens: logo + título + subtítulo) */
-      header {
+      /* Header (mantém o visual que aprovaste) */
+      header{
         background: linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%);
-        color: #fff;
-        padding: 16px;
-        border-bottom: 1px solid var(--accent);
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
+        color:#fff; padding:16px; border-bottom:1px solid var(--pink);
+        display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
       }
-      .brand {
-        font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.2;
-        color: #fff;
-      }
-      .brand-row { display: flex; align-items: center; gap: 8px; }
-      .brand-row img {
-        width: 36px; height: 36px; border-radius: 6px; object-fit: cover;
-        border: 1px solid rgba(255,255,255,0.4);
-      }
-      .brand-sub {
-        font-size: .7rem; font-weight: 500; color: #ffd1e8; line-height: 1.2;
-      }
+      .brand{font-weight:700;font-size:1.25rem;line-height:1.2;color:#fff}
+      .brand .sub{font-size:.7rem;font-weight:500;color:#ffd1e8;line-height:1.2}
+      .brand .row{display:flex;align-items:center;gap:8px}
+      .brand img{width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.4)}
 
-      /* NAV TABS (mesmo aspeto: botões escuros com contorno rosa; ativo cheio rosa) */
-      .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
-      .tab-btn {
-        background: var(--chip);
-        color: #fff;
-        border: 1px solid var(--accent);
-        border-radius: 6px;
-        padding: 6px 10px;
-        font-size: .8rem;
-        font-weight: 600;
-        cursor: pointer;
+      nav.tabs{display:flex;flex-wrap:wrap;gap:8px}
+      .tabbtn{
+        background:#1f1f25;color:#fff;border:1px solid var(--pink);border-radius:6px;
+        padding:6px 10px;font-size:.8rem;font-weight:600;cursor:pointer;
       }
-      .tab-btn.active {
-        background: var(--accent);
-        color: #000;
-      }
-      .spacer { flex: 1 1 auto; }
+      .tabbtn.active{background:var(--pink);color:#000}
+      .tabbtn:disabled{opacity:.6;cursor:default}
 
-      main { padding: 24px 16px; max-width: 900px; margin: 0 auto; }
+      main{padding:24px 16px;max-width:900px;margin:0 auto}
+      footer{color:#666;font-size:.7rem;text-align:center;padding:40px 16px}
 
-      /* CARTÃO DO LOGIN (igual ao teu) */
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 16px;
-        max-width: 480px;
-        width: 100%;
-        margin: 40px auto;
-        color: #fff;
+      /* Cartões / painéis */
+      .card{
+        background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;
+        padding:16px;max-width:480px;width:100%;margin:40px auto;color:#fff;
       }
-      .label { display:block; margin-bottom:8px; font-weight:600; color:var(--accent); }
-      .input {
-        width:100%; background:var(--bg); border:1px solid var(--accent);
-        border-radius:6px; padding:10px 12px; color:#fff; font-size:1rem; outline:none;
+      .label{display:block;margin-bottom:8px;font-weight:600;color:var(--pink)}
+      .input{
+        width:100%;background:var(--bg);border:1px solid var(--pink);border-radius:6px;
+        padding:10px 12px;color:#fff;font-size:1rem;outline:none;
       }
-      .btn-primary {
-        margin-top: 16px; width:100%;
-        background: var(--accent); color:#000; font-weight:700;
-        border:0; border-radius:6px; font-size:1rem; padding:12px; cursor:pointer;
+      .btnPrimary{
+        margin-top:16px;width:100%;background:var(--pink);border:0;border-radius:6px;color:#000;
+        font-weight:700;font-size:1rem;padding:12px;cursor:pointer;
       }
-      .small-info {
-        font-size:.8rem; opacity:.8; margin-top:12px; line-height:1.4; text-align:center; color:#bbb;
-      }
+      .smallInfo{font-size:.8rem;opacity:.8;margin-top:12px;line-height:1.4;text-align:center;color:var(--muted)}
 
-      /* SEÇÕES */
-      .section-card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 16px;
-        color: #fff;
+      /* Secções */
+      .section-card{
+        background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;padding:16px;color:#fff;
       }
-      .section-title {
-        color: var(--accent);
-        font-weight: 700;
-        font-size: 1rem;
-        line-height: 1.4;
-        margin-bottom: 12px;
-      }
+      .section-title{color:var(--pink);font-weight:700;font-size:1rem;line-height:1.4;margin-bottom:12px}
+      .link-list{display:flex;flex-direction:column;gap:8px}
+      .link-row{display:flex;justify-content:space-between;align-items:center;background:#0f0f12;border:1px solid #3a3a44;border-radius:8px;padding:10px 12px;color:#ccc;font-size:.9rem}
+      .link-row b{color:#fff}
+      .link-row a{font-weight:700}
 
-      /* LISTAS DE LINKS (menu “árvore” enxuto) */
-      .link-list { display: grid; gap: 10px; }
-      .link-row {
-        display:flex; align-items:center; justify-content:space-between;
-        background: #0f0f12; border:1px solid var(--line2); border-radius:8px;
-        padding: 10px 12px;
-      }
-      .link-row b { color:#fff; font-size:.95rem; }
-      .link-row a {
-        text-decoration:none; font-weight:700; font-size:.8rem;
-        padding:6px 10px; border-radius:6px; border:1px solid var(--accent);
-        color:#fff; background: var(--chip);
-      }
-      .link-row a:hover { filter: brightness(1.08); }
-
-      /* visibilidade */
-      .hidden { display:none; }
-
-      footer { color:#666; font-size:.7rem; text-align:center; padding:40px 16px; }
-      .logout { margin-left: 8px; }
+      /* Ocultar/mostrar abas por JS */
+      .hidden{display:none}
     </style>
   </head>
-<script>
-  // ids das abas (sem o prefixo "aba-")
-  const SECTIONS = ["treinos","cardapios","cardio","relax","extra","perfil"];
 
-  function showFromHash() {
-    const target = (location.hash || "#treinos").replace("#", "");
-
-    SECTIONS.forEach((id) => {
-      const sec = document.getElementById("aba-" + id);
-      if (sec) {
-        sec.style.display = (id === target) ? "block" : "none";
-      }
-      const tab = document.querySelector('nav a[href="#' + id + '"]');
-      if (tab) {
-        if (id === target) tab.classList.add("active");
-        else tab.classList.remove("active");
-      }
-    });
-  }
-
-  // garantir que os links do menu usam hash (se ainda não usarem)
-  document.querySelectorAll('nav a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href && href.startsWith('index.html#')) {
-      a.setAttribute('href', '#' + href.split('#')[1]);
-    }
-  });
-
-  window.addEventListener("hashchange", showFromHash);
-  document.addEventListener("DOMContentLoaded", showFromHash);
-</script>
   <body>
     <!-- HEADER -->
     <header>
       <div class="brand">
-        <div class="brand-row">
-          <img src="MANUFIT.png" alt="Manufit Logo" />
+        <div class="row">
+          <img src="MANUFIT.png" alt="ManuFit Logo" />
           <div>MANUFIT</div>
         </div>
-        <div class="brand-sub">Treino • Nutrição • Resultados</div>
+        <div class="sub">Treino • Nutrição • Resultados</div>
       </div>
 
-      <!-- NAV (apenas aparece depois do login) -->
-      <div class="tabs hidden" id="top-tabs">
-        <button class="tab-btn" data-tab="treinos">Treinos</button>
-        <button class="tab-btn" data-tab="alimentacao">Alimentação</button>
-        <button class="tab-btn" data-tab="cardio">Cardio</button>
-        <button class="tab-btn" data-tab="relax">Relaxamento</button>
-        <button class="tab-btn" data-tab="extra">Extra</button>
-        <button class="tab-btn" data-tab="perfil">Perfil</button>
-        <span class="spacer"></span>
-        <button class="tab-btn logout" id="btn-sair" title="Terminar sessão">Sair</button>
-      </div>
+      <nav class="tabs">
+        <a href="#treinos"><button class="tabbtn" data-tab="treinos">Treinos</button></a>
+        <a href="#cardapios"><button class="tabbtn" data-tab="cardapios">Alimentação</button></a>
+        <a href="#cardio"><button class="tabbtn" data-tab="cardio">Cardio</button></a>
+        <a href="#relax"><button class="tabbtn" data-tab="relax">Relaxamento</button></a>
+        <a href="#extra"><button class="tabbtn" data-tab="extra">Extra</button></a>
+        <a href="#perfil"><button class="tabbtn" data-tab="perfil">Perfil</button></a>
+        <button id="btn-sair" class="tabbtn" title="Terminar sessão">Sair</button>
+      </nav>
     </header>
 
-    <!-- LOGIN GATE -->
-    <main id="login-section">
+    <!-- LOGIN -->
+    <section id="login-section" class="hidden">
       <div class="card">
         <form id="login-form">
           <label class="label">Introduz o teu e-mail para aceder</label>
           <input id="email-input" class="input" type="email" placeholder="exemplo@exemplo.com" />
-          <button class="btn-primary" type="submit">Entrar</button>
 
-          <!-- preço (sem emoji, como pediste) -->
-          <div style="margin-top:10px;font-weight:600;font-size:1rem;color:var(--accent);text-align:center;">
+          <button class="btnPrimary" type="submit">Entrar</button>
+
+          <!-- preço abaixo do botão, sem emojis -->
+          <div style="margin-top:10px;font-weight:600;font-size:1rem;color:var(--pink);text-align:center;">
             £39.99 / mês
           </div>
 
-          <div class="small-info">
+          <div class="smallInfo">
             <div>• Apenas alunas autorizadas têm acesso.</div>
             <div>• Se ainda não tens acesso, fala com Manu 💖</div>
-            <div style="margin-top:8px; color:var(--accent)">Suporte: manumendes199514@gmail.com</div>
+            <div style="margin-top:8px;color:var(--pink)">Suporte: manumendes199514@gmail.com</div>
           </div>
         </form>
       </div>
-    </main>
+    </section>
 
     <!-- APP -->
     <main id="app-section" class="hidden">
       <!-- ABA TREINOS -->
-<div class="link-list">
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 2)</b>
-    <a href="./treinos/iniciante2.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 3)</b>
-    <a href="./treinos/iniciante3.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 4)</b>
-    <a href="./treinos/iniciante4.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 5)</b>
-    <a href="./treinos/iniciante5.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 6)</b>
-    <a href="./treinos/iniciante6.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 7)</b>
-    <a href="./treinos/iniciante7.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 8)</b>
-    <a href="./treinos/iniciante8.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 9)</b>
-    <a href="./treinos/iniciante9.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 10)</b>
-    <a href="./treinos/iniciante10.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 11)</b>
-    <a href="./treinos/iniciante11.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Iniciante (Mês 12)</b>
-    <a href="./treinos/iniciante12.html" class="btn-link">Abrir</a>
-  </div>
+      <section id="aba-treinos">
+        <div class="section-card">
+          <div class="section-title">Treinos</div>
 
-  <!-- ========================== AVANÇADO ========================== -->
-  <div class="link-row">
-    <b>Avançado (Mês 1)</b>
-    <a href="./treinos/avancado1.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 2)</b>
-    <a href="./treinos/avancado2.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 3)</b>
-    <a href="./treinos/avancado3.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 4)</b>
-    <a href="./treinos/avancado4.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 5)</b>
-    <a href="./treinos/avancado5.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 6)</b>
-    <a href="./treinos/avancado6.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 7)</b>
-    <a href="./treinos/avancado7.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 8)</b>
-    <a href="./treinos/avancado8.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 9)</b>
-    <a href="./treinos/avancado9.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 10)</b>
-    <a href="./treinos/avancado10.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 11)</b>
-    <a href="./treinos/avancado11.html" class="btn-link">Abrir</a>
-  </div>
-  <div class="link-row">
-    <b>Avançado (Mês 12)</b>
-    <a href="./treinos/avancado12.html" class="btn-link">Abrir</a>
-  </div>
+          <div class="link-list">
+            <!-- INICIANTE (arquivo único) -->
+            <div class="link-row">
+              <b>Iniciante (5 dias)</b>
+              <a href="treinos-iniciante.html">Abrir</a>
+            </div>
 
-</div>
+            <!-- AVANÇADO — MESES 1..12 -->
+            <div class="link-row"><b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html">Abrir</a></div>
+            <div class="link-row"><b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html">Abrir</a></div>
+          </div>
+        </div>
+      </section>
 
-      <!-- ABA ALIMENTAÇÃO -->
-      <section id="aba-alimentacao" class="hidden">
+      <!-- ABA ALIMENTAÇÃO (apenas ligações — conteúdo fica nas páginas dedicadas) -->
+      <section id="aba-cardapios" class="hidden">
         <div class="section-card">
           <div class="section-title">Alimentação</div>
           <div class="link-list">
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            </div>
-            <div class="link-row">
-              <b>Mês 1 — Emagrecimento</b>
-              <a href="alimentacao/mes-01-emagrecimento.html">Abrir</a>
-            </div>
-
-            <!-- Deixas preparados os próximos meses (hipertrofia/emagrecimento) -->
-            <div class="link-row"><b>Mês 2 — Hipertrofia</b><a href="alimentacao/mes-02-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 2 — Emagrecimento</b><a href="alimentacao/mes-02-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 3 — Hipertrofia</b><a href="alimentacao/mes-03-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 3 — Emagrecimento</b><a href="alimentacao/mes-03-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 4 — Hipertrofia</b><a href="alimentacao/mes-04-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 4 — Emagrecimento</b><a href="alimentacao/mes-04-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 5 — Hipertrofia</b><a href="alimentacao/mes-05-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 5 — Emagrecimento</b><a href="alimentacao/mes-05-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 6 — Hipertrofia</b><a href="alimentacao/mes-06-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 6 — Emagrecimento</b><a href="alimentacao/mes-06-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 7 — Hipertrofia</b><a href="alimentacao/mes-07-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 7 — Emagrecimento</b><a href="alimentacao/mes-07-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 8 — Hipertrofia</b><a href="alimentacao/mes-08-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 8 — Emagrecimento</b><a href="alimentacao/mes-08-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 9 — Hipertrofia</b><a href="alimentacao/mes-09-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 9 — Emagrecimento</b><a href="alimentacao/mes-09-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 10 — Hipertrofia</b><a href="alimentacao/mes-10-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 10 — Emagrecimento</b><a href="alimentacao/mes-10-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 11 — Hipertrofia</b><a href="alimentacao/mes-11-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 11 — Emagrecimento</b><a href="alimentacao/mes-11-emagrecimento.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 12 — Hipertrofia</b><a href="alimentacao/mes-12-hipertrofia.html">Abrir</a></div>
-            <div class="link-row"><b>Mês 12 — Emagrecimento</b><a href="alimentacao/mes-12-emagrecimento.html">Abrir</a></div>
+            <div class="link-row"><b>Cardápios do Mês 1</b> <a href="alimentacao.html">Abrir</a></div>
           </div>
         </div>
       </section>
@@ -433,95 +166,17 @@
         <div class="section-card">
           <div class="section-title">Cardio</div>
           <div class="link-list">
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            </div>
+            <div class="link-row"><b>Cardio do Mês 1</b> <a href="cardio.html">Abrir</a></div>
           </div>
         </div>
       </section>
 
-      <!-- ABA RELAXAMENTO -->
+      <!-- ABA RELAX -->
       <section id="aba-relax" class="hidden">
         <div class="section-card">
           <div class="section-title">Relaxamento</div>
           <div class="link-list">
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            </div>
+            <div class="link-row"><b>Relaxamento do Mês 1</b> <a href="relaxamento.html">Abrir</a></div>
           </div>
         </div>
       </section>
@@ -531,50 +186,11 @@
         <div class="section-card">
           <div class="section-title">Extra</div>
           <div class="link-list">
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Glúteo</b><a href="extra/foco-gluteo.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Tríceps</b><a href="extra/foco-triceps.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Posterior Coxa</b><a href="extra/foco-posterior.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Quadríceps</b><a href="extra/foco-quadriceps.html">Abrir</a></div>
-            <div class="link-row"><b>Detox</b><a href="extra/detox.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Glúteo</b>        <a href="extra-gluteo.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Quadríceps</b>   <a href="extra-quadriceps.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Posterior Coxa</b><a href="extra-posterior.html">Abrir</a></div>
+            <div class="link-row"><b>Foco Tríceps</b>      <a href="extra-triceps.html">Abrir</a></div>
+            <div class="link-row"><b>Detox</b>             <a href="extra-detox.html">Abrir</a></div>
           </div>
         </div>
       </section>
@@ -583,48 +199,7 @@
       <section id="aba-perfil" class="hidden">
         <div class="section-card">
           <div class="section-title">Perfil</div>
-          <div class="link-list">
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            <div class="link-row"><b>Iniciante (5 dias)</b><a href="treinos-iniciante.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 1</b><a href="treinos-avancado-m1.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b><a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b><a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b><a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b><a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b><a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b><a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b><a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b><a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b><a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b><a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b><a href="treinos-avancado-m12.html">Abrir</a></div>
-            </div>
-          </div>
+          <div id="perfil-box" style="color:#ddd;font-size:.9rem;line-height:1.5"></div>
         </div>
       </section>
     </main>
@@ -632,7 +207,7 @@
     <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
 
     <script>
-      // ====== CONTROLO DE LOGIN (igual ao teu fluxo anterior) ======
+      // ======= CONFIG =======
       const EMAILS_VALIDOS = [
         "manumendes199514@gmail.com",
         "emiliamiranda3039@gmail.com",
@@ -640,86 +215,99 @@
         "jessicarafaelacg@gmail.com",
         "nina_lopes_gomes@hotmail.com",
       ];
+      const OWNER_EMAIL = "manumendes199514@gmail.com";
+      const USERS_INICIO = [
+        { nome:"Emília",   email:"emiliamiranda3039@gmail.com", inicio:"2025-09-25" },
+        { nome:"Zulmira",  email:"zulmira.mendes2@gmail.com",   inicio:"2025-09-20" },
+        { nome:"Jéssica",  email:"jessicarafaelacg@gmail.com",  inicio:"2025-09-18" },
+        { nome:"Carina",   email:"nina_lopes_gomes@hotmail.com",inicio:"2025-09-29" },
+      ];
 
-      const loginSection = document.getElementById("login-section");
-      const appSection   = document.getElementById("app-section");
-      const topTabs      = document.getElementById("top-tabs");
+      // ======= HELPERS =======
+      function saveEmail(email){ localStorage.setItem("manufit_email", (email||"").trim().toLowerCase()); }
+      function getEmail(){ return (localStorage.getItem("manufit_email")||"").toLowerCase(); }
+      function isAuthed(){ const e=getEmail(); return EMAILS_VALIDOS.includes(e); }
+      function isOwner(email){ return (email||"").toLowerCase() === OWNER_EMAIL; }
+      function logout(){ localStorage.removeItem("manufit_email"); location.hash = "#treinos"; }
 
-      const emailInput   = document.getElementById("email-input");
-      const loginForm    = document.getElementById("login-form");
-      const btnSair      = document.getElementById("btn-sair");
+      function diasDesde(isoData){
+        const start = new Date(isoData+"T00:00:00Z");
+        const now = new Date();
+        const diff = now - start;
+        const d = Math.floor(diff/(1000*60*60*24));
+        return d<0?0:d;
+      }
 
-      function saveEmail(email){ localStorage.setItem("manufit_email", email.trim().toLowerCase()); }
-      function getEmail(){ return (localStorage.getItem("manufit_email") || "").toLowerCase(); }
-      function isAuthed(){ const e = getEmail(); return EMAILS_VALIDOS.includes(e); }
-      function logout(){ localStorage.removeItem("manufit_email"); }
+      // ======= TABS POR HASH (mantém só a aba certa visível) =======
+      const SECTIONS = ["treinos","cardapios","cardio","relax","extra","perfil"];
+      function showFromHash(){
+        const target = (location.hash || "#treinos").replace("#","");
 
-      function show(el){ el.classList.remove("hidden"); }
-      function hide(el){ el.classList.add("hidden"); }
+        SECTIONS.forEach(id=>{
+          const sec = document.getElementById("aba-"+id);
+          if(sec){ sec.classList.toggle("hidden", id!==target); }
+          const btn = document.querySelector('.tabbtn[data-tab="'+id+'"]');
+          if(btn){ btn.classList.toggle("active", id===target); }
+        });
+      }
+      window.addEventListener("hashchange", showFromHash);
+      document.addEventListener("DOMContentLoaded", showFromHash);
 
+      // ======= LOGIN / APP GATE =======
       function renderState(){
-        const ok = isAuthed();
-        if (ok){
-          hide(loginSection);
-          show(appSection);
-          show(topTabs);
-          selectTab("treinos"); // abre Treinos por padrão
-        } else {
-          show(loginSection);
-          hide(appSection);
-          hide(topTabs);
-        }
+        const logged = isAuthed();
+        document.getElementById("login-section").classList.toggle("hidden", logged);
+        document.getElementById("app-section").classList.toggle("hidden", !logged);
       }
 
       function setupLogin(){
-        loginForm.addEventListener("submit", (e) => {
+        const form = document.getElementById("login-form");
+        const input = document.getElementById("email-input");
+        form.addEventListener("submit", (e)=>{
           e.preventDefault();
-          const v = (emailInput.value || "").trim().toLowerCase();
-          if (!v) return;
-          if (EMAILS_VALIDOS.includes(v)) {
-            saveEmail(v);
+          const val = (input.value||"").trim().toLowerCase();
+          if(!val) return;
+          if(EMAILS_VALIDOS.includes(val)){
+            saveEmail(val);
             renderState();
-          } else {
+          }else{
             alert("Este email não tem acesso ainda. Fala com a Manu 💖");
           }
         });
 
-        btnSair.addEventListener("click", () => {
+        document.getElementById("btn-sair").addEventListener("click", ()=>{
           logout();
           renderState();
         });
       }
 
-      // ====== TABS ======
-      const tabs = document.querySelectorAll(".tab-btn");
-      const pages = {
-        treinos:      document.getElementById("aba-treinos"),
-        alimentacao:  document.getElementById("aba-alimentacao"),
-        cardio:       document.getElementById("aba-cardio"),
-        relax:        document.getElementById("aba-relax"),
-        extra:        document.getElementById("aba-extra"),
-        perfil:       document.getElementById("aba-perfil"),
-      };
+      // ======= PERFIL =======
+      function renderPerfil(){
+        const box = document.getElementById("perfil-box");
+        const email = getEmail();
+        const owner = isOwner(email);
 
-      function selectTab(name){
-        tabs.forEach(b => b.classList.toggle("active", b.dataset.tab === name));
-        Object.entries(pages).forEach(([key, el]) => {
-          if (!el) return;
-          if (key === name) el.classList.remove("hidden"); else el.classList.add("hidden");
-        });
+        function linha(u){
+          return `<div><b>${u.nome}</b> — <span style="color:#999">${u.email}</span> • <span style="color:#ff4da6">Dia ${diasDesde(u.inicio)}</span></div>`;
+        }
+
+        if(owner){
+          box.innerHTML = USERS_INICIO.map(linha).join("");
+        }else{
+          const u = USERS_INICIO.find(x=>x.email.toLowerCase()===email);
+          box.innerHTML = u ? linha(u) : `<div style="color:#999">Sem registo de início.</div>`;
+        }
       }
 
-      tabs.forEach(btn => {
-        btn.addEventListener("click", () => selectTab(btn.dataset.tab));
-      });
-
-      // FOOTER YEAR
+      // ======= INIT =======
       document.getElementById("year").textContent = new Date().getFullYear();
-
-      // INIT
       setupLogin();
       renderState();
+      renderPerfil();
+
+      // garantir hash default
+      if(!location.hash){ location.hash = "#treinos"; }
+      showFromHash();
     </script>
-  <-nano v:2025-10-30T16:18:56Z -->
-</body>
+  </body>
 </html>
