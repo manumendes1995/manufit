@@ -1,399 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Treinos – Iniciante (5 dias) | MANUFIT</title>
-    <link rel="icon" type="image/png" href="../MANUFIT.png" />
-    <style>
-      :root{
-        --pink:#ff4da6; --bg:#0f0f12; --card:#1a1a22; --border:#2a2a33; --text:#fff;
-      }
-      html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif}
-      header{
-        background:linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%);
-        color:#fff;padding:16px;border-bottom:1px solid var(--pink);
-        display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px
-      }
-      .brand{font-weight:700;font-size:1.25rem;line-height:1.2;color:#fff}
-      .brand .sub{font-size:.7rem;font-weight:500;color:#ffd1e8;line-height:1.2}
-      .brand .row{display:flex;align-items:center;gap:8px}
-      .brand img{width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,.4)}
-      .nav{display:flex;flex-wrap:wrap;gap:8px}
-      .btn{background:#1f1f25;color:#fff;border:1px solid var(--pink);border-radius:6px;padding:6px 10px;font-size:.8rem;font-weight:600;cursor:pointer}
-      .btn.primary{background:var(--pink);color:#000}
-      main{padding:24px 16px;max-width:900px;margin:0 auto}
-      .section-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:24px}
-      .section-title{color:var(--pink);font-weight:700;font-size:1.1rem;margin-bottom:12px}
-      .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-      .daybtn{background:#1f1f25;color:#fff;border:1px solid var(--pink);border-radius:6px;padding:8px 12px;font-weight:600;font-size:.85rem;cursor:pointer}
-      .daybtn.active{background:var(--pink);color:#000}
-      .bloco{background:#0f0f12;border:1px solid #3a3a44;border-radius:8px;padding:12px;margin-bottom:12px;color:#ccc;font-size:.9rem}
-      .ex-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
-      .ex-name{color:#fff;font-weight:700}
-      .ex-meta{color:#bbb;font-size:.85rem}
-      .vids{display:flex;flex-direction:column;gap:6px;justify-self:end;text-align:right}
-      .vids a{color:#000;background:var(--pink);border:1px solid var(--pink);padding:6px 10px;border-radius:6px;text-decoration:none;font-weight:700;font-size:.8rem;display:inline-block}
-      .hint{color:#999;font-size:.85rem;margin-top:8px}
-      footer{color:#666;font-size:.7rem;text-align:center;padding:32px 16px}
-      .spacer{height:6px}
-      .back{display:inline-flex;align-items:center;gap:8px}
-      .back svg{width:16px;height:16px}
-      @media (max-width:520px){
-        .ex-row{grid-template-columns:1fr;gap:8px}
-        .vids{text-align:left;justify-self:start}
-      }
-    </style>
-    <script>
-      function goBack(){
-        // volta para o index, foco na aba Treinos
-        if (document.referrer && document.referrer.includes('index.html')){
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ManuFit — Treino Iniciante (5 dias)</title>
+
+  <!-- Favicon e logo com caminho absoluto para o GitHub Pages -->
+  <link rel="icon" type="image/png" href="/manufit/MANUFIT.png" />
+
+  <!-- Reutiliza o teu CSS global -->
+  <link rel="stylesheet" href="/manufit/assets/style.css" />
+
+  <style>
+    body { color: #fff; background: #120018; font-family: 'Poppins', sans-serif; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    header { display:flex; align-items:center; gap:12px; justify-content:space-between; margin-bottom:20px; }
+    header img { height:32px; }
+    .btn { background:#ff4fa3; color:#120018; border:none; padding:8px 14px; border-radius:10px; text-decoration:none; font-weight:600; cursor:pointer; }
+    .btn:hover { opacity:.85; }
+    h1 { margin-bottom:8px; }
+    .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 20px; }
+    .tab-btn { background:transparent; color:#fff; border:1px solid #ff4fa3; border-radius:8px; padding:8px 12px; cursor:pointer; font-weight:600; }
+    .tab-btn.active { background:#ff4fa3; color:#120018; }
+    .card { background:rgba(255,255,255,.04); border:1px solid rgba(255,79,163,.25); border-radius:16px; padding:16px; }
+    .day { display:none; }
+    .day.active { display:block; }
+    .row { display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:10px; padding:10px 0; border-bottom:1px dashed rgba(255,255,255,.15); }
+    .row:last-child { border-bottom:none; }
+    .muted { opacity:.8; font-size:14px; }
+    .videos { display:flex; flex-direction:column; gap:6px; justify-self:end; }
+    .video-link { border:1px solid #ff4fa3; border-radius:10px; padding:6px 10px; text-decoration:none; color:#fff; }
+  </style>
+</head>
+
+<body>
+  <header class="container">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <img src="/manufit/MANUFIT.png" alt="ManuFit">
+      <strong>MANUFIT</strong>
+    </div>
+    <div>
+      <a class="btn" id="btn-voltar" href="#">Voltar</a>
+      <a class="btn" href="/manufit/index.html">Início</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Iniciante (5 dias)</h1>
+    <p class="muted">Segue abaixo a rotina completa dos 5 dias. Clica nos nomes dos exercícios para ver os vídeos. Cada exercício: 3×10 com 1 minuto de intervalo.</p>
+
+    <!-- Tabs -->
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-dia="1">Dia 1</button>
+      <button class="tab-btn" data-dia="2">Dia 2</button>
+      <button class="tab-btn" data-dia="3">Dia 3</button>
+      <button class="tab-btn" data-dia="4">Dia 4</button>
+      <button class="tab-btn" data-dia="5">Dia 5</button>
+    </div>
+
+    <!-- DIA 1 -->
+    <section class="card day active" id="dia-1">
+      <h2>Treino 1 — Perna e Glúteo</h2>
+      <div class="row"><div>Agachamento Peso do Corpo</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Agachamento Livre</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Leg Press 45</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Flexora Sentada</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Cadeira Extensora</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Flexora Deitada</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Panturrilha em pé com halteres</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+    </section>
+
+    <!-- DIA 2 -->
+    <section class="card day" id="dia-2">
+      <h2>Treino 2 — Membros Superiores + Abd</h2>
+      <div class="row"><div>Abd. Supra Curtinho + Abd. Infra</div><div class="muted">3×10 cada • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Puxada Frente (Pegada Aberta) + Flexão de Braço</div><div class="muted">3×10 cada • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Remada Curvada Halteres + Desenvolvimento Halteres</div><div class="muted">3×10 cada • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Rosca Direta Halteres + Tríceps Pulley</div><div class="muted">3×10 cada • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Esteira</div><div class="muted">20 min (Corre 1 min / Caminha 1 min)</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+    </section>
+
+    <!-- DIA 3 -->
+    <section class="card day" id="dia-3">
+      <h2>Treino 3 — Corpo Todo HIIT</h2>
+      <div class="row"><div>Burpee</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Afundo + Desenvolve</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Thruster</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Agachamento c/ Salto</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Prancha Abre e Fecha</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Ski</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+    </section>
+
+    <!-- DIA 4 -->
+    <section class="card day" id="dia-4">
+      <h2>Treino 4 — Perna e Glúteo</h2>
+      <div class="row"><div>Agachamento Smith</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Leg Press Horizontal</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Agachamento Sumô</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Glúteo 4 Apoios (perna flexionada)</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Elevação Pélvica</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Stiff</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Panturrilha Smith</div><div class="muted">3×10 • 1 min</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+    </section>
+
+    <!-- DIA 5 -->
+    <section class="card day" id="dia-5">
+      <h2>Treino 5 — Membros Superiores + Abd</h2>
+      <div class="row"><div>Abd. Supra Curtinho</div><div class="muted">3×10 • 30 seg</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Puxada Pulley Pegada Aberta</div><div class="muted">3×10 • 30 seg</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Esteira / Transpot / Bike</div><div class="muted">2 min • Velocidade Moderada</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Remada na Polia (Pegada Neutra)</div><div class="muted">3×10 • 30 seg</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Supino Reto Halteres + Tríceps Francês</div><div class="muted">3×10 • 30 seg</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+      <div class="row"><div>Esteira / Transpot / Bike</div><div class="muted">2 min • Velocidade Moderada</div><div class="videos"><a class="video-link" href="#">Ver vídeo</a></div></div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('btn-voltar').addEventListener('click', function (e) {
+      e.preventDefault();
+      try {
+        if (document.referrer && new URL(document.referrer).host === location.host) {
           history.back();
         } else {
-          window.location.href = '../index.html#treinos';
+          location.href = "/manufit/index.html";
         }
+      } catch (_) {
+        location.href = "/manufit/index.html";
       }
-      document.addEventListener('DOMContentLoaded', ()=>{
-        const tabBtns=[...document.querySelectorAll('[data-day-btn]')];
-        const days=[...document.querySelectorAll('[data-day]')];
-        function show(id){
-          days.forEach(d=>d.style.display = d.id===id?'block':'none');
-          tabBtns.forEach(b=>b.classList.toggle('active', b.dataset.dayBtn===id));
-        }
-        tabBtns.forEach(b=>b.addEventListener('click', ()=>show(b.dataset.dayBtn)));
-        // abrir no Dia 1 por omissão
-        show('dia1');
+    });
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    const dias = document.querySelectorAll('.day');
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        dias.forEach(d => d.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('dia-' + btn.dataset.dia).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-    </script>
-  </head>
-  <body>
-    <header>
-      <div class="brand">
-        <div class="row">
-          <img src="../MANUFIT.png" alt="Manufit" />
-          <div>MANUFIT</div>
-        </div>
-        <div class="sub">Treino • Nutrição • Resultados</div>
-      </div>
-      <div class="nav">
-        <button class="btn back" onclick="goBack()" title="Voltar">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 19l-7-7 7-7v4h11v6H10v4z"/></svg>
-          Voltar
-        </button>
-      </div>
-    </header>
-
-    <main>
-      <div class="section-card">
-        <div class="section-title">Iniciante (5 dias)</div>
-
-        <!-- Tabs de dias -->
-        <div class="tabs">
-          <button class="daybtn" data-day-btn="dia1">Dia 1</button>
-          <button class="daybtn" data-day-btn="dia2">Dia 2</button>
-          <button class="daybtn" data-day-btn="dia3">Dia 3</button>
-          <button class="daybtn" data-day-btn="dia4">Dia 4</button>
-          <button class="daybtn" data-day-btn="dia5">Dia 5</button>
-        </div>
-
-        <!-- DIA 1 -->
-        <section id="dia1" data-day>
-          <div class="bloco">
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Agachamento Peso do Corpo</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Agachamento Livre</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Leg Press 45°</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Flexora Sentada</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Cadeira Extensora</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Flexora Deitada</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Gémeos em Pé com Halteres</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- DIA 2 – Superiores + Abdómen -->
-        <section id="dia2" data-day style="display:none">
-          <div class="bloco">
-            <!-- Combinação 1: Abd Supra Curtinho + Abd Infra -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Abd Supra Curtinho ➜ Abd Infra</div>
-                <div class="ex-meta">3×10 cada • Alterna e só depois descansa 1 min</div>
-                <div class="hint">Faz os dois seguidos (alternado), depois descansa 1 min.</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" target="_blank" rel="noopener">Ver vídeo 1</a>
-                <a href="https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" target="_blank" rel="noopener">Ver vídeo 2</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <!-- Combinação 2: Supino Barra + Supino Halteres -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Supino Reto Barra ➜ Supino Reto Halteres</div>
-                <div class="ex-meta">3×10 cada • Alterna e só depois descansa 1 min</div>
-                <div class="hint">Mantém escápulas fixas e trajectória controlada.</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/d6jKfi6l3MM?si=JinMYZN7t0Dk0cv-" target="_blank" rel="noopener">Ver vídeo 1</a>
-                <a href="https://youtu.be/KyHYsJ5YZQE?si=GWdKYfEgcrvWTbNC" target="_blank" rel="noopener">Ver vídeo 2</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <!-- Combinação 3: Tríceps Polia + Tríceps Francês -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Tríceps na Polia ➜ Tríceps Francês</div>
-                <div class="ex-meta">3×10 cada • Alterna e só depois descansa 1 min</div>
-                <div class="hint">Cotovelo estável, amplitude completa sem roubar com o tronco.</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/zxItpU2RsP4?si=1LtXJ4wDk7Kb3F5R" target="_blank" rel="noopener">Ver vídeo 1</a>
-                <a href="https://youtu.be/LU4xYDGbpjA" target="_blank" rel="noopener">Ver vídeo 2</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- DIA 3 – Circuito (lista enviada) -->
-        <section id="dia3" data-day style="display:none">
-          <div class="bloco">
-            <!-- 1 -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Exercício 1</div>
-                <div class="ex-meta">Conforme print • Executa e descansa 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/1hvyPpTKVcM?si=gWh0tfCzvBuaU6tF" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-            <div class="spacer"></div>
-
-            <!-- 2 (remada unilateral; tirar “sapinho”, como pediste) -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Exercício 2 – Remada Unilateral</div>
-                <div class="ex-meta">Conforme print • Executa e descansa 1 min</div>
-                <div class="hint">Removi o “sapinho” aqui, como disseste.</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/JqUanzV8xVU?si=cIlO1zP6BLW-baYu" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-            <div class="spacer"></div>
-
-            <!-- 3 -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Exercício 3</div>
-                <div class="ex-meta">Conforme print</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/tBojP6GHtDY?si=pSEq086dV3i0Bl0G" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <!-- 4..10 -->
-            <div class="ex-row"><div><div class="ex-name">Exercício 4</div></div><div class="vids"><a href="https://youtu.be/URlNL4wTZnk?si=Tac3mIa5bnHSgL_f" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Exercício 5</div></div><div class="vids"><a href="https://youtu.be/SeHR1QhV748?si=0cnoLjonfaqyeBJq" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Exercício 6</div></div><div class="vids"><a href="https://youtu.be/vPpx8iwLmn8?si=wyqIxcd2Cx9O_g_O" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Exercício 7</div></div><div class="vids"><a href="https://youtu.be/Ei6XuhfUCz8?si=TEdo5vkHxuIJNqyR" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Exercício 8</div></div><div class="vids"><a href="https://youtu.be/hGNYkjF36mA?si=GDSP_o7Bdofarz_P" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Exercício 9</div></div><div class="vids"><a href="https://youtu.be/CII_TkXd0dU?si=FKJWKWKudtHxHVss" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Exercício 10</div></div><div class="vids"><a href="https://youtu.be/5uwgNo5K1jM?si=LiTyReCZErEG8Wo6" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-          </div>
-        </section>
-
-        <!-- DIA 4 – Foco Glúteo/Posterior (lista enviada) -->
-        <section id="dia4" data-day style="display:none">
-          <div class="bloco">
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Agachamento no Smith</div>
-                <div class="ex-meta">3×10 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/owUMm3gZ1b0?si=z8-E9JTUbVkKGF1t" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-            <div class="spacer"></div>
-
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Agachamento Sumô</div>
-                <div class="ex-meta">3×12 • Descanso 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/ZXyzfNO497M?si=7ToFuGtxWBGLECtf" target="_blank" rel="noopener">Ver vídeo</a>
-              </div>
-            </div>
-            <div class="spacer"></div>
-
-            <div class="ex-row"><div><div class="ex-name">Leg Horizontal Unilateral</div><div class="ex-meta">3×12 • Descanso 1 min</div></div><div class="vids"><a href="https://youtu.be/3c2pZFI4-xQ?si=Zux2lKp5OuvLG5Zu" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Leg Horizontal Bilateral</div><div class="ex-meta">3×12 • Descanso 1 min</div></div><div class="vids"><a href="https://youtu.be/W1QWvmQ_ZuM?si=vpqYKX_YTNAqJgMP" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Glúteo 4 Apoios</div><div class="ex-meta">3×15 cada perna • Descanso 1 min</div></div><div class="vids"><a href="https://youtu.be/luvbFKnA6aA?si=Bh2piZlDP7S2hc1H" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Elevação Pélvica</div><div class="ex-meta">3×12–15 • Descanso 1 min</div></div><div class="vids"><a href="https://youtu.be/UT-WBhxo9uA?si=Q78nf6XHt4g40FKw" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Stiff</div><div class="ex-meta">3×10 • Descanso 1 min</div></div><div class="vids"><a href="https://youtu.be/43u1zfJUUi0?si=sC1mYwjfgG3Gh7RE" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-            <div class="spacer"></div>
-            <div class="ex-row"><div><div class="ex-name">Gémeos no Smith</div><div class="ex-meta">3×12–15 • Descanso 1 min</div></div><div class="vids"><a href="https://youtu.be/w_aic9GI0CY?si=iSSIyt8FwKkzAoD3" target="_blank" rel="noopener">Ver vídeo</a></div></div>
-          </div>
-        </section>
-
-        <!-- DIA 5 – Combinações superiores + core -->
-        <section id="dia5" data-day style="display:none">
-          <div class="bloco">
-            <!-- Combinação 1: Supra curtinho + Infra + Remador -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Abd Supra Curtinho ➜ Abd Infra ➜ Abd Remador</div>
-                <div class="ex-meta">3×10 cada • Faz os 3 seguidos e depois descansa 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw" target="_blank" rel="noopener">Vídeo 1</a>
-                <a href="https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56" target="_blank" rel="noopener">Vídeo 2</a>
-                <a href="https://youtu.be/n1dG-X-KWR8?si=7KDL5ehKb1E3h-vu" target="_blank" rel="noopener">Vídeo 3</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <!-- Combinação 2: Puxada na Polia (pegada aberta) + Remada Curvada Halteres -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Puxada na Polia (pegada aberta) ➜ Remada Curvada Halteres</div>
-                <div class="ex-meta">3×10 cada • Alterna e só depois descansa 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="#INSERIR_LINK_PUXADA" target="_blank" rel="noopener">Vídeo 1</a>
-                <a href="#INSERIR_LINK_REMADA_CURVADA" target="_blank" rel="noopener">Vídeo 2</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <!-- Combinação 3: Flexão de braço + Desenvolvimento com Halteres -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Flexão de Braço ➜ Desenvolvimento com Halteres</div>
-                <div class="ex-meta">3×10 cada • Alterna e só depois descansa 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="#INSERIR_LINK_FLEXAO" target="_blank" rel="noopener">Vídeo 1</a>
-                <a href="#INSERIR_LINK_DESENV_HALTERES" target="_blank" rel="noopener">Vídeo 2</a>
-              </div>
-            </div>
-
-            <div class="spacer"></div>
-
-            <!-- Combinação 4: Rosca Direta Halteres + Tríceps Testa -->
-            <div class="ex-row">
-              <div>
-                <div class="ex-name">Combinação: Rosca Direta Halteres ➜ Tríceps Testa</div>
-                <div class="ex-meta">3×10 cada • Alterna e só depois descansa 1 min</div>
-              </div>
-              <div class="vids">
-                <a href="#INSERIR_LINK_ROSCA_DIRETA" target="_blank" rel="noopener">Vídeo 1</a>
-                <a href="https://youtu.be/m9agOjzhIyw?si=bHZO9JYj68m5CwMU" target="_blank" rel="noopener">Vídeo 2</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </div>
-    </main>
-
-    <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
-    <script>
-      document.getElementById('year').textContent=new Date().getFullYear();
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
