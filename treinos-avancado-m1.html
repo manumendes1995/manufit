@@ -32,6 +32,30 @@
     h2{ margin:6px 0 14px }
   </style>
 </head>
+<script>
+// 1) Desregistar QUALQUER service worker antigo (one-time, silencioso)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    for (const r of regs) r.unregister();
+  }).catch(()=>{});
+}
+
+// 2) Cache-buster automático: acrescenta ?v=AAAAMMDD aos links internos
+(function () {
+  const v = 'v=20251031'; // muda a data quando quiseres forçar atualização
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    // Só em links locais (não http/https/mailto/tel) e sem âncora pura
+    const isExternal = /^https?:|^mailto:|^tel:/.test(href);
+    const isHashOnly = href.startsWith('#');
+    if (!isExternal && !isHashOnly) {
+      const sep = href.includes('?') ? '&' : '?';
+      if (!href.includes('v=')) a.setAttribute('href', href + sep + v);
+    }
+  });
+})();
+</script>
 <body>
   <div class="wrap">
     <!-- topo idêntico + botão voltar -->
