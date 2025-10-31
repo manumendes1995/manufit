@@ -42,7 +42,7 @@ if ('serviceWorker' in navigator) {
 
 // 2) Cache-buster automático: acrescenta ?v=AAAAMMDD aos links internos
 (function () {
-  const v = 'v=20251031'; // muda a data quando quiseres forçar atualização
+  const v = 'v=20251031-3'; // muda a data quando quiseres forçar atualização
   document.querySelectorAll('a[href]').forEach(a => {
     const href = a.getAttribute('href');
     if (!href) return;
