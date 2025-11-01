@@ -3,163 +3,102 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MANUFIT</title>
-
-  <!-- mantém os mesmos assets/visual -->
-  <link rel="icon" type="image/png" href="/manufit/MANUFIT.png">
-  <link rel="stylesheet" href="/manufit/assets/style.css?v=2025-10-31-18h">
-
-  <!-- Auto-update invisível (não muda o visual) -->
-  <script>
-    (function(){
-      const VER = '2025-10-31-18h';
-      try {
-        const k = 'mf_ver';
-        const cur = localStorage.getItem(k);
-        if (cur !== VER) {
-          localStorage.setItem(k, VER);
-          // só força 1 reload quando a versão muda
-          if (!sessionStorage.getItem('mf_reloaded_'+VER)) {
-            sessionStorage.setItem('mf_reloaded_'+VER, '1');
-            location.reload();
-          }
-        }
-      } catch(e){}
-    })();
-  </script>
-
+  <title>ManuFit</title>
+  <link rel="icon" type="image/png" href="MANUFIT.png" />
+  <link rel="stylesheet" href="assets/style.css" />
   <style>
-    /* NÃO altera o tema; apenas utilitários usados pelo HTML abaixo */
-    .wrap{max-width:1100px;margin:0 auto;padding:16px}
-    .topnav{display:flex;gap:8px;justify-content:flex-end;margin:10px 0 16px}
-    .pill{border:1px solid #ff4fa3;border-radius:10px;padding:6px 10px;text-decoration:none;font-weight:600}
-    .pill.active{background:#ff4fa3;color:#120018}
-    .section{margin:22px 0}
-    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,79,163,.25);border-radius:14px;padding:16px}
-    .link-row{display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,79,163,.35);border-radius:10px;padding:10px 12px;margin:10px 0}
-    .link-row b{font-weight:700}
-    .link-row a{border:1px solid #ff4fa3;border-radius:10px;padding:6px 10px;text-decoration:none}
-    .hidden{display:none}
+    body { background-color:#120018; color:#fff; font-family:'Poppins',sans-serif; margin:0; }
+    header { background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:space-between; padding:12px 18px; border-bottom:1px solid rgba(255,255,255,0.1); }
+    header img { height:38px; }
+    main { padding:20px; max-width:800px; margin:auto; }
+    .tab { background:#ff4fa3; color:#120018; border:none; border-radius:12px; padding:10px 18px; margin:8px; font-weight:600; cursor:pointer; text-decoration:none; display:inline-block; }
+    .tab:hover { opacity:.9; }
+    .section-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:18px; margin-bottom:24px; }
+    .section-title { font-size:20px; font-weight:700; margin-bottom:14px; color:#ff4fa3; }
+    .link-row { display:flex; align-items:center; justify-content:space-between; border-bottom:1px dashed rgba(255,255,255,0.15); padding:10px 0; }
+    .link-row:last-child{ border-bottom:none; }
+    a { color:#ff4fa3; text-decoration:none; }
+    a:hover { text-decoration:underline; }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-
-    <!-- topo / logo e tabs -->
-    <div class="top" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <div style="display:flex;align-items:center;gap:10px">
-        <img src="/manufit/MANUFIT.png" alt="MANUFIT" style="height:32px">
-        <strong>MANUFIT</strong>
-      </div>
-      <nav class="topnav" id="tabs">
-        <a class="pill" data-target="treinos" href="#treinos">Treinos</a>
-        <a class="pill" data-target="cardapios" href="#cardapios">Alimentação</a>
-        <a class="pill" data-target="cardio" href="#cardio">Cardio</a>
-        <a class="pill" data-target="relax" href="#relax">Relaxamento</a>
-        <a class="pill" data-target="extra" href="#extra">Extra</a>
-      </nav>
+  <header>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="MANUFIT.png" alt="ManuFit Logo">
+      <strong>MANUFIT</strong>
     </div>
+    <nav>
+      <a href="#" class="tab" onclick="mostrarAba('treinos')">Treinos</a>
+      <a href="#" class="tab" onclick="mostrarAba('alimentacao')">Alimentação</a>
+      <a href="#" class="tab" onclick="mostrarAba('cardio')">Cardio</a>
+      <a href="#" class="tab" onclick="mostrarAba('relaxamento')">Relaxamento</a>
+      <a href="#" class="tab" onclick="mostrarAba('extra')">Extra</a>
+      <a href="#" class="tab" onclick="mostrarAba('perfil')">Perfil</a>
+      <a href="index.html" class="tab">Sair</a>
+    </nav>
+  </header>
 
-    <!-- TREINOS -->
-    <section class="section" id="treinos">
-      <h2>Treinos</h2>
-      <div class="card">
-        <div class="link-row"><b>Iniciante (5 dias)</b> <a href="treinos-iniciante.html">Abrir</a></div>
-
-        <!-- Avançado — meses 1..12 (mantido igual ao que já tinhas) -->
-        <div class="link-row"><b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html">Abrir</a></div>
-        <div class="link-row"><b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html">Abrir</a></div>
-      </div>
+  <main>
+    <!-- ABA TREINOS -->
+    <section id="aba-treinos" class="section-card">
+      <div class="section-title">Treinos</div>
+      <div class="link-row"><b>Iniciante (5 dias)</b> <a href="treinos-iniciante.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 1</b> <a href="treinos-avancado-m1.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 2</b> <a href="treinos-avancado-m2.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 3</b> <a href="treinos-avancado-m3.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 4</b> <a href="treinos-avancado-m4.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 5</b> <a href="treinos-avancado-m5.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 6</b> <a href="treinos-avancado-m6.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 7</b> <a href="treinos-avancado-m7.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 8</b> <a href="treinos-avancado-m8.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 9</b> <a href="treinos-avancado-m9.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html">Abrir</a></div>
+      <div class="link-row"><b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html">Abrir</a></div>
     </section>
 
-    <!-- ALIMENTAÇÃO: mostra logo as 4 opções -->
-    <section class="section" id="cardapios">
-      <h2>Alimentação</h2>
-      <div class="card">
-        <div class="link-row"><b>Base — Hipertrofia</b>        <a href="alimentacao-base-hipertrofia.html">Abrir</a></div>
-        <div class="link-row"><b>Base — Emagrecimento</b>      <a href="alimentacao-base-emagrecimento.html">Abrir</a></div>
-        <div class="link-row"><b>Mês 1 — Hipertrofia</b>       <a href="alimentacao-m1-hipertrofia.html">Abrir</a></div>
-        <div class="link-row"><b>Mês 1 — Emagrecimento</b>     <a href="alimentacao-m1-emagrecimento.html">Abrir</a></div>
-      </div>
+    <!-- ABA ALIMENTAÇÃO -->
+    <section id="aba-alimentacao" class="section-card" style="display:none;">
+      <div class="section-title">Alimentação</div>
+      <div class="link-row"><b>Base</b> <a href="alimentacao-base.html">Abrir</a></div>
+      <div class="link-row"><b>Hipertrofia — 1º Mês</b> <a href="alimentacao-hipertrofia-m1.html">Abrir</a></div>
+      <div class="link-row"><b>Emagrecimento — 1º Mês</b> <a href="alimentacao-emagrecimento-m1.html">Abrir</a></div>
+      <div class="link-row"><b>Cardápio Vegetariano</b> <a href="alimentacao-vegetariana.html">Abrir</a></div>
     </section>
 
-    <!-- CARDIO (apenas lista/links; visual igual) -->
-    <section class="section" id="cardio">
-      <h2>Cardio</h2>
-      <div class="card">
-        <div class="link-row"><b>HIIT 1</b>         <a href="cardio-hiit-1.html">Abrir</a></div>
-        <div class="link-row"><b>HIIT 2</b>         <a href="cardio-hiit-2.html">Abrir</a></div>
-        <div class="link-row"><b>Esteira Intervalada</b> <a href="cardio-esteira-intervalada.html">Abrir</a></div>
-        <div class="link-row"><b>Bike Intervalada</b>    <a href="cardio-bike-intervalada.html">Abrir</a></div>
-      </div>
+    <!-- ABA CARDIO -->
+    <section id="aba-cardio" class="section-card" style="display:none;">
+      <div class="section-title">Cardio</div>
+      <div class="link-row"><b>Protocolos de Cardio</b> <a href="cardio.html">Abrir</a></div>
     </section>
 
-    <!-- RELAXAMENTO -->
-    <section class="section" id="relax">
-      <h2>Relaxamento</h2>
-      <div class="card">
-        <div class="link-row"><b>Alongamentos — Corpo Todo</b>   <a href="relax-alongamentos.html">Abrir</a></div>
-        <div class="link-row"><b>Mobilidade — Coluna &amp; Quadril</b> <a href="relax-mobilidade.html">Abrir</a></div>
-        <div class="link-row"><b>Respiração &amp; Mindfulness</b>  <a href="relax-respiracao.html">Abrir</a></div>
-      </div>
+    <!-- ABA RELAXAMENTO -->
+    <section id="aba-relaxamento" class="section-card" style="display:none;">
+      <div class="section-title">Relaxamento</div>
+      <div class="link-row"><b>Alongamentos e Recuperação</b> <a href="relaxamento.html">Abrir</a></div>
     </section>
 
-    <!-- EXTRA (conforme a tua imagem) -->
-    <section class="section" id="extra">
-      <h2>Extra</h2>
-      <div class="card">
-        <div class="link-row"><b>Foco Glúteo</b>            <a href="extra-foco-gluteo.html">Abrir</a></div>
-        <div class="link-row"><b>Foco Quadríceps</b>        <a href="extra-foco-quadriceps.html">Abrir</a></div>
-        <div class="link-row"><b>Foco Posterior Coxa</b>    <a href="extra-foco-posterior-coxa.html">Abrir</a></div>
-        <div class="link-row"><b>Foco Tríceps</b>           <a href="extra-foco-triceps.html">Abrir</a></div>
-        <div class="link-row"><b>Detox</b>                  <a href="extra-detox.html">Abrir</a></div>
-      </div>
+    <!-- ABA EXTRA -->
+    <section id="aba-extra" class="section-card" style="display:none;">
+      <div class="section-title">Extra</div>
+      <div class="link-row"><b>Motivação e Dicas</b> <a href="extra.html">Abrir</a></div>
     </section>
 
-    <footer style="opacity:.8;margin:28px 0 8px">© 2025 MANUFIT. Todos os direitos reservados.</footer>
-  </div>
+    <!-- ABA PERFIL -->
+    <section id="aba-perfil" class="section-card" style="display:none;">
+      <div class="section-title">Perfil</div>
+      <p>Aqui será exibido o teu progresso e informações da conta.</p>
+    </section>
 
-  <!-- Tabs: ativa a aba pela âncora #... sem mudar visual -->
+  </main>
+
   <script>
-    (function(){
-      const pills = document.querySelectorAll('.pill');
-      const secs = ['treinos','cardapios','cardio','relax','extra']
-        .map(id => document.getElementById(id));
-
-      function activate(hash) {
-        const id = (hash||'#treinos').replace('#','');
-        pills.forEach(p=>p.classList.toggle('active', p.dataset.target===id));
-        secs.forEach(s=> s.classList.toggle('hidden', s.id!==id));
-        // scroll suave ao topo da secção
-        document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-
-      // estado inicial
-      secs.forEach(s=>s.classList.add('hidden'));
-      const start = location.hash && secs.find(s=>('#'+s.id)===location.hash) ? location.hash : '#treinos';
-      activate(start);
-
-      // clicks
-      pills.forEach(p=>p.addEventListener('click', e=>{
-        e.preventDefault();
-        const h = '#'+p.dataset.target;
-        history.replaceState(null, '', h);
-        activate(h);
-      }));
-
-      // responder a navegação por hash
-      window.addEventListener('hashchange', ()=>activate(location.hash));
-    })();
+    function mostrarAba(id) {
+      document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+      document.getElementById('aba-' + id).style.display = 'block';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
   </script>
 </body>
 </html>
