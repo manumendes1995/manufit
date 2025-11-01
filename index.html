@@ -1,424 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ManuFit</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MANUFIT</title>
 
-    <!-- Ícone / Logo -->
-    <link rel="icon" type="image/png" href="MANUFIT.png" />
+  <!-- mantém os mesmos assets/visual -->
+  <link rel="icon" type="image/png" href="/manufit/MANUFIT.png">
+  <link rel="stylesheet" href="/manufit/assets/style.css?v=2025-10-31-18h">
 
-    <style>
-      :root{
-        --pink:#ff4da6;
-        --bg:#0f0f12;
-        --panel:#1a1a22;
-        --panel-border:#2a2a33;
-        --text:#fff;
-        --muted:#bbb;
-      }
-      *{box-sizing:border-box}
-      html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif}
-      a{color:var(--pink);text-decoration:none}
-      a:hover{text-decoration:underline}
-
-      /* Header (mantém o visual que aprovaste) */
-      header{
-        background: linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%);
-        color:#fff; padding:16px; border-bottom:1px solid var(--pink);
-        display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
-      }
-      .brand{font-weight:700;font-size:1.25rem;line-height:1.2;color:#fff}
-      .brand .sub{font-size:.7rem;font-weight:500;color:#ffd1e8;line-height:1.2}
-      .brand .row{display:flex;align-items:center;gap:8px}
-      .brand img{width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.4)}
-
-      nav.tabs{display:flex;flex-wrap:wrap;gap:8px}
-      .tabbtn{
-        background:#1f1f25;color:#fff;border:1px solid var(--pink);border-radius:6px;
-        padding:6px 10px;font-size:.8rem;font-weight:600;cursor:pointer;
-      }
-      .tabbtn.active{background:var(--pink);color:#000}
-      .tabbtn:disabled{opacity:.6;cursor:default}
-
-      main{padding:24px 16px;max-width:900px;margin:0 auto}
-      footer{color:#666;font-size:.7rem;text-align:center;padding:40px 16px}
-
-      /* Cartões / painéis */
-      .card{
-        background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;
-        padding:16px;max-width:480px;width:100%;margin:40px auto;color:#fff;
-      }
-      .label{display:block;margin-bottom:8px;font-weight:600;color:var(--pink)}
-      .input{
-        width:100%;background:var(--bg);border:1px solid var(--pink);border-radius:6px;
-        padding:10px 12px;color:#fff;font-size:1rem;outline:none;
-      }
-      .btnPrimary{
-        margin-top:16px;width:100%;background:var(--pink);border:0;border-radius:6px;color:#000;
-        font-weight:700;font-size:1rem;padding:12px;cursor:pointer;
-      }
-      .smallInfo{font-size:.8rem;opacity:.8;margin-top:12px;line-height:1.4;text-align:center;color:var(--muted)}
-
-      /* Secções */
-      .section-card{
-        background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;padding:16px;color:#fff;
-      }
-      .section-title{color:var(--pink);font-weight:700;font-size:1rem;line-height:1.4;margin-bottom:12px}
-      .link-list{display:flex;flex-direction:column;gap:8px}
-      .link-row{display:flex;justify-content:space-between;align-items:center;background:#0f0f12;border:1px solid #3a3a44;border-radius:8px;padding:10px 12px;color:#ccc;font-size:.9rem}
-      .link-row b{color:#fff}
-      .link-row a{font-weight:700}
-
-      /* Ocultar/mostrar abas por JS */
-      .hidden{display:none}
-    </style>
-  </head>
-
-<script>
-// 1) Desregistar QUALQUER service worker antigo (one-time, silencioso)
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => {
-    for (const r of regs) r.unregister();
-  }).catch(()=>{});
-}
-
-// 2) Cache-buster automático: acrescenta ?v=AAAAMMDD aos links internos
-(function () {
-  const v = 'v=20251031-3'; // muda a data quando quiseres forçar atualização
-  document.querySelectorAll('a[href]').forEach(a => {
-    const href = a.getAttribute('href');
-    if (!href) return;
-    // Só em links locais (não http/https/mailto/tel) e sem âncora pura
-    const isExternal = /^https?:|^mailto:|^tel:/.test(href);
-    const isHashOnly = href.startsWith('#');
-    if (!isExternal && !isHashOnly) {
-      const sep = href.includes('?') ? '&' : '?';
-      if (!href.includes('v=')) a.setAttribute('href', href + sep + v);
-    }
-  });
-})();
-</script>
-<script>
-  (async function () {
-    const BASE = '/manufit/';
-    // 1) Lê a versão corrente do servidor (impede cache com timestamp)
-    let version = 'v-unknown';
-    try {
-      const vRes = await fetch(BASE + 'version.json?_=' + Date.now(), { cache: 'no-store' });
-      const vJson = await vRes.json();
-      version = vJson.version || version;
-      // guarda última versão vista
-      localStorage.setItem('manufit_version', version);
-    } catch (e) {
-      // se falhar, segue sem bloquear
-    }
-
-    // 2) Regista o SW
-    if ('serviceWorker' in navigator) {
+  <!-- Auto-update invisível (não muda o visual) -->
+  <script>
+    (function(){
+      const VER = '2025-10-31-18h';
       try {
-        const reg = await navigator.serviceWorker.register(BASE + 'sw.js', { scope: BASE });
-        // tenta logo atualizar
-        reg.update().catch(()=>{});
-
-        // Se houver update, força reload automático
-        navigator.serviceWorker.addEventListener('message', (ev) => {
-          if (ev.data && ev.data.type === 'MANUFIT_RELOAD') {
-            // pequeno atraso para o SW assumir controlo
-            setTimeout(() => location.reload(), 250);
-          }
-        });
-      } catch (e) {
-        // ignora erros de registo
-      }
-    }
-
-    // 3) (Opcional, invisível) acrescenta ?v=... a links relativos internos
-    // para quebrar cache do navegador sem alterar o visual
-    try {
-      const links = document.querySelectorAll('a[href]');
-      links.forEach(a => {
-        const href = a.getAttribute('href');
-        // só mexe em links relativos (sem http) e que não comecem por '#'
-        if (href && !href.startsWith('http') && !href.startsWith('#')) {
-          const hasQuery = href.includes('?');
-          const sep = hasQuery ? '&' : '?';
-          if (!href.includes('v=')) {
-            a.setAttribute('href', href + sep + 'v=' + encodeURIComponent(version));
+        const k = 'mf_ver';
+        const cur = localStorage.getItem(k);
+        if (cur !== VER) {
+          localStorage.setItem(k, VER);
+          // só força 1 reload quando a versão muda
+          if (!sessionStorage.getItem('mf_reloaded_'+VER)) {
+            sessionStorage.setItem('mf_reloaded_'+VER, '1');
+            location.reload();
           }
         }
-      });
-    } catch (e) {}
-  })();
-</script>
-<!-- Registo do Service Worker (atualização automática) -->
-<script>
-  (function registerSW() {
-    if (!('serviceWorker' in navigator)) return;
-    // Caminho/escopo em GitHub Pages
-    const swUrl = '/manufit/sw.js';
-    const swScope = '/manufit/';
+      } catch(e){}
+    })();
+  </script>
 
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register(swUrl, { scope: swScope })
-        .then((reg) => {
-          // Atualiza quando a aba volta a ficar ativa
-          document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) reg.update();
-          });
+  <style>
+    /* NÃO altera o tema; apenas utilitários usados pelo HTML abaixo */
+    .wrap{max-width:1100px;margin:0 auto;padding:16px}
+    .topnav{display:flex;gap:8px;justify-content:flex-end;margin:10px 0 16px}
+    .pill{border:1px solid #ff4fa3;border-radius:10px;padding:6px 10px;text-decoration:none;font-weight:600}
+    .pill.active{background:#ff4fa3;color:#120018}
+    .section{margin:22px 0}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,79,163,.25);border-radius:14px;padding:16px}
+    .link-row{display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,79,163,.35);border-radius:10px;padding:10px 12px;margin:10px 0}
+    .link-row b{font-weight:700}
+    .link-row a{border:1px solid #ff4fa3;border-radius:10px;padding:6px 10px;text-decoration:none}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
 
-          // Se houver update instalado, recarrega para apanhar a versão nova
-          reg.addEventListener('updatefound', () => {
-            const nw = reg.installing;
-            if (!nw) return;
-            nw.addEventListener('statechange', () => {
-              if (nw.state === 'installed' && navigator.serviceWorker.controller) {
-                // força refresh leve
-                location.reload();
-              }
-            });
-          });
-
-          // Opcional: pedir ao SW para ativar logo
-          if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        })
-        .catch(() => { /* silencioso para não afetar UI */ });
-    });
-  })();
-</script>
-  <body>
-    <!-- HEADER -->
-    <header>
-      <div class="brand">
-        <div class="row">
-          <img src="MANUFIT.png" alt="ManuFit Logo" />
-          <div>MANUFIT</div>
-        </div>
-        <div class="sub">Treino • Nutrição • Resultados</div>
+    <!-- topo / logo e tabs -->
+    <div class="top" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="/manufit/MANUFIT.png" alt="MANUFIT" style="height:32px">
+        <strong>MANUFIT</strong>
       </div>
-
-      <nav class="tabs">
-        <a href="#treinos"><button class="tabbtn" data-tab="treinos">Treinos</button></a>
-        <a href="#cardapios"><button class="tabbtn" data-tab="cardapios">Alimentação</button></a>
-        <a href="#cardio"><button class="tabbtn" data-tab="cardio">Cardio</button></a>
-        <a href="#relax"><button class="tabbtn" data-tab="relax">Relaxamento</button></a>
-        <a href="#extra"><button class="tabbtn" data-tab="extra">Extra</button></a>
-        <a href="#perfil"><button class="tabbtn" data-tab="perfil">Perfil</button></a>
-        <button id="btn-sair" class="tabbtn" title="Terminar sessão">Sair</button>
+      <nav class="topnav" id="tabs">
+        <a class="pill" data-target="treinos" href="#treinos">Treinos</a>
+        <a class="pill" data-target="cardapios" href="#cardapios">Alimentação</a>
+        <a class="pill" data-target="cardio" href="#cardio">Cardio</a>
+        <a class="pill" data-target="relax" href="#relax">Relaxamento</a>
+        <a class="pill" data-target="extra" href="#extra">Extra</a>
       </nav>
-    </header>
+    </div>
 
-    <!-- LOGIN -->
-    <section id="login-section" class="hidden">
+    <!-- TREINOS -->
+    <section class="section" id="treinos">
+      <h2>Treinos</h2>
       <div class="card">
-        <form id="login-form">
-          <label class="label">Introduz o teu e-mail para aceder</label>
-          <input id="email-input" class="input" type="email" placeholder="exemplo@exemplo.com" />
+        <div class="link-row"><b>Iniciante (5 dias)</b> <a href="treinos-iniciante.html">Abrir</a></div>
 
-          <button class="btnPrimary" type="submit">Entrar</button>
-
-          <!-- preço abaixo do botão, sem emojis -->
-          <div style="margin-top:10px;font-weight:600;font-size:1rem;color:var(--pink);text-align:center;">
-            £39.99 / mês
-          </div>
-
-          <div class="smallInfo">
-            <div>• Apenas alunas autorizadas têm acesso.</div>
-            <div>• Se ainda não tens acesso, fala com Manu 💖</div>
-            <div style="margin-top:8px;color:var(--pink)">Suporte: manumendes199514@gmail.com</div>
-          </div>
-        </form>
+        <!-- Avançado — meses 1..12 (mantido igual ao que já tinhas) -->
+        <div class="link-row"><b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html">Abrir</a></div>
+        <div class="link-row"><b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html">Abrir</a></div>
       </div>
     </section>
 
-    <!-- APP -->
-    <main id="app-section" class="hidden">
-      <!-- ABA TREINOS -->
-      <section id="aba-treinos">
-        <div class="section-card">
-          <div class="section-title">Treinos</div>
+    <!-- ALIMENTAÇÃO: mostra logo as 4 opções -->
+    <section class="section" id="cardapios">
+      <h2>Alimentação</h2>
+      <div class="card">
+        <div class="link-row"><b>Base — Hipertrofia</b>        <a href="alimentacao-base-hipertrofia.html">Abrir</a></div>
+        <div class="link-row"><b>Base — Emagrecimento</b>      <a href="alimentacao-base-emagrecimento.html">Abrir</a></div>
+        <div class="link-row"><b>Mês 1 — Hipertrofia</b>       <a href="alimentacao-m1-hipertrofia.html">Abrir</a></div>
+        <div class="link-row"><b>Mês 1 — Emagrecimento</b>     <a href="alimentacao-m1-emagrecimento.html">Abrir</a></div>
+      </div>
+    </section>
 
-          <div class="link-list">
-            <!-- INICIANTE (arquivo único) -->
-            <div class="link-row">
-              <b>Iniciante (5 dias)</b>
-              <a href="treinos-iniciante.html?v=1761929231">Abrir</a>
-            </div>
+    <!-- CARDIO (apenas lista/links; visual igual) -->
+    <section class="section" id="cardio">
+      <h2>Cardio</h2>
+      <div class="card">
+        <div class="link-row"><b>HIIT 1</b>         <a href="cardio-hiit-1.html">Abrir</a></div>
+        <div class="link-row"><b>HIIT 2</b>         <a href="cardio-hiit-2.html">Abrir</a></div>
+        <div class="link-row"><b>Esteira Intervalada</b> <a href="cardio-esteira-intervalada.html">Abrir</a></div>
+        <div class="link-row"><b>Bike Intervalada</b>    <a href="cardio-bike-intervalada.html">Abrir</a></div>
+      </div>
+    </section>
 
-            <!-- AVANÇADO — MESES 1..12 -->
-            <div class="link-row"><b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html?v=1761929231">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html">Abrir</a></div>
-            <div class="link-row"><b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html">Abrir</a></div>
-          </div>
-        </div>
-      </section>
+    <!-- RELAXAMENTO -->
+    <section class="section" id="relax">
+      <h2>Relaxamento</h2>
+      <div class="card">
+        <div class="link-row"><b>Alongamentos — Corpo Todo</b>   <a href="relax-alongamentos.html">Abrir</a></div>
+        <div class="link-row"><b>Mobilidade — Coluna &amp; Quadril</b> <a href="relax-mobilidade.html">Abrir</a></div>
+        <div class="link-row"><b>Respiração &amp; Mindfulness</b>  <a href="relax-respiracao.html">Abrir</a></div>
+      </div>
+    </section>
 
-      <!-- ABA ALIMENTAÇÃO (apenas ligações — conteúdo fica nas páginas dedicadas) -->
-      <section id="aba-cardapios" class="hidden">
-        <div class="section-card">
-          <div class="section-title">Alimentação</div>
-          <div class="link-list">
-            <div class="link-row"><b>Cardápios do Mês 1</b> <a href="alimentacao.html">Abrir</a></div>
-          </div>
-        </div>
-      </section>
+    <!-- EXTRA (conforme a tua imagem) -->
+    <section class="section" id="extra">
+      <h2>Extra</h2>
+      <div class="card">
+        <div class="link-row"><b>Foco Glúteo</b>            <a href="extra-foco-gluteo.html">Abrir</a></div>
+        <div class="link-row"><b>Foco Quadríceps</b>        <a href="extra-foco-quadriceps.html">Abrir</a></div>
+        <div class="link-row"><b>Foco Posterior Coxa</b>    <a href="extra-foco-posterior-coxa.html">Abrir</a></div>
+        <div class="link-row"><b>Foco Tríceps</b>           <a href="extra-foco-triceps.html">Abrir</a></div>
+        <div class="link-row"><b>Detox</b>                  <a href="extra-detox.html">Abrir</a></div>
+      </div>
+    </section>
 
-      <!-- ABA CARDIO -->
-      <section id="aba-cardio" class="hidden">
-        <div class="section-card">
-          <div class="section-title">Cardio</div>
-          <div class="link-list">
-            <div class="link-row"><b>Cardio do Mês 1</b> <a href="cardio.html">Abrir</a></div>
-          </div>
-        </div>
-      </section>
+    <footer style="opacity:.8;margin:28px 0 8px">© 2025 MANUFIT. Todos os direitos reservados.</footer>
+  </div>
 
-      <!-- ABA RELAX -->
-      <section id="aba-relax" class="hidden">
-        <div class="section-card">
-          <div class="section-title">Relaxamento</div>
-          <div class="link-list">
-            <div class="link-row"><b>Relaxamento do Mês 1</b> <a href="relaxamento.html">Abrir</a></div>
-          </div>
-        </div>
-      </section>
+  <!-- Tabs: ativa a aba pela âncora #... sem mudar visual -->
+  <script>
+    (function(){
+      const pills = document.querySelectorAll('.pill');
+      const secs = ['treinos','cardapios','cardio','relax','extra']
+        .map(id => document.getElementById(id));
 
-      <!-- ABA EXTRA -->
-      <section id="aba-extra" class="hidden">
-        <div class="section-card">
-          <div class="section-title">Extra</div>
-          <div class="link-list">
-            <div class="link-row"><b>Foco Glúteo</b>        <a href="extra-gluteo.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Quadríceps</b>   <a href="extra-quadriceps.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Posterior Coxa</b><a href="extra-posterior.html">Abrir</a></div>
-            <div class="link-row"><b>Foco Tríceps</b>      <a href="extra-triceps.html">Abrir</a></div>
-            <div class="link-row"><b>Detox</b>             <a href="extra-detox.html">Abrir</a></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABA PERFIL -->
-      <section id="aba-perfil" class="hidden">
-        <div class="section-card">
-          <div class="section-title">Perfil</div>
-          <div id="perfil-box" style="color:#ddd;font-size:.9rem;line-height:1.5"></div>
-        </div>
-      </section>
-    </main>
-
-    <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
-
-    <script>
-      // ======= CONFIG =======
-      const EMAILS_VALIDOS = [
-        "manumendes199514@gmail.com",
-        "emiliamiranda3039@gmail.com",
-        "zulmira.mendes2@gmail.com",
-        "jessicarafaelacg@gmail.com",
-        "nina_lopes_gomes@hotmail.com",
-      ];
-      const OWNER_EMAIL = "manumendes199514@gmail.com";
-      const USERS_INICIO = [
-        { nome:"Emília",   email:"emiliamiranda3039@gmail.com", inicio:"2025-09-25" },
-        { nome:"Zulmira",  email:"zulmira.mendes2@gmail.com",   inicio:"2025-09-20" },
-        { nome:"Jéssica",  email:"jessicarafaelacg@gmail.com",  inicio:"2025-09-18" },
-        { nome:"Carina",   email:"nina_lopes_gomes@hotmail.com",inicio:"2025-09-29" },
-      ];
-
-      // ======= HELPERS =======
-      function saveEmail(email){ localStorage.setItem("manufit_email", (email||"").trim().toLowerCase()); }
-      function getEmail(){ return (localStorage.getItem("manufit_email")||"").toLowerCase(); }
-      function isAuthed(){ const e=getEmail(); return EMAILS_VALIDOS.includes(e); }
-      function isOwner(email){ return (email||"").toLowerCase() === OWNER_EMAIL; }
-      function logout(){ localStorage.removeItem("manufit_email"); location.hash = "#treinos"; }
-
-      function diasDesde(isoData){
-        const start = new Date(isoData+"T00:00:00Z");
-        const now = new Date();
-        const diff = now - start;
-        const d = Math.floor(diff/(1000*60*60*24));
-        return d<0?0:d;
+      function activate(hash) {
+        const id = (hash||'#treinos').replace('#','');
+        pills.forEach(p=>p.classList.toggle('active', p.dataset.target===id));
+        secs.forEach(s=> s.classList.toggle('hidden', s.id!==id));
+        // scroll suave ao topo da secção
+        document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
       }
 
-      // ======= TABS POR HASH (mantém só a aba certa visível) =======
-      const SECTIONS = ["treinos","cardapios","cardio","relax","extra","perfil"];
-      function showFromHash(){
-        const target = (location.hash || "#treinos").replace("#","");
+      // estado inicial
+      secs.forEach(s=>s.classList.add('hidden'));
+      const start = location.hash && secs.find(s=>('#'+s.id)===location.hash) ? location.hash : '#treinos';
+      activate(start);
 
-        SECTIONS.forEach(id=>{
-          const sec = document.getElementById("aba-"+id);
-          if(sec){ sec.classList.toggle("hidden", id!==target); }
-          const btn = document.querySelector('.tabbtn[data-tab="'+id+'"]');
-          if(btn){ btn.classList.toggle("active", id===target); }
-        });
-      }
-      window.addEventListener("hashchange", showFromHash);
-      document.addEventListener("DOMContentLoaded", showFromHash);
+      // clicks
+      pills.forEach(p=>p.addEventListener('click', e=>{
+        e.preventDefault();
+        const h = '#'+p.dataset.target;
+        history.replaceState(null, '', h);
+        activate(h);
+      }));
 
-      // ======= LOGIN / APP GATE =======
-      function renderState(){
-        const logged = isAuthed();
-        document.getElementById("login-section").classList.toggle("hidden", logged);
-        document.getElementById("app-section").classList.toggle("hidden", !logged);
-      }
-
-      function setupLogin(){
-        const form = document.getElementById("login-form");
-        const input = document.getElementById("email-input");
-        form.addEventListener("submit", (e)=>{
-          e.preventDefault();
-          const val = (input.value||"").trim().toLowerCase();
-          if(!val) return;
-          if(EMAILS_VALIDOS.includes(val)){
-            saveEmail(val);
-            renderState();
-          }else{
-            alert("Este email não tem acesso ainda. Fala com a Manu 💖");
-          }
-        });
-
-        document.getElementById("btn-sair").addEventListener("click", ()=>{
-          logout();
-          renderState();
-        });
-      }
-
-      // ======= PERFIL =======
-      function renderPerfil(){
-        const box = document.getElementById("perfil-box");
-        const email = getEmail();
-        const owner = isOwner(email);
-
-        function linha(u){
-          return `<div><b>${u.nome}</b> — <span style="color:#999">${u.email}</span> • <span style="color:#ff4da6">Dia ${diasDesde(u.inicio)}</span></div>`;
-        }
-
-        if(owner){
-          box.innerHTML = USERS_INICIO.map(linha).join("");
-        }else{
-          const u = USERS_INICIO.find(x=>x.email.toLowerCase()===email);
-          box.innerHTML = u ? linha(u) : `<div style="color:#999">Sem registo de início.</div>`;
-        }
-      }
-
-      // ======= INIT =======
-      document.getElementById("year").textContent = new Date().getFullYear();
-      setupLogin();
-      renderState();
-      renderPerfil();
-
-      // garantir hash default
-      if(!location.hash){ location.hash = "#treinos"; }
-      showFromHash();
-    </script>
-  </body>
+      // responder a navegação por hash
+      window.addEventListener('hashchange', ()=>activate(location.hash));
+    })();
+  </script>
+</body>
 </html>
