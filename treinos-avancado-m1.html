@@ -5,53 +5,43 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Avançado — Mês 1</title>
   <link rel="icon" type="image/png" href="MANUFIT.png" />
-
   <style>
-    :root{
-      --bg:#0f0f12; --panel:#1a1a22; --row:#111118; --line:#2a2a33;
-      --pink:#ff4da6; --text:#fff; --muted:#bbb;
-    }
+    :root{--bg:#0f0f12;--panel:#1a1a22;--row:#111118;--line:#2a2a33;--pink:#ff4da6;--text:#fff;--muted:#bbb}
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif}
     .wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}
-    .top{display:flex;align-items:center;gap:12px;margin:12px 0 20px;}
-    .back{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 10px;border:1px solid var(--pink);border-radius:8px;
-      text-decoration:none;color:var(--text);background:#1f1f25;font-weight:700;
-    }
+    .top{display:flex;align-items:center;gap:12px;margin:12px 0 20px}
+    .back{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--pink);border-radius:8px;text-decoration:none;color:#fff;background:#1f1f25;font-weight:700}
     h1{margin:0;font-size:1.5rem}
     .note{color:var(--muted);font-size:.9rem;margin:6px 0 14px}
-    .note b{color:var(--text)}
+    .note b{color:#fff}
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-    .tabs button{
-      cursor:pointer;border:1px solid var(--pink);background:#1f1f25;color:#fff;
-      padding:6px 10px;border-radius:999px;font-weight:700;font-size:.85rem;
-    }
+    .tabs button{cursor:pointer;border:1px solid var(--pink);background:#1f1f25;color:#fff;padding:6px 10px;border-radius:999px;font-weight:700;font-size:.85rem}
     .tabs button.active{background:var(--pink);color:#000}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 14px;margin-bottom:18px}
     .card h2{margin:0 0 10px;font-size:1.2rem}
     .table{display:flex;flex-direction:column;gap:8px}
-    .row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--row);border:1px solid var(--line);border-radius:10px;padding:12px;}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--row);border:1px solid var(--line);border-radius:10px;padding:12px}
     .left{display:flex;flex-direction:column}
     .title{font-weight:700}
     .series{font-size:.9rem;color:var(--muted);font-weight:700}
-    .btn{background:var(--pink);border:0;color:#000;border-radius:999px;font-weight:800;padding:8px 12px;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
-    .btns{display:flex;flex-direction:column;gap:6px} /* para combinações */
+    .btn{background:var(--pink);border:0;color:#000;border-radius:999px;font-weight:800;padding:8px 12px;cursor:pointer}
+    .badge{font-size:.75rem;color:#000;background:var(--pink);border-radius:6px;padding:2px 6px;font-weight:800;margin-bottom:6px;align-self:flex-start}
     .hidden{display:none}
   </style>
 </head>
-
 <body>
   <div class="wrap">
     <div class="top">
       <a class="back" href="index.html">← Voltar</a>
       <h1>Avançado (Mês 1)</h1>
     </div>
+
     <div class="note">
       Quando for <b>combinação</b>, faz 1 série de cada exercício, <b>descansa 1 min</b> e repete a sequência.
     </div>
 
+    <!-- Abas -->
     <div class="tabs" id="tabs">
       <button data-dia="1" class="active">Dia 1</button>
       <button data-dia="2">Dia 2</button>
@@ -66,15 +56,19 @@
       <div class="card">
         <h2>Treino 1 — Perna e Glúteo</h2>
         <div class="table">
-          <div class="row"><div class="left"><div class="title">Agachamento Livre</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Cz4H0Gw_V-8?si=-kHfkTbmZfolKekh">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Agachamento Peso do Corpo</div></div><div class="series">3 × 20 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/pX29NiYrWl4?si=Rzsg6t-LAFb2DUzN">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Afundo Smith</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/sdf3Y9WD_WU?si=N26oKYHbhXNAli6L">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Afundo Peso do Corpo</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/hhf-JTNTqzs?si=mW1js46PoyjUQsv1">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Leg Press 45°</div></div><div class="series">3 × 15 • 40 segs</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/9fEu8taaEUk?si=kWSNtHSmad5_hWiL">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Cadeira Extensora</div></div><div class="series">3 × 15 • 40 segs</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/Yritq6xthjQ?si=nkLgUCpOb3m7BWy8">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Cadeira Flexora</div></div><div class="series">3 × 15 • 40 segs</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/3tTD60x6wmY?si=VXME9ETr5Q9yzcFa">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Flexora Deitada</div></div><div class="series">3 × 15 • 40 segs</div><a class="btn" href="#" onclick="alert('Falta link para Flexora Deitada do Dia 1');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Panturrilha em Pé</div></div><div class="series">3 × 15 • 40 segs</div><a class="btn" href="#" onclick="alert('Falta link para Panturrilha em Pé do Dia 1');return false;">Ver vídeo</a></div>
+          <div class="badge">Combinação 1</div>
+          <div class="row"><div class="left"><div class="title">Agachamento Livre</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/pX29NiYrWl4?si=kSj7QBJrFgjlf4qf')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Agachamento Peso do Corpo</div></div><div class="series">3 × 20 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/Cz4H0Gw_V-8?si=uZKkHMr0m9tGMW_i')">Ver vídeo</button></div>
+
+          <div class="badge">Combinação 2</div>
+          <div class="row"><div class="left"><div class="title">Afundo Smith</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/Rgo6fH-arTE?si=9zhKFrHAjOUS_I6d')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Afundo Peso do Corpo</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/fIlbCCg8Pgg?si=gK3534WXDtaTQcUo')">Ver vídeo</button></div>
+
+          <div class="row"><div class="left"><div class="title">Leg Press 45°</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/sdf3Y9WD_WU?si=b2IeFo8FB20I989J')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Cadeira Extensora</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/9fEu8taaEUk?si=Y8sta7hyfSJ2-x7c')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Cadeira Flexora</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/hhf-JTNTqzs?si=uFOJobi559reAILi')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Flexora Deitada</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/Yritq6xthjQ?si=E1mrNBbcqHSKHUUj')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Panturrilha em Pé</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/3tTD60x6wmY?si=Pzn3vdsW7-FYRSNf')">Ver vídeo</button></div>
         </div>
       </div>
     </section>
@@ -84,43 +78,24 @@
       <div class="card">
         <h2>Treino 2 — Membros Superiores + Abd</h2>
         <div class="table">
-          <div class="row">
-            <div class="left"><div class="title">Combinação: Abd. Supra Curtinho • Abd. Infra</div></div>
-            <div class="series">3 × 15 • 40 segs</div>
-            <div class="btns">
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/IgMc-ghDW4M?si=q4ZtftuxnXvKrWjw">Ver vídeo</a>
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/LjAZ7nrI6aQ?si=f3PpdIpKqZhorM56">Ver vídeo</a>
-            </div>
-          </div>
+          <div class="badge">Combinação 1</div>
+          <div class="row"><div class="left"><div class="title">Abd. Supra Curtinho</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/IgMc-ghDW4M?si=TYx0BNOfM8-bpyXj')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Abd. Infra</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/LjAZ7nrI6aQ?si=ppLRUREfib-PwjBA')">Ver vídeo</button></div>
 
-          <div class="row">
-            <div class="left"><div class="title">Combinação: Puxada Frente (Pegada Aberta) • Flexão de Braço</div></div>
-            <div class="series">3 × 10 • 1 min</div>
-            <div class="btns">
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/2AH5cfSqX1E?si=Ez4XyR64U7kdsjQG">Ver vídeo</a>
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/4zjCHsF06H0?si=xVI_MJCDsaZkqSdT">Ver vídeo</a>
-            </div>
-          </div>
+          <div class="row"><div class="left"><div class="title">Puxada Pulley — Pegada Aberta</div></div><div class="series">3 × 10 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/2AH5cfSqX1E?si=F2JWlGBaRFpNhKwS')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Remada na Polia — Pegada Neutra</div></div><div class="series">3 × 10 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/RXHPTVrxsbo?si=3T5b1cRHbpRqwHvE')">Ver vídeo</button></div>
 
-          <div class="row">
-            <div class="left"><div class="title">Combinação: Remada Curvada Halteres • Desenvolvimento Halteres</div></div>
-            <div class="series">3 × 10 • 1 min</div>
-            <div class="btns">
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/HPBVLs0NpjE?si=W1D7Nd7z9JACUzs3">Ver vídeo</a>
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/RqTpE3cmtyE?si=7lLNISMNYVqMV-TD">Ver vídeo</a>
-            </div>
-          </div>
+          <div class="badge">Combinação 2</div>
+          <div class="row"><div class="left"><div class="title">Supino Reto Barra</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/d6jKfi6l3MM?si=vwHYKKZe9FBydBgj')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Supino Reto Halteres</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/KyHYsJ5YZQE?si=STaWkHLdLQAO8XaV')">Ver vídeo</button></div>
 
-          <div class="row">
-            <div class="left"><div class="title">Combinação: Rosca Direta Halteres • Tríceps Pulley</div></div>
-            <div class="series">3 × 10 • 1 min</div>
-            <div class="btns">
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/UAzVg4j-T3g?si=ZkWbTeIW19uU2Tn5">Ver vídeo</a>
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/zxItpU2RsP4?si=prf8avaLIVavDyOr">Ver vídeo</a>
-            </div>
-          </div>
+          <div class="badge">Combinação 3</div>
+          <div class="row"><div class="left"><div class="title">Tríceps na Polia</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/zxItpU2RsP4?si=uiC-lysrVP2v8HZI')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Tríceps Francês</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/LU4xYDGbpjA?si=KyZmL2N4TfeSPFc4')">Ver vídeo</button></div>
 
-          <div class="row"><div class="left"><div class="title">Esteira</div></div><div class="series">20 min — corre 1 min / caminha 1 min</div><a class="btn" href="#" onclick="alert('Falta link de Esteira do Dia 2');return false;">Ver vídeo</a></div>
+          <div class="badge">Combinação 4</div>
+          <div class="row"><div class="left"><div class="title">Elevação Lateral</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/APFy_NME7yE?si=MT8Ve3T9AqGIYXY8')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Rosca Direta na Polia</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/kdREbdWyHdE?si=r241WPQzgjG15lTt')">Ver vídeo</button></div>
         </div>
       </div>
     </section>
@@ -130,19 +105,23 @@
       <div class="card">
         <h2>Treino 3 — Corpo Todo HIIT</h2>
         <div class="table">
-          <div class="row"><div class="left"><div class="title">Burpee</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/OcHAV4C88X8?si=kS144sGucV46eZWG">Ver vídeo</a></div>
-          <div class="row">
-            <div class="left"><div class="title">Combinação: Afundo + Desenvolve</div></div>
-            <div class="series">3 × 10 • 1 min</div>
-            <div class="btns">
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/GEYlPr9I1rU?si=YkIj3ZV6cgTwl2s_">Ver vídeo</a>
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/SeHR1QhV748?si=-virf-p0BnetetY9">Ver vídeo</a>
-            </div>
-          </div>
-          <div class="row"><div class="left"><div class="title">Thruster</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/emgWzZiK-rU?si=lNVZg3nIjvB4CIxy">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Agachamento c/ Salto</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/LeF6QmSclU0?si=gEWTXLtujugemARO">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Prancha Abre e Fecha</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/81fF6WaYHsE?si=6uvC_Mu_HcrMkZfP">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Ski</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" href="#" onclick="alert('Falta link para Ski do Dia 3');return false;">Ver vídeo</a></div>
+          <div class="row"><div class="left"><div class="title">Passada</div></div><div class="series">3 × 20 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/1hvyPpTKVcM?si=zlAgH7o-EE9F2SpI')">Ver vídeo</button></div>
+
+          <div class="badge">Combinação 1</div>
+          <div class="row"><div class="left"><div class="title">Remada Unilateral</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/JqUanzV8xVU?si=QuGuce5QSbBHIikd')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Burpee Sapinho</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/tBojP6GHtDY?si=JMjKWgGgA-XUm_5x')">Ver vídeo</button></div>
+
+          <div class="row"><div class="left"><div class="title">Abd. Supra Completo</div></div><div class="series">3 × 15 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/URlNL4wTZnk?si=z4WzvznsXSaI3Li4')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Corrida Estacionada</div></div><div class="series">3 × 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/SeHR1QhV748?si=hpX6pV3mL7vJZkRk')">Ver vídeo</button></div>
+
+          <div class="badge">Combinação 2</div>
+          <div class="row"><div class="left"><div class="title">Agachamento</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/vPpx8iwLmn8?si=GA3X8NEhQYTKAfzW')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Desenvolvimento</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/Ei6XuhfUCz8?si=lbGkRh_tlma0eWqC')">Ver vídeo</button></div>
+
+          <div class="row"><div class="left"><div class="title">5 Agachamentos + 1 Burpee</div></div><div class="series">3 × 5 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/hGNYkjF36mA?si=vpJ5KSnP6CLfIY7v')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Climber Cruzado + Normal</div></div><div class="series">3 × (5+5) • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/CII_TkXd0dU?si=Ebc1O2IDoN51ZO7F')">Ver vídeo</button></div>
+
+          <div class="row"><div class="left"><div class="title">Corrida Lateral</div></div><div class="series">3 × 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/5uwgNo5K1jM?si=40xjMpwNoDAfPxbS')">Ver vídeo</button></div>
         </div>
       </div>
     </section>
@@ -152,13 +131,23 @@
       <div class="card">
         <h2>Treino 4 — Perna e Glúteo</h2>
         <div class="table">
-          <div class="row"><div class="left"><div class="title">Agachamento Smith</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/owUMm3gZ1b0?si=qd2Q3ZkBIFoRS3mS">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Leg Press Horizontal</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/W1QWvmQ_ZuM?si=5Cz1bHEVsKpBNveo">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Agachamento Sumô</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/ZXyzfNO497M?si=4P6K8AzF4uepFOIM">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Glúteo 4 Apoios (perna flexionada)</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/luvbFKnA6aA?si=TX-FAwcMLWDkL-3l">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Elevação Pélvica</div></div><div class="series">3 × 15 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/UT-WBhxo9uA?si=UDdBghBr6660SP3Z">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Stiff</div></div><div class="series">4 × 10 • 1 min</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/43u1zfJUUi0?si=zYwbTUgk-WbsBGpG">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Panturrilha Smith</div></div><div class="series">3 × 15 • 40 segs</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/w_aic9GI0CY?si=FUJBcWGkw0q0Kv6q">Ver vídeo</a></div>
+          <div class="badge">Combinação 1</div>
+          <div class="row"><div class="left"><div class="title">Agachamento Smith</div></div><div class="series">3 × 10 + 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/owUMm3gZ1b0?si=fzsdLiMxIUrasmd8')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Agachamento Sumô</div></div><div class="series">3 × 10 + 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/ZXyzfNO497M?si=tXmFaLPqUwUlxXKE')">Ver vídeo</button></div>
+
+          <div class="badge">Combinação 2</div>
+          <div class="row"><div class="left"><div class="title">Leg Horizontal Unilateral</div></div><div class="series">3 × 10 + 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/3c2pZFI4-xQ?si=LjLzD2hNDJmx2shh')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Leg Horizontal Bilateral</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/W1QWvmQ_ZuM?si=TfOAFg54vLA_bKxm')">Ver vídeo</button></div>
+
+          <div class="badge">Combinação 3</div>
+          <div class="row"><div class="left"><div class="title">Glúteo 4 apoio (perna flexionada)</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/luvbFKnA6aA?si=I1j6_edeasS0cRhT')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Elevação Pélvica</div></div><div class="series">3 × 15 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/UT-WBhxo9uA?si=doCwIju9CRAgdTjw')">Ver vídeo</button></div>
+
+          <div class="badge">Combinação 4</div>
+          <div class="row"><div class="left"><div class="title">Stiff</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/43u1zfJUUi0?si=v3zkULx_rECKPkcN')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Flexora Sentada</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/hhf-JTNTqzs?si=5ouCxS6sn9oo43ws')">Ver vídeo</button></div>
+
+          <div class="row"><div class="left"><div class="title">Panturrilha Smith</div></div><div class="series">3 × 15 • 40 segs</div><button class="btn" onclick="openUrl('https://youtu.be/w_aic9GI0CY?si=bJwaUvKgAwpLc-aW')">Ver vídeo</button></div>
         </div>
       </div>
     </section>
@@ -166,28 +155,24 @@
     <!-- =================== DIA 5 =================== -->
     <section id="dia-5" class="hidden">
       <div class="card">
-        <h2>Treino 5 — Membros Superiores + Abd</h2>
+        <h2>Treino 5 — Membros Superiores + abd</h2>
         <div class="table">
-          <div class="row"><div class="left"><div class="title">Abd Supra Curtinho</div></div><div class="series">3 × 10 • 30 seg</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/IgMc-ghDW4M?si=A3a-15I4vLUXZqNd">Ver vídeo</a></div>
+          <!-- primeiro bloco (3 exercícios independentes) -->
+          <div class="row"><div class="left"><div class="title">Abd Supra Curtinho</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/IgMc-ghDW4M?si=OOkTNoRB_bCi5UY-')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Abd Infra</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/LjAZ7nrI6aQ?si=dkIJCQ8JeJ5LL6T2')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Abd Remador</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/n1dG-X-KWR8?si=wnUq_Iinp0imFpzX')">Ver vídeo</button></div>
 
-          <div class="row"><div class="left"><div class="title">Puxada Pulley Pegada Aberta</div></div><div class="series">3 × 10 • 30 seg</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2">Ver vídeo</a></div>
+          <div class="badge">Combinação 2</div>
+          <div class="row"><div class="left"><div class="title">Puxada na Polia (pegada aberta)</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/2AH5cfSqX1E?si=bfhtJ-dSSXJCtKzx')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Remada Curvada Halteres</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/HPBVLs0NpjE?si=JuBsUTj2ix-bP6pQ')">Ver vídeo</button></div>
 
-          <div class="row"><div class="left"><div class="title">Cardio — Esteira/Bike/Escada</div></div><div class="series">2 min • Moderada</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2">Ver vídeo</a></div>
+          <div class="badge">Combinação 3</div>
+          <div class="row"><div class="left"><div class="title">Flexão de Braço</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/4zjCHsF06H0?si=ZTxH8l0XvehbFEDg')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Desenvolvimento Halteres</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/RqTpE3cmtyE?si=Prb_ArlsUwiqSq4a')">Ver vídeo</button></div>
 
-          <div class="row"><div class="left"><div class="title">Abd Infra</div></div><div class="series">3 × 10 • 30 seg</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/RXHPTVrxsbo?si=7LIW8qQpe7CtsGMQ">Ver vídeo</a></div>
-
-          <div class="row"><div class="left"><div class="title">Remada na Polia (pegada neutra)</div></div><div class="series">3 × 10 • 30 seg</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/KyHYsJ5YZQE?si=0gVNol9KC9J5dmHj">Ver vídeo</a></div>
-
-          <div class="row"><div class="left"><div class="title">Cardio — Esteira/Bike/Escada</div></div><div class="series">2 min • Moderada</div><a class="btn" target="_blank" rel="noopener" href="https://youtu.be/2AH5cfSqX1E?si=T3OYAi8jNmIAaJk2">Ver vídeo</a></div>
-
-          <div class="row">
-            <div class="left"><div class="title">Combinação: Supino Reto Halteres • Tríceps Francês</div></div>
-            <div class="series">3 × 10 • 30 seg</div>
-            <div class="btns">
-              <a class="btn" target="_blank" rel="noopener" href="https://youtu.be/LU4xYDGbpjA?si=I0tXp8BRlocyCWMe">Ver vídeo</a>
-              <a class="btn" href="#" onclick="alert('Falta link para Tríceps Francês do Dia 5');return false;">Ver vídeo</a>
-            </div>
-          </div>
+          <div class="badge">Combinação 4</div>
+          <div class="row"><div class="left"><div class="title">Rosca Direta Halteres</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/UAzVg4j-T3g?si=wkRtTqRvhZ0X6nos')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Tríceps Testa</div></div><div class="series">4 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/m9agOjzhIyw?si=Q60BpLUse3Y1coXg')">Ver vídeo</button></div>
         </div>
       </div>
     </section>
@@ -197,33 +182,33 @@
       <div class="card">
         <h2>Treino 6 — Perna e Glúteo</h2>
         <div class="table">
-          <div class="row"><div class="left"><div class="title">Afundo Smith</div></div><div class="series">3 × 10 • 1 min</div><a class="btn" href="#" onclick="alert('Falta link para Afundo Smith do Dia 6');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Agachamento Smith</div></div><div class="series">3 × 15 • 30 seg</div><a class="btn" href="#" onclick="alert('Falta link para Agachamento Smith do Dia 6');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Leg Press 45°</div></div><div class="series">3 × 15 • 30 seg</div><a class="btn" href="#" onclick="alert('Falta link para Leg Press 45° do Dia 6');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Flexora Deitada</div></div><div class="series">3 × 15 • 30 seg</div><a class="btn" href="#" onclick="alert('Falta link para Flexora Deitada do Dia 6');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Cadeira Extensora</div></div><div class="series">3 × 15 • 30 seg</div><a class="btn" href="#" onclick="alert('Falta link para Cadeira Extensora do Dia 6');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Elevação Pélvica</div></div><div class="series">3 × 15 • 30 seg</div><a class="btn" href="#" onclick="alert('Falta link para Elevação Pélvica do Dia 6');return false;">Ver vídeo</a></div>
-          <div class="row"><div class="left"><div class="title">Panturrilha em pé</div></div><div class="series">3 × 15 • 30 seg</div><a class="btn" href="#" onclick="alert('Falta link para Panturrilha em pé do Dia 6');return false;">Ver vídeo</a></div>
+          <div class="row"><div class="left"><div class="title">Afundo Smith</div></div><div class="series">3 × 10 • 1 min</div><button class="btn" onclick="openUrl('https://youtu.be/Rgo6fH-arTE?si=-w5660FnbHXE4Yip')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Agachamento Smith</div></div><div class="series">3 × 15 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/owUMm3gZ1b0?si=Ksuvg1DFsvB8zyVL')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Leg Press 45°</div></div><div class="series">3 × 15 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/sdf3Y9WD_WU?si=k_Te_4BkixpLbIAi')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Flexora Deitada</div></div><div class="series">3 × 15 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/Yritq6xthjQ?si=bUXqZmH8EuWgFc98')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Cadeira Extensora</div></div><div class="series">3 × 15 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/9fEu8taaEUk?si=Hsi2AEFaZ-R6s7Nj')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Elevação Pélvica</div></div><div class="series">3 × 15 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/UT-WBhxo9uA?si=q_3NBXGSJha3fK9K')">Ver vídeo</button></div>
+          <div class="row"><div class="left"><div class="title">Panturrilha em pé</div></div><div class="series">3 × 15 • 30 segs</div><button class="btn" onclick="openUrl('https://youtu.be/3tTD60x6wmY?si=AD4bEmJdsKVxflUr')">Ver vídeo</button></div>
         </div>
       </div>
     </section>
   </div>
 
   <script>
-    // Tabs (mostrar só o dia ativo, igual ao iniciante)
+    // Abas (igual ao Iniciante)
     const buttons = document.querySelectorAll('#tabs button');
     const dias = [...document.querySelectorAll('section[id^="dia-"]')];
     function setDia(idx){
       dias.forEach(s=>s.classList.add('hidden'));
       document.getElementById('dia-'+idx).classList.remove('hidden');
       buttons.forEach(b=>b.classList.remove('active'));
-      const btn = [...buttons].find(b=>b.dataset.dia==idx);
-      if(btn) btn.classList.add('active');
+      const btn=[...buttons].find(b=>b.dataset.dia==idx); if(btn) btn.classList.add('active');
       localStorage.setItem('m1_dia', idx);
-      window.scrollTo({top:0,behavior:'smooth'});
     }
     buttons.forEach(b=>b.addEventListener('click',()=>setDia(b.dataset.dia)));
     setDia(localStorage.getItem('m1_dia')||1);
+
+    function openUrl(u){ window.open(u, '_blank'); }
   </script>
 </body>
 </html>
