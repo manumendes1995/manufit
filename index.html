@@ -117,19 +117,19 @@
                 <a href="treinos-iniciante.html">Abrir</a>
               </div>
 
-              <!-- AVANÇADO (12 meses). Mantemos os links existentes. -->
-              <div class="link-row"><b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html">Abrir</a></div>
-              <div class="link-row"><b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html">Abrir</a></div>
+              <!-- AVANÇADO (12 meses). Mês 1 aberto; Mês 2-12 bloqueados por tempo. -->
+              <div class="link-row"><b>Avançado — Mês 1</b>  <a id="adv-m1"  href="treinos-avancado-m1.html"  data-month="1">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 2</b>  <a id="adv-m2"  href="treinos-avancado-m2.html"  data-month="2">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 3</b>  <a id="adv-m3"  href="treinos-avancado-m3.html"  data-month="3">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 4</b>  <a id="adv-m4"  href="treinos-avancado-m4.html"  data-month="4">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 5</b>  <a id="adv-m5"  href="treinos-avancado-m5.html"  data-month="5">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 6</b>  <a id="adv-m6"  href="treinos-avancado-m6.html"  data-month="6">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 7</b>  <a id="adv-m7"  href="treinos-avancado-m7.html"  data-month="7">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 8</b>  <a id="adv-m8"  href="treinos-avancado-m8.html"  data-month="8">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 9</b>  <a id="adv-m9"  href="treinos-avancado-m9.html"  data-month="9">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 10</b> <a id="adv-m10" href="treinos-avancado-m10.html" data-month="10">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 11</b> <a id="adv-m11" href="treinos-avancado-m11.html" data-month="11">Abrir</a></div>
+              <div class="link-row"><b>Avançado — Mês 12</b> <a id="adv-m12" href="treinos-avancado-m12.html" data-month="12">Abrir</a></div>
             </div>
           </div>
         </section>
@@ -194,6 +194,7 @@
       // ======== AUTH BÁSICO (sem alterar o teu fluxo) ========
       const KEY_EMAIL = 'manufit_email';
       const KEY_TAB   = 'manufit_tab';
+      const KEY_START_PREFIX = 'manufit_adv_start_'; // start por utilizador (email)
 
       const loginSection = document.getElementById('login-section');
       const appSection   = document.getElementById('app-section');
@@ -203,7 +204,7 @@
       const btnSair      = document.getElementById('btn-sair');
 
       function isAuthed(){ return !!localStorage.getItem(KEY_EMAIL); }
-      function getEmail(){ return localStorage.getItem(KEY_EMAIL) || ''; }
+      function getEmail(){ return (localStorage.getItem(KEY_EMAIL) || '').trim().toLowerCase(); }
       function saveEmail(v){ localStorage.setItem(KEY_EMAIL, v); }
       function logout(){ localStorage.removeItem(KEY_EMAIL); }
 
@@ -216,6 +217,8 @@
         loginSection.classList.add('hidden');
         appSection.classList.remove('hidden');
         if (perfilEmail) perfilEmail.textContent = getEmail();
+        ensureStartDate(); // garante start do avançado à primeira entrada
+        applyAdvLocks();   // aplica bloqueios (Mês 2-12)
       }
 
       function renderAuth(){
@@ -278,10 +281,87 @@
         setActive(saved);
       }
 
+      // ======== BLOQUEIO AVANÇADO POR TEMPO (Mês 2…12) ========
+      const DAYS_PER_MONTH = 30;
+
+      function startKeyFor(email){
+        return KEY_START_PREFIX + (email || 'anon');
+      }
+
+      function ensureStartDate(){
+        const email = getEmail();
+        const k = startKeyFor(email);
+        if (!localStorage.getItem(k)) {
+          // regista a data de início do avançado no 1º login deste email
+          localStorage.setItem(k, new Date().toISOString());
+        }
+      }
+
+      function getStartDate(){
+        const email = getEmail();
+        const iso = localStorage.getItem(startKeyFor(email));
+        return iso ? new Date(iso) : new Date();
+      }
+
+      function daysSince(date){
+        const ms = Date.now() - date.getTime();
+        return Math.floor(ms / 86400000);
+      }
+
+      function unlockDateFor(monthNumber){
+        // Mês 1: 0 dias, Mês 2: 60, Mês 3: 90, … Mês n: n*30
+        const requiredDays = monthNumber * DAYS_PER_MONTH;
+        const start = getStartDate();
+        const unlock = new Date(start.getTime() + requiredDays*86400000);
+        return { requiredDays, unlock };
+      }
+
+      function applyAdvLocks(){
+        // Mês 1 sempre aberto
+        const advLinks = Array.from(document.querySelectorAll('a[id^="adv-m"]'));
+        const start = getStartDate();
+        const d = daysSince(start);
+
+        advLinks.forEach(a=>{
+          const month = parseInt(a.dataset.month, 10);
+          if (!month || month === 1) {
+            // Mês 1 livre
+            a.dataset.locked = 'false';
+            a.onclick = null;
+            a.style.opacity = '';
+            a.style.pointerEvents = '';
+            a.title = '';
+            return;
+          }
+          const { requiredDays, unlock } = unlockDateFor(month);
+          const unlocked = d >= requiredDays;
+
+          if (unlocked) {
+            a.dataset.locked = 'false';
+            a.onclick = null;
+            a.style.opacity = '';
+            a.style.pointerEvents = '';
+            a.title = '';
+          } else {
+            a.dataset.locked = 'true';
+            a.style.opacity = '0.65';          // leve indicação, sem mudar o visual base
+            a.style.pointerEvents = 'auto';     // mantemos cursor normal, mas bloqueamos por JS
+            const dd = unlock.toLocaleDateString('pt-PT');
+            a.title = 'Bloqueado até ' + dd;
+            a.onclick = (ev)=>{
+              ev.preventDefault();
+              alert('Conteúdo bloqueado para este email.\n\nDisponível a partir de: ' + dd + '\n(Regras: desbloqueia um mês a cada 30 dias de utilização)');
+            };
+          }
+        });
+      }
+
       // ======== INICIALIZAÇÃO ========
       document.getElementById('year').textContent = new Date().getFullYear();
       renderAuth();
       initTabs();
+      // aplicar bloqueios também em mudanças futuras de aba
+      applyAdvLocks();
     </script>
   </body>
 </html>
