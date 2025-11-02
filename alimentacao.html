@@ -1,337 +1,194 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ManuFit — Alimentação</title>
+<!-- INICIANTE — CARDÁPIO 1 PARA HIPERTROFIA 1900 - 2100 KCAL -->
+<div class="section-card">
+  <div class="section-title">Iniciante — CARDÁPIO 1 PARA HIPERTROFIA 1900 - 2100 KCAL</div>
 
-  <!-- Caminhos absolutos no GitHub Pages -->
-  <link rel="icon" type="image/png" href="/manufit/MANUFIT.png" />
+  <p><b>PEQUENO-ALMOÇO:</b><br>
+  <br>1 - Opção<br>
+  120g Salada de frutas variadas<br>
+  20g ou duas colheres de sopa de (lascas de castanha/coco ou aveia)<br>
+  Fio de mel<br>
+  2 ovos inteiros (mexido ou cozido ou frito com fio de azeite)<br>
+  <br>2 - Opção<br>
+  2 fatias de pão de forma (farinha 100% integral) ou 1 pão francês.<br>
+  40g Queijo (queijo cottage ou cottage ou mozarela )<br>
+  80g hambúrguer caseiro (frango/carne) ou 2 ovos inteiros (mexido ou cozido ou frito com fio de azeite)</p>
 
-  <style>
-    body { color:#fff; background:#120018; font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif; margin:0; }
-    .wrap { max-width:1100px; margin:0 auto; padding:16px; }
-    .topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:8px 0 16px; }
-    .topbar img { height:32px; border-radius:6px; }
-    .btn { background:#ff4fa3; color:#120018; border:none; padding:8px 14px; border-radius:10px; text-decoration:none; font-weight:700; }
-    .btn:hover { opacity:.9; }
-    h1{ margin:0 0 8px }
-    .muted{ opacity:.85; font-size:14px; }
+  <p><b>LANCHE DA MANHÃ:</b><br>
+  <br>1 - Opção<br>
+  30g Mix de oleaginosas (castanhas, nozes, amêndoas)<br>
+  100g banana ou 100g Manga<br>
+  <br>2 - Opção<br>
+  250g ou 1 und. Iogurte proteico(Skyr)/bebida láctea (soya)</p>
 
-    /* Tabs */
-    .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 18px; }
-    .tab-btn { background:transparent; color:#fff; border:1px solid #ff4fa3; border-radius:8px; padding:8px 12px; cursor:pointer; font-weight:600; }
-    .tab-btn.active { background:#ff4fa3; color:#120018; }
+  <p><b>ALMOÇO:</b><br>
+  150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz + feijão/lentilha)<br>
+  100g ou 1 filete grande de carne vermelha, ou frango, ou peixe ou 3 ovos inteiros,<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  Obs: Sobremesa opcional (80g fruta variada)</p>
 
-    .card { background:rgba(255,255,255,.04); border:1px solid rgba(255,79,163,.25); border-radius:16px; padding:16px; }
-    .pane { display:none; }
-    .pane.active { display:block; }
+  <p><b>LANCHE DA TARDE:</b><br>
+  <br>1 - Opção<br>
+  Panqueca de banana<br>
+  Massa: (80g banana amassada + 30g de aveia + 2 ovos + pitada de canela)<br>
+  Recheio: 40g pasta de amendoim integral (100%amendoim)<br>
+  <br>2 - Opção<br>
+  100g frango desfiado ou carne moida ou atum + 100g mandioca ou batata doce cozida (pode fazer bolinhas e assar)</p>
 
-    .sec-title { color:#ff4fa3; font-weight:800; margin:4px 0 12px; }
-    .block { background:rgba(0,0,0,.25); border:1px solid rgba(255,79,163,.25); border-radius:12px; padding:12px; margin:10px 0; }
-    .block h3 { margin:0 0 8px; color:#ffd1e8; font-size:1rem; }
-    .block p { margin:6px 0; line-height:1.5; }
-    ul { margin:6px 0 6px 18px; line-height:1.6; }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <!-- topo com logo + voltar -->
-    <div class="topbar">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <img src="/manufit/MANUFIT.png" alt="ManuFit">
-        <strong>MANUFIT</strong>
-      </div>
-      <div>
-        <a class="btn" href="/manufit/index.html">Voltar</a>
-      </div>
-    </div>
+  <p><b>JANTAR:</b><br>
+  150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz + feijão/lentilha)<br>
+  100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  Obs: Sobremesa opcional (80g fruta variada</p>
 
-    <h1>Alimentação</h1>
-    <p class="muted">Seleciona a opção abaixo. O conteúdo mantém o mesmo visual do site.</p>
+  <p><b>CEIA:</b><br>
+  Opção 1<br>
+  250g ou 1 und. Iogurte proteico(Skyr)/bebida láctea (Soya)<br>
+  Opção 2<br>
+  40g pipoca de panela (obs: pesar o milho cru e utilizar azeite)</p>
+</div>
 
-    <!-- tabs -->
-    <div class="tabs" id="tabs">
-      <button class="tab-btn active" data-pane="base-hip">Base — Hipertrofia</button>
-      <button class="tab-btn" data-pane="base-ema">Base — Emagrecimento</button>
-      <button class="tab-btn" data-pane="m1-hip">Mês 1 — Hipertrofia</button>
-      <button class="tab-btn" data-pane="m1-ema">Mês 1 — Emagrecimento</button>
-    </div>
+<!-- INICIANTE — CARDÁPIO 1 PARA EMAGRECIMETO 1100 - 1300 KCAL -->
+<div class="section-card">
+  <div class="section-title">Iniciante — CARDÁPIO 1 PARA EMAGRECIMETO 1100 - 1300 KCAL</div>
 
-    <!-- BASE — HIPERTROFIA -->
-    <section class="card pane active" id="base-hip">
-      <div class="sec-title">CARDÁPIO 1 PARA HIPERTROFIA 1900 - 2100 KCAL</div>
+  <p><b>PEQUENO ALMOÇO:</b><br>
+  <br>1 - Opção<br>
+  1 logurte grego zero (Milbona) 100g ou logurte zero Skyr (Milbona) 100g<br>
+  80g Fruta (morango ou kiwi ou pêssego ou maçã ou pêra ou ameixa ou uva ou manga)<br>
+  20g ou duas colheres de sopa de (lascas de castanha/coco ou aveia)<br>
+  <br>2 - Opção<br>
+  1 fatia de pão de forma (farinha 100% integral) ou 30g aveia<br>
+  30g Queijo (cottage ou mozarela)<br>
+  1 ovo intero (mexido ou cozido ou frito com fio de azeite)</p>
 
-      <div class="block">
-        <h3>PEQUENO-ALMOÇO</h3>
-        <p><b>1 - Opção</b><br>
-          120g Salada de frutas variadas<br>
-          20g ou duas colheres de sopa de (lascas de castanha/coco ou aveia)<br>
-          Fio de mel<br>
-          2 ovos inteiros (mexido ou cozido ou frito com fio de azeite)
-        </p>
-        <p><b>2 - Opção</b><br>
-          2 fatias de pão de forma (farinha 100% integral) ou 1 pão francês.<br>
-          40g Queijo (queijo cottage ou cottage ou mozarela )<br>
-          80g hambúrguer caseiro (frango/carne) ou 2 ovos inteiros (mexido ou cozido ou frito com fio de azeite)
-        </p>
-      </div>
+  <p><b>LANCHE DA MANHÃ:</b><br>
+  <br>1 - Opção<br>
+  30g Mix de oleaginosas (castanhas, nozes, amêndoas) + 20g frutas secas (damasco, tâmara, ameixa)<br>
+  <br>2 - Opção<br>
+  1 Und. Barra de proteína ( Whey Bar Probiótica ou Bold) ou 25gramas de proteína Whey)</p>
 
-      <div class="block">
-        <h3>LANCHE DA MANHÃ</h3>
-        <p><b>1 - Opção</b><br>30g Mix de oleaginosas (castanhas, nozes, amêndoas) + 100g banana ou 100g Manga</p>
-        <p><b>2 - Opção</b><br>250g ou 1 und. Iogurte proteico (Skyr)/bebida láctea (soya)</p>
-      </div>
+  <p><b>ALMOÇO:</b><br>
+  50g (podendo chegar até uns 80g no máximo) ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz integral + feijão/lentilha)<br>
+  100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  Obs: Sobremesa opcional (20g chocolate mínimo 70% ou 1 colher de sopa de pasta de amendoim)</p>
 
-      <div class="block">
-        <h3>ALMOÇO</h3>
-        <p>
-          150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz + feijão/lentilha)<br>
-          100g ou 1 filete grande de carne vermelha, ou frango, ou peixe ou 3 ovos inteiros,<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade<br>
-          <i>Obs: Sobremesa opcional (80g fruta variada)</i>
-        </p>
-      </div>
+  <p><b>LANCHE DA TARDE:</b><br>
+  <br>1 - Opção<br>
+  Panqueca de banana<br>
+  Massa: (60g banana amassada + 20g de aveia + 1 ovo + pitada de canela)<br>
+  Recheio: 30g pasta de amendoim integral<br>
+  <br>2 - Opção<br>
+  60g frango desfiado ou atum + 60g mandioca ou batata doce cozida (pode fazer bolinhas e assar)</p>
 
-      <div class="block">
-        <h3>LANCHE DA TARDE</h3>
-        <p><b>1 - Opção</b><br>
-          Panqueca de banana<br>
-          Massa: (80g banana amassada + 30g de aveia + 2 ovos + pitada de canela)<br>
-          Recheio: 40g pasta de amendoim integral (100% amendoim)
-        </p>
-        <p><b>2 - Opção</b><br>
-          100g frango desfiado ou carne moída ou atum + 100g mandioca ou batata doce cozida (pode fazer bolinhas e assar)
-        </p>
-      </div>
+  <p><b>JANTAR:</b><br>
+  <br>1 - Opção<br>
+  50g (podendo chegar até uns 80g no máximo) ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz integral + feijão/lentilha)<br>
+  100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  <br>2 - Opção<br>
+  500ml Shake (30g leite em pó(proteína)+ água + 60g/morango/banana/abacate +<br>
+  10g cacau em pó) + fio de mel de abelha.</p>
 
-      <div class="block">
-        <h3>JANTAR</h3>
-        <p>
-          150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz + feijão/lentilha)<br>
-          100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade<br>
-          <i>Obs: Sobremesa opcional (80g fruta variada)</i>
-        </p>
-      </div>
+  <p><b>CEIA:</b><br>
+  1 Chávena de chá (camomila ou lavanda)</p>
+</div>
 
-      <div class="block">
-        <h3>CEIA</h3>
-        <p><b>Opção 1</b>: 250g ou 1 und. Iogurte proteico (Skyr)/bebida láctea (Soya)</p>
-        <p><b>Opção 2</b>: 40g pipoca de panela (obs: pesar o milho cru e utilizar azeite)</p>
-      </div>
-    </section>
+<!-- MÊS 1 — CARDÁPIO PARA HIPERTROFIA 1900 – 2100 kCAL -->
+<div class="section-card">
+  <div class="section-title">Mês 1 — CARDÁPIO PARA HIPERTROFIA 1900 – 2100 kCAL</div>
 
-    <!-- BASE — EMAGRECIMENTO -->
-    <section class="card pane" id="base-ema">
-      <div class="sec-title">CARDÁPIO 1 PARA EMAGRECIMETO 1100 - 1300 KCAL</div>
+  <p><b>PEQUENO ALMOÇO:</b><br>
+  (Obs: Café preto sem açúcar opcional.)<br>
+  1 Cápsula de (Ômega 3) todas as manhãs.<br>
+  5g de Creatina todas as manhãs.<br>
+  <br>1 - Opção<br>
+  60g de Aveia ou 1 pão francês<br>
+  Recheio: 40g (queijo variado) + 20g bacon magro + 80g Hamburguer caseiro<br>
+  (bovino/frango) ou 3 ovos mexidos.<br>
+  <br>2 – Opção<br>
+  Vitamina de abacate/banana (500ml leite integral + 100g abacate/banana + 30g whey protein concentrado + 30g pasta de amendoim integral)</p>
 
-      <div class="block">
-        <h3>PEQUENO ALMOÇO</h3>
-        <p><b>1 - Opção</b><br>
-          1 logurte grego zero (Milbona) 100g ou logurte zero Skyr (Milbona) 100g<br>
-          80g Fruta (morango ou kiwi ou pêssego ou maçã ou pêra ou ameixa ou uva ou manga)<br>
-          20g ou duas colheres de sopa de (lascas de castanha/coco ou aveia)
-        </p>
-        <p><b>2 - Opção</b><br>
-          1 fatia de pão de forma (farinha 100% integral) ou 30g aveia<br>
-          30g Queijo (cottage ou mozarela)<br>
-          1 ovo intero (mexido ou cozido ou frito com fio de azeite)
-        </p>
-      </div>
+  <p><b>LANCHE DA MANHÃ:</b><br>
+  <br>1 – Opção<br>
+  1 pão francês<br>
+  Recheio: 30g requeijão cremoso ou maionese + 80g frango ou atum<br>
+  <br>2 – Opção<br>
+  100g abacate/banana+ 20g whey protein concentrado + 30g de pasta de<br>
+  amendoim integral.</p>
 
-      <div class="block">
-        <h3>LANCHE DA MANHÃ</h3>
-        <p><b>1 - Opção</b><br>30g Mix de oleaginosas (castanhas, nozes, amêndoas) + 20g frutas secas (damasco, tâmara, ameixa)</p>
-        <p><b>2 - Opção</b><br>1 Und. Barra de proteína (Whey Bar Probiótica ou Bold) ou 25 gramas de proteína Whey</p>
-      </div>
+  <p><b>ALMOÇO:</b><br>
+  150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz + feijão/lentilha/grão de bico)<br>
+  150g ou 2 filetes grandes de carne vermelha ou frango ou peixe ou 4 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  Obs: Sobremesa opcional (80g fruta variada)</p>
 
-      <div class="block">
-        <h3>ALMOÇO</h3>
-        <p>
-          50g (podendo chegar até uns 80g no máximo) ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz integral + feijão/lentilha)<br>
-          100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade<br>
-          <i>Obs: Sobremesa opcional (20g chocolate mínimo 70% ou 1 colher de sopa de pasta de amendoim)</i>
-        </p>
-      </div>
+  <p><b>LANCHE DA TARDE:</b><br>
+  <br>1 – Opção<br>
+  100g (frango/tilápia/carne bovina) + 100g (mandioca/batata doce)<br>
+  <br>2 – Opção<br>
+  Vitamina de abacate/banana (500ml leite integral + 100g abacate/banana + 30g whey protein concentrado + 30g pasta de amendoim integral)</p>
 
-      <div class="block">
-        <h3>LANCHE DA TARDE</h3>
-        <p><b>1 - Opção</b><br>
-          Panqueca de banana — Massa: (60g banana amassada + 20g de aveia + 1 ovo + pitada de canela)<br>
-          Recheio: 30g pasta de amendoim integral
-        </p>
-        <p><b>2 - Opção</b><br>
-          60g frango desfiado ou atum + 60g mandioca ou batata doce cozida (pode fazer bolinhas e assar)
-        </p>
-      </div>
+  <p><b>JANTAR:</b><br>
+  150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz + feijão/lentilha/grão de bico)<br>
+  150g ou 2 filetes grandes de carne vermelha ou frango ou peixe ou 4 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  Obs: Sobremesa opcional (80g fruta variada)</p>
 
-      <div class="block">
-        <h3>JANTAR</h3>
-        <p>
-          <b>1 - Opção</b><br>
-          50g (podendo chegar até uns 80g no máximo) ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou mandioquinha salsa ou (arroz integral + feijão/lentilha)<br>
-          100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade
-        </p>
-        <p>
-          <b>2 - Opção</b><br>
-          500ml Shake (30g leite em pó (proteína) + água + 60g/morango/banana/abacate + 10g cacau em pó) + fio de mel de abelha.
-        </p>
-      </div>
+  <p><b>CEIA:</b><br>
+  1 Iogurte proteico 250g (SKYR ou MILBONA)</p>
+</div>
 
-      <div class="block">
-        <h3>CEIA</h3>
-        <p>1 Chávena de chá (camomila ou lavanda)</p>
-      </div>
-    </section>
+<!-- MÊS 1 — CARDÁPIO PARA EMAGRECIMENTO 1100 – 1300 KCAL -->
+<div class="section-card">
+  <div class="section-title">Mês 1 — CARDÁPIO PARA EMAGRECIMENTO 1100 – 1300 KCAL</div>
 
-    <!-- MÊS 1 — HIPERTROFIA -->
-    <section class="card pane" id="m1-hip">
-      <div class="sec-title">CARDÁPIO PARA HIPERTROFIA 1900 – 2100 KCAL (Mês 1)</div>
+  <p><b>PEQUENO ALMOÇO:</b><br>
+  (Obs: Café preto sem açúcar opcional.)<br>
+  1 Cápsula de (Ômega 3) todas as manhãs.<br>
+  5g de Glutamina todas as manhãs.<br>
+  <br>1 - Opção<br>
+  1 fatia de pão de forma integral + 10g<br>
+  geléia natural ou creme de ricota light ou molho pesto + 1 ovo mexido.<br>
+  <br>2 – Opção<br>
+  80g banana + fio de mel + 10g farelo de aveia/psyllium + 1 ovo mexido ou 20g<br>
+  whey protein isolado.</p>
 
-      <div class="block">
-        <h3>PEQUENO ALMOÇO</h3>
-        <p>(Obs: Café preto sem açúcar opcional.)<br>
-           1 Cápsula de (Ômega 3) todas as manhãs.<br>
-           5g de Creatina todas as manhãs.</p>
-        <p><b>1 - Opção</b><br>
-          60g de Aveia ou 1 pão francês<br>
-          Recheio: 40g (queijo variado) + 20g bacon magro + 80g Hamburguer caseiro (bovino/frango) ou 3 ovos mexidos.
-        </p>
-        <p><b>2 – Opção</b><br>
-          Vitamina de abacate/banana (500ml leite integral + 100g abacate/banana + 30g whey protein concentrado + 30g pasta de amendoim integral)
-        </p>
-      </div>
+  <p><b>LANCHE DA MANHÃ:</b><br>
+  <br>1 – Opção<br>
+  80g Fruta (Maçã/pêra/kiwi/melão/morango)<br>
+  <br>2 – Opção<br>
+  20g chocolate 70% cacau</p>
 
-      <div class="block">
-        <h3>LANCHE DA MANHÃ</h3>
-        <p><b>1 – Opção</b><br>
-          1 pão francês — Recheio: 30g requeijão cremoso ou maionese + 80g frango ou atum
-        </p>
-        <p><b>2 – Opção</b><br>
-          100g abacate/banana + 20g whey protein concentrado + 30g de pasta de amendoim integral.
-        </p>
-      </div>
+  <p><b>ALMOÇO:</b><br>
+  50g ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz integral + feijão/lentilha/ grão de bico)<br>
+  100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  Obs: Sobremesa opcional (1 und. 20g paçoquita diet ou chocolate mínimo 70%)</p>
 
-      <div class="block">
-        <h3>ALMOÇO</h3>
-        <p>
-          150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz + feijão/lentilha/grão de bico)<br>
-          150g ou 2 filetes grandes de carne vermelha ou frango ou peixe ou 4 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade<br>
-          <i>Obs: Sobremesa opcional (80g fruta variada)</i>
-        </p>
-      </div>
+  <p><b>LANCHE DA TARDE:</b><br>
+  <br>1 – Opção<br>
+  80g mamão/banana + 20g whey protein isolado + 30g pasta de amendoim integral<br>
+  <br>2 – Opção<br>
+  2 fatias de 35g pão de forma integral ou 1 pão francês sem miolo + 2 ovos mexidos</p>
 
-      <div class="block">
-        <h3>LANCHE DA TARDE</h3>
-        <p><b>1 – Opção</b><br>100g (frango/tilápia/carne bovina) + 100g (mandioca/batata doce)</p>
-        <p><b>2 – Opção</b><br>Vitamina de abacate/banana (500ml leite integral + 100g abacate/banana + 30g whey protein concentrado + 30g pasta de amendoim integral)</p>
-      </div>
+  <p><b>JANTAR:</b><br>
+  <br>1 – Opção<br>
+  50g ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz integral + feijão/lentilha/ grão de bico)<br>
+  100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
+  100g ou 2 colheres de servir de legumes cozidos<br>
+  Folhas/salada à vontade<br>
+  <br>2 – Opção<br>
+  Shake proteico (água + 80g morango/abacate + 10g farelo de aveia ou psyllium + 30g<br>
+  de whey protein isolado</p>
 
-      <div class="block">
-        <h3>JANTAR</h3>
-        <p>
-          150g ou 3 colheres de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz + feijão/lentilha/grão de bico)<br>
-          150g ou 2 filetes grandes de carne vermelha ou frango ou peixe ou 4 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade<br>
-          <i>Obs: Sobremesa opcional (80g fruta variada)</i>
-        </p>
-      </div>
-
-      <div class="block">
-        <h3>CEIA</h3>
-        <p>1 Iogurte proteico 250g (SKYR ou MILBONA)</p>
-      </div>
-    </section>
-
-    <!-- MÊS 1 — EMAGRECIMENTO -->
-    <section class="card pane" id="m1-ema">
-      <div class="sec-title">CARDÁPIO PARA EMAGRECIMENTO 1100 – 1300 KCAL (Mês 1)</div>
-
-      <div class="block">
-        <h3>PEQUENO ALMOÇO</h3>
-        <p>(Obs: Café preto sem açúcar opcional.)<br>
-           1 Cápsula de (Ômega 3) todas as manhãs.<br>
-           5g de Glutamina todas as manhãs.</p>
-        <p><b>1 - Opção</b><br>
-          1 fatia de pão de forma integral + 10g geléia natural ou creme de ricota light ou molho pesto + 1 ovo mexido.
-        </p>
-        <p><b>2 – Opção</b><br>
-          80g banana + fio de mel + 10g farelo de aveia/psyllium + 1 ovo mexido ou 20g whey protein isolado.
-        </p>
-      </div>
-
-      <div class="block">
-        <h3>LANCHE DA MANHÃ</h3>
-        <p><b>1 – Opção</b><br>80g Fruta (Maçã/pêra/kiwi/melão/morango)</p>
-        <p><b>2 – Opção</b><br>20g chocolate 70% cacau</p>
-      </div>
-
-      <div class="block">
-        <h3>ALMOÇO</h3>
-        <p>
-          50g ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz integral + feijão/lentilha/ grão de bico)<br>
-          100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade<br>
-          <i>Obs: Sobremesa opcional (1 und. 20g paçoquita diet ou chocolate mínimo 70%)</i>
-        </p>
-      </div>
-
-      <div class="block">
-        <h3>LANCHE DA TARDE</h3>
-        <p><b>1 – Opção</b><br>
-          80g mamão/banana + 20g whey protein isolado + 30g pasta de amendoim integral
-        </p>
-        <p><b>2 – Opção</b><br>
-          2 fatias de 35g pão de forma integral ou 1 pão francês sem miolo + 2 ovos mexidos
-        </p>
-      </div>
-
-      <div class="block">
-        <h3>JANTAR</h3>
-        <p>
-          <b>1 – Opção</b><br>
-          50g ou 1 colher de servir de batata doce ou mandioca ou inhame ou batata inglesa ou (arroz integral + feijão/lentilha/ grão de bico)<br>
-          100g ou 1 filete grande de carne vermelha ou frango ou peixe ou 3 ovos inteiros<br>
-          100g ou 2 colheres de servir de legumes cozidos<br>
-          Folhas/salada à vontade
-        </p>
-        <p>
-          <b>2 – Opção</b><br>
-          Shake proteico (água + 80g morango/abacate + 10g farelo de aveia ou psyllium + 30g de whey protein isolado)
-        </p>
-      </div>
-
-      <div class="block">
-        <h3>CEIA</h3>
-        <p>1 chávena de chá (camomila ou lavanda)</p>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    // Tabs simples (sem mexer no visual base)
-    const tabs = document.querySelectorAll('.tab-btn');
-    const panes = document.querySelectorAll('.pane');
-    tabs.forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        tabs.forEach(b=>b.classList.remove('active'));
-        panes.forEach(p=>p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.pane).classList.add('active');
-        window.scrollTo({top:0, behavior:'smooth'});
-      });
-    });
-  </script>
-</body>
-</html>
+  <p><b>CEIA:</b><br>
+  1 chávena de chá (camomila ou lavanda)</p>
+</div>
