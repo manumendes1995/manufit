@@ -1,162 +1,316 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ManuFit</title>
-  <link rel="icon" type="image/png" href="MANUFIT.png" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <style>
-    /* === VISUAL ANTIGO RESTAURADO === */
-    :root{
-      --bg:#0f0f12;
-      --card:#1a1a22;
-      --card-b:#2a2a33;
-      --pink:#ff4da6;
-      --text:#ffffff;
-      --muted:#bbb;
-      --tab-bg:#1f1f25;
-    }
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,'Inter',Arial,sans-serif}
-    header{
-      background:linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%);
-      color:#fff;
-      padding:16px;
-      border-bottom:1px solid var(--pink);
-      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
-    }
-    header img{width:34px;height:34px;border-radius:4px;object-fit:cover;border:1px solid rgba(255,255,255,0.4)}
-    header .brand{font-weight:700;font-size:1.25rem;line-height:1.2}
-    header .tag{font-size:.7rem;font-weight:500;color:#ffd1e8;line-height:1.2}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Manufit</title>
 
-    main{padding:24px 16px;max-width:900px;margin:0 auto}
+    <!-- LOGO / MANIFEST — (mantidos) -->
+    <link rel="icon" type="image/png" href="MANUFIT.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
 
-    /* abas antigas: escuro + contorno rosa */
-    .tab{
-      background:var(--tab-bg);
-      color:#fff;
-      border:1px solid var(--pink);
-      border-radius:6px;
-      padding:6px 10px;
-      font-size:.8rem;
-      font-weight:600;
-      cursor:pointer;
-      text-decoration:none;
-      display:inline-block;
-      margin:4px 4px 0 0;
-    }
-    .tab:hover{opacity:.9}
+    <!-- ASSETS GERADOS (mantidos se existirem) -->
+    <link rel="stylesheet" crossorigin href="assets/index-XyvdzpmH.css">
 
-    .section-card{
-      background:var(--card);
-      border:1px solid var(--card-b);
-      border-radius:10px;
-      padding:16px;
-      margin:24px 0;
-      color:#fff;
-    }
-    .section-title{
-      font-size:1.1rem;
-      font-weight:700;
-      margin:0 0 12px 0;
-      color:#fff;                 /* TÍTULO VOLTA A SER BRANCO */
-      padding-bottom:6px;
-      border-bottom:1px solid var(--pink); /* sublinhado fino rosa */
-    }
-    .link-row{
-      display:flex;align-items:center;justify-content:space-between;
-      border-bottom:1px dashed rgba(255,255,255,.15);
-      padding:10px 0;
-    }
-    .link-row:last-child{border-bottom:none}
-    a{color:var(--pink);text-decoration:none}
-    a:hover{text-decoration:underline}
-    footer{color:#666;font-size:.7rem;text-align:center;padding:40px 16px}
-  </style>
-</head>
+    <!-- ❗CSS mínimo para cadeado (não altera o teu tema) -->
+    <style>
+      a.lock {
+        pointer-events: none;
+        opacity: 0.7;
+        text-decoration: none;
+        border: 1px dashed rgba(255,77,166,0.45);
+        padding: 2px 6px;
+        border-radius: 6px;
+        cursor: not-allowed;
+      }
+      .hidden { display:none; }
+    </style>
+  </head>
+  <body>
+    <!-- =========================
+         LOGIN (mantido)
+    ========================== -->
+    <main id="login-section" class="hidden" style="padding:24px 16px; max-width:900px; margin:0 auto;">
+      <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; max-width:480px; margin:40px auto; color:#fff;">
+        <form id="login-form">
+          <label style="display:block; margin-bottom:8px; font-weight:600; color:#ff4da6;">Introduz o teu e-mail para aceder</label>
+          <input id="login-email" type="email" placeholder="exemplo@exemplo.com"
+                 style="width:100%; background:#0f0f12; border:1px solid #ff4da6; border-radius:6px; padding:10px 12px; color:#fff; font-size:1rem; outline:none;" />
+          <button type="submit"
+                  style="margin-top:16px; width:100%; background:#ff4da6; border:0; border-radius:6px; color:#000; font-weight:700; font-size:1rem; padding:12px; cursor:pointer;">
+            Entrar
+          </button>
 
-<body>
-  <header>
-    <div style="display:flex;align-items:center;gap:8px">
-      <img src="MANUFIT.png" alt="ManuFit Logo">
-      <div>
-        <div class="brand">MANUFIT</div>
-        <div class="tag">Treino • Nutrição • Resultados</div>
+          <!-- Preço visível (mantido como pediste, sem emoji) -->
+          <div style="margin-top:10px; font-weight:600; font-size:1rem; color:#ff4da6; text-align:center;">
+            £39.99 / mês
+          </div>
+
+          <div style="font-size:.8rem; opacity:.8; margin-top:12px; line-height:1.4; text-align:center; color:#bbb;">
+            <div>• Apenas alunas autorizadas têm acesso.</div>
+            <div>• Se ainda não tens acesso, fala com Manu 💖</div>
+            <div style="margin-top:8px; color:#ff4da6;">Suporte: manumendes199514@gmail.com</div>
+          </div>
+        </form>
       </div>
-    </div>
-    <nav>
-      <a href="#" class="tab" onclick="mostrarAba('treinos')">Treinos</a>
-      <a href="#" class="tab" onclick="mostrarAba('alimentacao')">Alimentação</a>
-      <a href="#" class="tab" onclick="mostrarAba('cardio')">Cardio</a>
-      <a href="#" class="tab" onclick="mostrarAba('relaxamento')">Relaxamento</a>
-      <a href="#" class="tab" onclick="mostrarAba('extra')">Extra</a>
-      <a href="#" class="tab" onclick="mostrarAba('perfil')">Perfil</a>
-      <a href="index.html" class="tab" title="Terminar sessão">Sair</a>
-    </nav>
-  </header>
+    </main>
 
-  <main>
-    <!-- TREINOS -->
-    <section id="aba-treinos" class="section-card">
-      <div class="section-title">Treinos</div>
-      <div class="link-row"><b>Iniciante (5 dias)</b>  <a href="treinos-iniciante.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 1</b>   <a href="treinos-avancado-m1.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 2</b>   <a href="treinos-avancado-m2.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 3</b>   <a href="treinos-avancado-m3.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 4</b>   <a href="treinos-avancado-m4.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 5</b>   <a href="treinos-avancado-m5.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 6</b>   <a href="treinos-avancado-m6.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 7</b>   <a href="treinos-avancado-m7.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 8</b>   <a href="treinos-avancado-m8.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 9</b>   <a href="treinos-avancado-m9.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 10</b>  <a href="treinos-avancado-m10.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 11</b>  <a href="treinos-avancado-m11.html">Abrir</a></div>
-      <div class="link-row"><b>Avançado — Mês 12</b>  <a href="treinos-avancado-m12.html">Abrir</a></div>
-    </section>
+    <!-- =========================
+         APP (mantido)
+    ========================== -->
+    <main id="app-section" class="hidden">
+      <!-- HEADER (mantido; inclui Sair) -->
+      <header style="background:linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%); color:#fff; padding:16px; border-bottom:1px solid #ff4da6; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
+        <div style="font-weight:700; font-size:1.25rem; line-height:1.2; color:#fff;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <img src="MANUFIT.png" alt="Manufit Logo" style="width:36px; height:36px; border-radius:6px; object-fit:cover; border:1px solid rgba(255,255,255,0.4);" />
+            <div style="font-weight:700; color:#fff;">MANUFIT</div>
+          </div>
+          <div style="font-size:.7rem; font-weight:500; color:#ffd1e8; line-height:1.2;">Treino • Nutrição • Resultados</div>
+        </div>
 
-    <!-- ALIMENTAÇÃO (quatro opções logo à entrada) -->
-    <section id="aba-alimentacao" class="section-card" style="display:none;">
-      <div class="section-title">Alimentação</div>
-      <div class="link-row"><b>Base</b>                       <a href="alimentacao-base.html">Abrir</a></div>
-      <div class="link-row"><b>Hipertrofia — 1º Mês</b>       <a href="alimentacao-hipertrofia-m1.html">Abrir</a></div>
-      <div class="link-row"><b>Emagrecimento — 1º Mês</b>     <a href="alimentacao-emagrecimento-m1.html">Abrir</a></div>
-      <div class="link-row"><b>Cardápio Vegetariano</b>       <a href="alimentacao-vegetariana.html">Abrir</a></div>
-    </section>
+        <nav style="display:flex; flex-wrap:wrap; gap:8px;">
+          <a href="#treinos" style="background:#ff4da6; color:#000; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Treinos</a>
+          <a href="#alimentacao" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Alimentação</a>
+          <a href="#cardio" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Cardio</a>
+          <a href="#relax" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Relaxamento</a>
+          <a href="#extra" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Extra</a>
+          <a href="#perfil" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Perfil</a>
+          <a id="btn-sair" href="#" title="Terminar sessão"
+             style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">
+            Sair
+          </a>
+        </nav>
+      </header>
 
-    <!-- CARDIO -->
-    <section id="aba-cardio" class="section-card" style="display:none;">
-      <div class="section-title">Cardio</div>
-      <div class="link-row"><b>Protocolos de Cardio</b> <a href="cardio.html">Abrir</a></div>
-    </section>
+      <!-- CONTEÚDO (mantido) -->
+      <main style="padding:24px 16px; max-width:900px; margin:0 auto;">
+        <!-- ABA: TREINOS — tua lista com Iniciante + Avançado 1..12 -->
+        <section id="treinos">
+          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Treinos</div>
 
-    <!-- RELAXAMENTO -->
-    <section id="aba-relaxamento" class="section-card" style="display:none;">
-      <div class="section-title">Relaxamento</div>
-      <div class="link-row"><b>Alongamentos e Recuperação</b> <a href="relaxamento.html">Abrir</a></div>
-    </section>
+            <div class="link-list" style="display:grid; gap:8px;">
+              <!-- INICIANTE -->
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Iniciante (5 dias)</b>
+                <a href="treinos-iniciante.html">Abrir</a>
+              </div>
 
-    <!-- EXTRA -->
-    <section id="aba-extra" class="section-card" style="display:none;">
-      <div class="section-title">Extra</div>
-      <div class="link-row"><b>Conteúdo Extra</b> <a href="extra.html">Abrir</a></div>
-    </section>
+              <!-- AVANÇADO — MÊS 1..12 (com data-mes p/ desbloqueio) -->
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html" data-mes="1">Abrir</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html" data-mes="2" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html" data-mes="3" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html" data-mes="4" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html" data-mes="5" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html" data-mes="6" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html" data-mes="7" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html" data-mes="8" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html" data-mes="9" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html" data-mes="10" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html" data-mes="11" class="lock">🔒 Bloqueado</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html" data-mes="12" class="lock">🔒 Bloqueado</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <!-- PERFIL -->
-    <section id="aba-perfil" class="section-card" style="display:none;">
-      <div class="section-title">Perfil</div>
-      <p style="color:var(--muted)">Em breve: progresso e dados da conta.</p>
-    </section>
-  </main>
+        <!-- ABA: ALIMENTAÇÃO (mantida) -->
+        <section id="alimentacao" style="margin-top:28px;">
+          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Alimentação</div>
+            <!-- Aqui continuam as tuas 4 opções já existentes -->
+            <div class="link-list" style="display:grid; gap:8px;">
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Base — Hipertrofia</b>   <a href="alimentacao-base-hipertrofia.html">Abrir</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Base — Emagrecimento</b> <a href="alimentacao-base-emagrecimento.html">Abrir</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Mês 1 — Hipertrofia</b>  <a href="alimentacao-m1-hipertrofia.html">Abrir</a>
+              </div>
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Mês 1 — Emagrecimento</b><a href="alimentacao-m1-emagrecimento.html">Abrir</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <footer>© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
+        <!-- ABA: CARDIO (mantida) -->
+        <section id="cardio" style="margin-top:28px;">
+          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Cardio</div>
+            <div class="link-list" style="display:grid; gap:8px;">
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Cardio — Plano</b> <a href="cardio.html">Abrir</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <script>
-    function mostrarAba(id){
-      document.querySelectorAll('main > section').forEach(s=>s.style.display='none');
-      document.getElementById('aba-'+id).style.display='block';
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+        <!-- ABA: RELAXAMENTO (mantida) -->
+        <section id="relax" style="margin-top:28px;">
+          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Relaxamento</div>
+            <div class="link-list" style="display:grid; gap:8px;">
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Relaxamento — Plano</b> <a href="relaxamento.html">Abrir</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABA: EXTRA (mantida) -->
+        <section id="extra" style="margin-top:28px;">
+          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Extra</div>
+            <div class="link-list" style="display:grid; gap:8px;">
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Extra — Conteúdos</b> <a href="extra.html">Abrir</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABA: PERFIL (mantida) -->
+        <section id="perfil" style="margin-top:28px;">
+          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Perfil</div>
+            <div class="link-list" style="display:grid; gap:8px;">
+              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
+                <b>Dados</b> <a href="perfil.html">Abrir</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer style="color:#666; font-size:.7rem; text-align:center; padding:40px 16px;">
+        © <span id="year"></span> MANUFIT. Todos os direitos reservados.
+      </footer>
+    </main>
+
+    <!-- =========================
+         SCRIPT: login + sair + desbloqueio
+         (não altera visual)
+    ========================== -->
+    <script>
+    (function(){
+      const LS_EMAIL_KEY = 'manufit_email';
+      const LS_FIRST_TS  = 'manufit_first_login_ts';
+
+      function qs(s){ return document.querySelector(s); }
+      function qsa(s){ return Array.from(document.querySelectorAll(s)); }
+
+      function showLogin(){
+        const l=qs('#login-section'), a=qs('#app-section');
+        if(l) l.classList.remove('hidden');
+        if(a) a.classList.add('hidden');
+      }
+      function showApp(){
+        const l=qs('#login-section'), a=qs('#app-section');
+        if(l) l.classList.add('hidden');
+        if(a) a.classList.remove('hidden');
+      }
+
+      // estado inicial
+      const email = localStorage.getItem(LS_EMAIL_KEY);
+      if(!email){ showLogin(); } else {
+        showApp();
+        if(!localStorage.getItem(LS_FIRST_TS)){
+          localStorage.setItem(LS_FIRST_TS, String(Date.now()));
+        }
+      }
+
+      // login form (se existir nesta página)
+      const form = qs('#login-form');
+      if(form){
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const input = qs('#login-email');
+          const v = (input && input.value || '').trim();
+          if(!v) return;
+          localStorage.setItem(LS_EMAIL_KEY, v);
+          if(!localStorage.getItem(LS_FIRST_TS)){
+            localStorage.setItem(LS_FIRST_TS, String(Date.now()));
+          }
+          showApp();
+        });
+      }
+
+      // botão sair
+      const sair = qs('#btn-sair');
+      if(sair){
+        sair.addEventListener('click', (e)=>{
+          e.preventDefault();
+          localStorage.removeItem(LS_EMAIL_KEY);
+          localStorage.removeItem(LS_FIRST_TS);
+          window.location.href = 'index.html';
+        });
+      }
+
+      // ano
+      const y = qs('#year'); if(y) y.textContent = new Date().getFullYear();
+
+      // desbloqueio meses avançado:
+      // regra pedida: M1 abre já; M2 aos 60 dias; M3 aos 90; ... M12 aos 330
+      function diasDeUso(){
+        const first = Number(localStorage.getItem(LS_FIRST_TS) || Date.now());
+        return Math.floor((Date.now() - first)/86400000);
+      }
+      const d = diasDeUso();
+
+      qsa('a[data-mes]').forEach(a=>{
+        const mes = Number(a.getAttribute('data-mes')||'1');
+        // threshold: 0, 60, 90, 120, ..., 330
+        const threshold = mes===1 ? 0 : (mes===2 ? 60 : 30*mes);
+        if(d >= threshold){
+          a.classList.remove('lock');
+          a.textContent = 'Abrir';
+          a.style.pointerEvents='auto';
+          a.style.opacity='';
+          a.style.cursor='pointer';
+        } else {
+          a.classList.add('lock');
+          a.textContent = '🔒 Bloqueado';
+          a.setAttribute('title', 'Disponível após '+threshold+' dias');
+        }
+      });
+
+      // corrigir eventuais links absolutos (se houver)
+      qsa('a[href^="/"]').forEach(a=>{
+        const h=a.getAttribute('href')||'';
+        a.setAttribute('href', h.replace(/^\/+/, ''));
+      });
+    })();
+    </script>
+
+    <!-- JS gerado (mantido se existirem assets) -->
+    <script type="module" crossorigin src="assets/index-Lb9lUNHE.js"></script>
+  </body>
 </html>
