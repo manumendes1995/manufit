@@ -1,428 +1,174 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Manufit</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManuFit</title>
 
-    <!-- LOGO / MANIFEST — (mantidos) -->
-    <link rel="icon" type="image/png" href="MANUFIT.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
+  <!-- Ícone e estilos -->
+  <link rel="icon" type="image/png" href="MANUFIT.png" />
+  <link rel="stylesheet" href="assets/style.css" />
 
-    <!-- ASSETS GERADOS (mantidos se existirem) -->
-    <link rel="stylesheet" crossorigin href="assets/index-XyvdzpmH.css">
-
-    <!-- ❗CSS mínimo para cadeado (não altera o teu tema) -->
-    <style>
-      a.lock {
-        pointer-events: none;
-        opacity: 0.7;
-        text-decoration: none;
-        border: 1px dashed rgba(255,77,166,0.45);
-        padding: 2px 6px;
-        border-radius: 6px;
-        cursor: not-allowed;
-      }
-      .hidden { display:none; }
-    </style>
-  </head>
-<script>
-  // Não altera estilos — só alterna a classe 'active' nos botões das abas
-  document.addEventListener('DOMContentLoaded', function () {
-    // tenta apanhar botões/links das abas em várias estruturas comuns do teu index
-    const possibleTabs = [
-      'nav button',
-      '.tabs button',
-      '.tabs a',
-      '.nav button',
-      '[data-aba]',
-      '[data-tab]',
-      'a[href^="#aba-"]',
-      'a[href^="#tab-"]'
-    ];
-
-    const tabButtons = Array.from(document.querySelectorAll(possibleTabs.join(',')))
-      // elimina duplicados e elementos invisíveis
-      .filter((el, i, arr) => arr.indexOf(el) === i && el.offsetParent !== null);
-
-    function setActive(btn) {
-      tabButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  <style>
+    body {
+      margin: 0;
+      background: #120018;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
     }
-
-    // Se existir hash (#aba-...) tenta marcar a aba correspondente como ativa ao carregar
-    if (location.hash) {
-      const hash = location.hash;
-      const match = tabButtons.find(b =>
-        b.getAttribute('href') === hash ||
-        b.dataset?.aba === hash.replace(/^#/, '') ||
-        b.dataset?.tab === hash.replace(/^#/, '')
-      );
-      if (match) setActive(match);
+    header {
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid #ff4fa3;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+    header img {
+      height: 36px;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 16px 0;
+    }
+    .nav-btn {
+      background: transparent;
+      color: #fff;
+      border: 1px solid #ff4fa3;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .nav-btn.active {
+      background: #ff4fa3;
+      color: #120018;
+    }
+    section {
+      display: none;
+      padding: 10px 20px 40px;
+    }
+    section.active {
+      display: block;
+    }
+    .link-row {
+      margin: 10px auto;
+      max-width: 320px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,79,163,0.3);
+      padding: 10px 14px;
+      border-radius: 12px;
+    }
+    .link-row a {
+      color: #ff4fa3;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 10px;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="MANUFIT.png" alt="ManuFit">
+      <strong>MANUFIT</strong>
+    </div>
+    <button id="logout-btn" class="nav-btn">Sair</button>
+  </header>
 
-    // Ao clicar numa aba, só troca a classe 'active' (visual já existe no teu CSS)
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', function () {
-        setActive(btn);
-      }, { passive: true });
+  <nav>
+    <button class="nav-btn active" data-target="treinos">Treinos</button>
+    <button class="nav-btn" data-target="alimentacao">Alimentação</button>
+    <button class="nav-btn" data-target="cardio">Cardio</button>
+    <button class="nav-btn" data-target="relaxamento">Relaxamento</button>
+    <button class="nav-btn" data-target="extra">Extra</button>
+    <button class="nav-btn" data-target="perfil">Perfil</button>
+  </nav>
+
+  <!-- Treinos -->
+  <section id="treinos" class="active">
+    <h2>Treinos</h2>
+    <div class="link-row"><b>Iniciante (5 dias)</b> <a href="treinos-iniciante.html">Abrir</a></div>
+    <div class="link-row"><b>Avançado — Mês 1</b> <a href="treinos-avancado-m1.html">Abrir</a></div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 2</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 3</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 4</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 5</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 6</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 7</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 8</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 9</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 10</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 11</b> 🔒</div>
+    <div class="link-row" style="opacity:0.5;"><b>Avançado — Mês 12</b> 🔒</div>
+  </section>
+
+  <!-- Alimentação -->
+  <section id="alimentacao">
+    <h2>Alimentação</h2>
+    <div class="link-row"><b>Base — Hipertrofia</b> <a href="alimentacao-base-hipertrofia.html">Abrir</a></div>
+    <div class="link-row"><b>Base — Emagrecimento</b> <a href="alimentacao-base-emagrecimento.html">Abrir</a></div>
+    <div class="link-row"><b>Mês 1 — Hipertrofia</b> <a href="alimentacao-m1-hipertrofia.html">Abrir</a></div>
+    <div class="link-row"><b>Mês 1 — Emagrecimento</b> <a href="alimentacao-m1-emagrecimento.html">Abrir</a></div>
+  </section>
+
+  <!-- Cardio -->
+  <section id="cardio">
+    <h2>Cardio</h2>
+    <p>Rotinas de cardio serão adicionadas aqui.</p>
+  </section>
+
+  <!-- Relaxamento -->
+  <section id="relaxamento">
+    <h2>Relaxamento</h2>
+    <p>Exercícios de respiração, alongamentos e práticas relaxantes em breve.</p>
+  </section>
+
+  <!-- Extra -->
+  <section id="extra">
+    <h2>Extra</h2>
+    <p>Conteúdos bônus, vídeos educativos e desafios semanais.</p>
+  </section>
+
+  <!-- Perfil -->
+  <section id="perfil">
+    <h2>Perfil</h2>
+    <p>Aqui estarão as informações pessoais e progresso do utilizador.</p>
+  </section>
+
+  <footer>
+    <small>© 2025 ManuFit — Todos os direitos reservados.</small>
+  </footer>
+
+  <script>
+    // alternar abas
+    const buttons = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('section');
+    buttons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        buttons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        sections.forEach(s=>s.classList.remove('active'));
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
     });
-  });
-</script>
-  <body>
-    <!-- =========================
-         LOGIN (mantido)
-    ========================== -->
-    <main id="login-section" class="hidden" style="padding:24px 16px; max-width:900px; margin:0 auto;">
-      <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; max-width:480px; margin:40px auto; color:#fff;">
-        <form id="login-form">
-          <label style="display:block; margin-bottom:8px; font-weight:600; color:#ff4da6;">Introduz o teu e-mail para aceder</label>
-          <input id="login-email" type="email" placeholder="exemplo@exemplo.com"
-                 style="width:100%; background:#0f0f12; border:1px solid #ff4da6; border-radius:6px; padding:10px 12px; color:#fff; font-size:1rem; outline:none;" />
-          <button type="submit"
-                  style="margin-top:16px; width:100%; background:#ff4da6; border:0; border-radius:6px; color:#000; font-weight:700; font-size:1rem; padding:12px; cursor:pointer;">
-            Entrar
-          </button>
 
-          <!-- Preço visível (mantido como pediste, sem emoji) -->
-          <div style="margin-top:10px; font-weight:600; font-size:1rem; color:#ff4da6; text-align:center;">
-            £39.99 / mês
-          </div>
-
-          <div style="font-size:.8rem; opacity:.8; margin-top:12px; line-height:1.4; text-align:center; color:#bbb;">
-            <div>• Apenas alunas autorizadas têm acesso.</div>
-            <div>• Se ainda não tens acesso, fala com Manu 💖</div>
-            <div style="margin-top:8px; color:#ff4da6;">Suporte: manumendes199514@gmail.com</div>
-          </div>
-        </form>
-      </div>
-    </main>
-
-    <!-- =========================
-         APP (mantido)
-    ========================== -->
-    <main id="app-section" class="hidden">
-      <!-- HEADER (mantido; inclui Sair) -->
-      <header style="background:linear-gradient(to right, rgb(255,77,166) 0%, rgb(15,15,18) 60%); color:#fff; padding:16px; border-bottom:1px solid #ff4da6; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
-        <div style="font-weight:700; font-size:1.25rem; line-height:1.2; color:#fff;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <img src="MANUFIT.png" alt="Manufit Logo" style="width:36px; height:36px; border-radius:6px; object-fit:cover; border:1px solid rgba(255,255,255,0.4);" />
-            <div style="font-weight:700; color:#fff;">MANUFIT</div>
-          </div>
-          <div style="font-size:.7rem; font-weight:500; color:#ffd1e8; line-height:1.2;">Treino • Nutrição • Resultados</div>
-        </div>
-
-        <nav style="display:flex; flex-wrap:wrap; gap:8px;">
-          <a href="#treinos" style="background:#ff4da6; color:#000; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Treinos</a>
-          <a href="#alimentacao" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Alimentação</a>
-          <a href="#cardio" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Cardio</a>
-          <a href="#relax" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Relaxamento</a>
-          <a href="#extra" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Extra</a>
-          <a href="#perfil" style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">Perfil</a>
-          <a id="btn-sair" href="#" title="Terminar sessão"
-             style="background:#1f1f25; color:#fff; border:1px solid #ff4da6; border-radius:6px; padding:6px 10px; font-size:.8rem; font-weight:600; cursor:pointer; text-decoration:none;">
-            Sair
-          </a>
-        </nav>
-      </header>
-
-      <!-- CONTEÚDO (mantido) -->
-      <main style="padding:24px 16px; max-width:900px; margin:0 auto;">
-        <!-- ABA: TREINOS — tua lista com Iniciante + Avançado 1..12 -->
-        <section id="treinos">
-          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
-            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Treinos</div>
-
-            <div class="link-list" style="display:grid; gap:8px;">
-              <!-- INICIANTE -->
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Iniciante (5 dias)</b>
-                <a href="treinos-iniciante.html">Abrir</a>
-              </div>
-
-              <!-- AVANÇADO — MÊS 1..12 (com data-mes p/ desbloqueio) -->
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 1</b>  <a href="treinos-avancado-m1.html" data-mes="1">Abrir</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 2</b>  <a href="treinos-avancado-m2.html" data-mes="2" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 3</b>  <a href="treinos-avancado-m3.html" data-mes="3" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 4</b>  <a href="treinos-avancado-m4.html" data-mes="4" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 5</b>  <a href="treinos-avancado-m5.html" data-mes="5" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 6</b>  <a href="treinos-avancado-m6.html" data-mes="6" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 7</b>  <a href="treinos-avancado-m7.html" data-mes="7" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 8</b>  <a href="treinos-avancado-m8.html" data-mes="8" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 9</b>  <a href="treinos-avancado-m9.html" data-mes="9" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 10</b> <a href="treinos-avancado-m10.html" data-mes="10" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 11</b> <a href="treinos-avancado-m11.html" data-mes="11" class="lock">🔒 Bloqueado</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Avançado — Mês 12</b> <a href="treinos-avancado-m12.html" data-mes="12" class="lock">🔒 Bloqueado</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA: ALIMENTAÇÃO (mantida) -->
-        <section id="alimentacao" style="margin-top:28px;">
-          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
-            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Alimentação</div>
-            <!-- Aqui continuam as tuas 4 opções já existentes -->
-            <div class="link-list" style="display:grid; gap:8px;">
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Base — Hipertrofia</b>   <a href="alimentacao-base-hipertrofia.html">Abrir</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Base — Emagrecimento</b> <a href="alimentacao-base-emagrecimento.html">Abrir</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Mês 1 — Hipertrofia</b>  <a href="alimentacao-m1-hipertrofia.html">Abrir</a>
-              </div>
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Mês 1 — Emagrecimento</b><a href="alimentacao-m1-emagrecimento.html">Abrir</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA: CARDIO (mantida) -->
-        <section id="cardio" style="margin-top:28px;">
-          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
-            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Cardio</div>
-            <div class="link-list" style="display:grid; gap:8px;">
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Cardio — Plano</b> <a href="cardio.html">Abrir</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA: RELAXAMENTO (mantida) -->
-        <section id="relax" style="margin-top:28px;">
-          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
-            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Relaxamento</div>
-            <div class="link-list" style="display:grid; gap:8px;">
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Relaxamento — Plano</b> <a href="relaxamento.html">Abrir</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA: EXTRA (mantida) -->
-        <section id="extra" style="margin-top:28px;">
-          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
-            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Extra</div>
-            <div class="link-list" style="display:grid; gap:8px;">
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Extra — Conteúdos</b> <a href="extra.html">Abrir</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ABA: PERFIL (mantida) -->
-        <section id="perfil" style="margin-top:28px;">
-          <div style="background:#1a1a22; border:1px solid #2a2a33; border-radius:10px; padding:16px; color:#fff;">
-            <div style="font-weight:700; font-size:1.1rem; margin-bottom:12px; color:#fff;">Perfil</div>
-            <div class="link-list" style="display:grid; gap:8px;">
-              <div class="link-row" style="display:flex; justify-content:space-between; align-items:center;">
-                <b>Dados</b> <a href="perfil.html">Abrir</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </main>
-
-      <footer style="color:#666; font-size:.7rem; text-align:center; padding:40px 16px;">
-        © <span id="year"></span> MANUFIT. Todos os direitos reservados.
-      </footer>
-    </main>
-
-    <!-- =========================
-         SCRIPT: login + sair + desbloqueio
-         (não altera visual)
-    ========================== -->
-<script>
-(function(){
-  const LS_EMAIL_KEY = 'manufit_email';
-  const LS_FIRST_TS  = 'manufit_first_login_ts';
-
-  function qs(s){ return document.querySelector(s); }
-  function qsa(s){ return Array.from(document.querySelectorAll(s)); }
-
-  function showLogin(){
-    qs('#login-section')?.classList.remove('hidden');
-    qs('#app-section')?.classList.add('hidden');
-  }
-  function showApp(){
-    qs('#login-section')?.classList.add('hidden');
-    qs('#app-section')?.classList.remove('hidden');
-  }
-
-  // ---- ESTADO INICIAL (login obrigatório)
-  const email = localStorage.getItem(LS_EMAIL_KEY);
-  if(!email){ showLogin(); } else {
-    showApp();
-    if(!localStorage.getItem(LS_FIRST_TS)){
-      localStorage.setItem(LS_FIRST_TS, String(Date.now()));
-    }
-  }
-
-  // ---- LOGIN
-  const form = qs('#login-form');
-  if(form){
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const v = (qs('#login-email')?.value || '').trim();
-      if(!v) return;
-      localStorage.setItem(LS_EMAIL_KEY, v);
-      if(!localStorage.getItem(LS_FIRST_TS)){
-        localStorage.setItem(LS_FIRST_TS, String(Date.now()));
-      }
-      showApp();
-      ensureHash(); // cai na aba correta após login
-      renderTabs();
-      applyUnlockOnlyOnTreinos();
+    // botão sair (volta ao login)
+    document.getElementById('logout-btn').addEventListener('click', ()=>{
+      window.location.href = "login.html";
     });
-  }
-
-  // ---- SAIR
-  const sair = qs('#btn-sair');
-  if(sair){
-    sair.addEventListener('click', (e)=>{
-      e.preventDefault();
-      localStorage.removeItem(LS_EMAIL_KEY);
-      localStorage.removeItem(LS_FIRST_TS);
-      // volta para página de login
-      window.location.hash = '';
-      showLogin();
-    });
-  }
-
-  // ---- ANO NO RODAPÉ
-  const y = qs('#year'); if(y) y.textContent = new Date().getFullYear();
-
-  // ---- MOSTRAR SÓ A ABA ATIVA (por hash): #treinos, #alimentacao, #cardio, #relax, #extra, #perfil
-  const sectionIds = ['treinos','alimentacao','cardio','relax','extra','perfil'];
-  function ensureHash(){
-    if(!location.hash){
-      location.hash = '#treinos';
-    }
-  }
-  function renderTabs(){
-    const current = (location.hash || '#treinos').replace('#','');
-    sectionIds.forEach(id=>{
-      const el = qs('#'+id);
-      if(!el) return;
-      el.style.display = (id===current ? 'block' : 'none');
-    });
-highlightActiveTab();
-  }
-function highlightActiveTab(){
-  const currentHash = (location.hash || '#treinos');
-  const navEls = Array.from(document.querySelectorAll(
-    'nav a[href^="#"], header a[href^="#"], .tabs a[href^="#"], .tabs button[data-target], button[data-target], a[data-target]'
-  ));
-  navEls.forEach(el=>{
-    el.classList.remove('active');
-    let targetHash = null;
-    if(el.hasAttribute('href')){
-      const h = el.getAttribute('href') || '';
-      if(h.startsWith('#')) targetHash = h;
-    } else if (el.hasAttribute('data-target')){
-      targetHash = '#'+el.getAttribute('data-target');
-    }
-    if(targetHash && targetHash === currentHash){
-      el.classList.add('active');
-    }
-  });
-}
-  window.addEventListener('hashchange', ()=>{
-    renderTabs();
-    // sempre que muda de aba, garantimos que o desbloqueio só atua na Treinos
-    applyUnlockOnlyOnTreinos();
-  });
-
-  // ---- DESBLOQUEIO: APLICAR **APENAS** NA ABA TREINOS
-  function diasDeUso(){
-    const first = Number(localStorage.getItem(LS_FIRST_TS) || Date.now());
-    return Math.floor((Date.now() - first)/86400000);
-  }
-  function thresholdForMonth(mes){
-    // regra: M1=0 dias; M2=60; M3=90; M4=120; ... M12=330
-    if(mes===1) return 0;
-    if(mes===2) return 60;
-    return 30*mes;
-  }
-  function applyUnlockOnlyOnTreinos(){
-    const current = (location.hash || '#treinos').replace('#','');
-    // só atua quando estás em "Treinos"
-    if(current !== 'treinos') return;
-
-    const container = qs('#treinos');
-    if(!container) return;
-
-    const d = diasDeUso();
-    container.querySelectorAll('a[data-mes]').forEach(a=>{
-      const mes = Number(a.getAttribute('data-mes')||'1');
-      const thr = thresholdForMonth(mes);
-      if(d >= thr){
-        a.classList.remove('lock');
-        a.textContent = 'Abrir';
-        a.style.pointerEvents='auto';
-        a.style.opacity='';
-        a.style.cursor='pointer';
-        a.removeAttribute('title');
-      }else{
-        a.classList.add('lock');
-        a.textContent = '🔒 Bloqueado';
-        a.style.pointerEvents='none';
-        a.style.opacity='0.7';
-        a.style.cursor='not-allowed';
-        a.setAttribute('title','Disponível após '+thr+' dias');
-      }
-    });
-  }
-
-  // ---- INICIALIZAÇÃO
-  if(email){
-    ensureHash();
-    renderTabs();
-    applyUnlockOnlyOnTreinos();
-  }else{
-    // sem login, mostra só login
-    showLogin();
-  }
-
-  // ---- CORRIGIR EVENTUAIS LINKS ABSOLUTOS (se houver)
-  qsa('a[href^="/"]').forEach(a=>{
-    const h=a.getAttribute('href')||'';
-    a.setAttribute('href', h.replace(/^\/+/, ''));
-  });
-})();
-</script>
-    <!-- JS gerado (mantido se existirem assets) -->
-    <script type="module" crossorigin src="assets/index-Lb9lUNHE.js"></script>
-  </body>
+  </script>
+</body>
 </html>
-
