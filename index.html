@@ -169,6 +169,106 @@
     document.getElementById('logout-btn').addEventListener('click', ()=>{
       window.location.href = "login.html";
     });
-  </script>
+<script>
+  // ===== Autenticação básica via localStorage =====
+  const LS_KEY = "manufit_email";
+
+  function isAuthed() {
+    return !!localStorage.getItem(LS_KEY);
+  }
+
+  function saveEmail(email) {
+    localStorage.setItem(LS_KEY, String(email || "").trim());
+  }
+
+  function logout() {
+    // Limpa sessão e volta ao ecrã de login SEM mexer no visual
+    localStorage.removeItem(LS_KEY);
+    renderState();
+    // Garantir que vemos o topo (login)
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  // ===== Ligações a elementos existentes no teu HTML =====
+  // NOTA: Mantive IDs genéricos para funcionar com a tua estrutura atual.
+  // - Secção de login deve ter id="login-section" (ou "login")
+  // - Secção da app deve ter id="app-section" (ou "app")
+  // - Botão/aba "Sair" deve ter id="btn-sair" OU data-action="logout"
+  function getEls() {
+    const login =
+      document.getElementById("login-section") ||
+      document.getElementById("login");
+    const app =
+      document.getElementById("app-section") ||
+      document.getElementById("app");
+    const form =
+      document.getElementById("login-form") ||
+      document.querySelector('form[data-role="login"]') ||
+      document.querySelector("#login-section form") ||
+      document.querySelector("#login form");
+
+    return { login, app, form };
+  }
+
+  function show(el) {
+    if (!el) return;
+    el.classList.remove("hidden");
+    el.style.display = ""; // respeita o teu CSS
+  }
+
+  function hide(el) {
+    if (!el) return;
+    el.classList.add("hidden");
+    // não forçar display:none se preferes só a classe
+  }
+
+  function renderState() {
+    const { login, app } = getEls();
+    if (!login || !app) return;
+
+    if (isAuthed()) {
+      hide(login);
+      show(app);
+    } else {
+      show(login);
+      hide(app);
+    }
+  }
+
+  // ===== Arranque =====
+  document.addEventListener("DOMContentLoaded", () => {
+    const { form } = getEls();
+
+    // Submeter login
+    if (form) {
+      form.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const emailInput =
+          form.querySelector('input[type="email"]') || form.querySelector("input");
+        const email = emailInput ? emailInput.value : "";
+        if (String(email).trim()) {
+          saveEmail(email);
+          renderState();
+        }
+      });
+    }
+
+    // Clicar no Sair (funciona com id="btn-sair" OU data-action="logout")
+    document.addEventListener("click", (e) => {
+      const t = e.target;
+      if (
+        t &&
+        (t.id === "btn-sair" ||
+          t.getAttribute("data-action") === "logout" ||
+          t.closest?.('[data-action="logout"]'))
+      ) {
+        e.preventDefault();
+        logout();
+      }
+    });
+
+    renderState();
+  });
+</script>
 </body>
 </html>
