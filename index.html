@@ -219,97 +219,145 @@
          SCRIPT: login + sair + desbloqueio
          (não altera visual)
     ========================== -->
-    <script>
-    (function(){
-      const LS_EMAIL_KEY = 'manufit_email';
-      const LS_FIRST_TS  = 'manufit_first_login_ts';
+<script>
+(function(){
+  const LS_EMAIL_KEY = 'manufit_email';
+  const LS_FIRST_TS  = 'manufit_first_login_ts';
 
-      function qs(s){ return document.querySelector(s); }
-      function qsa(s){ return Array.from(document.querySelectorAll(s)); }
+  function qs(s){ return document.querySelector(s); }
+  function qsa(s){ return Array.from(document.querySelectorAll(s)); }
 
-      function showLogin(){
-        const l=qs('#login-section'), a=qs('#app-section');
-        if(l) l.classList.remove('hidden');
-        if(a) a.classList.add('hidden');
+  function showLogin(){
+    qs('#login-section')?.classList.remove('hidden');
+    qs('#app-section')?.classList.add('hidden');
+  }
+  function showApp(){
+    qs('#login-section')?.classList.add('hidden');
+    qs('#app-section')?.classList.remove('hidden');
+  }
+
+  // ---- ESTADO INICIAL (login obrigatório)
+  const email = localStorage.getItem(LS_EMAIL_KEY);
+  if(!email){ showLogin(); } else {
+    showApp();
+    if(!localStorage.getItem(LS_FIRST_TS)){
+      localStorage.setItem(LS_FIRST_TS, String(Date.now()));
+    }
+  }
+
+  // ---- LOGIN
+  const form = qs('#login-form');
+  if(form){
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const v = (qs('#login-email')?.value || '').trim();
+      if(!v) return;
+      localStorage.setItem(LS_EMAIL_KEY, v);
+      if(!localStorage.getItem(LS_FIRST_TS)){
+        localStorage.setItem(LS_FIRST_TS, String(Date.now()));
       }
-      function showApp(){
-        const l=qs('#login-section'), a=qs('#app-section');
-        if(l) l.classList.add('hidden');
-        if(a) a.classList.remove('hidden');
+      showApp();
+      ensureHash(); // cai na aba correta após login
+      renderTabs();
+      applyUnlockOnlyOnTreinos();
+    });
+  }
+
+  // ---- SAIR
+  const sair = qs('#btn-sair');
+  if(sair){
+    sair.addEventListener('click', (e)=>{
+      e.preventDefault();
+      localStorage.removeItem(LS_EMAIL_KEY);
+      localStorage.removeItem(LS_FIRST_TS);
+      // volta para página de login
+      window.location.hash = '';
+      showLogin();
+    });
+  }
+
+  // ---- ANO NO RODAPÉ
+  const y = qs('#year'); if(y) y.textContent = new Date().getFullYear();
+
+  // ---- MOSTRAR SÓ A ABA ATIVA (por hash): #treinos, #alimentacao, #cardio, #relax, #extra, #perfil
+  const sectionIds = ['treinos','alimentacao','cardio','relax','extra','perfil'];
+  function ensureHash(){
+    if(!location.hash){
+      location.hash = '#treinos';
+    }
+  }
+  function renderTabs(){
+    const current = (location.hash || '#treinos').replace('#','');
+    sectionIds.forEach(id=>{
+      const el = qs('#'+id);
+      if(!el) return;
+      el.style.display = (id===current ? 'block' : 'none');
+    });
+  }
+  window.addEventListener('hashchange', ()=>{
+    renderTabs();
+    // sempre que muda de aba, garantimos que o desbloqueio só atua na Treinos
+    applyUnlockOnlyOnTreinos();
+  });
+
+  // ---- DESBLOQUEIO: APLICAR **APENAS** NA ABA TREINOS
+  function diasDeUso(){
+    const first = Number(localStorage.getItem(LS_FIRST_TS) || Date.now());
+    return Math.floor((Date.now() - first)/86400000);
+  }
+  function thresholdForMonth(mes){
+    // regra: M1=0 dias; M2=60; M3=90; M4=120; ... M12=330
+    if(mes===1) return 0;
+    if(mes===2) return 60;
+    return 30*mes;
+  }
+  function applyUnlockOnlyOnTreinos(){
+    const current = (location.hash || '#treinos').replace('#','');
+    // só atua quando estás em "Treinos"
+    if(current !== 'treinos') return;
+
+    const container = qs('#treinos');
+    if(!container) return;
+
+    const d = diasDeUso();
+    container.querySelectorAll('a[data-mes]').forEach(a=>{
+      const mes = Number(a.getAttribute('data-mes')||'1');
+      const thr = thresholdForMonth(mes);
+      if(d >= thr){
+        a.classList.remove('lock');
+        a.textContent = 'Abrir';
+        a.style.pointerEvents='auto';
+        a.style.opacity='';
+        a.style.cursor='pointer';
+        a.removeAttribute('title');
+      }else{
+        a.classList.add('lock');
+        a.textContent = '🔒 Bloqueado';
+        a.style.pointerEvents='none';
+        a.style.opacity='0.7';
+        a.style.cursor='not-allowed';
+        a.setAttribute('title','Disponível após '+thr+' dias');
       }
+    });
+  }
 
-      // estado inicial
-      const email = localStorage.getItem(LS_EMAIL_KEY);
-      if(!email){ showLogin(); } else {
-        showApp();
-        if(!localStorage.getItem(LS_FIRST_TS)){
-          localStorage.setItem(LS_FIRST_TS, String(Date.now()));
-        }
-      }
+  // ---- INICIALIZAÇÃO
+  if(email){
+    ensureHash();
+    renderTabs();
+    applyUnlockOnlyOnTreinos();
+  }else{
+    // sem login, mostra só login
+    showLogin();
+  }
 
-      // login form (se existir nesta página)
-      const form = qs('#login-form');
-      if(form){
-        form.addEventListener('submit', (e)=>{
-          e.preventDefault();
-          const input = qs('#login-email');
-          const v = (input && input.value || '').trim();
-          if(!v) return;
-          localStorage.setItem(LS_EMAIL_KEY, v);
-          if(!localStorage.getItem(LS_FIRST_TS)){
-            localStorage.setItem(LS_FIRST_TS, String(Date.now()));
-          }
-          showApp();
-        });
-      }
-
-      // botão sair
-      const sair = qs('#btn-sair');
-      if(sair){
-        sair.addEventListener('click', (e)=>{
-          e.preventDefault();
-          localStorage.removeItem(LS_EMAIL_KEY);
-          localStorage.removeItem(LS_FIRST_TS);
-          window.location.href = 'index.html';
-        });
-      }
-
-      // ano
-      const y = qs('#year'); if(y) y.textContent = new Date().getFullYear();
-
-      // desbloqueio meses avançado:
-      // regra pedida: M1 abre já; M2 aos 60 dias; M3 aos 90; ... M12 aos 330
-      function diasDeUso(){
-        const first = Number(localStorage.getItem(LS_FIRST_TS) || Date.now());
-        return Math.floor((Date.now() - first)/86400000);
-      }
-      const d = diasDeUso();
-
-      qsa('a[data-mes]').forEach(a=>{
-        const mes = Number(a.getAttribute('data-mes')||'1');
-        // threshold: 0, 60, 90, 120, ..., 330
-        const threshold = mes===1 ? 0 : (mes===2 ? 60 : 30*mes);
-        if(d >= threshold){
-          a.classList.remove('lock');
-          a.textContent = 'Abrir';
-          a.style.pointerEvents='auto';
-          a.style.opacity='';
-          a.style.cursor='pointer';
-        } else {
-          a.classList.add('lock');
-          a.textContent = '🔒 Bloqueado';
-          a.setAttribute('title', 'Disponível após '+threshold+' dias');
-        }
-      });
-
-      // corrigir eventuais links absolutos (se houver)
-      qsa('a[href^="/"]').forEach(a=>{
-        const h=a.getAttribute('href')||'';
-        a.setAttribute('href', h.replace(/^\/+/, ''));
-      });
-    })();
-    </script>
-
+  // ---- CORRIGIR EVENTUAIS LINKS ABSOLUTOS (se houver)
+  qsa('a[href^="/"]').forEach(a=>{
+    const h=a.getAttribute('href')||'';
+    a.setAttribute('href', h.replace(/^\/+/, ''));
+  });
+})();
+</script>
     <!-- JS gerado (mantido se existirem assets) -->
     <script type="module" crossorigin src="assets/index-Lb9lUNHE.js"></script>
   </body>
