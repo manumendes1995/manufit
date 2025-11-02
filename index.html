@@ -293,7 +293,27 @@
       if(!el) return;
       el.style.display = (id===current ? 'block' : 'none');
     });
+highlightActiveTab();
   }
+function highlightActiveTab(){
+  const currentHash = (location.hash || '#treinos');
+  const navEls = Array.from(document.querySelectorAll(
+    'nav a[href^="#"], header a[href^="#"], .tabs a[href^="#"], .tabs button[data-target], button[data-target], a[data-target]'
+  ));
+  navEls.forEach(el=>{
+    el.classList.remove('active');
+    let targetHash = null;
+    if(el.hasAttribute('href')){
+      const h = el.getAttribute('href') || '';
+      if(h.startsWith('#')) targetHash = h;
+    } else if (el.hasAttribute('data-target')){
+      targetHash = '#'+el.getAttribute('data-target');
+    }
+    if(targetHash && targetHash === currentHash){
+      el.classList.add('active');
+    }
+  });
+}
   window.addEventListener('hashchange', ()=>{
     renderTabs();
     // sempre que muda de aba, garantimos que o desbloqueio só atua na Treinos
