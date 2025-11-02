@@ -26,6 +26,49 @@
       .hidden { display:none; }
     </style>
   </head>
+<script>
+  // Não altera estilos — só alterna a classe 'active' nos botões das abas
+  document.addEventListener('DOMContentLoaded', function () {
+    // tenta apanhar botões/links das abas em várias estruturas comuns do teu index
+    const possibleTabs = [
+      'nav button',
+      '.tabs button',
+      '.tabs a',
+      '.nav button',
+      '[data-aba]',
+      '[data-tab]',
+      'a[href^="#aba-"]',
+      'a[href^="#tab-"]'
+    ];
+
+    const tabButtons = Array.from(document.querySelectorAll(possibleTabs.join(',')))
+      // elimina duplicados e elementos invisíveis
+      .filter((el, i, arr) => arr.indexOf(el) === i && el.offsetParent !== null);
+
+    function setActive(btn) {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Se existir hash (#aba-...) tenta marcar a aba correspondente como ativa ao carregar
+    if (location.hash) {
+      const hash = location.hash;
+      const match = tabButtons.find(b =>
+        b.getAttribute('href') === hash ||
+        b.dataset?.aba === hash.replace(/^#/, '') ||
+        b.dataset?.tab === hash.replace(/^#/, '')
+      );
+      if (match) setActive(match);
+    }
+
+    // Ao clicar numa aba, só troca a classe 'active' (visual já existe no teu CSS)
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        setActive(btn);
+      }, { passive: true });
+    });
+  });
+</script>
   <body>
     <!-- =========================
          LOGIN (mantido)
