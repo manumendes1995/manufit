@@ -5,97 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cardápio 3 – Hipertrofia (Base)</title>
     <link rel="icon" type="image/png" href="MANUFIT.png" />
+    <link rel="stylesheet" href="assets/index-CZX4tOva.css" />
     <style>
-      :root { --bg:#050018; --card:#16073e; --accent:#ff4fa3; --text:#f8f4ff; --muted:#b7acd9;}
-      *{box-sizing:border-box;}
-      body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#3a176a 0,var(--bg) 60%);color:var(--text);}
-      .wrap{max-width:860px;margin:0 auto;padding:16px;}
-      .topbar{background:linear-gradient(90deg,#ff4fa3,#ff7ac2);}
-      .topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
-      .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.06em;}
-      .brand img{height:32px;}
-      .btn-back{background:rgba(5,0,30,.3);border-radius:999px;padding:6px 16px;color:#fff;text-decoration:none;font-size:.9rem;border:1px solid rgba(255,255,255,.4);}
-      .card{margin-top:26px;background:#fdfdfd;color:#111;border-radius:18px;padding:24px 20px 22px;box-shadow:0 18px 40px rgba(0,0,0,.6);}
-      h1{text-align:center;margin:0 0 10px;font-size:1.4rem;}
-      h2{text-align:center;margin:0 0 16px;font-size:1.1rem;}
-      h3{margin:18px 0 6px;font-size:1rem;}
-      ul{margin:0 0 4px 20px;padding:0;}
-      li{margin-bottom:4px;}
-      .note{margin-top:14px;font-size:.9rem;color:#444;}
-      footer{text-align:center;padding:22px 0 14px;font-size:.8rem;color:var(--muted);}
-      footer a{color:#ff7ac2;text-decoration:none;}
+      .cardapio-wrap {
+        padding: 24px 0 32px;
+      }
+      .cardapio-box {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #fff;
+        color: #111;
+        border-radius: 18px;
+        padding: 24px 22px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      }
+      .cardapio-box h1,
+      .cardapio-box h2 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .cardapio-box h3 {
+        margin-top: 18px;
+        font-size: 1rem;
+      }
+      .cardapio-box ul {
+        margin-left: 20px;
+      }
     </style>
   </head>
   <body>
     <header class="topbar">
-      <div class="wrap topbar-inner">
-        <div class="brand">
-          <img src="MANUFIT.png" alt="Manufit" />
-          <span>MANUFIT</span>
+      <div class="wrap">
+        <div class="row" style="padding:10px 0; align-items:center; justify-content:space-between;">
+          <div class="row" style="gap:10px; align-items:center;">
+            <img src="MANUFIT.png" alt="Manufit" style="height:32px;" />
+            <strong>MANUFIT</strong>
+          </div>
+          <a href="index.html" class="btn">← Voltar</a>
         </div>
-        <a href="alimentacao.html" class="btn-back">← Voltar</a>
       </div>
     </header>
 
-    <main class="wrap">
-      <div class="card">
+    <main class="wrap cardapio-wrap">
+      <div class="cardapio-box">
         <h1>CARDÁPIO 3</h1>
-        <h2>~1.950 kcal (Hipertrofia — Base)</h2>
+        <h2>~1900–2100 kcal — Hipertrofia (Base)</h2>
 
         <h3>Pequeno-almoço</h3>
         <ul>
-          <li>200g Skyr natural</li>
-          <li>40g aveia</li>
-          <li>1 banana média</li>
-          <li>Canela a gosto</li>
-          <li>(podes adicionar 1 colher de chá de manteiga de amendoim para sabor e gordura boa)</li>
+          <li>120g salada de frutas variadas</li>
+          <li>20g aveia ou lascas de coco</li>
+          <li>Fio de mel</li>
+          <li>2 ovos inteiros com azeite</li>
         </ul>
 
         <h3>Lanche da manhã</h3>
         <ul>
-          <li>1 fatia de pão integral</li>
-          <li>2 ovos mexidos</li>
-          <li>1 fatia fina de queijo magro</li>
+          <li>1 pão integral + 40g queijo + 1 banana</li>
         </ul>
 
         <h3>Almoço</h3>
         <ul>
-          <li>150g peito de frango grelhado</li>
-          <li>100g arroz integral com lentilhas (rica em ferro e proteína vegetal)</li>
-          <li>Legumes salteados (brócolos, courgette, cenoura)</li>
-          <li>1 colher de chá de azeite</li>
+          <li>100g arroz integral + 80g feijão/lentilhas</li>
+          <li>150g frango ou carne vermelha magra</li>
+          <li>Legumes e salada à vontade</li>
         </ul>
 
         <h3>Lanche da tarde</h3>
         <ul>
-          <li>1 iogurte Skyr</li>
-          <li>20g amêndoas ou amendoins</li>
-          <li>1 maçã pequena</li>
+          <li>1 iogurte natural + 20g whey + 10g pasta de amendoim</li>
         </ul>
 
         <h3>Jantar</h3>
         <ul>
-          <li>150g pescada, salmão ou atum em água</li>
-          <li>120g batata-doce ou arroz integral</li>
-          <li>Legumes variados (espinafres, feijão-verde, pimentos)</li>
+          <li>100g batata-doce ou arroz integral</li>
+          <li>150g carne, frango ou peixe</li>
+          <li>Salada e legumes cozidos</li>
         </ul>
 
         <h3>Ceia</h3>
         <ul>
-          <li>200ml leite magro ou bebida vegetal sem açúcar</li>
-          <li>20g aveia ou ½ scoop de whey</li>
+          <li>1 iogurte proteico (Skyr ou Milbona)</li>
         </ul>
-
-        <p class="note">
-          Dica: ideal para quem treina força ou musculação — combina proteína animal e
-          vegetal para melhor recuperação muscular.
-        </p>
       </div>
     </main>
 
-    <footer>
-      © <span id="year"></span> Manufit • suporte
-      <a href="mailto:manumendes199514@gmail.com">manumendes199514@gmail.com</a>
+    <footer class="footer">
+      © <span id="year"></span> MANUFIT
     </footer>
 
     <script>
