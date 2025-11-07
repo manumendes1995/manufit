@@ -6,13 +6,12 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
 <!DOCTYPE html>
 <html lang="pt">
 <style>
-      /* Estilo interno só para a aba Alimentação */
+      /* Layout (sem mexer nas cores do site) para a aba Alimentação */
       .nutri-wrapper {
         padding: 16px 0 24px;
       }
       .nutri-title {
         text-align: center;
-        color: var(--pink);
         margin: 0 0 24px;
       }
       .nutri-grid {
@@ -24,63 +23,9 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
-      .nutri-card {
-        background: #16073e;
-        border-radius: 18px;
-        padding: 18px 18px 14px;
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      .nutri-card h2 {
-        margin: 0 0 6px;
-        font-size: 1.1rem;
-        color: var(--pink);
-      }
-      .nutri-card p {
-        margin: 0 0 10px;
+      .nutri-subtitle {
+        margin: 0 0 8px;
         font-size: 0.9rem;
-        color: var(--muted);
-      }
-      .nutri-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .nutri-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        background: rgba(0, 0, 0, 0.25);
-        border-radius: 999px;
-        padding: 6px 10px 6px 14px;
-      }
-      .nutri-main {
-        display: flex;
-        flex-direction: column;
-      }
-      .nutri-main strong {
-        font-size: 0.92rem;
-      }
-      .nutri-main span {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
-      .nutri-btn {
-        text-decoration: none;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: var(--pink);
-        color: #fff;
-        font-size: 0.82rem;
-        font-weight: 600;
-        border: none;
-      }
-      .nutri-note {
-        margin-top: 12px;
-        text-align: center;
-        font-size: 0.8rem;
-        color: var(--muted);
       }
     </style>
   <head>
@@ -220,34 +165,49 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
 <!-- ABA ALIMENTAÇÃO -->
 <section id="aba-alimentacao" class="hidden">
   <div class="section-card nutri-wrapper">
-    <h2 class="nutri-title">Cardápios Nutricionais</h2>
+    <div class="section-title nutri-title">Cardápios Nutricionais</div>
 
     <div class="nutri-grid">
       <!-- Coluna HIPERTROFIA -->
-      <section class="nutri-card">
-        <h2>Hipertrofia</h2>
-        <p>
+      <div class="section-card">
+        <div class="section-title">Hipertrofia</div>
+        <p class="small muted nutri-subtitle">
           Opções focadas em ganho de massa magra, com boa distribuição de proteína,
           hidratos e gorduras boas.
         </p>
-        <div class="nutri-list">
-          <div class="nutri-row">
-            <div class="nutri-main">
-              <strong>Base — Hipertrofia</strong>
-              <span>Cardápio de arranque / manutenção para fase de ganho.</span>
-            </div>
-            <a class="nutri-btn" href="alimentacao-hipertrofia-base.html">Abrir</a>
+        <div class="link-list">
+          <div class="link-row">
+            <b>Base — Hipertrofia</b>
+            <a href="alimentacao-hipertrofia-base.html">Abrir</a>
           </div>
-          <div class="nutri-row">
-            <div class="nutri-main">
-              <strong>Mês 1 — Hipertrofia</strong>
-              <span>Progressão do plano base, ligeiro aumento calórico.</span>
-            </div>
-            <a class="nutri-btn" href="alimentacao-hipertrofia-m1.html">Abrir</a>
+          <div class="link-row">
+            <b>Mês 1 — Hipertrofia</b>
+            <a href="alimentacao-hipertrofia-m1.html">Abrir</a>
           </div>
         </div>
-      </section>
+      </div>
 
+      <!-- Coluna EMAGRECIMENTO -->
+      <div class="section-card">
+        <div class="section-title">Emagrecimento</div>
+        <p class="small muted nutri-subtitle">
+          Planos com défice controlado para reduzir gordura corporal mantendo energia
+          para o treino.
+        </p>
+        <div class="link-list">
+          <div class="link-row">
+            <b>Base — Emagrecimento</b>
+            <a href="alimentacao-emagrecimento-base.html">Abrir</a>
+          </div>
+          <div class="link-row">
+            <b>Mês 1 — Emagrecimento</b>
+            <a href="alimentacao-emagrecimento-m1.html">Abrir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       <!-- Coluna EMAGRECIMENTO -->
       <section class="nutri-card">
         <h2>Emagrecimento</h2>
