@@ -6,188 +6,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Manufit • Alimentação</title>
     <link rel="icon" type="image/png" href="MANUFIT.png" />
-    <link rel="stylesheet" href="assets/index-CZX4tOva.css" />
+    <style>
+      :root {
+        --bg: #050018;
+        --bg2: #120534;
+        --card: #16073e;
+        --accent: #ff4fa3;
+        --accent-soft: #ff7ac2;
+        --text: #f8f4ff;
+        --muted: #b7acd9;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #3a176a 0, var(--bg) 60%);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      .topbar {
+        background: linear-gradient(90deg, #ff4fa3, #ff7ac2);
+      }
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      .brand img {
+        height: 32px;
+      }
+      .btn-back {
+        background: rgba(5, 0, 30, 0.3);
+        border-radius: 999px;
+        padding: 6px 16px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+      h1 {
+        text-align: center;
+        margin: 32px 0 24px;
+        color: var(--accent);
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 800px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      .card {
+        background: radial-gradient(circle at top left, #2b0b63 0, var(--card) 55%);
+        border-radius: 18px;
+        padding: 18px 18px 16px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 1.2rem;
+        color: var(--accent-soft);
+      }
+      .card p {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        background: rgba(0, 0, 0, 0.12);
+        border-radius: 999px;
+        padding: 8px 10px 8px 14px;
+      }
+      .row-main {
+        display: flex;
+        flex-direction: column;
+      }
+      .row-main strong {
+        font-size: 0.95rem;
+      }
+      .row-main span {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .btn-pill {
+        text-decoration: none;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+      }
+      footer {
+        text-align: center;
+        padding: 30px 0 20px;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--accent-soft);
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
-    <!-- CABEÇALHO IGUAL AO DOS TREINOS -->
     <header class="topbar">
-      <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <img src="MANUFIT.png" alt="Manufit" style="height:32px;" />
-          <strong>Manufit</strong>
+      <div class="wrap topbar-inner">
+        <div class="brand">
+          <img src="MANUFIT.png" alt="Manufit" />
+          <span>MANUFIT</span>
         </div>
-        <a href="index.html" class="btn" style="background:var(--pink);color:white;padding:6px 14px;border-radius:10px;text-decoration:none;font-weight:500;">← Voltar</a>
+        <a href="index.html" class="btn-back">← Voltar</a>
       </div>
     </header>
 
-    <main class="wrap" style="margin-top:30px;">
-      <h1 style="text-align:center;color:var(--pink);margin-bottom:30px;">Cardápios Nutricionais</h1>
+    <main class="wrap">
+      <h1>Cardápios Nutricionais</h1>
 
-      <!-- ====== HIPERTROFIA 1900–2100 KCAL ====== -->
-      <div class="card">
-        <h2>HIPERTROFIA — 1900–2100 kcal</h2>
+      <div class="grid">
+        <!-- HIPERTROFIA -->
+        <section class="card">
+          <h2>Hipertrofia</h2>
+          <p>
+            Opções focadas em ganho de massa magra, com boa distribuição de proteína,
+            hidratos e gorduras boas.
+          </p>
+          <div class="list">
+            <div class="row">
+              <div class="row-main">
+                <strong>Base – Hipertrofia</strong>
+                <span>Cardápio de arranque / manutenção para fase de ganho.</span>
+              </div>
+              <a class="btn-pill" href="alimentacao-hipertrofia-base.html">Abrir</a>
+            </div>
+            <div class="row">
+              <div class="row-main">
+                <strong>Mês 1 – Hipertrofia</strong>
+                <span>Progressão do plano base, ligeiro aumento calórico.</span>
+              </div>
+              <a class="btn-pill" href="alimentacao-hipertrofia-m1.html">Abrir</a>
+            </div>
+          </div>
+        </section>
 
-        <h3>Pequeno-almoço</h3>
-        <ul>
-          <li>120g salada de frutas variadas</li>
-          <li>20g ou duas colheres de sopa de lascas de castanha, coco ou aveia</li>
-          <li>Fio de mel</li>
-          <li>2 ovos inteiros (mexidos, cozidos ou fritos com fio de azeite)</li>
-        </ul>
-
-        <h3>Lanche da manhã</h3>
-        <ul>
-          <li>1 pão francês ou 2 fatias de pão integral</li>
-          <li>40g queijo ou 2 fatias</li>
-          <li>1 banana média ou 80g de outra fruta</li>
-        </ul>
-
-        <h3>Almoço</h3>
-        <ul>
-          <li>100g arroz integral + 80g feijão/lentilhas</li>
-          <li>150g frango, carne vermelha magra ou peixe</li>
-          <li>100g legumes cozidos + folhas à vontade</li>
-        </ul>
-
-        <h3>Lanche da tarde</h3>
-        <ul>
-          <li>1 iogurte natural + 20g whey + 10g pasta de amendoim</li>
-        </ul>
-
-        <h3>Jantar</h3>
-        <ul>
-          <li>100g batata-doce, mandioca ou arroz integral</li>
-          <li>150g carne ou frango grelhado</li>
-          <li>Salada e legumes cozidos</li>
-        </ul>
-
-        <h3>Ceia</h3>
-        <ul>
-          <li>1 iogurte proteico (SKYR ou Milbona)</li>
-        </ul>
-      </div>
-
-      <!-- ====== HIPERTROFIA 2100–2300 KCAL ====== -->
-      <div class="card">
-        <h2>HIPERTROFIA — 2100–2300 kcal</h2>
-
-        <h3>Pequeno-almoço</h3>
-        <ul>
-          <li>Vitamina: 500ml leite integral + 100g banana + 30g whey + 30g pasta de amendoim</li>
-          <li>2 ovos + 2 fatias de pão integral + 1 fio de azeite</li>
-        </ul>
-
-        <h3>Lanche da manhã</h3>
-        <ul>
-          <li>1 pão francês + 30g queijo + 80g frango desfiado</li>
-        </ul>
-
-        <h3>Almoço</h3>
-        <ul>
-          <li>150g arroz integral + 100g feijão/lentilhas</li>
-          <li>150g carne vermelha, frango ou peixe</li>
-          <li>100g legumes + folhas à vontade</li>
-        </ul>
-
-        <h3>Lanche da tarde</h3>
-        <ul>
-          <li>Vitamina: 500ml leite integral + 100g fruta + 30g whey + 20g aveia</li>
-        </ul>
-
-        <h3>Jantar</h3>
-        <ul>
-          <li>120g batata ou arroz integral</li>
-          <li>150g carne ou frango</li>
-          <li>Salada e legumes cozidos</li>
-        </ul>
-
-        <h3>Ceia</h3>
-        <ul>
-          <li>250g iogurte proteico</li>
-        </ul>
-      </div>
-
-      <!-- ====== EMAGRECIMENTO 1100–1300 KCAL ====== -->
-      <div class="card">
-        <h2>EMAGRECIMENTO — 1100–1300 kcal</h2>
-
-        <h3>Pequeno-almoço</h3>
-        <ul>
-          <li>Iogurte natural 170g + 20g whey isolado</li>
-          <li>Papa de aveia — Massa: 30g aveia + 1 ovo + 5g chia/linhaça</li>
-          <li>Recheio: 20g requeijão light/geleia/homus + 30g queijo (cottage/mozarela)</li>
-        </ul>
-
-        <h3>Lanche da manhã</h3>
-        <ul>
-          <li>30g oleaginosas + 20g whey isolado</li>
-        </ul>
-
-        <h3>Almoço</h3>
-        <ul>
-          <li>50–80g batata-doce/mandioca/inhame/batata ou (arroz integral + feijão/lentilha)</li>
-          <li>100g carne/frango/peixe ou 3 ovos inteiros</li>
-          <li>100g legumes cozidos + folhas à vontade</li>
-        </ul>
-
-        <h3>Lanche da tarde</h3>
-        <ul>
-          <li>120g salada de frutas + 20g whey isolado</li>
-        </ul>
-
-        <h3>Jantar</h3>
-        <ul>
-          <li>Shake: 500ml água + 20g leite em pó + 60g fruta + 20g whey</li>
-        </ul>
-
-        <h3>Ceia</h3>
-        <ul>
-          <li>1 chávena de chá (camomila ou lavanda)</li>
-        </ul>
-      </div>
-
-      <!-- ====== EMAGRECIMENTO 1300–1500 KCAL ====== -->
-      <div class="card">
-        <h2>EMAGRECIMENTO — 1300–1500 kcal</h2>
-
-        <h3>Pequeno-almoço</h3>
-        <ul>
-          <li>Vitamina: 400ml leite desnatado + 100g banana + 20g whey + 15g aveia</li>
-          <li>2 ovos mexidos + 1 pão integral pequeno</li>
-        </ul>
-
-        <h3>Lanche da manhã</h3>
-        <ul>
-          <li>100g fruta + 10g amêndoas</li>
-        </ul>
-
-        <h3>Almoço</h3>
-        <ul>
-          <li>100g arroz integral + 80g feijão/lentilhas</li>
-          <li>120g frango ou peixe grelhado</li>
-          <li>Legumes e folhas à vontade</li>
-        </ul>
-
-        <h3>Lanche da tarde</h3>
-        <ul>
-          <li>1 iogurte natural + 20g whey + 5g chia</li>
-        </ul>
-
-        <h3>Jantar</h3>
-        <ul>
-          <li>120g batata ou arroz integral + 100g frango ou ovo</li>
-          <li>Salada + legumes</li>
-        </ul>
-
-        <h3>Ceia</h3>
-        <ul>
-          <li>1 chá relaxante</li>
-        </ul>
+        <!-- EMAGRECIMENTO -->
+        <section class="card">
+          <h2>Emagrecimento</h2>
+          <p>
+            Planos com défice controlado para reduzir gordura corporal mantendo
+            energia para o treino.
+          </p>
+          <div class="list">
+            <div class="row">
+              <div class="row-main">
+                <strong>Base – Emagrecimento</strong>
+                <span>Défice suave, digestão leve e saciedade.</span>
+              </div>
+              <a class="btn-pill" href="alimentacao-emagrecimento-base.html">Abrir</a>
+            </div>
+            <div class="row">
+              <div class="row-main">
+                <strong>Mês 1 – Emagrecimento</strong>
+                <span>Ajuste de quantidades para evolução controlada.</span>
+              </div>
+              <a class="btn-pill" href="alimentacao-emagrecimento-m1.html">Abrir</a>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
 
-    <footer style="text-align:center;padding:20px 0;color:var(--muted);font-size:0.9em;">
-      © <span id="year"></span> Manufit • Suporte:
+    <footer>
+      © <span id="year"></span> Manufit • suporte:
       <a href="mailto:manumendes199514@gmail.com">manumendes199514@gmail.com</a>
     </footer>
 

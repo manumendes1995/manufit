@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cardápio 4 – Hipertrofia (Mês 1)</title>
+    <link rel="icon" type="image/png" href="MANUFIT.png" />
+    <style>
+      :root { --bg:#050018; --card:#16073e; --accent:#ff4fa3; --text:#f8f4ff; --muted:#b7acd9;}
+      *{box-sizing:border-box;}
+      body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at top,#3a176a 0,var(--bg) 60%);color:var(--text);}
+      .wrap{max-width:860px;margin:0 auto;padding:16px;}
+      .topbar{background:linear-gradient(90deg,#ff4fa3,#ff7ac2);}
+      .topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
+      .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.06em;}
+      .brand img{height:32px;}
+      .btn-back{background:rgba(5,0,30,.3);border-radius:999px;padding:6px 16px;color:#fff;text-decoration:none;font-size:.9rem;border:1px solid rgba(255,255,255,.4);}
+      .card{margin-top:26px;background:#fdfdfd;color:#111;border-radius:18px;padding:24px 20px 22px;box-shadow:0 18px 40px rgba(0,0,0,.6);}
+      h1{text-align:center;margin:0 0 10px;font-size:1.4rem;}
+      h2{text-align:center;margin:0 0 16px;font-size:1.1rem;}
+      h3{margin:18px 0 6px;font-size:1rem;}
+      ul{margin:0 0 4px 20px;padding:0;}
+      li{margin-bottom:4px;}
+      .note{margin-top:14px;font-size:.9rem;color:#444;}
+      footer{text-align:center;padding:22px 0 14px;font-size:.8rem;color:var(--muted);}
+      footer a{color:#ff7ac2;text-decoration:none;}
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <div class="brand">
+          <img src="MANUFIT.png" alt="Manufit" />
+          <span>MANUFIT</span>
+        </div>
+        <a href="alimentacao.html" class="btn-back">← Voltar</a>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div class="card">
+        <h1>CARDÁPIO 4</h1>
+        <h2>~2.100 kcal (Hipertrofia — Mês 1)</h2>
+
+        <h3>Pequeno-almoço</h3>
+        <ul>
+          <li>3 ovos mexidos</li>
+          <li>1 fatia de pão integral com 1 colher de chá de manteiga de amendoim (ou 10g de amêndoas picadas)</li>
+          <li>1 banana média</li>
+          <li>1 café ou chá sem açúcar</li>
+        </ul>
+
+        <h3>Lanche da manhã</h3>
+        <ul>
+          <li>150g iogurte Skyr natural</li>
+          <li>25g aveia</li>
+          <li>10g manteiga de amendoim (misturada no iogurte)</li>
+        </ul>
+
+        <h3>Almoço</h3>
+        <ul>
+          <li>150g carne magra (frango, peru ou vaca magra)</li>
+          <li>120g arroz integral com feijão claro (alternar com lentilhas no dia seguinte)</li>
+          <li>Legumes salteados (pimento, courgette, cenoura)</li>
+          <li>1 colher de chá de azeite</li>
+        </ul>
+
+        <h3>Lanche da tarde</h3>
+        <ul>
+          <li>2 bolachas de arroz com 2 colheres de sopa de queijo fresco batido (espalha o queijo nas bolachas, tipo pasta cremosa)</li>
+          <li>1 maçã pequena</li>
+        </ul>
+
+        <h3>Jantar</h3>
+        <ul>
+          <li>150g salmão grelhado ou 120g atum em água</li>
+          <li>120g batata cozida ou arroz integral</li>
+          <li>Legumes variados (espinafres, couve-flor, feijão-verde)</li>
+        </ul>
+
+        <h3>Ceia</h3>
+        <ul>
+          <li>100g iogurte Skyr natural</li>
+          <li>½ banana fatiada</li>
+        </ul>
+
+        <p class="note">
+          Dica: plano equilibrado com proteína de alta qualidade, carboidratos lentos e
+          boas gorduras — ideal para fase de ganho limpo e digestão leve.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Manufit • suporte
+      <a href="mailto:manumendes199514@gmail.com">manumendes199514@gmail.com</a>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
