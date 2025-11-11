@@ -447,5 +447,176 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
       // aplicar bloqueios também em mudanças futuras de aba
       applyAdvLocks();
     </script>
-  </body>
+<script>
+/* ======== SISTEMA DE LOGIN E BLOQUEIO MENSAL ======== */
+
+// --- Configurações principais ---
+const KEY_EMAIL = 'manufit_email';
+const KEY_TAB   = 'manufit_tab';
+const KEY_START_PREFIX = 'manufit_start_';
+const DAYS_PER_MONTH = 30;
+
+// --- Lista de utilizadores autorizados ---
+const USERS = {
+  "manumendes199514@gmail.com": { name: "Manu", start: "2025-09-25", admin: true },
+  "beahcostavaz@icloud.com": { name: "Bernardete Costa Vaz", start: "2025-11-09", admin: false },
+  "jumiradasilva@gmail.com": { name: "Jumira da Silva", start: "2025-09-28", admin: false },
+  "karinabarros@gmail.com": { name: "Karina Barros", start: "2025-09-29", admin: false },
+  "inimigaptr@gmail.com": { name: "Inimiga PTR", start: "2025-10-01", admin: false },
+  "jessicasantos@gmail.com": { name: "Jéssica Santos", start: "2025-10-03", admin: false }
+};
+
+// --- Elementos principais ---
+const loginSection = document.getElementById('login-section');
+const appSection   = document.getElementById('app-section');
+const emailInput   = document.getElementById('email');
+const loginForm    = document.getElementById('login-form');
+const perfilEmail  = document.getElementById('perfil-email');
+const btnSair      = document.getElementById('btn-sair');
+
+// --- Funções base ---
+function isAuthed(){ return !!localStorage.getItem(KEY_EMAIL); }
+function getEmail(){ return (localStorage.getItem(KEY_EMAIL) || '').trim().toLowerCase(); }
+function saveEmail(v){ localStorage.setItem(KEY_EMAIL, v); }
+function logout(){ localStorage.removeItem(KEY_EMAIL); }
+
+function showLogin(){
+  loginSection.classList.remove('hidden');
+  appSection.classList.add('hidden');
+  if (emailInput) emailInput.focus();
+}
+
+function showApp(){
+  loginSection.classList.add('hidden');
+  appSection.classList.remove('hidden');
+  if (perfilEmail) perfilEmail.textContent = getEmail();
+  ensureStartDate();
+  applyLocks();
+}
+
+function renderAuth(){
+  if (isAuthed()) showApp(); else showLogin();
+}
+
+// --- Eventos de login e logout ---
+loginForm?.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = (emailInput?.value || '').trim().toLowerCase();
+  if (!USERS[v]) {
+    alert('Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
+    return;
+  }
+  saveEmail(v);
+  renderAuth();
+});
+
+btnSair?.addEventListener('click', ()=>{
+  logout();
+  localStorage.setItem(KEY_TAB, 'treinos');
+  highlightActive('treinos');
+  showLogin();
+});
+
+// --- Abas (botões de navegação) ---
+const tabs = document.querySelectorAll('#tabs button[data-tab]');
+const sections = {
+  treinos: document.getElementById('aba-treinos'),
+  alimentacao: document.getElementById('aba-alimentacao'),
+  cardio: document.getElementById('aba-cardio'),
+  relax: document.getElementById('aba-relax'),
+  extra: document.getElementById('aba-extra'),
+  perfil: document.getElementById('aba-perfil'),
+};
+
+function setActive(tab){
+  Object.keys(sections).forEach(k=>{
+    if (sections[k]) sections[k].classList.add('hidden');
+  });
+  if (sections[tab]) sections[tab].classList.remove('hidden');
+  localStorage.setItem(KEY_TAB, tab);
+  highlightActive(tab);
+}
+
+function highlightActive(tab){
+  tabs.forEach(b=>b.classList.remove('active'));
+  const btn = Array.from(tabs).find(b => b.dataset.tab === tab);
+  if (btn) btn.classList.add('active');
+}
+
+tabs.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const tab = btn.dataset.tab;
+    setActive(tab);
+  });
+});
+
+function initTabs(){
+  const saved = localStorage.getItem(KEY_TAB) || 'treinos';
+  setActive(saved);
+}
+
+// --- Gestão de datas e bloqueios ---
+function ensureStartDate(){
+  const email = getEmail();
+  const k = KEY_START_PREFIX + email;
+  if (!localStorage.getItem(k)) {
+    const user = USERS[email];
+    const startDate = user?.start ? new Date(user.start) : new Date();
+    localStorage.setItem(k, startDate.toISOString());
+  }
+}
+
+function getStartDate(){
+  const email = getEmail();
+  const iso = localStorage.getItem(KEY_START_PREFIX + email);
+  return iso ? new Date(iso) : new Date();
+}
+
+function daysSince(date){
+  return Math.floor((Date.now() - date.getTime()) / 86400000);
+}
+
+function applyLocks(){
+  const email = getEmail();
+  const user = USERS[email];
+  const admin = user?.admin || false;
+  const start = getStartDate();
+  const d = daysSince(start);
+
+  const advLinks = Array.from(document.querySelectorAll('a[id^="adv-m"]'));
+  advLinks.forEach(a=>{
+    const month = parseInt(a.dataset.month || a.id.replace('adv-m',''), 10);
+    if (!month || month === 1 || admin) {
+      a.style.opacity = '';
+      a.style.pointerEvents = '';
+      a.title = '';
+      return;
+    }
+    const unlockDay = month * DAYS_PER_MONTH;
+    if (d >= unlockDay) {
+      a.style.opacity = '';
+      a.style.pointerEvents = '';
+      a.title = '';
+    } else {
+      a.style.opacity = '0.5';
+      a.style.pointerEvents = 'none';
+      const unlock = new Date(start.getTime() + unlockDay*86400000);
+      a.title = 'Bloqueado até ' + unlock.toLocaleDateString('pt-PT');
+    }
+  });
+
+  // Mostra dias no perfil
+  if (perfilEmail) {
+    const dias = d + ' dias desde o início';
+    perfilEmail.textContent = admin ? 'Admin (tudo desbloqueado)' : email + ' — ' + dias;
+  }
+}
+
+// --- Inicialização ---
+document.getElementById('year').textContent = new Date().getFullYear();
+renderAuth();
+initTabs();
+applyLocks();
+</script>
+</body>
 </html>
