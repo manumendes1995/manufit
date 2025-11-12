@@ -397,21 +397,30 @@ function showApp(){
 }
 
 function renderAuth(){
-  if (isAuthed()) showApp(); else showLogin();
+  if (isAuthed()) showApp();
+  else showLogin();
 }
-
-// --- Login e Logout ---
+// --- Login e Logout (corrigido) ---
 loginForm?.addEventListener('submit', e => {
   e.preventDefault();
   const v = (emailInput?.value || '').trim().toLowerCase();
-  const user = USERS[v];
-  if (!user) {
-    alert('❌ Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
+
+  // Só permite emails da lista USERS
+  if (!USERS[v]) {
+    alert('Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
     return;
   }
+
+  // Guarda o email e mostra app
   saveEmail(v);
   renderAuth();
-  applyLocks();
+  applyLocks(); // aplica bloqueios logo após login
+});
+
+btnSair?.addEventListener('click', ()=>{
+  logout();
+  localStorage.removeItem(KEY_TAB);
+  showLogin();
 });
 
 btnSair?.addEventListener('click', ()=>{
