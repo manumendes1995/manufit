@@ -292,8 +292,9 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
 const KEY_EMAIL = 'manufit_email';
 const KEY_TAB   = 'manufit_tab';
 const KEY_START_PREFIX = 'manufit_start_';
-const DAYS_PER_MONTH = 30;
-
+// Conta os dias desde a data inicial real da aluna
+const DAYS_PER_INITIAL_DATE = 30;
+const unlockDay = (month - 1) * DAYS_PER_INITIAL_DATE;
 // --- Lista de utilizadores autorizados ---
 const USERS = {
   "manumendes199514@gmail.com": { name: "Manu", start: "2025-09-25", admin: true },
@@ -415,22 +416,25 @@ function applyLocks(){
 }
 
 // --- Inicialização ---
-document.getElementById('year').textContent = new Date().getFullYear();
-renderAuth();
-
-// 🟢 Garante que o sistema desbloqueia abas e responde aos cliques
 document.querySelectorAll('#tabs button[data-tab]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const tab = btn.dataset.tab;
+
+    // esconde todas as seções
     document.querySelectorAll('section[id^="aba-"]').forEach(sec=>sec.classList.add('hidden'));
+
+    // mostra a aba ativa
     const active = document.getElementById('aba-' + tab);
     if (active) active.classList.remove('hidden');
+
+    // guarda aba atual
     localStorage.setItem('manufit_tab', tab);
+
+    // destaca a aba ativa em cor-de-rosa
+    document.querySelectorAll('#tabs button[data-tab]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
   });
 });
-
-// aplica bloqueios logo após autenticação
-applyLocks();
 </script>
 
 </body>
