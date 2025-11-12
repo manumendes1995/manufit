@@ -65,7 +65,20 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
         padding:16px; max-width:480px; width:100%; margin:40px auto; color:#fff;
       }
       .label { display:block; margin-bottom:8px; font-weight:600; color:#ff4da6; }
-      .input { width:100%; background:#0f0f12; border:1px solid #ff4da6; border-radius:6px; padding:10px 12px; color:#fff; font-size:1rem; outline:none; }
+.input {
+  width: 100%;
+  max-width: 340px;
+  background: #0f0f12;
+  border: 1px solid #ff4da6;
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #fff;
+  font-size: 1rem;
+  display: block;
+  margin: 12px auto;
+  text-align: center;
+  box-sizing: border-box;
+}
       .primary { margin-top:16px; width:100%; background:#ff4da6; border:0; border-radius:6px; color:#000; font-weight:700; font-size:1rem; padding:12px; cursor:pointer; }
       .small { font-size:.8rem; opacity:.8; margin-top:12px; line-height:1.4; text-align:center; color:#bbb; }
 
@@ -448,22 +461,22 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
       applyAdvLocks();
     </script>
 <script>
-/* ======== SISTEMA DE LOGIN E BLOQUEIO MENSAL ======== */
+<script>
+/* ======== SISTEMA DE LOGIN E BLOQUEIO MENSAL (FINAL CORRIGIDO) ======== */
 
-// --- Configurações principais ---
 const KEY_EMAIL = 'manufit_email';
 const KEY_TAB   = 'manufit_tab';
 const KEY_START_PREFIX = 'manufit_start_';
 const DAYS_PER_MONTH = 30;
 
-// --- Lista de utilizadores autorizados ---
+// --- Lista de utilizadores autorizados (definitiva) ---
 const USERS = {
   "manumendes199514@gmail.com": { name: "Manu", start: "2025-09-25", admin: true },
   "beahcostavaz@icloud.com": { name: "Bernardete Costa Vaz", start: "2025-11-09", admin: false },
-  "jumiradasilva@gmail.com": { name: "Jumira da Silva", start: "2025-09-28", admin: false },
-  "karinabarros@gmail.com": { name: "Karina Barros", start: "2025-09-29", admin: false },
-  "inimigaptr@gmail.com": { name: "Inimiga PTR", start: "2025-10-01", admin: false },
-  "jessicasantos@gmail.com": { name: "Jéssica Santos", start: "2025-10-03", admin: false }
+  "emiliamiranda3039@gmail.com": { name: "Emília", start: "2025-09-25", admin: false },
+  "zulmira.mendes2@gmail.com": { name: "Zulmira", start: "2025-09-20", admin: false },
+  "jessicarafaelacg@gmail.com": { name: "Jéssica", start: "2025-09-18", admin: false },
+  "nina_lopes_gomes@hotmail.com": { name: "Carina", start: "2025-09-29", admin: false }
 };
 
 // --- Elementos principais ---
@@ -498,62 +511,24 @@ function renderAuth(){
   if (isAuthed()) showApp(); else showLogin();
 }
 
-// --- Eventos de login e logout ---
+// --- Login e Logout ---
 loginForm?.addEventListener('submit', e => {
   e.preventDefault();
   const v = (emailInput?.value || '').trim().toLowerCase();
   if (!USERS[v]) {
-    alert('Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
+    alert('❌ Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
     return;
   }
   saveEmail(v);
   renderAuth();
+  applyLocks();
 });
 
 btnSair?.addEventListener('click', ()=>{
   logout();
   localStorage.setItem(KEY_TAB, 'treinos');
-  highlightActive('treinos');
   showLogin();
 });
-
-// --- Abas (botões de navegação) ---
-const tabs = document.querySelectorAll('#tabs button[data-tab]');
-const sections = {
-  treinos: document.getElementById('aba-treinos'),
-  alimentacao: document.getElementById('aba-alimentacao'),
-  cardio: document.getElementById('aba-cardio'),
-  relax: document.getElementById('aba-relax'),
-  extra: document.getElementById('aba-extra'),
-  perfil: document.getElementById('aba-perfil'),
-};
-
-function setActive(tab){
-  Object.keys(sections).forEach(k=>{
-    if (sections[k]) sections[k].classList.add('hidden');
-  });
-  if (sections[tab]) sections[tab].classList.remove('hidden');
-  localStorage.setItem(KEY_TAB, tab);
-  highlightActive(tab);
-}
-
-function highlightActive(tab){
-  tabs.forEach(b=>b.classList.remove('active'));
-  const btn = Array.from(tabs).find(b => b.dataset.tab === tab);
-  if (btn) btn.classList.add('active');
-}
-
-tabs.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const tab = btn.dataset.tab;
-    setActive(tab);
-  });
-});
-
-function initTabs(){
-  const saved = localStorage.getItem(KEY_TAB) || 'treinos';
-  setActive(saved);
-}
 
 // --- Gestão de datas e bloqueios ---
 function ensureStartDate(){
@@ -601,7 +576,7 @@ function applyLocks(){
       a.style.opacity = '0.5';
       a.style.pointerEvents = 'none';
       const unlock = new Date(start.getTime() + unlockDay*86400000);
-      a.title = 'Bloqueado até ' + unlock.toLocaleDateString('pt-PT');
+      a.title = '🔒 Bloqueado até ' + unlock.toLocaleDateString('pt-PT');
     }
   });
 
@@ -615,7 +590,6 @@ function applyLocks(){
 // --- Inicialização ---
 document.getElementById('year').textContent = new Date().getFullYear();
 renderAuth();
-initTabs();
 applyLocks();
 </script>
 </body>
