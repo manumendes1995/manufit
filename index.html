@@ -286,190 +286,15 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
 
       <footer class="footer">© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
     </div>
-
-    <script>
-      // ======== AUTH BÁSICO (sem alterar o teu fluxo) ========
-      const KEY_EMAIL = 'manufit_email';
-      const KEY_TAB   = 'manufit_tab';
-      const KEY_START_PREFIX = 'manufit_adv_start_'; // start por utilizador (email)
-
-      const loginSection = document.getElementById('login-section');
-      const appSection   = document.getElementById('app-section');
-      const emailInput   = document.getElementById('email');
-      const loginForm    = document.getElementById('login-form');
-      const perfilEmail  = document.getElementById('perfil-email');
-      const btnSair      = document.getElementById('btn-sair');
-
-      function isAuthed(){ return !!localStorage.getItem(KEY_EMAIL); }
-      function getEmail(){ return (localStorage.getItem(KEY_EMAIL) || '').trim().toLowerCase(); }
-      function saveEmail(v){ localStorage.setItem(KEY_EMAIL, v); }
-      function logout(){ localStorage.removeItem(KEY_EMAIL); }
-
-      function showLogin(){
-        loginSection.classList.remove('hidden');
-        appSection.classList.add('hidden');
-        emailInput && emailInput.focus();
-      }
-      function showApp(){
-        loginSection.classList.add('hidden');
-        appSection.classList.remove('hidden');
-        if (perfilEmail) perfilEmail.textContent = getEmail();
-        ensureStartDate(); // garante start do avançado à primeira entrada
-        applyAdvLocks();   // aplica bloqueios (Mês 2-12)
-      }
-
-      function renderAuth(){
-        if(isAuthed()) showApp(); else showLogin();
-      }
-
-      loginForm?.addEventListener('submit', (e)=>{
-        e.preventDefault();
-        const v = (emailInput?.value || '').trim();
-        if(!v) return;
-        saveEmail(v);
-        renderAuth();
-      });
-
-      btnSair?.addEventListener('click', ()=>{
-        logout();
-        // volta ao login imediatamente (como pediste)
-        showLogin();
-        // e garantir que o destaque de abas reseta para Treinos ao voltar a entrar
-        localStorage.setItem(KEY_TAB, 'treinos');
-        highlightActive('treinos');
-      });
-
-      // ======== ABAS (destaque rosa em cada aba) ========
-      const tabs = document.querySelectorAll('#tabs button[data-tab]');
-      const sections = {
-        treinos: document.getElementById('aba-treinos'),
-        alimentacao: document.getElementById('aba-alimentacao'),
-        cardio: document.getElementById('aba-cardio'),
-        relax: document.getElementById('aba-relax'),
-        extra: document.getElementById('aba-extra'),
-        perfil: document.getElementById('aba-perfil'),
-      };
-
-      function setActive(tab){
-        Object.keys(sections).forEach(k=>{
-          if(sections[k]) sections[k].classList.add('hidden');
-        });
-        if (sections[tab]) sections[tab].classList.remove('hidden');
-        localStorage.setItem(KEY_TAB, tab);
-        highlightActive(tab);
-      }
-
-      function highlightActive(tab){
-        tabs.forEach(b=>b.classList.remove('active'));
-        const btn = Array.from(tabs).find(b => b.dataset.tab === tab);
-        if (btn) btn.classList.add('active');
-      }
-
-      tabs.forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          const tab = btn.dataset.tab;
-          setActive(tab);
-        });
-      });
-
-      // inicialização de abas
-      function initTabs(){
-        const saved = localStorage.getItem(KEY_TAB) || 'treinos';
-        setActive(saved);
-      }
-
-      // ======== BLOQUEIO AVANÇADO POR TEMPO (Mês 2…12) ========
-      const DAYS_PER_MONTH = 30;
-
-      function startKeyFor(email){
-        return KEY_START_PREFIX + (email || 'anon');
-      }
-
-      function ensureStartDate(){
-        const email = getEmail();
-        const k = startKeyFor(email);
-        if (!localStorage.getItem(k)) {
-          // regista a data de início do avançado no 1º login deste email
-          localStorage.setItem(k, new Date().toISOString());
-        }
-      }
-
-      function getStartDate(){
-        const email = getEmail();
-        const iso = localStorage.getItem(startKeyFor(email));
-        return iso ? new Date(iso) : new Date();
-      }
-
-      function daysSince(date){
-        const ms = Date.now() - date.getTime();
-        return Math.floor(ms / 86400000);
-      }
-
-      function unlockDateFor(monthNumber){
-        // Mês 1: 0 dias, Mês 2: 60, Mês 3: 90, … Mês n: n*30
-        const requiredDays = monthNumber * DAYS_PER_MONTH;
-        const start = getStartDate();
-        const unlock = new Date(start.getTime() + requiredDays*86400000);
-        return { requiredDays, unlock };
-      }
-
-      function applyAdvLocks(){
-        // Mês 1 sempre aberto
-        const advLinks = Array.from(document.querySelectorAll('a[id^="adv-m"]'));
-        const start = getStartDate();
-        const d = daysSince(start);
-
-        advLinks.forEach(a=>{
-          const month = parseInt(a.dataset.month, 10);
-          if (!month || month === 1) {
-            // Mês 1 livre
-            a.dataset.locked = 'false';
-            a.onclick = null;
-            a.style.opacity = '';
-            a.style.pointerEvents = '';
-            a.title = '';
-            return;
-          }
-          const { requiredDays, unlock } = unlockDateFor(month);
-          const unlocked = d >= requiredDays;
-
-          if (unlocked) {
-            a.dataset.locked = 'false';
-            a.onclick = null;
-            a.style.opacity = '';
-            a.style.pointerEvents = '';
-            a.title = '';
-          } else {
-            a.dataset.locked = 'true';
-            a.style.opacity = '0.65';          // leve indicação, sem mudar o visual base
-            a.style.pointerEvents = 'auto';     // mantemos cursor normal, mas bloqueamos por JS
-            const dd = unlock.toLocaleDateString('pt-PT');
-            a.title = 'Bloqueado até ' + dd;
-            a.onclick = (ev)=>{
-              ev.preventDefault();
-              alert('Conteúdo bloqueado para este email.\n\nDisponível a partir de: ' + dd + '\n(Regras: desbloqueia um mês a cada 30 dias de utilização)');
-            };
-          }
-        });
-      }
-
-      // ======== INICIALIZAÇÃO ========
-      document.getElementById('year').textContent = new Date().getFullYear();
-      renderAuth();
-      initTabs();
-      // aplicar bloqueios também em mudanças futuras de aba
-      applyAdvLocks();
-    </script>
 <script>
-<script>
-/* ======== SISTEMA DE LOGIN E BLOQUEIO MENSAL (FINAL CORRIGIDO) ======== */
+/* ======== LOGIN RESTRITO E BLOQUEIO MENSAL FINAL ======== */
 
 const KEY_EMAIL = 'manufit_email';
 const KEY_TAB   = 'manufit_tab';
 const KEY_START_PREFIX = 'manufit_start_';
 const DAYS_PER_MONTH = 30;
 
-// --- Lista de utilizadores autorizados (definitiva) ---
+// --- Lista de utilizadores autorizados ---
 const USERS = {
   "manumendes199514@gmail.com": { name: "Manu", start: "2025-09-25", admin: true },
   "beahcostavaz@icloud.com": { name: "Bernardete Costa Vaz", start: "2025-11-09", admin: false },
@@ -515,7 +340,8 @@ function renderAuth(){
 loginForm?.addEventListener('submit', e => {
   e.preventDefault();
   const v = (emailInput?.value || '').trim().toLowerCase();
-  if (!USERS[v]) {
+  const user = USERS[v];
+  if (!user) {
     alert('❌ Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
     return;
   }
@@ -554,6 +380,8 @@ function daysSince(date){
 function applyLocks(){
   const email = getEmail();
   const user = USERS[email];
+  if (!user) return showLogin(); // bloqueia se tentar sem autorização
+
   const admin = user?.admin || false;
   const start = getStartDate();
   const d = daysSince(start);
@@ -580,10 +408,9 @@ function applyLocks(){
     }
   });
 
-  // Mostra dias no perfil
   if (perfilEmail) {
     const dias = d + ' dias desde o início';
-    perfilEmail.textContent = admin ? 'Admin (tudo desbloqueado)' : email + ' — ' + dias;
+    perfilEmail.textContent = admin ? 'Admin (tudo desbloqueado)' : user.name + ' — ' + dias;
   }
 }
 
@@ -592,5 +419,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 renderAuth();
 applyLocks();
 </script>
+
 </body>
 </html>
