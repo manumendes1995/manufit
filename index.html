@@ -287,14 +287,77 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
       <footer class="footer">© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
     </div>
 <script>
-/* ======== LOGIN RESTRITO E BLOQUEIO MENSAL FINAL ======== */
+// ======== BLOQUEIO POR DIAS DESDE A DATA INICIAL ========
 
-const KEY_EMAIL = 'manufit_email';
-const KEY_TAB   = 'manufit_tab';
-const KEY_START_PREFIX = 'manufit_start_';
-// Conta os dias desde a data inicial real da aluna
+// Conta dias desde o início real de cada aluna
 const DAYS_PER_INITIAL_DATE = 30;
-const unlockDay = (month - 1) * DAYS_PER_INITIAL_DATE;
+
+// Calcula diferença em dias entre duas datas
+function daysSince(date) {
+  const ms = Date.now() - date.getTime();
+  return Math.floor(ms / 86400000);
+}
+
+// Garante que há uma data de início registada
+function ensureStartDate() {
+  const email = getEmail();
+  const k = KEY_START_PREFIX + email;
+  if (!localStorage.getItem(k)) {
+    const user = USERS[email];
+    const startDate = user?.start ? new Date(user.start) : new Date();
+    localStorage.setItem(k, startDate.toISOString());
+  }
+}
+
+// Obtém data de início guardada
+function getStartDate() {
+  const email = getEmail();
+  const iso = localStorage.getItem(KEY_START_PREFIX + email);
+  return iso ? new Date(iso) : new Date();
+}
+
+// Aplica bloqueios conforme dias decorridos
+function applyLocks() {
+  const email = getEmail();
+  const user = USERS[email];
+  const admin = user?.admin || false;
+  const start = getStartDate();
+  const d = daysSince(start);
+
+  const advLinks = Array.from(document.querySelectorAll('a[id^="adv-m"]'));
+  advLinks.forEach(a => {
+    const month = parseInt(a.dataset.month || a.id.replace('adv-m', ''), 10);
+
+    // Mês 1 (iniciante) sempre desbloqueado
+    if (!month || month === 1 || admin) {
+      a.style.opacity = '';
+      a.style.pointerEvents = '';
+      a.title = '';
+      return;
+    }
+
+    // Cada mês desbloqueia 30 dias após o início
+    const unlockDay = (month - 1) * DAYS_PER_INITIAL_DATE;
+    if (d >= unlockDay || admin) {
+      a.style.opacity = '';
+      a.style.pointerEvents = '';
+      a.title = '';
+    } else {
+      a.style.opacity = '0.6';
+      a.style.pointerEvents = 'none';
+      const unlock = new Date(start.getTime() + unlockDay * 86400000);
+      a.title = 'Bloqueado até ' + unlock.toLocaleDateString('pt-PT');
+    }
+  });
+
+  // Mostra no perfil
+  if (perfilEmail) {
+    perfilEmail.textContent = admin
+      ? 'Admin (tudo desbloqueado)'
+      : `${email} — ${d} dias desde o início`;
+  }
+}
+
 // --- Lista de utilizadores autorizados ---
 const USERS = {
   "manumendes199514@gmail.com": { name: "Manu", start: "2025-09-25", admin: true },
@@ -303,7 +366,7 @@ const USERS = {
   "zulmira.mendes2@gmail.com": { name: "Zulmira", start: "2025-09-20", admin: false },
   "jessicarafaelacg@gmail.com": { name: "Jéssica", start: "2025-09-18", admin: false },
   "nina_lopes_gomes@hotmail.com": { name: "Carina", start: "2025-09-29", admin: false }
-};
+nano index.html};
 
 // --- Elementos principais ---
 const loginSection = document.getElementById('login-section');
