@@ -417,6 +417,19 @@ function applyLocks(){
 // --- Inicialização ---
 document.getElementById('year').textContent = new Date().getFullYear();
 renderAuth();
+
+// 🟢 Garante que o sistema desbloqueia abas e responde aos cliques
+document.querySelectorAll('#tabs button[data-tab]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('section[id^="aba-"]').forEach(sec=>sec.classList.add('hidden'));
+    const active = document.getElementById('aba-' + tab);
+    if (active) active.classList.remove('hidden');
+    localStorage.setItem('manufit_tab', tab);
+  });
+});
+
+// aplica bloqueios logo após autenticação
 applyLocks();
 </script>
 
