@@ -286,78 +286,10 @@ Proibido: mudar CSS, layout, classes, textos ou ordem visual sem instruções.
 
       <footer class="footer">© <span id="year"></span> MANUFIT. Todos os direitos reservados.</footer>
     </div>
-// ======== BLOQUEIO POR DIAS DESDE A DATA INICIAL ========
+<script>
+// ======== SISTEMA DE LOGIN E BLOQUEIO MENSAL ========
 
-// Conta dias desde o início real de cada aluna
-const DAYS_PER_INITIAL_DATE = 30;
-
-// Calcula diferença em dias entre duas datas
-function daysSince(date) {
-  const ms = Date.now() - date.getTime();
-  return Math.floor(ms / 86400000);
-}
-
-// Garante que há uma data de início registada
-function ensureStartDate() {
-  const email = getEmail();
-  const k = KEY_START_PREFIX + email;
-  if (!localStorage.getItem(k)) {
-    const user = USERS[email];
-    const startDate = user?.start ? new Date(user.start) : new Date();
-    localStorage.setItem(k, startDate.toISOString());
-  }
-}
-
-// Obtém data de início guardada
-function getStartDate() {
-  const email = getEmail();
-  const iso = localStorage.getItem(KEY_START_PREFIX + email);
-  return iso ? new Date(iso) : new Date();
-}
-
-// Aplica bloqueios conforme dias decorridos
-function applyLocks() {
-  const email = getEmail();
-  const user = USERS[email];
-  const admin = user?.admin || false;
-  const start = getStartDate();
-  const d = daysSince(start);
-
-  const advLinks = Array.from(document.querySelectorAll('a[id^="adv-m"]'));
-  advLinks.forEach(a => {
-    const month = parseInt(a.dataset.month || a.id.replace('adv-m', ''), 10);
-
-    // Mês 1 (iniciante) sempre desbloqueado
-    if (!month || month === 1 || admin) {
-      a.style.opacity = '';
-      a.style.pointerEvents = '';
-      a.title = '';
-      return;
-    }
-
-    // Cada mês desbloqueia 30 dias após o início
-    const unlockDay = (month - 1) * DAYS_PER_INITIAL_DATE;
-    if (d >= unlockDay || admin) {
-      a.style.opacity = '';
-      a.style.pointerEvents = '';
-      a.title = '';
-    } else {
-      a.style.opacity = '0.6';
-      a.style.pointerEvents = 'none';
-      const unlock = new Date(start.getTime() + unlockDay * 86400000);
-      a.title = 'Bloqueado até ' + unlock.toLocaleDateString('pt-PT');
-    }
-  });
-
-  // Mostra no perfil
-  if (perfilEmail) {
-    perfilEmail.textContent = admin
-      ? 'Admin (tudo desbloqueado)'
-      : `${email} — ${d} dias desde o início`;
-  }
-}
-
-// --- Lista de utilizadores autorizados ---
+// --- Configuração base ---
 const USERS = {
   "manumendes199514@gmail.com": { name: "Manu", start: "2025-09-25", admin: true },
   "beahcostavaz@icloud.com": { name: "Bernardete Costa Vaz", start: "2025-11-09", admin: false },
@@ -365,9 +297,13 @@ const USERS = {
   "zulmira.mendes2@gmail.com": { name: "Zulmira", start: "2025-09-20", admin: false },
   "jessicarafaelacg@gmail.com": { name: "Jéssica", start: "2025-09-18", admin: false },
   "nina_lopes_gomes@hotmail.com": { name: "Carina", start: "2025-09-29", admin: false }
-nano index.html};
+};
 
-// --- Elementos principais ---
+const KEY_EMAIL = 'manufit_email';
+const KEY_TAB   = 'manufit_tab';
+const DAYS_PER_MONTH = 30;
+
+// --- Elementos ---
 const loginSection = document.getElementById('login-section');
 const appSection   = document.getElementById('app-section');
 const emailInput   = document.getElementById('email');
@@ -379,134 +315,101 @@ const btnSair      = document.getElementById('btn-sair');
 function isAuthed(){ return !!localStorage.getItem(KEY_EMAIL); }
 function getEmail(){ return (localStorage.getItem(KEY_EMAIL) || '').trim().toLowerCase(); }
 function saveEmail(v){ localStorage.setItem(KEY_EMAIL, v); }
-function logout(){ localStorage.removeItem(KEY_EMAIL); }
+function clearEmail(){ localStorage.removeItem(KEY_EMAIL); }
 
+// --- Mostrar telas ---
 function showLogin(){
   loginSection.classList.remove('hidden');
   appSection.classList.add('hidden');
-  if (emailInput) emailInput.focus();
 }
-
 function showApp(){
   loginSection.classList.add('hidden');
   appSection.classList.remove('hidden');
   if (perfilEmail) perfilEmail.textContent = getEmail();
-  ensureStartDate();
   applyLocks();
 }
 
-function renderAuth(){
-  if (isAuthed()) showApp();
-  else showLogin();
-}
-// --- Login e Logout (corrigido) ---
-loginForm?.addEventListener('submit', e => {
+// --- Autenticação ---
+loginForm?.addEventListener('submit', e=>{
   e.preventDefault();
-  const v = (emailInput?.value || '').trim().toLowerCase();
+  const v = emailInput.value.trim().toLowerCase();
 
-  // Só permite emails da lista USERS
-  if (!USERS[v]) {
-    alert('Este e-mail não tem acesso autorizado. Fala com a Manu 💖');
+  if(!USERS[v]){
+    alert("Este e-mail não tem acesso autorizado. Fala com a Manu 💖");
     return;
   }
 
-  // Guarda o email e mostra app
   saveEmail(v);
-  renderAuth();
-  applyLocks(); // aplica bloqueios logo após login
+  showApp();
+  applyLocks();
 });
 
 btnSair?.addEventListener('click', ()=>{
-  logout();
-  localStorage.removeItem(KEY_TAB);
-  showLogin();
-});
-
-btnSair?.addEventListener('click', ()=>{
-  logout();
+  clearEmail();
   localStorage.setItem(KEY_TAB, 'treinos');
   showLogin();
 });
 
-// --- Gestão de datas e bloqueios ---
-function ensureStartDate(){
-  const email = getEmail();
-  const k = KEY_START_PREFIX + email;
-  if (!localStorage.getItem(k)) {
-    const user = USERS[email];
-    const startDate = user?.start ? new Date(user.start) : new Date();
-    localStorage.setItem(k, startDate.toISOString());
-  }
-}
+// --- Abas ---
+const tabs = document.querySelectorAll('#tabs button[data-tab]');
+const sections = {
+  treinos: document.getElementById('aba-treinos'),
+  alimentacao: document.getElementById('aba-alimentacao'),
+  cardio: document.getElementById('aba-cardio'),
+  relax: document.getElementById('aba-relax'),
+  extra: document.getElementById('aba-extra'),
+  perfil: document.getElementById('aba-perfil'),
+};
 
-function getStartDate(){
-  const email = getEmail();
-  const iso = localStorage.getItem(KEY_START_PREFIX + email);
-  return iso ? new Date(iso) : new Date();
-}
+tabs.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const tab = btn.dataset.tab;
+    localStorage.setItem(KEY_TAB, tab);
 
-function daysSince(date){
-  return Math.floor((Date.now() - date.getTime()) / 86400000);
+    Object.keys(sections).forEach(k=>{
+      sections[k].classList.add('hidden');
+    });
+    sections[tab].classList.remove('hidden');
+
+    tabs.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// --- Bloqueios de treino ---
+function getStartDateFor(email){
+  const user = USERS[email];
+  return new Date(user.start);
 }
 
 function applyLocks(){
   const email = getEmail();
   const user = USERS[email];
-  if (!user) return showLogin(); // bloqueia se tentar sem autorização
+  const admin = user.admin;
 
-  const admin = user?.admin || false;
-  const start = getStartDate();
-  const d = daysSince(start);
+  const start = getStartDateFor(email);
+  const d = Math.floor((Date.now() - start.getTime()) / 86400000);
 
-  const advLinks = Array.from(document.querySelectorAll('a[id^="adv-m"]'));
-  advLinks.forEach(a=>{
-    const month = parseInt(a.dataset.month || a.id.replace('adv-m',''), 10);
-    if (!month || month === 1 || admin) {
-      a.style.opacity = '';
-      a.style.pointerEvents = '';
-      a.title = '';
-      return;
-    }
-    const unlockDay = month * DAYS_PER_MONTH;
-    if (d >= unlockDay) {
-      a.style.opacity = '';
-      a.style.pointerEvents = '';
-      a.title = '';
+  document.querySelectorAll('a[id^="adv-m"]').forEach(a=>{
+    const month = parseInt(a.dataset.month);
+    const required = (month-1) * DAYS_PER_MONTH;
+
+    if(admin || required <= d){
+      a.style.opacity = "";
+      a.style.pointerEvents = "";
+      a.title = "";
     } else {
-      a.style.opacity = '0.5';
-      a.style.pointerEvents = 'none';
-      const unlock = new Date(start.getTime() + unlockDay*86400000);
-      a.title = '🔒 Bloqueado até ' + unlock.toLocaleDateString('pt-PT');
+      a.style.opacity = "0.5";
+      a.style.pointerEvents = "none";
+      const unlock = new Date(start.getTime() + required*86400000);
+      a.title = "Disponível em: " + unlock.toLocaleDateString('pt-PT');
     }
   });
-
-  if (perfilEmail) {
-    const dias = d + ' dias desde o início';
-    perfilEmail.textContent = admin ? 'Admin (tudo desbloqueado)' : user.name + ' — ' + dias;
-  }
 }
 
 // --- Inicialização ---
-document.querySelectorAll('#tabs button[data-tab]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const tab = btn.dataset.tab;
-
-    // esconde todas as seções
-    document.querySelectorAll('section[id^="aba-"]').forEach(sec=>sec.classList.add('hidden'));
-
-    // mostra a aba ativa
-    const active = document.getElementById('aba-' + tab);
-    if (active) active.classList.remove('hidden');
-
-    // guarda aba atual
-    localStorage.setItem('manufit_tab', tab);
-
-    // destaca a aba ativa em cor-de-rosa
-    document.querySelectorAll('#tabs button[data-tab]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
+document.getElementById('year').textContent = new Date().getFullYear();
+if(isAuthed()) showApp(); else showLogin();
 </script>
-
 </body>
 </html>
