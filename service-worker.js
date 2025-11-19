@@ -1,4 +1,4 @@
-const CACHE_NAME = "manufit-v2"; // muda o número da versão sempre que fizeres alterações
+const CACHE_NAME = "manufit-v3";
 const urlsToCache = ["/", "/index.html"];
 
 self.addEventListener("install", (event) => {
