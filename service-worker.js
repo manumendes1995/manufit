@@ -1,5 +1,12 @@
-const CACHE_NAME = "manufit-v3";
-const urlsToCache = ["/", "/index.html"];
+const CACHE_NAME = "manufit-v4";
+
+const urlsToCache = [
+  "/",
+  "/index.html",
+  "/manifest.json",
+  "/assets/icons/icon-192.png",
+  "/assets/icons/icon-512.png"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
