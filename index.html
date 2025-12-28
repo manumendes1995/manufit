@@ -407,6 +407,28 @@ function applyLocks(){
 // --- Inicialização ---
 document.getElementById('year').textContent = new Date().getFullYear();
 if(isAuthed()) showApp(); else showLogin();
+
+
+// --- LOGOUT AUTOMÁTICO PARA EMAILS REMOVIDOS ---
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const userEmail = localStorage.getItem("manufit_email");
+    if (!userEmail) return; // não está logado
+
+    // lista de autorizados que já existe no ficheiro
+    const autorizados = USERS;
+
+    // se e-mail NÃO estiver na lista → logout automático
+    if (!autorizados[userEmail]) {
+      localStorage.removeItem("manufit_email");
+      localStorage.removeItem("manufit_start");
+      window.location.href = "index.html"; // volta ao login
+    }
+
+  } catch (e) {
+    console.error("Erro no auto-logout:", e);
+  }
+});
 </script>
 </body>
 </html>
